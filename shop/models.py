@@ -43,3 +43,30 @@ class Shop(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Contact(models.Model):
+    class StatusChoices(models.TextChoices):
+        read = 'r', 'خوانده شده'
+        unread = 'ur', 'خوانده نشده'
+
+    full_name = models.CharField(max_length=100, verbose_name='نام و نام خانوادگی')
+    subject = models.CharField(max_length=100, verbose_name='موضوع')
+    phone = models.CharField(max_length=12, verbose_name='شماره تلفن')
+    message = models.TextField(verbose_name='پیام')
+    shop = models.ForeignKey(
+        Shop, on_delete=models.CASCADE, null=True, blank=True, related_name='contacts', verbose_name='فروشگاه گیرنده'
+    )
+    status = models.CharField(
+        max_length=4, choices=StatusChoices.choices, default=StatusChoices.unread, verbose_name='وضعیت مشاهده'
+    )
+    created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
+
+    class Meta:
+        verbose_name = 'پیام'
+        verbose_name_plural = '2. پیام ها'
+        ordering = ('-created',)
+
+    def __str__(self):
+        return self.full_name
