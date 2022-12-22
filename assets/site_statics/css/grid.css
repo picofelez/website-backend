@@ -1,0 +1,365 @@
+/* top main header */
+.top-main-header {
+  font-size: 13px;
+  line-height: 32px;
+  height: 35px;
+  background-color: #f8f8f8;
+  border-bottom: 2px solid #ebebeb;
+}
+
+.top-main-header ul {
+  list-style: none;
+  padding: 0;
+}
+
+.top-main-header ul li {
+  padding-left: 30px;
+  display: inline-block;
+}
+
+.top-main-header ul li a {
+  color: #282828;
+  font-family: "Vazir-bold-fd";
+}
+
+.top-main-header ul li a:hover {
+  opacity: 0.8;
+}
+
+.top-main-header-support {
+  font-family: "Vazir-bold-fd";
+}
+
+/* middle main header */
+.middle-main-header {
+  min-height: 85px;
+  border-bottom: 2px solid #ebebeb;
+}
+
+.middle-main-header-logo a img {
+  width: auto;
+  height: 35px;
+}
+
+.middle-main-header-search #search-bar {
+  height: 40px;
+  line-height: 24px;
+  background-color: #f8f8f8;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.middle-main-header-search #search-bar input {
+  font-size: 13px;
+  width: 93%;
+  background: transparent;
+  border: none;
+  float: left;
+}
+
+.middle-main-header-search #search-bar input:active,
+.middle-main-header-search #search-bar input:focus {
+  outline: none;
+}
+
+/* main nav */
+.main-nav {
+  height: 40px;
+  border-bottom: 2px solid #ebebeb;
+}
+
+.main-nav .main-nav-items {
+  font-size: 15px;
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.main-nav .main-nav-items li {
+  padding-left: 30px;
+  display: inline-block;
+}
+
+.main-nav .main-nav-active-item a {
+  color: var(--primary-color);
+}
+
+.main-nav-btn {
+  margin-top: 0.5rem;
+  display: none;
+}
+
+/* intor */
+.intro-banner-img {
+  box-shadow: 0 0 5px rgb(211, 211, 211);
+  transition: 0.5s;
+  border-radius: 0.4rem;
+}
+
+/* products */
+.product {
+  min-height: 340px;
+  background-color: #fff;
+  border: 2px solid #ededed;
+  border-radius: 3px;
+  margin: 10px 0;
+}
+
+.product .product-img {
+  width: 100%;
+  height: 180px;
+  border-bottom: 2px solid #ededed;
+  /* background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center; */
+  transition: all 1s ease-out;
+}
+
+.product .product-category {
+  font-size: 13px;
+}
+
+.product .product-name {
+  font-family: "vazir-bold-fd";
+  font-size: 16px;
+  color: #282828;
+  line-height: 23px;
+  padding-top: 10px;
+  min-height: 56px;
+  transition: 0.2s;
+}
+
+.product .product-price {
+  font-family: "Vazir-bold-fd";
+  color: var(--primary-color);
+}
+
+.product:hover .product-details {
+  background-color: ghostwhite;
+  transition: 0.3s;
+}
+
+/* product detail */
+
+.product-detail-img img {
+  width: 100%;
+  height: 15rem;
+  border-radius: 0.4rem;
+}
+
+.price-changes-chart {
+  margin-top: 1rem;
+  width: 100%;
+  height: 17rem;
+}
+
+/* store */
+.store {
+  border-radius: 1rem;
+  min-height: 340px;
+  background-color: #fff;
+  border: 2px solid #ededed;
+  border-radius: 0.5rem;
+  margin: 10px 0;
+}
+
+.store .store-img {
+  width: 100%;
+  height: 180px;
+  border-bottom: 2px solid #ededed;
+  transition: all 1s ease-out;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.store .store-name {
+  font-family: "vazir-bold-fd";
+  font-size: 16px;
+  color: #282828;
+  line-height: 23px;
+  padding-top: 10px;
+  min-height: 56px;
+  transition: 0.2s;
+}
+
+.store:hover .store-details {
+  background-color: rgb(248, 248, 255);
+  transition: 0.3s;
+}
+
+/* purchas step */
+.purchas-steps {
+  background-color: #f8f8f8;
+  border-top: 2px solid #ebebeb;
+}
+
+.purchas-step-item {
+  transition: 0.5s;
+  cursor: pointer;
+}
+.purchas-step-icon {
+  text-align: center;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-left: 0.5rem;
+  transition: 0.5s;
+}
+.purchas-step-item:hover {
+  transform: translateY(0.5rem);
+}
+.purchas-step-item:hover .purchas-step-icon {
+  color: var(--secondary-color);
+}
+
+/* contact */
+.contact-page-info {
+  width: 100%;
+  height: 30rem;
+  color: #fff;
+  background-image: linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.3)
+    ),
+    url("../img/bg/6.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0.5rem;
+}
+
+.contact-card {
+  text-align: center;
+}
+
+.contact-card i {
+  font-size: 1.9rem;
+}
+
+.contact-card p {
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0.5rem 0 !important;
+  font-size: 1.25rem;
+}
+
+.contact-card .contact-card-info {
+  font-size: 1.06rem;
+  font-weight: 400;
+}
+
+/* order */
+section.inner-page#cart-page #cart-products {
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 3px;
+}
+
+section.inner-page#cart-page #cart-products #return-to-shop {
+  font-size: 14px;
+}
+
+section.inner-page#cart-page #cart-products #heading {
+  background-color: rgba(209, 209, 209, 0.2);
+  margin: 0 1px;
+}
+
+section.inner-page#cart-page #cart-products .product-remove {
+  color: darkred;
+}
+
+.factor {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+
+/* account */
+.account-info-title {
+  font-family: "vazir-bold-fd";
+  font-size: 19px;
+  color: #282828;
+}
+
+.order .h2 {
+  font-family: "vazir-bold-fd";
+  font-size: 17px;
+  color: #282828;
+}
+
+.profile-order-card {
+  min-height: 210px;
+}
+
+.profile-order-card {
+  min-height: 280px;
+  background-color: white;
+  border: 2px solid #ededed;
+  border-radius: 3px;
+  margin: 10px 0;
+}
+
+.profile-order-card .image {
+  height: 140px;
+  border-bottom: 2px solid #ededed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.profile-order-card h2 {
+  font-size: 16px;
+  margin-top: 1rem;
+  color: #282828;
+}
+
+@media screen and (min-width: 576px) {
+  .profile-field {
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+  }
+  .profile-field a svg {
+    font-size: 18px;
+    font-weight: normal;
+    color: dimgray;
+    padding-top: 5px;
+  }
+  .profile-field .title {
+    margin-bottom: 0.5rem;
+    font-family: "Vazir-bold-fd";
+  }
+  .profile-field .title::before {
+    height: 0.13rem;
+  }
+}
+
+/* footer */
+.footer {
+  border-top: 2px solid #ebebeb;
+}
+
+.footer-logo img {
+  width: 200px;
+  margin: 1.2rem 0;
+}
+.footer .footer-link {
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+.footer-link i,
+.footer-link a {
+  color: var(--gray-color);
+}
+
+@media (max-width: 768px) {
+  .main-nav-btn {
+    display: block;
+  }
+  .main-nav-items {
+    display: none;
+  }
+  .contact-page-info {
+    height: 15rem;
+  }
+}
