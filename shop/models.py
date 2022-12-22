@@ -3,6 +3,7 @@ from django.utils.html import format_html
 
 from account.models import User
 from extensions import upload_shop_image_path
+from .managers import ActiveShopManager
 
 
 # Create your models here.
@@ -35,6 +36,9 @@ class Shop(models.Model):
         verbose_name = 'فروشگاه'
         verbose_name_plural = '1. فروشگاه ها'
         ordering = ('-created',)
+
+    objects = models.Manager()
+    active = ActiveShopManager()
 
     def get_thumbnail(self):
         return format_html(f"<img width=100 height=75 style='border-radius: 5px;' src='{self.image.url}'>")
