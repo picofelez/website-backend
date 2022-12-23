@@ -1,0 +1,150 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+    {{ shop }} | پیکوفلز
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="shop-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="">آهن فروشی عبدی</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            ارتباط با فروشنده
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-12 col-lg-12 px-0 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
+                                <div class="my-2">
+                                    <div class="container">
+                                        <div class="rounded border p-2">
+                                            <div class="row">
+                                                <div class="col-12 col-md-2 mb-3 mb-md-0">
+                                                    <img
+                                                            src="{{ shop.image.url }}"
+                                                            alt="name"
+                                                            width="100%"
+                                                            height="200"
+                                                            class="rounded"
+                                                    />
+                                                </div>
+                                                <div class="col-12 col-md-8">
+                                                    <h4 class="font-vazir-bold-fd">{{ shop.title }}</h4>
+                                                    <div class="mt-2">
+                                                        <i class="fas fa-star text-purple"></i>
+                                                        <i class="fas fa-star text-purple"></i>
+                                                        <i class="fas fa-star text-purple"></i>
+                                                        <i class="fas fa-star text-purple"></i>
+                                                        <i class="far fa-star"></i>
+                                                        (4.5 امتیاز)
+                                                    </div>
+                                                    <p>
+                                                        {{ shop.about|truncatewords:12 }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="shop-nav">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 my-2 col-md-4">
+                                                <a href="#" class="btn btn-purple w-100"
+                                                >محصولات فروشگاه</a
+                                                >
+                                            </div>
+                                            <div class="col-12 my-2 col-md-4">
+                                                <a href="#" class="btn btn-success w-100"
+                                                >ارتباط با فروشگاه</a
+                                                >
+                                            </div>
+                                            <div class="col-12 my-2 col-md-4">
+                                                <a href="#" class="btn btn-warning w-100"
+                                                >امتیاز دادن</a
+                                                >
+                                            </div>
+                                            <hr class="my-4"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="shop-contact">
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-8">
+                                                <h6 class="fw-bold title mt-2 my-3">
+                                                    انتقادات و پیشنهادات خودرا با فروشنده در میان
+                                                    بگذارید
+                                                </h6>
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        {% if messages %}
+                                                            {% for message in messages %}
+                                                                <div class="col-md-12 mb-3">
+                                                                    <div class="alert alert-success">
+                                                                        {{ message }}
+                                                                    </div>
+                                                                </div>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        <div class="col-md-6 mb-2">
+                                                            <label for="{{ form.full_name.id_for_label }}">{{ form.full_name.label }}*</label>
+                                                            {{ form.full_name|add_class:'form-control' }}
+                                                        </div>
+                                                        <div class="col-md-6 mb-2">
+                                                            <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}*</label>
+                                                            {{ form.phone|add_class:'form-control' }}
+                                                        </div>
+                                                        <div class="col-md-12 mb-2">
+                                                            <label for="{{ form.subject.id_for_label }}">{{ form.subject.label }}*</label>
+                                                            {{ form.subject|add_class:'form-control' }}
+                                                        </div>
+                                                        <div class="col-md-12 mb-2">
+                                                            <label for="{{ form.message.id_for_label }}">{{ form.message.label }}*</label>
+                                                            {{ form.message|add_class:'form-control' }}
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <button class="btn btn-outline-success w-100">ارسال</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}
