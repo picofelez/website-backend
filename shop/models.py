@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.html import format_html
 
 from account.models import User
-from extensions import upload_shop_image_path
+from extensions.utils import upload_shop_image_path
 from .managers import ActiveShopManager
 
 
