@@ -15,6 +15,11 @@ class ShopDetailView(DetailView):
     template_name = 'shop/shop_detail.html'
 
 
+class ShopProductsView(DetailView):
+    queryset = Shop.active.all()
+    template_name = 'shop/shop_products.html'
+
+
 def create_shop_contact(request, **kwargs):
     form = CreateContact(request.POST or None)
     shop = get_object_or_404(Shop, status='a', slug=kwargs.get('slug'))
