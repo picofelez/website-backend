@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.html import format_html
 
 from account.models import User
-from extensions.utils import upload_product_image_path
+from extensions.utils import upload_product_image_path, generate_product_id
 from product.managers import PublishedProductsManager
 from shop.models import Shop
 
@@ -24,6 +24,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    id = models.CharField(
+        max_length=255, default=generate_product_id, primary_key=True, editable=False, unique=True
+    )
     shop = models.ForeignKey(
         Shop, on_delete=models.PROTECT, related_name='shop_products', verbose_name='فروشگاه'
     )

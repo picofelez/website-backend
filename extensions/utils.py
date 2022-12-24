@@ -2,6 +2,14 @@ import os
 import random
 
 
+def generate_product_id():
+    """
+    generate random ID for product model.
+    """
+    number = random.randint(1000000, 9999999)
+    return f"pcf-{number}"
+
+
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
     name, ext = os.path.splitext(base_name)
