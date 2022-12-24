@@ -1,0 +1,176 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% block title %}
+    {{ object }} | پیکوفلز
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="product-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="#">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="#">محصولات</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            {{ product.title }} - {{ product.shop.title }}
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-12 col-lg-5 mb-3">
+                                <div class="product-detail-img rounded-card">
+                                    <img src="{{ product.image.url }}" alt="{{ product.title }}"/>
+                                </div>
+                                <div class="price-changes-chart rounded-card">
+                                    <canvas id="price-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-7 mb-5">
+                                <div class="product-detail-info rounded-card">
+                                    <h4 class="product-detail-info-title font-vazir-bold-fd">
+                                        {{ product.title }}
+                                    </h4>
+                                    <div class="product-detail-info-meta my-4">
+                                        <small>
+                                            <i class="fas fa-key me-1"></i>
+                                            شناسه محصول: {{ product.id }}
+                                        </small>
+                                        <small>
+                                            <i class="fas fa-shop me-1"></i>
+                                            فروشگاه:
+                                            <a href="{% url 'shop:shop-detail' product.shop.slug %}">{{ product.shop.title }}</a>
+                                        </small>
+                                        <div class="my-4">
+                                            <span>امتیاز محصول:</span>
+                                            <i class="fas fa-star text-purple"></i>
+                                            <i class="fas fa-star text-purple"></i>
+                                            <i class="fas fa-star text-purple"></i>
+                                            <i class="fas fa-star text-purple"></i>
+                                            <i class="far fa-star"></i>
+                                            (4.5 امتیاز)
+                                        </div>
+                                    </div>
+                                    <div class="product-detail-info-price my-4">
+                                        {% if product.stock > 0 %}
+                                            <p class="text-purple">
+                                                <strong>{{ product.price }} تومان (هر {{ product.quantity }})</strong>
+                                            </p>
+                                        {% else %}
+                                            <p class="text-danger">
+                                                <strong>ناموجود</strong>
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="product-detail-info-description my-4">
+                                        <p>
+                                            <strong> درباره محصول:</strong>
+                                            {{ product.description }}
+                                        </p>
+                                    </div>
+                                    <div class="product-detail-info-cart mt-5 mb-3">
+                                        <hr/>
+                                        {% if product.stock > 0 %}
+                                            <p class="text-gray">
+                                                موجود در انبار - حداکثر تعداد خرید : 15
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <input
+                                                            type="number"
+                                                            class="form-control w-100 mb-2"
+                                                            placeholder="تعداد"
+                                                    />
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <button class="btn btn-outline-success w-100 mb-2">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                        افزودن به سبد خرید
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <p class="text-danger">
+                                                <strong>محصول در انبار موجود نیست.</strong>
+                                            </p>
+                                        {% endif %}
+                                        <hr/>
+                                    </div>
+                                    <div class="product-detail-info-link mb-4">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <a
+                                                        href="#"
+                                                        class="btn btn-outline-success w-100 mb-2 no-hover"
+                                                >
+                                                    <i class="fas fa-heart"></i>
+                                                    افزودن به علاقه مندی
+                                                </a>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <a
+                                                        href="#"
+                                                        class="btn btn-outline-success w-100 mb-2 no-hover"
+                                                >
+                                                    <i class="fas fa-code-compare"></i>
+                                                    افزودن به لیست مقایسه
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 my-2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="title font-vazir-bold-fd">اطلاعات بیشتر</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <table class="table bg-white box-shadow">
+                                    <tbody>
+                                    <tr>
+                                        <th>وزن</th>
+                                        <td>{{ product.weight }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>طول | عرض</th>
+                                        <td>{{ product.length }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ضخامت</th>
+                                        <td>{{ product.width }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}

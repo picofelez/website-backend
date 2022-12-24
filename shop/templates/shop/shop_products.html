@@ -114,7 +114,7 @@
                                                 <!-- product box -->
                                                 <div class="col">
                                                     <div class="product">
-                                                        <a href="#">
+                                                        <a href="{% url 'product:product-detail' product.id %}">
                                                             <img
                                                                     src="{{ product.image.url }}"
                                                                     class="product-img"
@@ -128,7 +128,7 @@
                                                                     /
                                                                 {% endfor %}
                                                             </div>
-                                                            <a href="#">
+                                                            <a href="{% url 'product:product-detail' product.id %}">
                                                                 <h2 class="product-name">
                                                                     {{ product.title }} -
                                                                     <small>{{ product.shop.title }}</small>

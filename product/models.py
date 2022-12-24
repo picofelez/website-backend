@@ -3,6 +3,7 @@ from django.utils.html import format_html
 
 from account.models import User
 from extensions.utils import upload_product_image_path
+from product.managers import PublishedProductsManager
 from shop.models import Shop
 
 
@@ -51,6 +52,9 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'محصول'
         verbose_name_plural = '1. محصولات'
+
+    objects = models.Manager()
+    published = PublishedProductsManager()
 
     def get_thumbnail(self):
         return format_html(f"<img width=100 height=75 style='border-radius: 5px;' src='{self.image.url}'>")
