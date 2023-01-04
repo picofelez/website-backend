@@ -1,5 +1,7 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
+{% load humanize %}
+
 {% block title %}
     {{ object }} | پیکوفلز
 {% endblock %}
@@ -76,7 +78,7 @@
                                     <div class="product-detail-info-price my-4">
                                         {% if product.stock > 0 %}
                                             <p class="text-purple">
-                                                <strong>{{ product.price }} تومان (هر {{ product.quantity }})</strong>
+                                                <strong>{{ product.price|intcomma:False }} تومان (هر {{ product.quantity }})</strong>
                                             </p>
                                         {% else %}
                                             <p class="text-danger">

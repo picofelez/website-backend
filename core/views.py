@@ -5,4 +5,7 @@ from django.views.generic import TemplateView
 
 
 class Home(TemplateView):
+    """
+    index view.
+    """
     template_name = 'core/home.html'

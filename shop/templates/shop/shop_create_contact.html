@@ -42,48 +42,18 @@
                     <div class="page-content">
                         <div class="row">
                             <div class="col-12 col-lg-12 px-0 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
-                                <div class="my-2">
-                                    <div class="container">
-                                        <div class="rounded border p-2">
-                                            <div class="row">
-                                                <div class="col-12 col-md-2 mb-3 mb-md-0">
-                                                    <img
-                                                            src="{{ shop.image.url }}"
-                                                            alt="name"
-                                                            width="100%"
-                                                            height="200"
-                                                            class="rounded"
-                                                    />
-                                                </div>
-                                                <div class="col-12 col-md-8">
-                                                    <h4 class="font-vazir-bold-fd">{{ shop.title }}</h4>
-                                                    <div class="mt-2">
-                                                        <i class="fas fa-star text-purple"></i>
-                                                        <i class="fas fa-star text-purple"></i>
-                                                        <i class="fas fa-star text-purple"></i>
-                                                        <i class="fas fa-star text-purple"></i>
-                                                        <i class="far fa-star"></i>
-                                                        (4.5 امتیاز)
-                                                    </div>
-                                                    <p>
-                                                        {{ shop.about|truncatewords:12 }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% include 'shop/components/shop_profile_component.html' %}
                                 <div class="shop-nav">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12 my-2 col-md-4">
-                                                <a href="#" class="btn btn-purple w-100"
+                                                <a href="{% url 'shop:shop-products' shop.slug %}" class="btn btn-purple w-100"
                                                 >محصولات فروشگاه</a
                                                 >
                                             </div>
                                             <div class="col-12 my-2 col-md-4">
-                                                <a href="#" class="btn btn-success w-100"
-                                                >ارتباط با فروشگاه</a
+                                                <a href="{% url 'shop:shop-detail' shop.slug %}" class="btn btn-success w-100"
+                                                >درباره فروشگاه</a
                                                 >
                                             </div>
                                             <div class="col-12 my-2 col-md-4">

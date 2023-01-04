@@ -1,5 +1,6 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
+
 {% block title %}
     {{ object }} | پیکوفلز
 {% endblock %}
@@ -38,43 +39,15 @@
                     <div class="page-content">
                         <div class="row">
                             <div class="col-12 col-lg-12 px-0 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
-                                <div class="my-2">
-                                    <div class="container">
-                                        <div class="rounded border p-2">
-                                            <div class="row">
-                                                <div class="col-12 col-md-2 mb-3 mb-md-0">
-                                                    <img
-                                                            src="{{ object.image.url }}"
-                                                            alt="name"
-                                                            width="100%"
-                                                            height="200"
-                                                            class="rounded"
-                                                    />
-                                                </div>
-                                                <div class="col-12 col-md-8">
-                                                    <h4 class="font-vazir-bold-fd">{{ object.title }}</h4>
-                                                    <div class="mt-2">
-                                                        <i class="fas fa-star text-purple"></i>
-                                                        <i class="fas fa-star text-purple"></i>
-                                                        <i class="fas fa-star text-purple"></i>
-                                                        <i class="fas fa-star text-purple"></i>
-                                                        <i class="far fa-star"></i>
-                                                        (4.5 امتیاز)
-                                                    </div>
-                                                    <p>
-                                                        {{ object.about|truncatewords:12 }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% include 'shop/components/shop_profile_component.html' %}
                             </div>
                             <div class="col-12 my-2 col-md-4">
-                                <a href="#" class="btn btn-purple w-100">محصولات فروشگاه</a>
+                                <a href="{% url 'shop:shop-detail' shop.slug %}" class="btn btn-purple w-100">درباره
+                                    فروشگاه</a>
                             </div>
                             <div class="col-12 my-2 col-md-4">
-                                <a href="#" class="btn btn-success w-100">ارتباط با فروشگاه</a>
+                                <a href="{% url 'shop:shop-contact' shop.slug %}" class="btn btn-success w-100">ارتباط
+                                    با فروشگاه</a>
                             </div>
                             <div class="col-12 my-2 col-md-4">
                                 <a href="#" class="btn btn-warning w-100">امتیاز دادن</a>
@@ -110,43 +83,7 @@
                                             class="row row-cols-1 row-cols-sm-3 row-cols-lg-4 gx-md-4"
                                     >
                                         {% for product in object.shop_products.all %}
-                                            <div class="col" style="display: block">
-                                                <!-- product box -->
-                                                <div class="col">
-                                                    <div class="product">
-                                                        <a href="{% url 'product:product-detail' product.id %}">
-                                                            <img
-                                                                    src="{{ product.image.url }}"
-                                                                    class="product-img"
-                                                                    alt="{{ product.title }}"
-                                                            />
-                                                        </a>
-                                                        <div class="product-details p-3">
-                                                            <div class="product-category">
-                                                                {% for category in product.categories.all %}
-                                                                    <a href="#">{{ category.name }}</a>
-                                                                    /
-                                                                {% endfor %}
-                                                            </div>
-                                                            <a href="{% url 'product:product-detail' product.id %}">
-                                                                <h2 class="product-name">
-                                                                    {{ product.title }} -
-                                                                    <small>{{ product.shop.title }}</small>
-                                                                </h2>
-                                                            </a>
-                                                            <div class="product-price">{{ product.price }} تومان</div>
-                                                            <div class="product-rate">
-                                                                <i class="fas fa-star text-purple"></i>
-                                                                <i class="fas fa-star text-purple"></i>
-                                                                <i class="fas fa-star text-purple"></i>
-                                                                <i class="fas fa-star text-purple"></i>
-                                                                <i class="far fa-star"></i>
-                                                                (4.5 امتیاز)
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {% include 'product/components/product_card_component.html' %}
                                         {% endfor %}
                                     </div>
                                 </div>

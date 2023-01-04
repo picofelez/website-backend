@@ -9,6 +9,9 @@ from shop.models import Shop
 
 # Create your models here.
 class Category(models.Model):
+    """
+    The category main model.
+    """
     parent = models.ForeignKey(
         "self", on_delete=models.CASCADE, null=True, blank=True, related_name='sub_cats', verbose_name='دسته بندی والد'
     )
@@ -24,6 +27,12 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    The product main model,
+    Many-To-One relationship with Shop,
+    Many-to-One relationship with User,
+    Many-To-Many relationship wit Category.
+    """
     id = models.CharField(
         max_length=255, default=generate_product_id, primary_key=True, editable=False, unique=True
     )

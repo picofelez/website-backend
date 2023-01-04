@@ -10,6 +10,10 @@ from .managers import ActiveShopManager
 
 
 class Shop(models.Model):
+    """
+    The Shop main model,
+    Many-To-One relationship with User.
+    """
     class StatusChoices(models.TextChoices):
         active = 'a', 'فعال'
         deactivate = 'da', 'غیرفعال'
@@ -50,6 +54,10 @@ class Shop(models.Model):
 
 
 class Contact(models.Model):
+    """
+    The contact main model,
+    Many-To-One relationship with Shop.
+    """
     class StatusChoices(models.TextChoices):
         read = 'r', 'خوانده شده'
         unread = 'ur', 'خوانده نشده'

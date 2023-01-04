@@ -1,0 +1,31 @@
+<div class="my-2">
+    <div class="container">
+        <div class="rounded border p-2">
+            <div class="row">
+                <div class="col-12 col-md-2 mb-3 mb-md-0">
+                    <img
+                            src="{{ shop.image.url }}"
+                            alt="name"
+                            width="100%"
+                            height="200"
+                            class="rounded"
+                    />
+                </div>
+                <div class="col-12 col-md-8">
+                    <h4 class="font-vazir-bold-fd">{{ shop.title }}</h4>
+                    <div class="mt-2">
+                        <i class="fas fa-star text-purple"></i>
+                        <i class="fas fa-star text-purple"></i>
+                        <i class="fas fa-star text-purple"></i>
+                        <i class="fas fa-star text-purple"></i>
+                        <i class="far fa-star"></i>
+                        (4.5 امتیاز)
+                    </div>
+                    <p>
+                        {{ shop.about|truncatewords:12 }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
