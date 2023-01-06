@@ -1,4 +1,4 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from .models import Product
 
 
@@ -12,3 +12,12 @@ class ProductDetailView(DetailView):
     queryset = Product.published.all()
     template_name = 'product/product_detail.html'
     context_object_name = 'product'
+
+
+class ProductListView(ListView):
+    """
+    This view show all published products.
+    """
+    queryset = Product.published.all()
+    template_name = 'product/product_list.html'
+    paginate_by = 15
