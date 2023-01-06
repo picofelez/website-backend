@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 
 from shop.forms import CreateContact
 from shop.models import Shop
@@ -36,3 +36,9 @@ def create_shop_contact(request, **kwargs):
         'form': form
     }
     return render(request, 'shop/shop_create_contact.html', context)
+
+
+class ShopListView(ListView):
+    queryset = Shop.active.all()
+    template_name = 'shop/shop_list.html'
+    paginate_by = 12

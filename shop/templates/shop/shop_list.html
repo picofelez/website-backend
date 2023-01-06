@@ -1,0 +1,118 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% block title %}
+لیست فروشگاه ها | پیکوفلز
+{% endblock %}
+
+{% block content %}
+<section class="inner-page" id="shop-page">
+      <!-- breadcrumb start -->
+      <section class="page-title-box container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 px-0">
+                  <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                  <p>بازار آنلاین آهن</p>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="{% url 'core:home' %}">خانه</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        آهن فروشی عبدی
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- breadcrumb end -->
+      <section class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="page-content">
+              <div class="row">
+                <div class="col-12 col-lg-12 px-0 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
+                  <div class="order-filters">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-12 col-sm-10 my-1">
+                          <span class="d-block d-sm-inline-block"
+                            >مرتب سازی بر اساس:</span
+                          >
+                          <span
+                            class="order-filter d-block d-sm-inline-block active"
+                            >جدیدترین</span
+                          >
+                          <span class="order-filter d-block d-sm-inline-block"
+                            >پربازدیدترین</span
+                          >
+                          <span class="order-filter d-block d-sm-inline-block"
+                            >پرفروش‌ترین</span
+                          >
+                          <span class="order-filter d-block d-sm-inline-block"
+                            >ارزان‌ترین</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-2">
+                    <div class="container">
+                      <div class="row row-cols-1 row-cols-sm-3 row-cols-lg-4 gx-md-4">
+                        {% for shop in page_obj %}
+                            <div class="col">
+                          <!-- product box -->
+                          <div class="col">
+                            <div class="store">
+                              <a href="{% url 'shop:shop-detail' shop.slug %}" target="_blank">
+                                <img
+                                  src="{{ shop.image.url }}"
+                                  class="store-img"
+                                  alt="{{ shop.title }}"
+                                />
+                              </a>
+                              <div class="store-details p-2">
+                                <div class="store-rate mt-1">
+                                  <i class="fas fa-star text-purple"></i>
+                                  <i class="fas fa-star text-purple"></i>
+                                  <i class="fas fa-star text-purple"></i>
+                                  <i class="fas fa-star text-purple"></i>
+                                  <i class="far fa-star"></i>
+                                  (4.5 امتیاز)
+                                </div>
+                                <a href="{% url 'shop:shop-detail' shop.slug %}" target="_blank">
+                                  <h2 class="store-name text-purple">
+                                    {{ shop.title }}
+                                  </h2>
+                                </a>
+                                <p
+                                  class="store-description text-secondary mt-1 mb-3"
+                                >
+                                  {{ shop.about|truncatewords:6 }}
+                                </p>
+                                <a href="{% url 'shop:shop-detail' shop.slug %}" target="_blank" class="btn border rounded w-100"
+                                  >مشاهده فروشگاه</a
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {% endfor %}
+                      </div>
+                    {% include 'core/components/paginate_component.html' %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+{% endblock %}
