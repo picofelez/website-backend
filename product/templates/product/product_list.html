@@ -61,26 +61,15 @@
                                                 data-bs-parent="#accordionExample"
                                         >
                                             <div class="accordion-body">
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="category1"/>
-                                                    <label for="category1">پروفیل</label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="category2"/>
-                                                    <label for="category2">تیرآهن</label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="category3"/>
-                                                    <label for="category3">ورق</label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="category4"/>
-                                                    <label for="category4">ورق گالوانیزه</label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="checkbox" id="category5"/>
-                                                    <label for="category5">نبشی</label>
-                                                </div>
+                                                <form method="get">
+                                                    {% for category in filter.form.categories %}
+                                                        <div>
+                                                            {{ category }}
+                                                        </div>
+                                                    {% endfor %}
+                                                    <button class="btn btn-purple d-block mt-3" type="submit">جستجو
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -118,10 +107,14 @@
                                         >
                                             {% for product in page_obj %}
                                                 {% include 'product/components/product_card_component.html' %}
+                                            {% empty %}
+                                                <div class="col-12">
+                                                    <div class="alert alert-secondary">محصولی یافت نشد.</div>
+                                                </div>
                                             {% endfor %}
 
                                         </div>
-                                    {% include 'core/components/paginate_component.html' %}
+                                        {% include 'core/components/paginate_component.html' %}
                                     </div>
                                 </div>
                             </div>

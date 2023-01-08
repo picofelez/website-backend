@@ -1,4 +1,7 @@
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView
+from django_filters.views import FilterView
+
+from .filters import ProductFilter
 from .models import Product
 
 
@@ -14,10 +17,11 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
 
 
-class ProductListView(ListView):
+class ProductListView(FilterView):
     """
     This view show all published products.
     """
     queryset = Product.published.all()
     template_name = 'product/product_list.html'
     paginate_by = 15
+    filterset_class = ProductFilter
