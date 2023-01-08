@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
 from django.views.generic import DetailView, ListView
+from django_filters.views import FilterView
 
+from shop.filters import ShopFilter
 from shop.forms import CreateContact
 from shop.models import Shop
 
@@ -38,7 +40,8 @@ def create_shop_contact(request, **kwargs):
     return render(request, 'shop/shop_create_contact.html', context)
 
 
-class ShopListView(ListView):
+class ShopListView(FilterView):
     queryset = Shop.active.all()
     template_name = 'shop/shop_list.html'
     paginate_by = 12
+    filterset_class = ShopFilter

@@ -1,5 +1,7 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
+{% load widget_tweaks %}
+
 {% block title %}
 لیست فروشگاه ها | پیکوفلز
 {% endblock %}
@@ -41,23 +43,25 @@
                   <div class="order-filters">
                     <div class="container">
                       <div class="row">
-                        <div class="col-12 col-sm-10 my-1">
-                          <span class="d-block d-sm-inline-block"
-                            >مرتب سازی بر اساس:</span
-                          >
-                          <span
-                            class="order-filter d-block d-sm-inline-block active"
-                            >جدیدترین</span
-                          >
-                          <span class="order-filter d-block d-sm-inline-block"
-                            >پربازدیدترین</span
-                          >
-                          <span class="order-filter d-block d-sm-inline-block"
-                            >پرفروش‌ترین</span
-                          >
-                          <span class="order-filter d-block d-sm-inline-block"
-                            >ارزان‌ترین</span
-                          >
+                        <div class="col-12 col-sm-12 py-2 px-3 my-1 border rounded-1 bg-light">
+                            <form method="get">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <h6>مرتب سازی بر اساس:</h6>
+                                    </div>
+                                    <div class="col-12 col-md-3 mb-2">
+                                        <label for="{{ filter.form.title.id_for_label }}">نام:</label>
+                                        {{ filter.form.title|add_class:'form-control' }}
+                                    </div>
+                                    <div class="col-12 col-md-3 mb-2">
+                                        <label for="{{ filter.form.location.id_for_label }}">موقعیت جغرافیایی:</label>
+                                        {{ filter.form.location|add_class:'form-control' }}
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-purple">جستجو</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                       </div>
                     </div>
