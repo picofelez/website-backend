@@ -14,6 +14,7 @@ class Shop(models.Model):
     The Shop main model,
     Many-To-One relationship with User.
     """
+
     class StatusChoices(models.TextChoices):
         active = 'a', 'فعال'
         deactivate = 'da', 'غیرفعال'
@@ -58,13 +59,14 @@ class Contact(models.Model):
     The contact main model,
     Many-To-One relationship with Shop.
     """
+
     class StatusChoices(models.TextChoices):
-        read = 'r', 'خوانده شده'
-        unread = 'ur', 'خوانده نشده'
+        read = 'r', 'خوانده شده'  # read
+        unread = 'ur', 'خوانده نشده'  # unread
 
     full_name = models.CharField(max_length=100, verbose_name='نام و نام خانوادگی')
     subject = models.CharField(max_length=100, verbose_name='موضوع')
-    phone = models.CharField(max_length=12, verbose_name='شماره تلفن')
+    phone = models.CharField(max_length=12, verbose_name='شماره تلفن')  # phone number
     message = models.TextField(verbose_name='پیام')
     shop = models.ForeignKey(
         Shop, on_delete=models.CASCADE, null=True, blank=True, related_name='contacts', verbose_name='فروشگاه گیرنده'
@@ -82,3 +84,26 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class SellerInformation(models.Model):
+    """
+    The SellerInformation main model,
+    Many-To-One relationship with Shop.
+    """
+
+    phone_number = models.CharField(max_length=11, verbose_name='شماره تلفن')
+    full_name = models.CharField(max_length=255, verbose_name='نام و نام خانوادگی')
+    national_code = models.CharField(max_length=10, verbose_name='کدملی')
+    shop = models.ForeignKey(
+        Shop, on_delete=models.PROTECT, related_name='sellers', verbose_name='فروشگاه'
+    )
+    created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
+
+    class Meta:
+        verbose_name_plural = '3. اطلاعات فروشندگان'
+        verbose_name = 'اطلاعات فروشنده'
+
+    def __str__(self):
+        return f"{self.shop} | {self.full_name}"
