@@ -46,8 +46,8 @@
                         <li class="active" id="account">
                             <strong>کاربر</strong>
                         </li>
-                        <li id="personal"><strong>فروشنده</strong></li>
                         <li id="payment"><strong>فروشگاه</strong></li>
+                        <li id="personal"><strong>فروشنده</strong></li>
                         <li id="confirm"><strong>ایجاد</strong></li>
                     </ul>
 
@@ -115,10 +115,84 @@
                                 <div class="form-card">
                                     <div class="row">
                                         <div class="col-7">
-                                            <h4 class="fs-title">اطلاعات فروشنده:</h4>
+                                            <h4 class="fs-title">اطلاعات فروشگاه:</h4>
                                         </div>
                                         <div class="col-5">
                                             <p class="steps">مرحله 2 از 4</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="text-secondary">
+                                                <i class="fas fa-info-circle"></i>
+                                                لطفا اطلاعات فروشگاه خودرا با دقت وارد نمایید.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <label class="fieldlabels" for="title">نام فروشگاه: *</label>
+                                    <input
+                                            type="text"
+                                            id="title"
+                                            name="title"
+                                            class="form-control"
+                                    />
+                                    <label class="fieldlabels" for="location">موقعیت مکانی: *</label>
+                                    <select
+                                            id="location"
+                                            name="location"
+                                            class="form-control"
+                                    >
+                                        <option value="krj">البرز-کرج</option>
+                                    </select>
+                                    <label class="fieldlabels" for="slug">آدرس فروشگاه(برای مثال: picoflez): *</label>
+                                    <input
+                                            type="text"
+                                            id="slug"
+                                            name="slug"
+                                            class="form-control"
+                                    />
+                                    <label class="fieldlabels" for="about">معرفی فروشگاه: *</label>
+                                    <textarea
+                                            type="text"
+                                            id="about"
+                                            name="about"
+                                            class="form-control"
+                                    ></textarea>
+                                    <label class="fieldlabels" for="demand">کالاهای مورد نیاز: *</label>
+                                    <textarea
+                                            type="text"
+                                            id="demand"
+                                            name="demand"
+                                            class="form-control"
+                                    ></textarea>
+                                    <label class="fieldlabels" for="supply">کالا هایی که عرضه میکنید: *</label>
+                                    <textarea
+                                            type="text"
+                                            id="supply"
+                                            name="supply"
+                                            class="form-control"
+                                    ></textarea>
+                                </div>
+                                <button
+                                        type="button"
+                                        class="btn btn-outline-secondary previous action-button-previous"
+                                >
+                                    مرحله قبل
+                                </button>
+                                <button
+                                        type="button"
+                                        class="btn btn-success next action-button"
+                                >
+                                    مرحله بعد
+                                </button>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h4 class="fs-title">اطلاعات فروشنده:</h4>
+                                        </div>
+                                        <div class="col-5">
+                                            <p class="steps">مرحله 3 از 4</p>
                                         </div>
                                         <div class="col-12">
                                             <p class="text-secondary">
@@ -150,80 +224,6 @@
                                             class="form-control"
                                     />
                                 </div>
-                                <button
-                                        type="button"
-                                        class="btn btn-outline-secondary previous action-button-previous"
-                                >
-                                    مرحله قبل
-                                </button>
-                                <button
-                                        type="button"
-                                        class="btn btn-success next action-button"
-                                >
-                                    مرحله بعد
-                                </button>
-                            </fieldset>
-
-                            <fieldset>
-                                <div class="form-card">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h4 class="fs-title">اطلاعات فروشگاه:</h4>
-                                        </div>
-                                        <div class="col-5">
-                                            <p class="steps">مرحله 3 از 4</p>
-                                        </div>
-                                        <div class="col-12">
-                                            <p class="text-secondary">
-                                                <i class="fas fa-info-circle"></i>
-                                                لطفا اطلاعات فروشگاه خودرا با دقت وارد نمایید.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <label class="fieldlabels">نام فروشگاه: *</label>
-                                    <input
-                                            type="text"
-                                            id="title"
-                                            name="title"
-                                            class="form-control"
-                                    />
-                                    <label class="fieldlabels">موقعیت مکانی: *</label>
-                                    <select
-                                            type="text"
-                                            id="location"
-                                            name="location"
-                                            class="form-control"
-                                    >
-                                        <option value="krj">البرز-کرج</option>
-                                    </select>
-                                    <label class="fieldlabels">معرفی فروشگاه: *</label>
-                                    <textarea
-                                            type="text"
-                                            id="about"
-                                            name="about"
-                                            class="form-control"
-                                    ></textarea>
-                                    <label class="fieldlabels">کالاهای مورد نیاز: *</label>
-                                    <textarea
-                                            type="text"
-                                            id="demand"
-                                            name="demand"
-                                            class="form-control"
-                                    ></textarea>
-                                    <label class="fieldlabels">کالا هایی که عرضه میکنید: *</label>
-                                    <textarea
-                                            type="text"
-                                            id="supply"
-                                            name="supply"
-                                            class="form-control"
-                                    ></textarea>
-                                </div>
-                                <button
-                                        type="button"
-                                        class="btn btn-outline-secondary previous action-button-previous"
-                                >
-                                    مرحله قبل
-                                </button>
                                 <button
                                         type="button"
                                         class="btn btn-success next action-button"

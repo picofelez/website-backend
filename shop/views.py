@@ -57,7 +57,7 @@ def register_shop(request):
 
 def register_shop_seller_information_create(request):
     """
-    ajax view for save seller information
+    ajax view for save seller information.
     """
     is_ajax = request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
@@ -69,9 +69,37 @@ def register_shop_seller_information_create(request):
                 phone_number=seller_data.get('phone_number'),
                 full_name=seller_data.get('full_name'),
                 national_code=seller_data.get('national_code'),
+                shop=request.user.shops.first()
             )
             seller.save()
             return JsonResponse({'status': 'success'})
         return JsonResponse({'status': 'Invalid request'}, status=400)
-    else:
-        return HttpResponseBadRequest('Invalid request')
+    return HttpResponseBadRequest('Invalid request')
+
+
+def register_shop_create(request):
+    """
+    ajax view for save shop data.
+    """
+    is_ajax = request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+    if is_ajax:
+        if request.method == 'POST':
+            data = json.load(request)
+            shop_data = data.get('payload')
+            try:
+                shop = Shop(
+                    title=shop_data.get('shop_title'),
+                    slug=shop_data.get('shop_slug'),
+                    location=shop_data.get('shop_location'),
+                    about=shop_data.get('shop_about'),
+                    demand=shop_data.get('shop_demand'),
+                    supply=shop_data.get('shop_supply'),
+                    owner=request.user
+                )
+                shop.save()
+                return JsonResponse({'status': 'success'})
+            except:
+                return JsonResponse({'status': 'fail'})
+        return JsonResponse({'status': 'Invalid request'}, status=400)
+    return HttpResponseBadRequest('Invalid request')

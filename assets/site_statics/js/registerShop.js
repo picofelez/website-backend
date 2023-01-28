@@ -33,6 +33,55 @@ $(document).ready(function () {
         if (index_fs === 1) {
             addActiveClass()
         } else if (index_fs === 2) {
+            // validate shop information
+            let shop_title = $('#title').val()
+            let shop_location = $('#location').val()
+            let shop_slug = $('#slug').val()
+            let shop_about = $('#about').val()
+            let shop_demand = $('#demand').val()
+            let shop_supply = $('#supply').val()
+
+            if (
+                (shop_title === "" || shop_title.length <= 4) ||
+                (shop_location === "" || shop_location.length <= 2) ||
+                (shop_slug === "" || shop_slug.length <= 4) ||
+                (shop_about === "" || shop_about.length < 5) ||
+                (shop_demand === "" || shop_demand.length < 5) ||
+                (shop_supply === "" || shop_supply.length < 5)
+            ) {
+                alert("لطفا اطلاعات خودرا به درستی وارد نمایید.")
+            } else {
+                $.ajax({
+                    url: "/shops/register-shop/data-create",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        payload: {
+                            shop_title,
+                            shop_location,
+                            shop_slug,
+                            shop_about,
+                            shop_demand,
+                            shop_supply
+                        }
+                    }),
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRFToken": getCookie("csrftoken")
+                    },
+                    success: (data) => {
+                        if (data['status'] === 'success') {
+                            addActiveClass()
+                        } else if (data['status'] === 'fail') {
+                            alert("ایجاد فروشگاه با خطا مواجه شد.")
+                        }
+                    },
+                    error: (data) => {
+                        alert("مشکلی پیش آمده لطفا دوباره امتحان کنید.")
+                    }
+                })
+            }
+        } else if (index_fs === 3) {
             // validate seller information
             let phone_number = $('#phone').val()
             let full_name = $('#full_name').val()
@@ -75,26 +124,6 @@ $(document).ready(function () {
                 })
             }
 
-        } else if (index_fs === 3) {
-            // validate shop information
-            let shop_title = $('#title').val()
-            let shop_location = $('#location').val()
-            let shop_about = $('#about').val()
-            let shop_demand = $('#demand').val()
-            let shop_supply = $('#supply').val()
-
-            if (
-                (shop_title === "" || shop_title.length <= 4) ||
-                (shop_location === "" || shop_title.length <= 2) ||
-                (shop_about === "" || shop_about.length < 5) ||
-                (shop_demand === "" || shop_demand.length < 5) ||
-                (shop_supply === "" || shop_supply.length < 5)
-            ) {
-                alert("لطفا اطلاعات خودرا به درستی وارد نمایید.")
-            } else {
-                // TODO: ajax request
-                addActiveClass()
-            }
         }
 
         //Add Class Active function

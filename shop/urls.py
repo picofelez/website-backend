@@ -6,6 +6,7 @@ from .views import (
     ShopListView,
     register_shop,
     register_shop_seller_information_create,
+    register_shop_create
 )
 
 app_name = 'shop'
@@ -21,5 +22,10 @@ urlpatterns = [
         'shops/register-shop/seller-information-create',
         register_shop_seller_information_create,
         name='seller-information-create'
+    ),
+    path(
+        'shops/register-shop/data-create',
+        register_shop_create,
+        name='shop-data-create'
     ),
 ]
