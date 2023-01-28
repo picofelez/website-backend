@@ -1,4 +1,21 @@
 $(document).ready(function () {
+    // get csrf-token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
     var current_fs, next_fs, previous_fs; //fieldsets
     var opacity;
     var current = 1;
@@ -28,8 +45,34 @@ $(document).ready(function () {
             ) {
                 alert("لطفا اطلاعات خودرا به درستی وارد نمایید.")
             } else {
-                // TODO: ajax request
-                addActiveClass()
+                // set data
+                let payload = {
+                    phone_number,
+                    full_name,
+                    national_code
+                }
+
+                // ajax request to server
+                $.ajax({
+                    url: "/shops/register-shop/seller-information-create",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({payload}),
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRFToken": getCookie("csrftoken")
+                    },
+                    success: (data) => {
+                        if (data['status'] === 'success') {
+                            addActiveClass()
+                        } else {
+                            alert("لطفا اطلاعات خودرا به درستی وارد نمایید.")
+                        }
+                    },
+                    error: (data) => {
+                        alert("مشکلی پیش آمده لطفا دوباره امتحان کنید.")
+                    }
+                })
             }
 
         } else if (index_fs === 3) {
