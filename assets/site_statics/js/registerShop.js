@@ -114,8 +114,8 @@ $(document).ready(function () {
                     success: (data) => {
                         if (data['status'] === 'success') {
                             addActiveClass()
-                        } else {
-                            alert("لطفا اطلاعات خودرا به درستی وارد نمایید.")
+                        } else if (data['status'] === 'fail') {
+                            alert("ایجاد فروشگاه با خطا مواجه شد.")
                         }
                     },
                     error: (data) => {

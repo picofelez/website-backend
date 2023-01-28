@@ -65,14 +65,17 @@ def register_shop_seller_information_create(request):
         if request.method == "POST":
             data = json.load(request)
             seller_data = data.get('payload')
-            seller = SellerInformation(
-                phone_number=seller_data.get('phone_number'),
-                full_name=seller_data.get('full_name'),
-                national_code=seller_data.get('national_code'),
-                shop=request.user.shops.first()
-            )
-            seller.save()
-            return JsonResponse({'status': 'success'})
+            try:
+                seller = SellerInformation(
+                    phone_number=seller_data.get('phone_number'),
+                    full_name=seller_data.get('full_name'),
+                    national_code=seller_data.get('national_code'),
+                    shop=request.user.shops.first()
+                )
+                seller.save()
+                return JsonResponse({'status': 'success'})
+            except:
+                return JsonResponse({'status': 'fail'})
         return JsonResponse({'status': 'Invalid request'}, status=400)
     return HttpResponseBadRequest('Invalid request')
 
