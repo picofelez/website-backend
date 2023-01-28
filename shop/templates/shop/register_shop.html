@@ -1,0 +1,283 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PicoFelez | Shop Register</title>
+
+    <link rel="stylesheet" href="{% static 'site_statics/css/bootstrap/bootstrap.rtl.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'site_statics/css/all.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'site_statics/css/main.css' %}"/>
+    <link rel="stylesheet" href="{% static 'site_statics/css/register-shop.css' %}"/>
+</head>
+<body>
+<main class="container">
+    <section class="row align-items-baseline">
+        <section class="col-12 mt-5 mb-5">
+            <div class="text-center">
+                <img
+                        src="{% static 'site_statics/img/vector/man.png' %}"
+                        alt="happy man"
+                        class="img-fluid register-shop-intro-img"
+                        width="300"
+                        height="200"
+                />
+            </div>
+        </section>
+        <section class="col-12 mb-3">
+            <h1 class="text-center font-vazir-bold-fd">ثبت نام فروشنده</h1>
+            <p class="text-center">
+                <a href="/" class="text-purple">بازگشت به پیکوفلز</a>
+            </p>
+        </section>
+    </section>
+    <hr/>
+    <section class="row justify-content-center">
+        <section
+                class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mb-2"
+        >
+            <div class="card border-0 px-0 pt-4 pb-0 mt-3 mb-3">
+                <h4 class="text-center">لطفا اطلاعات هر مرحله را با دقت پر کنید</h4>
+                <form id="shopForm" class="my-3" autocomplete="off">
+                    <ul id="progressbar">
+                        <li class="active" id="account">
+                            <strong>کاربر</strong>
+                        </li>
+                        <li id="personal"><strong>فروشنده</strong></li>
+                        <li id="payment"><strong>فروشگاه</strong></li>
+                        <li id="confirm"><strong>ایجاد</strong></li>
+                    </ul>
+
+                    <div class="progress mb-4">
+                        <div
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-purple"
+                                role="progressbar"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                style="width: 25%"
+                        ></div>
+                    </div>
+
+                    {% if request.user.is_authenticated %}
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-12 col-md-7 mb-2">
+                                        <h4 class="fs-title">حساب های کاربری شما:</h4>
+                                    </div>
+                                    <div class="col-12 col-md-5 mb-2">
+                                        <p class="steps">مرحله 1 از 4</p>
+                                    </div>
+                                </div>
+                                <div class="alert alert-primary">
+                                    <div class="mb-2">
+                                        <i class="fas fa-user"></i>
+                                        <span class="font-vazir-bold-fd">
+                                        {{ request.user.get_full_name }}
+                                    </span>
+                                    </div>
+                                    <div>
+                                    <span class="text-secondary">
+                                        شماره تماس: {{ request.user.username }}
+                                        <br>
+                                        {% if request.user.shops.count == 0 %}
+                                            فروشگاه فعال ندارید
+                                        {% else %}
+                                            فروشگاه فعال:
+                                            {{ request.user.shops.first }}
+                                        {% endif %}
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if request.user.shops.count == 0 %}
+                                <button
+                                        type="button"
+                                        class="btn btn-success next action-button"
+                                >
+                                    مرحله بعد
+                                </button>
+                            {% else %}
+                                <button
+                                        type="button"
+                                        class="btn btn-success"
+                                >
+                                    ورود به فروشگاه
+                                </button>
+                            {% endif %}
+                        </fieldset>
+
+                        {% if request.user.shops.count == 0 %}
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h4 class="fs-title">اطلاعات فروشنده:</h4>
+                                        </div>
+                                        <div class="col-5">
+                                            <p class="steps">مرحله 2 از 4</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="text-secondary">
+                                                <i class="fas fa-info-circle"></i>
+                                                اطلاعات این بخش برای ارتباط کارشناسان با شما استفاده می شود و به کاربران
+                                                پیکوفلز
+                                                نمایش داده نخواهد شد.</p>
+                                        </div>
+                                    </div>
+                                    <label class="fieldlabels">شماره تماس فروشنده: *</label>
+                                    <input
+                                            type="phone"
+                                            id="phone"
+                                            name="phone"
+                                            class="form-control"
+                                    />
+                                    <label class="fieldlabels">نام و نام خانوادگی: *</label>
+                                    <input
+                                            type="text"
+                                            id="full_name"
+                                            name="full_name"
+                                            class="form-control"
+                                    />
+                                    <label class="fieldlabels">کدملی: *</label>
+                                    <input
+                                            type="phone"
+                                            id="national_code"
+                                            name="national_code"
+                                            class="form-control"
+                                    />
+                                </div>
+                                <button
+                                        type="button"
+                                        class="btn btn-outline-secondary previous action-button-previous"
+                                >
+                                    مرحله قبل
+                                </button>
+                                <button
+                                        type="button"
+                                        class="btn btn-success next action-button"
+                                >
+                                    مرحله بعد
+                                </button>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h4 class="fs-title">اطلاعات فروشگاه:</h4>
+                                        </div>
+                                        <div class="col-5">
+                                            <p class="steps">مرحله 3 از 4</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="text-secondary">
+                                                <i class="fas fa-info-circle"></i>
+                                                لطفا اطلاعات فروشگاه خودرا با دقت وارد نمایید.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <label class="fieldlabels">نام فروشگاه: *</label>
+                                    <input
+                                            type="text"
+                                            id="title"
+                                            name="title"
+                                            class="form-control"
+                                    />
+                                    <label class="fieldlabels">موقعیت مکانی: *</label>
+                                    <select
+                                            type="text"
+                                            id="location"
+                                            name="location"
+                                            class="form-control"
+                                    >
+                                        <option value="krj">البرز-کرج</option>
+                                    </select>
+                                    <label class="fieldlabels">معرفی فروشگاه: *</label>
+                                    <textarea
+                                            type="text"
+                                            id="about"
+                                            name="about"
+                                            class="form-control"
+                                    ></textarea>
+                                    <label class="fieldlabels">کالاهای مورد نیاز: *</label>
+                                    <textarea
+                                            type="text"
+                                            id="demand"
+                                            name="demand"
+                                            class="form-control"
+                                    ></textarea>
+                                    <label class="fieldlabels">کالا هایی که عرضه میکنید: *</label>
+                                    <textarea
+                                            type="text"
+                                            id="supply"
+                                            name="supply"
+                                            class="form-control"
+                                    ></textarea>
+                                </div>
+                                <button
+                                        type="button"
+                                        class="btn btn-outline-secondary previous action-button-previous"
+                                >
+                                    مرحله قبل
+                                </button>
+                                <button
+                                        type="button"
+                                        class="btn btn-success next action-button"
+                                >
+                                    مرحله بعد
+                                </button>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4 class="font-vazir-bold-fd text-center">
+                                                <i class="fas fa-check-circle text-success"></i>
+                                                فروشگاه شما با موفقیت ایجاد شد
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                        type="button"
+                                        class="btn btn-purple action-button"
+                                >
+                                    ورود به فروشگاه
+                                </button>
+                            </fieldset>
+                        {% endif %}
+                    {% else %}
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="alert alert-danger">
+                                    <div class="mb-2">
+                                        <i class="fas fa-user"></i>
+                                        <span class="font-vazir-bold-fd">
+                                            لطفا ابتدا
+                                            <a href="/login" class="text-primary">وارد</a>
+                                            حساب کاربری خود شوید یا یک
+                                            <a href="/register" class="text-primary">حساب کاربری جدید</a>
+                                            بسازید.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    {% endif %}
+                </form>
+            </div>
+        </section>
+    </section>
+</main>
+<script src="{% static 'site_statics/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'site_statics/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'site_statics/js/popper.min.js' %}"></script>
+<script src="{% static 'site_statics/js/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'site_statics/js/registerShop.js' %}"></script>
+</body>
+</html>

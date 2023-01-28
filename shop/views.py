@@ -45,3 +45,8 @@ class ShopListView(FilterView):
     template_name = 'shop/shop_list.html'
     paginate_by = 12
     filterset_class = ShopFilter
+
+
+def register_shop(request):
+    context = {}
+    return render(request, 'shop/register_shop.html', context)

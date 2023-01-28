@@ -83,6 +83,10 @@ a:hover {
   color: var(--primary-color) !important;
 }
 
+.bg-purple {
+  background-color: var(--primary-color) !important;
+}
+
 .page-title-box {
   background-color: #f4f4f4;
   padding-top: 30px;

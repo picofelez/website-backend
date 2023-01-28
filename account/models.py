@@ -7,4 +7,5 @@ class User(AbstractUser):
     """
     Customize user mode.
     """
-    pass
+    def __str__(self):
+        return self.get_full_name()
