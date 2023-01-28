@@ -23,13 +23,19 @@ class Shop(models.Model):
 
     title = models.CharField(max_length=155, verbose_name='نام نمایشی فروشگاه')
     slug = models.SlugField(null=True, blank=True, unique=True, verbose_name='شناسه اسلاگ')
-    image = models.ImageField(upload_to=upload_shop_image_path, verbose_name='تصویر')
+    image = models.ImageField(upload_to=upload_shop_image_path, null=True, blank=True, verbose_name='تصویر')
     owner = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name='shops', verbose_name='مدیر فروشگاه'
     )
     location = models.CharField(max_length=100, verbose_name='مکان')
     status = models.CharField(
         max_length=4, choices=StatusChoices.choices, default=StatusChoices.active, verbose_name='وضعیت فروشگاه'
+    )
+    demand = models.TextField(
+        null=True, blank=True, verbose_name='تقاضا'
+    )
+    supply = models.TextField(
+        null=True, blank=True, verbose_name='عرضه'
     )
     about = models.TextField(verbose_name='متن دباره ما')
     is_special = models.BooleanField(default=False, null=True, blank=True, verbose_name='برگزیده')
