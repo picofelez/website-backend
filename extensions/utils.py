@@ -1,6 +1,8 @@
 import os
 import random
 
+from django.utils import timezone
+
 
 def generate_product_id():
     """
@@ -37,6 +39,16 @@ def upload_product_image_path(instance, filename):
     number_random = random.randint(2000, 1000000)
     final_name = f"{number_random}{ext}"
     return f"products/thumbnail/{final_name}"
+
+
+def upload_article_image_path(instance, filename):
+    """
+    set articles image path & name.
+    """
+    name, ext = get_filename_ext(filename)
+    number_random = random.randint(2000, 1000000)
+    final_name = f"{number_random}-{timezone.now()}{ext}"
+    return f"articles/thumbnail/{final_name}"
 
 
 def slug_generator(slug) -> str:
