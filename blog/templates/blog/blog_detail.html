@@ -52,7 +52,11 @@
                                                                 <h1>{{ article.title }}</h1>
                                                             </div>
                                                             <div class="col-12 col-md-4 text-start text-md-end">
-                                                                <span class="date">ارسال شده در 22 تیر 1400</span>
+                                                                <span class="date">منتشر شده در
+                                                                {{ object.published_jalali_dict.day }}
+                                                                {{ object.published_jalali_dict.month }}
+                                                                {{ object.published_jalali_dict.year }}
+                                                                </span>
                                                             </div>
                                                         </div>
                                                         <hr/>

@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.utils.html import format_html
 from blog.managers import PublishedArticleManager
 
-from extensions.utils import upload_article_image_path
+from extensions.utils import upload_article_image_path, jalali_converter_dict
 
 
 # Create your models here.
@@ -60,3 +60,6 @@ class Article(models.Model):
         return format_html(f"<img width=100 height=75 style='border-radius: 5px;' src='{self.image.url}'>")
 
     get_thumbnail.short_description = "تصویر"
+
+    def published_jalali_dict(self):
+        return jalali_converter_dict(self.publish_time)

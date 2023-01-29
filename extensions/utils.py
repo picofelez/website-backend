@@ -56,7 +56,7 @@ def slug_generator(slug) -> str:
     return slug.replace(' ', '-')
 
 
-def jalali_converter(time) -> str:
+def jalali_converter_dict(time) -> dict:
     jmonths = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد',
                'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند']
 
@@ -71,4 +71,4 @@ def jalali_converter(time) -> str:
 
     output = f'{time_to_list[2]} {time_to_list[1]} {time_to_list[0]} '
 
-    return output
+    return {'day': time_to_list[2], 'month': time_to_list[1], 'year': time_to_list[0]}
