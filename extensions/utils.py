@@ -37,3 +37,7 @@ def upload_product_image_path(instance, filename):
     number_random = random.randint(2000, 1000000)
     final_name = f"{number_random}{ext}"
     return f"products/thumbnail/{final_name}"
+
+
+def slug_generator(slug) -> str:
+    return slug.replace(' ', '-')

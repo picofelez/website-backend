@@ -37,13 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
+    # third-party packages
     'widget_tweaks',
     'django_filters',
 
+    # local apps
     'account',
     'shop',
     'core',
     'product',
+    'blog',
 ]
 
 MIDDLEWARE = [
