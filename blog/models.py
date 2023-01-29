@@ -1,9 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.html import format_html
+from blog.managers import PublishedArticleManager
 
 
 # Create your models here.
+
+
 class Tag(models.Model):
     """
     The Tag main model.
@@ -26,7 +29,7 @@ class Article(models.Model):
     """
 
     class StatusChoices(models.TextChoices):
-        published = 'a', 'منتشر شده'
+        published = 'p', 'منتشر شده'
         draft = 'd', 'چک نویس'
 
     title = models.CharField(max_length=155, verbose_name='عنوان')
@@ -40,6 +43,9 @@ class Article(models.Model):
     publish_time = models.DateTimeField(default=timezone.now, verbose_name='زمان انتشار')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
+
+    objects = models.Manager()
+    published = PublishedArticleManager()
 
     class Meta:
         verbose_name = 'مقاله'

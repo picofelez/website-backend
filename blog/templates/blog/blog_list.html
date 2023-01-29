@@ -1,0 +1,91 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% block title %}
+    پیکوفلز | مجله پیکو فلز
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="blog-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            مجله پیکوفلز
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+
+                                    {% for article in page_obj %}
+                                        <article class="col-12 col-sm-6 col-lg-4 mb-3">
+                                            <div class="article-card">
+                                                <div class="article-media">
+                                                    <a href="#" class="article-img">
+                                                        <img src="{{ article.image.url }}" alt=""/>
+                                                    </a>
+                                                    <div class="article-calender">
+                                                        <span class="article-date">20</span>
+                                                        <span class="article-mounth">مهر</span>
+                                                    </div>
+                                                </div>
+                                                <div class="article-content">
+                                                    <ul class="article-info my-4 list-unstyled">
+                                                        <li class="ms-2">
+                                                            <i class="far fa-folder"></i>
+                                                            برچسب ها:
+                                                            {% for tag in article.tags.all %}
+                                                                <span class="badge bg-secondary">
+                                                                    <a href="#">{{ tag }}</a>
+                                                                </span>
+                                                            {% endfor %}
+
+                                                        </li>
+                                                    </ul>
+                                                    <p class="article-title h5 font-vazir-bold-fd mb-4">
+                                                        <a href="#">{{ article.title }}</a>
+                                                    </p>
+                                                    <p class="article-summary text-secondary mb-4">
+                                                        {{ article.summary|truncatewords:10 }}
+                                                    </p>
+                                                    <a href="#" class="article-link">
+                                                        ادامه مطلب
+                                                        <i class="fas fa-arrow-left"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}
