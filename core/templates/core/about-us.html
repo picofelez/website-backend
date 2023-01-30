@@ -1,0 +1,133 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% block title %}
+    پیکو فلز | با ما آشنا شوید
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="about-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            درباره ما
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-12 rounded-card">
+                                <h3 class="font-vazir-bold-fd mb-3">
+                                    به پیکو فلز خوش آمدید!
+                                </h3>
+                                <p>
+                                    یک پلتفرم آنلاین برای فعالان، خریداران و فروشندگان بازار
+                                    آهن.
+                                </p>
+                                <hr/>
+
+                                <section
+                                        class="purchas-steps py-3"
+                                        style="background-color: transparent; border: none"
+                                >
+                                    <div class="row">
+                                        <div class="col-12 mb-4">
+                                            <h4 class="title font-vazir-bold-fd">مراحل خرید</h4>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+                                            <div
+                                                    class="purchas-step-item d-flex justify-content-between align-items-center"
+                                            >
+                                                <div class="purchas-step-icon">
+                                                    <i class="fas fa-globe"></i>
+                                                </div>
+                                                <div class="purchas-step-content">
+                                                    <p class="fw-semibold p-0 m-0 mb-1">انتخاب محصول</p>
+                                                    <p class="text-gray">
+                                                        محصولات و فروشگاه ها را مقایسه کنید و بهترین
+                                                        انتخاب را داشته باشید.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+                                            <div
+                                                    class="purchas-step-item d-flex justify-content-between align-items-center"
+                                            >
+                                                <div class="purchas-step-icon">
+                                                    <i class="fas fa-cart-shopping"></i>
+                                                </div>
+                                                <div class="purchas-step-content">
+                                                    <p class="fw-semibold p-0 m-0 mb-1">
+                                                        تکمیل سبد خرید
+                                                    </p>
+                                                    <p class="text-gray">
+                                                        سبد خرید خود را تکمیل کنید و سفارش را برای تائید
+                                                        ارسال کنید.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+                                            <div
+                                                    class="purchas-step-item d-flex justify-content-between align-items-center"
+                                            >
+                                                <div class="purchas-step-icon">
+                                                    <i class="fas fa-shop"></i>
+                                                </div>
+                                                <div class="purchas-step-content">
+                                                    <p class="fw-semibold p-0 m-0 mb-1">پیش فاکتور</p>
+                                                    <p class="text-gray">
+                                                        پس از تائید فروشگاه ها پیش فاکتور صادر میشود و
+                                                        باید فاکتور را تسویه کنید.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+                                            <div
+                                                    class="purchas-step-item d-flex justify-content-between align-items-center"
+                                            >
+                                                <div class="purchas-step-icon">
+                                                    <i class="fas fa-truck"></i>
+                                                </div>
+                                                <div class="purchas-step-content">
+                                                    <p class="fw-semibold p-0 m-0 mb-1">ارسال مرسوله</p>
+                                                    <p class="text-gray">
+                                                        بعد از نهایی شدن سفارش، مرسوله از فروشگاه ها برای
+                                                        شما ارسال می شود.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}
