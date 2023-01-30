@@ -1,6 +1,8 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView
+
+from core.models import Question
 from shop.forms import ContactForm
 
 
@@ -29,3 +31,11 @@ class CreateContactView(SuccessMessageMixin, CreateView):
     form_class = ContactForm
     success_url = reverse_lazy('core:contact-us')
     success_message = 'پیام شما با موفقیت ارسال شد.'
+
+
+class QuestionListView(ListView):
+    """
+    Faq view.
+    """
+    queryset = Question.objects.filter(status='a')
+    template_name = 'core/faq.html'

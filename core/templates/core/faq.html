@@ -1,0 +1,88 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% block title %}
+    پیکو فلز | سوالات شما
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="faq-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            سوالات متداول
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="title font-vazir-bold-fd">سوالات متداول</h5>
+                                <p>
+                                    در صورتی که سوال خود را پیدا نکردید از
+                                    <a href="{% url 'core:contact-us' %}" class="text-primary">این لینک</a>
+                                    با ما در ارتباط باشید.
+                                </p>
+                            </div>
+                            <div class="col-12">
+                                <div class="accordion mt-2" id="accordionExample">
+
+                                    {% for quiz in object_list %}
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingOne">
+                                                <button
+                                                        class="accordion-button collapsed"
+                                                        type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#quiz{{ quiz.id }}"
+                                                        aria-expanded="false"
+                                                        aria-controls="quiz{{ quiz.id }}"
+                                                >
+                                                    {{ quiz.title }}
+                                                </button>
+                                            </h2>
+                                            <div
+                                                    id="quiz{{ quiz.id }}"
+                                                    class="accordion-collapse collapse"
+                                                    aria-labelledby="headingOne"
+                                                    data-bs-parent="#accordionExample"
+                                            >
+                                                <div class="accordion-body">
+                                                    <p>
+                                                        {{ quiz.description }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}
