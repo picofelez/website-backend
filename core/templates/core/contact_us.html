@@ -1,0 +1,130 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    پیکو فلز | با ما در ارتباط باشیم
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="contact-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            ارتباط با ما
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-12 col-md-5 mb-3">
+                                <div class="contact-page-info"></div>
+                            </div>
+                            <div class="col-12 col-md-7 mb-3">
+                                <h5 class="title font-vazir-bold-fd">فرم ارتباط با ما</h5>
+                                <p class="mt-3">
+                                    نظرات، پیشنهادات و انتقادات سازنده خود را از طریق فرم زیر با
+                                    ما در میان بگذارید. ما در این بازار آنلاین همواره برای بهبود
+                                    خدمات خود در تلاش هستیم.
+                                </p>
+                                <hr class="my-4"/>
+
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-success">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label class="small fw-bold mb-2" for="{{ form.full_name.id_for_label }}">
+                                                {{ form.full_name.label }}*
+                                            </label>
+                                            {{ form.full_name|add_class:'form-control' }}
+                                        </div>
+                                        <div class="col-12 col-md-12 mb-3">
+                                            <label class="small fw-bold mb-2" for="{{ form.phone.id_for_label }}">
+                                                {{ form.phone.label }}*
+                                            </label>
+                                            {{ form.phone|add_class:'form-control' }}
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label class="small fw-bold mb-2" for="{{ form.subject.id_for_label }}">
+                                                {{ form.subject.label }}*
+                                            </label>
+                                            {{ form.subject|add_class:'form-control' }}
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label class="small fw-bold mb-2" for="{{ form.message.id_for_label }}">
+                                                {{ form.message.label }}*
+                                            </label>
+                                            {{ form.message|add_class:'form-control'|attr:'rows:3' }}
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <button class="btn btn-purple">ارسال</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr/>
+                            <div class="col-12 mt-4">
+                                <div class="row justify-content-center">
+                                    <div
+                                            class="col-12 col-md-6 col-lg-4 mb-5 mb-md-0 contact-card"
+                                    >
+                                        <span><i class="fas fa-phone"></i></span>
+                                        <p class="mb-0">شماره تماس:</p>
+                                        <span class="contact-card-info">09199060659</span>
+                                    </div>
+                                    <div
+                                            class="col-12 col-md-6 col-lg-4 mb-5 mb-md-0 contact-card"
+                                    >
+                                        <span><i class="fas fa-map"></i></span>
+                                        <p class="mb-0">آدرس:</p>
+                                        <span class="contact-card-info"
+                                        >در شبکه های اجتماعی<br/>
+                        با شناسه picofelez.ir</span
+                                        >
+                                    </div>
+                                    <div
+                                            class="col-12 col-md-6 col-lg-4 mb-5 mb-md-0 contact-card"
+                                    >
+                                        <span><i class="fas fa-inbox"></i></span>
+                                        <p class="mb-0">ایمیل:</p>
+                                        <span class="contact-card-info">info@picofelez.ir</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}

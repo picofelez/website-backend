@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, CreateView
+from shop.forms import ContactForm
 
 
 # Create your views here.
@@ -17,3 +19,13 @@ class AboutUsView(TemplateView):
     About us view.
     """
     template_name = 'core/about-us.html'
+
+
+class CreateContactView(SuccessMessageMixin, CreateView):
+    """
+    Contact us view.
+    """
+    template_name = 'core/contact_us.html'
+    form_class = ContactForm
+    success_url = reverse_lazy('core:contact-us')
+    success_message = 'پیام شما با موفقیت ارسال شد.'

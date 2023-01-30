@@ -8,7 +8,7 @@ from django.views.generic import DetailView
 from django_filters.views import FilterView
 
 from shop.filters import ShopFilter
-from shop.forms import CreateContact
+from shop.forms import ContactForm
 from shop.models import Shop, SellerInformation
 
 
@@ -26,7 +26,7 @@ class ShopProductsView(DetailView):
 
 
 def create_shop_contact(request, **kwargs):
-    form = CreateContact(request.POST or None)
+    form = ContactForm(request.POST or None)
     shop = get_object_or_404(Shop, status='a', slug=kwargs.get('slug'))
 
     if form.is_valid():
