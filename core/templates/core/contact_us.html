@@ -63,25 +63,25 @@
                                     {% csrf_token %}
                                     <div class="row">
                                         <div class="col-12 mb-3">
-                                            <label class="small fw-bold mb-2" for="{{ form.full_name.id_for_label }}">
+                                            <label class="small font-vazir-bold-fd mb-2" for="{{ form.full_name.id_for_label }}">
                                                 {{ form.full_name.label }}*
                                             </label>
                                             {{ form.full_name|add_class:'form-control' }}
                                         </div>
                                         <div class="col-12 col-md-12 mb-3">
-                                            <label class="small fw-bold mb-2" for="{{ form.phone.id_for_label }}">
+                                            <label class="small font-vazir-bold-fd mb-2" for="{{ form.phone.id_for_label }}">
                                                 {{ form.phone.label }}*
                                             </label>
                                             {{ form.phone|add_class:'form-control' }}
                                         </div>
                                         <div class="col-12 mb-3">
-                                            <label class="small fw-bold mb-2" for="{{ form.subject.id_for_label }}">
+                                            <label class="small font-vazir-bold-fd mb-2" for="{{ form.subject.id_for_label }}">
                                                 {{ form.subject.label }}*
                                             </label>
                                             {{ form.subject|add_class:'form-control' }}
                                         </div>
                                         <div class="col-12 mb-3">
-                                            <label class="small fw-bold mb-2" for="{{ form.message.id_for_label }}">
+                                            <label class="small font-vazir-bold-fd mb-2" for="{{ form.message.id_for_label }}">
                                                 {{ form.message.label }}*
                                             </label>
                                             {{ form.message|add_class:'form-control'|attr:'rows:3' }}
