@@ -1,6 +1,7 @@
 from django.core.cache import cache
 from django.contrib import messages
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
+from django.http import Http404
 from django.shortcuts import render, redirect
 
 from account.forms import PhoneNumberForm, VerifyOtpForm
@@ -53,28 +54,35 @@ def register_view(request):
 def verify_otp_view(request):
     form = VerifyOtpForm(request.POST or None)
 
+    ip = get_client_ip(request)
+    phone = cache.get(f"{ip}-for-authentication")
+    otp = cache.get(phone)
+
+    if phone is None:
+        raise Http404
+
     if form.is_valid():
         received_code = form.cleaned_data.get('code')
-        ip = get_client_ip(request)
-        phone = cache.get(f"{ip}-for-authentication")
-        otp = cache.get(phone)
 
         if otp is not None:
             if otp == received_code:
                 user, created = User.objects.get_or_create(username=phone)
+                cache.delete(phone)
+                cache.delete(f"{ip}-for-authentication")
 
                 if created:
                     print('created')
                     # TODO: redirect user to complete information page.
                 else:
-                    print('login')
-                    # TODO: authenticate user.
+                    login(request, user=user)
+                    return redirect('core:home')
             else:
                 messages.error(request, 'کد تائید اشتباه وارد شده است.')
         else:
             messages.error(request, 'کد تائید منقضی شده.')
 
     context = {
-        'form': form
+        'form': form,
+        'phone': phone
     }
     return render(request, 'account/verify_otp.html', context)
