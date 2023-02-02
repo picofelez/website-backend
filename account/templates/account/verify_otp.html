@@ -60,7 +60,17 @@
                                                 </label>
                                                 {{ form.code }}
                                                 <ul class="text-secondary mt-1">
-                                                    <li>اعتبار کد ارسال شده: 2 دقیقه</li>
+                                                    <li id="timer">
+                                                        مدت زمان اعتبار کد <span id="time"></span>
+                                                    </li>
+
+                                                    <li id="back" class="d-none">
+                                                        کد ارسال شده منقضی شد،
+                                                        <a href="{% url 'account:otp-login' %}" class="text-primary">ورود</a>
+                                                        یا
+                                                        <a href="{% url 'account:otp-register' %}" class="text-primary">ثبت
+                                                            نام</a>
+                                                    </li>
 
                                                     {% if form.code.errors %}
                                                         {% for error in form.phone_number.errors %}
@@ -78,7 +88,7 @@
                                                 </ul>
                                             </div>
                                             <div class="col-12 mb-2">
-                                                <button type="submit" class="btn btn-purple">
+                                                <button type="submit" class="btn btn-purple" id="submit-button">
                                                     ارسال
                                                 </button>
                                             </div>
@@ -92,4 +102,18 @@
             </section>
         </section>
     {% endwith %}
+{% endblock %}
+
+{% block meta_js_codes %}
+    <script>
+        let twoMinutes = 60 * 2,
+            display = document.querySelector('#time');
+        countDown(twoMinutes, display);
+
+        setTimeout(function () {
+            document.querySelector("#timer").classList = 'd-none'
+            document.querySelector("#submit-button").classList = 'd-none'
+            document.querySelector("#back").classList = ''
+        }, 120000) // 2 min
+    </script>
 {% endblock %}
