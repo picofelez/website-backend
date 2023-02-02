@@ -27,7 +27,7 @@ class PhoneNumberForm(forms.Form):
 class VerifyOtpForm(forms.Form):
     code = forms.CharField(
         widget=forms.NumberInput(attrs={
-            'class': 'form-control', 'placeholder': 'کد تائید'
+            'class': 'form-control', 'placeholder': 'xxxx'
         }),
         label='کد تائید',
         min_length=4,

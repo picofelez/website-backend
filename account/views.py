@@ -1,11 +1,13 @@
+from django.core.cache import cache
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from account.forms import PhoneNumberForm
+from account.forms import PhoneNumberForm, VerifyOtpForm
+from extensions.utils import get_client_ip
+from extensions.send_otp import send_otp
 
 # Create your views here.
-from extensions.send_otp import send_otp
 
 User = get_user_model()
 
@@ -21,7 +23,7 @@ def login_view(request):
             messages.error(request, 'شماره یافت نشد، لطفا روی گزینه ثبت نام کلیک کنید.')
         else:
             send_otp(request, phone_number)
-            # TODO: redirect user to verify otp page.
+            return redirect('account:otp-verify')
 
     context = {
         'form': form
@@ -40,9 +42,39 @@ def register_view(request):
             messages.error(request, 'حسابی با این شماره موبایل قبلا ایجاد شده است.')
         else:
             send_otp(request, phone_number)
-            # TODO: redirect user to verify otp page.
+            return redirect('account:otp-verify')
 
     context = {
         'form': form
     }
     return render(request, 'account/phone_auth.html', context)
+
+
+def verify_otp_view(request):
+    form = VerifyOtpForm(request.POST or None)
+
+    if form.is_valid():
+        received_code = form.cleaned_data.get('code')
+        ip = get_client_ip(request)
+        phone = cache.get(f"{ip}-for-authentication")
+        otp = cache.get(phone)
+
+        if otp is not None:
+            if otp == received_code:
+                user, created = User.objects.get_or_create(username=phone)
+
+                if created:
+                    print('created')
+                    # TODO: redirect user to complete information page.
+                else:
+                    print('login')
+                    # TODO: authenticate user.
+            else:
+                messages.error(request, 'کد تائید اشتباه وارد شده است.')
+        else:
+            messages.error(request, 'کد تائید منقضی شده.')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'account/verify_otp.html', context)

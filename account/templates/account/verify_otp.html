@@ -1,0 +1,95 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+
+{% block title %}
+    پیکو فلز | تائید کد یک بار مصرف
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="login-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>بازار آنلاین آهن</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="#">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                تائید کد یک بار مصرف
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-12 col-md-4 mb-2">
+                                    <img
+                                            src="{% static 'site_statics/img/vector/login.png' %}"
+                                            alt="authorization"
+                                            class="img-fluid"
+                                    />
+                                </div>
+                                <div class="col-12 col-md-6 mb-2">
+                                    <h5 class="title font-vazir-bold-fd">تائید کد یک بار مصرف</h5>
+                                    <p>لطفا کد فرستاده شده به شماره موبایل را وارد کنید.</p>
+
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-12 mt-2">
+                                                <label for="{{ form.code.id_for_label }}"
+                                                       class="font-vazir-bold-fd">
+                                                    {{ form.code.label }}
+                                                </label>
+                                                {{ form.code }}
+                                                <ul class="text-secondary mt-1">
+                                                    <li>اعتبار کد ارسال شده: 2 دقیقه</li>
+
+                                                    {% if form.code.errors %}
+                                                        {% for error in form.phone_number.errors %}
+                                                            <li class="text-danger">{{ error }}</li>
+                                                        {% endfor %}
+                                                    {% endif %}
+
+                                                    {% for message in messages %}
+                                                        <li {% if message.tags == 'error' %}
+                                                            class="text-danger"
+                                                        {% endif %}>
+                                                            {{ message }}
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 mb-2">
+                                                <button type="submit" class="btn btn-purple">
+                                                    ارسال
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}
