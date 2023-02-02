@@ -5,6 +5,7 @@ from django.shortcuts import render
 from account.forms import PhoneNumberForm
 
 # Create your views here.
+from extensions.send_otp import send_otp
 
 User = get_user_model()
 
@@ -19,8 +20,8 @@ def login_view(request):
         if not user_exist:
             messages.error(request, 'شماره یافت نشد، لطفا روی گزینه ثبت نام کلیک کنید.')
         else:
-            # TODO: send otp code.
-            pass
+            send_otp(request, phone_number)
+            # TODO: redirect user to verify otp page.
 
     context = {
         'form': form
