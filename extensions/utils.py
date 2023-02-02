@@ -72,3 +72,12 @@ def jalali_converter_dict(time) -> dict:
     output = f'{time_to_list[2]} {time_to_list[1]} {time_to_list[0]} '
 
     return {'day': time_to_list[2], 'month': time_to_list[1], 'year': time_to_list[0]}
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(",")[0]
+    else:
+        ip = request.META.get("REMOTE_ADDR")
+    return ip
