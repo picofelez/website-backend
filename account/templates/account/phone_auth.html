@@ -1,0 +1,109 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+
+{% block title %}
+    پیکو فلز | حساب کاربری
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="login-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>بازار آنلاین آهن</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="#">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                {% if url_name == 'otp-login' %}
+                                                    ورود به حساب
+                                                {% elif url_name == 'orp-register' %}
+                                                    ثبت نام در پیکو فلز
+                                                {% endif %}
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-12 col-md-4 mb-2">
+                                    <img
+                                            src="{% static 'site_statics/img/vector/login.png' %}"
+                                            alt="authorization"
+                                            class="img-fluid"
+                                    />
+                                </div>
+                                <div class="col-12 col-md-6 mb-2">
+                                    {% if url_name == 'otp-login' %}
+                                        <h5 class="title font-vazir-bold-fd">ورود به حساب</h5>
+                                    {% elif url_name == 'orp-register' %}
+                                        <h5 class="title font-vazir-bold-fd">ورود به حساب</h5>
+                                        <p>با عضویت در پیکوفلز از همه امکانات سایت بهره مند شوید.</p>
+                                    {% endif %}
+
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-12 mt-2">
+                                                <label for="{{ form.phone_number.id_for_label }}"
+                                                       class="font-vazir-bold-fd">
+                                                    {{ form.phone_number.label }}
+                                                </label>
+                                                {{ form.phone_number }}
+                                                <ul class="text-secondary mt-1">
+                                                    {% if not form.phone_number.errors and not messages %}
+                                                        <li>{{ form.phone_number.help_text }}</li>
+                                                    {% endif %}
+
+                                                    {% if form.phone_number.errors %}
+                                                        {% for error in form.phone_number.errors %}
+                                                            <li class="text-danger">{{ error }}</li>
+                                                        {% endfor %}
+                                                    {% endif %}
+
+                                                    {% for message in messages %}
+                                                        <li {% if message.tags == 'error' %}
+                                                            class="text-danger"{% endif %}>
+                                                            {{ message }}
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 mb-2">
+                                                <button type="submit" class="btn btn-purple">
+                                                    دریافت کد
+                                                </button>
+                                            </div>
+                                            <div class="col-12 mb-2">
+                                                <a href="#" class="text-primary">ثبت نام</a>
+                                                |
+                                                <a href="#" class="text-primary">ورود با رمز عبور</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

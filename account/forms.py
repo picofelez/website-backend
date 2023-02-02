@@ -3,13 +3,15 @@ from django import forms
 from django.contrib.auth.password_validation import validate_password
 
 
-class PhoneNumberField(forms.Form):
+class PhoneNumberForm(forms.Form):
     phone_number = forms.CharField(
         widget=forms.NumberInput(attrs={
             'class': 'form-control', 'placeholder': '09xxxxxxxxx'
         }),
         help_text='شماره موبایل با 09 شروع شود.',
-        label='شماره موبایل'
+        label='شماره موبایل',
+        min_length=11,
+        max_length=11
     )
 
     def clean_phone_number(self):
