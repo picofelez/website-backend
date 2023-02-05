@@ -86,73 +86,16 @@
             <!-- title -->
             <div class="row">
                 <div class="col-12">
-                    <h4 class="title font-vazir-bold-fd">فروشگاه های برتر</h4>
+                    <h4 class="title font-vazir-bold-fd">آخرین فروشگاه ها</h4>
                 </div>
             </div>
             <!-- stores -->
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 products">
-                <div class="col">
-                    <!-- product box -->
-                    <div class="col">
-                        <div class="store">
-                            <a href="#">
-                                <img src="{% static 'site_statics/img/bg/8.jpg' %}" class="store-img"
-                                     alt="prouct name"/>
-                            </a>
-                            <div class="store-details p-2">
-                                <div class="store-rate mt-1">
-                                    <i class="fas fa-star text-purple"></i>
-                                    <i class="fas fa-star text-purple"></i>
-                                    <i class="fas fa-star text-purple"></i>
-                                    <i class="fas fa-star text-purple"></i>
-                                    <i class="far fa-star"></i>
-                                    (4.5 امتیاز)
-                                </div>
-                                <a href="#">
-                                    <h2 class="store-name text-purple">
-                                        آهن فروشی جوادی
-                                    </h2>
-                                </a>
-                                <p class="store-description text-secondary mt-1 mb-3">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم...
-                                </p>
-                                <a href="#" class="btn border rounded w-100">مشاهده فروشگاه</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <!-- product box -->
-                    <div class="col">
-                        <div class="store">
-                            <a href="#">
-                                <img src="{% static 'site_statics/img/bg/4.jpg' %}" class="store-img"
-                                     alt="prouct name"/>
-                            </a>
-                            <div class="store-details p-2">
-                                <div class="store-rate mt-1">
-                                    <i class="fas fa-star text-purple"></i>
-                                    <i class="fas fa-star text-purple"></i>
-                                    <i class="fas fa-star text-purple"></i>
-                                    <i class="fas fa-star text-purple"></i>
-                                    <i class="far fa-star"></i>
-                                    (4.5 امتیاز)
-                                </div>
-                                <a href="#">
-                                    <h2 class="store-name text-purple">
-                                        آهن فروشی جوادی
-                                    </h2>
-                                </a>
-                                <p class="store-description text-secondary mt-1 mb-3">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم...
-                                </p>
-                                <a href="#" class="btn border rounded w-100">مشاهده فروشگاه</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% for shop in latest_shops %}
+                    {% include 'shop/components/shop_card_component.html' %}
+                {% endfor %}
             </div>
-            <a href="#" class="btn btn-purple">همه فروشگاه ها</a>
+            <a href="{% url 'shop:shop-list' %}" class="btn btn-purple">همه فروشگاه ها</a>
         </section>
     </section>
 

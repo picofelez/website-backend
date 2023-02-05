@@ -1,0 +1,46 @@
+{% load static %}
+
+<div class="col">
+    <!-- product box -->
+    <div class="col">
+        <div class="store">
+            <a href="{% url 'shop:shop-detail' shop.slug %}"
+               target="_blank">
+                <img
+                        {% if shop.image %}
+                            src="{{ shop.image.url }}"
+                        {% else %}
+                            src="{% static 'site_statics/img/bg/no-image.png' %}"
+                        {% endif %}
+                            class="store-img"
+                            alt="{{ shop.title }}"
+                />
+            </a>
+            <div class="store-details p-2">
+                <div class="store-rate mt-1">
+                    <i class="fas fa-star text-purple"></i>
+                    <i class="fas fa-star text-purple"></i>
+                    <i class="fas fa-star text-purple"></i>
+                    <i class="fas fa-star text-purple"></i>
+                    <i class="far fa-star"></i>
+                    (4.5 امتیاز)
+                </div>
+                <a href="{% url 'shop:shop-detail' shop.slug %}"
+                   target="_blank">
+                    <h2 class="store-name text-purple">
+                        {{ shop.title }}
+                    </h2>
+                </a>
+                <p
+                        class="store-description text-secondary mt-1 mb-3"
+                >
+                    {{ shop.about|truncatewords:6 }}
+                </p>
+                <a href="{% url 'shop:shop-detail' shop.slug %}"
+                   target="_blank" class="btn border rounded w-100"
+                >مشاهده فروشگاه</a
+                >
+            </div>
+        </div>
+    </div>
+</div>
