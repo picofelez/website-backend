@@ -1,5 +1,6 @@
 import re
 from django import forms
+from django.contrib.auth import password_validation
 from django.contrib.auth.password_validation import validate_password
 
 
@@ -52,6 +53,7 @@ class RegisterForm(forms.Form):
         widget=forms.PasswordInput(attrs={
             'class': 'form-control', 'placeholder': 'رمزعبور'
         }),
+        help_text=password_validation.password_validators_help_text_html(),
         label='رمزعبور'
     )
     re_password = forms.CharField(

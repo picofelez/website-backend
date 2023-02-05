@@ -1,0 +1,126 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+
+{% block title %}
+    پیکو فلز | تکمیل پروفایل
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="login-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>بازار آنلاین آهن</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:home' %}">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                تکمیل پروفایل
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-md-6 mb-2">
+                                    <h5 class="title font-vazir-bold-fd">تکمیل پروفایل</h5>
+                                    <p>لطفا فرم زیر را تکمیل نمایید.</p>
+
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-12 mt-2">
+                                                <label for="{{ form.first_name.id_for_label }}"
+                                                       class="font-vazir-bold-fd">
+                                                    {{ form.first_name.label }}*
+                                                </label>
+                                                {{ form.first_name }}
+                                                <ul class="text-secondary mt-1">
+                                                    {% if form.first_name.errors %}
+                                                        {% for error in form.first_name.errors %}
+                                                            <li class="text-danger">{{ error }}</li>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+
+                                            <div class="col-12 mt-2">
+                                                <label for="{{ form.last_name.id_for_label }}"
+                                                       class="font-vazir-bold-fd">
+                                                    {{ form.last_name.label }}*
+                                                </label>
+                                                {{ form.last_name }}
+                                                <ul class="text-secondary mt-1">
+                                                    {% if form.last_name.errors %}
+                                                        {% for error in form.last_name.errors %}
+                                                            <li class="text-danger">{{ error }}</li>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+
+                                            <div class="col-12 mt-2">
+                                                <label for="{{ form.password.id_for_label }}"
+                                                       class="font-vazir-bold-fd">
+                                                    {{ form.password.label }}*
+                                                </label>
+                                                {{ form.password }}
+                                                <ul class="text-secondary mt-1">
+                                                    {{ form.password.help_text }}
+
+                                                    {% if form.password.errors %}
+                                                        {% for error in form.password.errors %}
+                                                            <li class="text-danger">{{ error }}</li>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+
+                                            <div class="col-12 mt-2">
+                                                <label for="{{ form.re_password.id_for_label }}"
+                                                       class="font-vazir-bold-fd">
+                                                    {{ form.re_password.label }}*
+                                                </label>
+                                                {{ form.re_password }}
+                                                <ul class="text-secondary mt-1">
+                                                    {% if form.re_password.errors %}
+                                                        {% for error in form.re_password.errors %}
+                                                            <li class="text-danger">{{ error }}</li>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+
+                                            <div class="col-12 mb-2">
+                                                <button type="submit" class="btn btn-purple" id="submit-button">
+                                                    ورود به حساب
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

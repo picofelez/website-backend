@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model, login
 from django.http import Http404
 from django.shortcuts import render, redirect
 
-from account.forms import PhoneNumberForm, VerifyOtpForm
+from account.forms import PhoneNumberForm, VerifyOtpForm, RegisterForm
 from extensions.utils import get_client_ip
 from extensions.send_otp import send_otp
 
@@ -71,8 +71,8 @@ def verify_otp_view(request):
                 cache.delete(f"{ip}-for-authentication")
 
                 if created:
-                    print('created')
-                    # TODO: redirect user to complete information page.
+                    login(request, user=user)
+                    return redirect('account:complete-register')
                 else:
                     login(request, user=user)
                     return redirect('core:home')
@@ -86,3 +86,27 @@ def verify_otp_view(request):
         'phone': phone
     }
     return render(request, 'account/verify_otp.html', context)
+
+
+def complete_register_view(request):
+    form = RegisterForm(request.POST or None)
+
+    try:
+        user = User.objects.get(username=request.user.username)
+    except User.DoesNotExist:
+        raise Http404
+
+    if form.is_valid():
+        cd = form.cleaned_data  # cleaned data
+
+        user.first_name = cd.get('first_name')
+        user.last_name = cd.get('last_name')
+        user.set_password(cd.get('password'))
+        user.save()
+
+        return redirect('core:home')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'account/complete_register.html', context)
