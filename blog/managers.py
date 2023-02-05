@@ -10,4 +10,4 @@ class PublishedArticleManager(models.Manager):
     def get_queryset(self):
         return super(PublishedArticleManager, self).get_queryset().filter(
             status='p', publish_time__lte=timezone.now()
-        ).order_by('-publish_time')
+        )

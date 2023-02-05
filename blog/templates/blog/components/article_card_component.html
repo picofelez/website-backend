@@ -1,0 +1,41 @@
+{% load static %}
+{% load humanize %}
+
+<article class="col-12 col-sm-6 col-lg-4 mb-3">
+    <div class="article-card">
+        <div class="article-media">
+            <a href="{% url 'blog:blog-detail' article.pk %}"
+               class="article-img">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}"/>
+            </a>
+            <div class="article-calender">
+                <span class="article-date">{{ article.published_jalali_dict.day }}</span>
+                <span class="article-mounth">{{ article.published_jalali_dict.month }}</span>
+            </div>
+        </div>
+        <div class="article-content">
+            <ul class="article-info my-4 list-unstyled">
+                <li class="ms-2">
+                    <i class="far fa-folder"></i>
+                    برچسب ها:
+                    {% for tag in article.tags.all %}
+                        <span class="badge bg-secondary">
+                                                                    <a href="#">{{ tag }}</a>
+                                                                </span>
+                    {% endfor %}
+                </li>
+            </ul>
+            <p class="article-title h5 font-vazir-bold-fd mb-4">
+                <a href="{% url 'blog:blog-detail' article.pk %}">{{ article.title }}</a>
+            </p>
+            <p class="article-summary text-secondary mb-4">
+                {{ article.summary|truncatewords:8 }}
+            </p>
+            <a href="{% url 'blog:blog-detail' article.pk %}"
+               class="article-link">
+                ادامه مطلب
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+</article>

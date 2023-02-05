@@ -228,4 +228,22 @@
             </div>
         </div>
     </section>
+
+    <section class="home-article my-5">
+        <section class="container">
+            <!-- title -->
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="title font-vazir-bold-fd">نوشته های اخیر</h4>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 products">
+                {% for article in latest_articles %}
+                    {% include 'blog/components/article_card_component.html' %}
+                {% endfor %}
+
+            </div>
+            <a href="{% url 'blog:blog-list' %}" class="btn btn-purple">مجله پیکوفلز</a>
+        </section>
+    </section>
 {% endblock %}
