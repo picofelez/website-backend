@@ -84,6 +84,8 @@
                                     >
                                         {% for product in object.shop_products.all %}
                                             {% include 'product/components/product_card_component.html' %}
+                                            {% empty %}
+                                            <div class="alert alert-secondary">محصولی یافت نشد.</div>
                                         {% endfor %}
                                     </div>
                                 </div>

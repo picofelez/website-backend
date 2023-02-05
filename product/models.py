@@ -64,6 +64,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'محصول'
         verbose_name_plural = '1. محصولات'
+        ordering = ('-created',)
 
     objects = models.Manager()
     published = PublishedProductsManager()

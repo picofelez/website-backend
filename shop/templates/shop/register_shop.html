@@ -259,9 +259,9 @@
                                         <i class="fas fa-user"></i>
                                         <span class="font-vazir-bold-fd">
                                             لطفا ابتدا
-                                            <a href="/login" class="text-primary">وارد</a>
+                                            <a href="{% url 'account:otp-login' %}?redirect=/shops/register-shop/" class="text-primary">وارد</a>
                                             حساب کاربری خود شوید یا یک
-                                            <a href="/register" class="text-primary">حساب کاربری جدید</a>
+                                            <a href="{% url 'account:otp-register' %}?redirect=/shops/register-shop/" class="text-primary">حساب کاربری جدید</a>
                                             بسازید.
                                         </span>
                                     </div>

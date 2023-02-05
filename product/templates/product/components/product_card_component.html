@@ -13,7 +13,7 @@
             <div class="product-details p-3">
                 <div class="product-category">
                     {% for category in product.categories.all %}
-                        <a href="#">{{ category.name }}</a>
+                        <a href="{% url 'product:product-list' %}?categories={{ category.id }}">{{ category.name }}</a>
                         /
                     {% endfor %}
                 </div>
