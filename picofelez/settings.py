@@ -111,6 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'account.User'
+LOGIN_URL = 'account:otp-login'
+LOGOUT_REDIRECT_URL = 'core:home'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

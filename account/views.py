@@ -2,6 +2,7 @@ from django.core.cache import cache
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from account.forms import PhoneNumberForm, VerifyOtpForm, RegisterForm
@@ -104,9 +105,16 @@ def complete_register_view(request):
         user.set_password(cd.get('password'))
         user.save()
 
+        login(request, user)
         return redirect('core:home')
 
     context = {
         'form': form
     }
     return render(request, 'account/complete_register.html', context)
+
+
+@login_required
+def user_profile_view(request):
+    context = {}
+    return render(request, 'account/user_profile.html', context)
