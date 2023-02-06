@@ -130,7 +130,7 @@
                                                         id="add-favorite"
                                                 >
                                                     <i class="fas fa-heart"></i>
-                                                    افزودن به علاقه مندی
+                                                    نشان کردن محصول
                                                 </span>
                                             </div>
                                             <div class="col-12 col-md-6">
@@ -223,9 +223,13 @@
                     },
                     success: (data) => {
                         if (data['status'] === 'success') {
-                            alert("این محصول به لیست نشان شده اضافه شد.")
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'محصول به لیست نشان شده اضافه شد.',
+                                footer: '<a href="/account/favorites/" target="_blank">محصولات نشان شده شما</a>'
+                            })
                         } else if (data['status'] === 'deleted') {
-                            alert("محصول از لیست نشان شده حذف شد.")
+                            Swal.fire('محصول از لیست نشان شده حذف شد.')
                         }
                     },
                     error: (data) => {
@@ -236,7 +240,12 @@
         </script>
     {% else %}
         <script>
-            alert("لطفا وارد حساب خود شوید، با ورود به حساب خود می توانید از همه امکانات پیکوفلز بهره مند شوید.")
+            Swal.fire({
+                icon: 'error',
+                title: 'لطفا وارد حساب خود شوید.',
+                text: 'با ورود به حساب خود می توانید از همه امکانات پیکوفلز بهره مند شوید.',
+                footer: '<a href="/account/login">ورود</a> / <a href="/account/register">عضویت</a>'
+            })
         </script>
     {% endif %}
 {% endblock %}

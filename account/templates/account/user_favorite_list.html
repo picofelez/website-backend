@@ -50,6 +50,12 @@
                                     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-md-4">
                                         {% for favorite in page_obj %}
                                             {% include 'product/components/product_card_component.html' with product=favorite.product %}
+                                        {% empty %}
+                                            <div class="alert alert-secondary">
+                                                محصولی نشان نشده.
+                                                <a href="{% url 'product:product-list' %}" class="text-primary">لیست
+                                                    محصولات</a>
+                                            </div>
                                         {% endfor %}
 
                                     </div>

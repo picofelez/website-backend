@@ -32,7 +32,10 @@ $(document).ready(function () {
                 (shop_demand === "" || shop_demand.length < 5) ||
                 (shop_supply === "" || shop_supply.length < 5)
             ) {
-                alert("لطفا اطلاعات خودرا به درستی وارد نمایید.")
+                Swal.fire({
+                    icon: 'question',
+                    title: "لطفا اطلاعات خودرا به درستی وارد نمایید."
+                })
             } else {
                 $.ajax({
                     url: "/shops/register-shop/data-create",
@@ -56,11 +59,17 @@ $(document).ready(function () {
                         if (data['status'] === 'success') {
                             addActiveClass()
                         } else if (data['status'] === 'fail') {
-                            alert("ایجاد فروشگاه با خطا مواجه شد.")
+                            Swal.fire({
+                                icon: 'question',
+                                title: "ایجاد فروشگاه با خطا مواجه شد."
+                            })
                         }
                     },
                     error: (data) => {
-                        alert("مشکلی پیش آمده لطفا دوباره امتحان کنید.")
+                        Swal.fire({
+                            icon: 'question',
+                            title: "مشکلی پیش آمده لطفا دوباره امتحان کنید."
+                        })
                     }
                 })
             }
@@ -75,7 +84,10 @@ $(document).ready(function () {
                 (full_name === "" || full_name.length <= 4) ||
                 (national_code === "" || national_code.length < 10 || national_code.length > 10)
             ) {
-                alert("لطفا اطلاعات خودرا به درستی وارد نمایید.")
+                Swal.fire({
+                    icon: 'question',
+                    title: "لطفا اطلاعات خودرا به درستی وارد نمایید."
+                })
             } else {
                 // set data
                 let payload = {
@@ -98,11 +110,17 @@ $(document).ready(function () {
                         if (data['status'] === 'success') {
                             addActiveClass()
                         } else if (data['status'] === 'fail') {
-                            alert("ایجاد فروشگاه با خطا مواجه شد.")
+                            Swal.fire({
+                                icon: 'question',
+                                title: "ثبت اطلاعات با خطا مواجه شد."
+                            })
                         }
                     },
                     error: (data) => {
-                        alert("مشکلی پیش آمده لطفا دوباره امتحان کنید.")
+                        Swal.fire({
+                            icon: 'question',
+                            title: "مشکلی پیش آمده لطفا دوباره امتحان کنید."
+                        })
                     }
                 })
             }
