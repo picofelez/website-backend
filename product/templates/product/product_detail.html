@@ -62,7 +62,7 @@
                                         </small>
                                         <small>
                                             <i class="fas fa-shop me-1"></i>
-                                            فروشگاه:
+                                            فروشنده:
                                             <a href="{% url 'shop:shop-detail' product.shop.slug %}">{{ product.shop.title }}</a>
                                         </small>
                                         <div class="my-4">
@@ -96,7 +96,8 @@
                                         <hr/>
                                         {% if product.stock > 0 %}
                                             <p class="text-gray">
-                                                موجود در انبار - حداکثر تعداد خرید : 15
+                                                موجود در انبار -
+                                            <small>حداکثر {{ object.purchase_limit }} تا می توانید بخرید</small>
                                             </p>
                                             <div class="row">
                                                 <div class="col-12 col-md-6">

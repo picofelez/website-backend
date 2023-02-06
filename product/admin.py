@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from product.models import Product, Category
+from product.models import Product, Category, FavoriteProduct
 
 
 # Register your models here.
@@ -34,3 +34,8 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [
         CategoryInline
     ]
+
+
+@admin.register(FavoriteProduct)
+class FavoriteProductAdmin(admin.ModelAdmin):
+    pass

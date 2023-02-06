@@ -1,13 +1,15 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.html import format_html
 
-from account.models import User
 from extensions.utils import upload_product_image_path, generate_product_id
 from product.managers import PublishedProductsManager
 from shop.models import Shop
 
-
 # Create your models here.
+User = get_user_model()
+
+
 class Category(models.Model):
     """
     The category main model.
@@ -80,4 +82,26 @@ class Product(models.Model):
     get_price.short_description = 'قیمت'
 
     def __str__(self):
-        return self.title
+        return f"{self.title} - {self.shop}"
+
+
+class FavoriteProduct(models.Model):
+    """
+    The FavoriteProduct main model,
+    Many-To-One relationship with User,
+    Many-To-One relationship with product.
+    """
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='favorites', verbose_name='کاربر'
+    )
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='user_favorites', verbose_name='محصول'
+    )
+    created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+
+    class Meta:
+        verbose_name = 'محصول مورد علاقه'
+        verbose_name_plural = '3. محصولات مورد علاقه'
+
+    def __str__(self):
+        return f"{self.user.get_full_name()} | {self.product.title}"
