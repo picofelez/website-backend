@@ -1,0 +1,29 @@
+{% load static %}
+<div class="list-group">
+    <a class="list-group-item list-group-item-action text-center">
+        <img src="{% static 'site_statics/img/profile/default.jpg' %}"
+             alt="{{ request.user.get_full_name }}" class="rounded my-2">
+        <h5 class="font-vazir-bold-fd my-2">{{ request.user.get_full_name }}</h5>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+        <i class="fas fa-user"></i>
+        ویرایش حساب کاربری
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+        <i class="fas fa-shopping-cart"></i>
+        سفارشات شما
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+        <i class="fas fa-newspaper"></i>
+        صورتحساب ها
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+        <i class="fas fa-location"></i>
+        آدرس های شما
+    </a>
+    <a href="{% url 'account:logout' %}"
+       class="list-group-item bg-danger text-white list-group-item-action">
+        <i class="fas fa-right-from-bracket"></i>
+        خروج
+    </a>
+</div>
