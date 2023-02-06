@@ -102,6 +102,7 @@ class FavoriteProduct(models.Model):
     class Meta:
         verbose_name = 'محصول مورد علاقه'
         verbose_name_plural = '3. محصولات مورد علاقه'
+        ordering = ('-created',)
 
     def __str__(self):
         return f"{self.user.get_full_name()} | {self.product.title}"

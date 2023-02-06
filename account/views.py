@@ -1,4 +1,7 @@
+import json
+
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.core.cache import cache
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
@@ -130,3 +133,28 @@ class UserFavoriteProductView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
+
+
+def user_add_delete_favorite_product_view(request):
+    """
+    ajax view for add or delete user favorite product.
+    """
+    is_ajax = request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+    if is_ajax and request.user.is_authenticated:
+        if request.method == "POST":
+            data = json.load(request)
+            pd = data.get('payload')  # product data
+
+            favorite_product, created = FavoriteProduct.objects.get_or_create(
+                user=request.user, product_id=pd.get('product_id')
+            )
+
+            if created:
+                return JsonResponse({'status': 'success'})
+            else:
+                favorite_product.delete()
+                return JsonResponse({'status': 'deleted'})
+
+        return JsonResponse({'status': 'Invalid request'}, status=400)
+    return HttpResponseBadRequest('Invalid request')

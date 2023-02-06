@@ -125,13 +125,13 @@
                                     <div class="product-detail-info-link mb-4">
                                         <div class="row">
                                             <div class="col-12 col-md-6">
-                                                <a
-                                                        href="#"
+                                                <span
                                                         class="btn btn-outline-success w-100 mb-2 no-hover"
+                                                        id="add-favorite"
                                                 >
                                                     <i class="fas fa-heart"></i>
                                                     افزودن به علاقه مندی
-                                                </a>
+                                                </span>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <a
@@ -204,4 +204,39 @@
 
         const myChart = new Chart(document.getElementById("price-chart"), config);
     </script>
+
+    {% if request.user.is_authenticated %}
+        <script>
+            $("#add-favorite").click(function () {
+                $.ajax({
+                    'url': '/account/favorites/add',
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        payload: {
+                            'product_id': '{{ object.id }}'
+                        }
+                    }),
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRFToken": getCookie("csrftoken")
+                    },
+                    success: (data) => {
+                        if (data['status'] === 'success') {
+                            alert("این محصول به لیست نشان شده اضافه شد.")
+                        } else if (data['status'] === 'deleted') {
+                            alert("محصول از لیست نشان شده حذف شد.")
+                        }
+                    },
+                    error: (data) => {
+                        alert("لطفا ابتدا وارد حساب خود شوید و یا دوباره امتحان کنید.")
+                    }
+                })
+            })
+        </script>
+    {% else %}
+        <script>
+            alert("لطفا وارد حساب خود شوید، با ورود به حساب خود می توانید از همه امکانات پیکوفلز بهره مند شوید.")
+        </script>
+    {% endif %}
 {% endblock %}
