@@ -5,7 +5,8 @@ from .views import (
     register_view,
     verify_otp_view,
     complete_register_view,
-    user_profile_view
+    user_profile_view,
+    UserFavoriteProductView
 )
 
 app_name = 'account'
@@ -17,4 +18,6 @@ urlpatterns = [
     path('register/', register_view, name='otp-register'),
     path('otp/verify', verify_otp_view, name='otp-verify'),
     path('register/complete', complete_register_view, name='complete-register'),
+
+    path('favorites/', UserFavoriteProductView.as_view(), name='user-favorite-product'),
 ]

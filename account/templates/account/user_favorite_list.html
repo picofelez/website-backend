@@ -1,0 +1,65 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+
+{% block title %}
+    پیکو فلز | محصولات نشان شده
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="login-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>بازار آنلاین آهن</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:home' %}">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'account:user-profile' %}">حساب کاربری</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                محصولات نشان شده
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-12 col-md-4 mb-2">
+                                    {% include 'account/components/profile_side_component.html' %}
+                                </div>
+                                <div class="col-12 col-md-8 mb-2">
+                                    <h5 class="title font-vazir-bold-fd mt-3 mt-md-0">محصولات نشان شده شما</h5>
+                                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-md-4">
+                                        {% for favorite in page_obj %}
+                                            {% include 'product/components/product_card_component.html' with product=favorite.product %}
+                                        {% endfor %}
+
+                                    </div>
+                                    {% include 'core/components/paginate_component.html' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

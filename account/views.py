@@ -1,15 +1,18 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.cache import cache
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
 from account.forms import PhoneNumberForm, VerifyOtpForm, RegisterForm
 from extensions.utils import get_client_ip
 from extensions.send_otp import send_otp
 
 # Create your views here.
+from product.models import FavoriteProduct
 
 User = get_user_model()
 
@@ -118,3 +121,12 @@ def complete_register_view(request):
 def user_profile_view(request):
     context = {}
     return render(request, 'account/user_profile.html', context)
+
+
+class UserFavoriteProductView(LoginRequiredMixin, ListView):
+    model = FavoriteProduct
+    template_name = 'account/user_favorite_list.html'
+    paginate_by = 9
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
