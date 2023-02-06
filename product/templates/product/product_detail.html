@@ -20,10 +20,10 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
-                                            <a href="#">خانه</a>
+                                            <a href="{% url 'core:home' %}">خانه</a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="#">محصولات</a>
+                                            <a href="{% url 'product:product-list' %}">محصولات</a>
                                         </li>
                                         <li class="breadcrumb-item active" aria-current="page">
                                             {{ product.title }} - {{ product.shop.title }}
@@ -78,7 +78,8 @@
                                     <div class="product-detail-info-price my-4">
                                         {% if product.stock > 0 %}
                                             <p class="text-purple">
-                                                <strong>{{ product.price|intcomma:False }} تومان (هر {{ product.quantity }})</strong>
+                                                <strong>{{ product.price|intcomma:False }} تومان
+                                                    (هر {{ product.quantity }})</strong>
                                             </p>
                                         {% else %}
                                             <p class="text-danger">
@@ -97,7 +98,7 @@
                                         {% if product.stock > 0 %}
                                             <p class="text-gray">
                                                 موجود در انبار -
-                                            <small>حداکثر {{ object.purchase_limit }} تا می توانید بخرید</small>
+                                                <small>حداکثر {{ object.purchase_limit }} تا می توانید بخرید</small>
                                             </p>
                                             <div class="row">
                                                 <div class="col-12 col-md-6">
@@ -176,4 +177,31 @@
             </div>
         </section>
     </section>
+{% endblock %}
+
+{% block meta_js_codes %}
+    <script src="{% static 'site_statics/js/chart.min.js' %}"></script>
+    <script>
+        const labels = ["1401/02/02", "1401/02/03", "1401/02/04", "1401/02/05", "1401/02/06", "1401/02/07"];
+
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: "تغییرات قیمت",
+                    backgroundColor: "#6400ff",
+                    borderColor: "#6400ff",
+                    data: [23000, 23500, 24500, 23265, 21015, 23145, 23145],
+                },
+            ],
+        };
+
+        const config = {
+            type: "line",
+            data: data,
+            options: {},
+        };
+
+        const myChart = new Chart(document.getElementById("price-chart"), config);
+    </script>
 {% endblock %}
