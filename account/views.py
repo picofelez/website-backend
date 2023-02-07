@@ -11,6 +11,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
 from account.forms import PhoneNumberForm, VerifyOtpForm, RegisterForm
+from cart.models import Address
 from extensions.utils import get_client_ip
 from extensions.send_otp import send_otp
 
@@ -158,3 +159,12 @@ def user_add_delete_favorite_product_view(request):
 
         return JsonResponse({'status': 'Invalid request'}, status=400)
     return HttpResponseBadRequest('Invalid request')
+
+
+class UserAddressListView(LoginRequiredMixin, ListView):
+    model = Address
+    template_name = 'account/user_address_list.html'
+    paginate_by = 9
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)

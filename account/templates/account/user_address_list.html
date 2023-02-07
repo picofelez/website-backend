@@ -1,0 +1,105 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+
+{% block title %}
+    پیکو فلز | آدرس های شما
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="login-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>بازار آنلاین آهن</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:home' %}">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'account:user-profile' %}">حساب کاربری</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                آدرس های شما
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-12 col-md-4 mb-2">
+                                    {% include 'account/components/profile_side_component.html' %}
+                                </div>
+                                <div class="col-12 col-md-8 mb-2">
+                                    <h5 class="title font-vazir-bold-fd mt-3 mt-md-0">آدرس های شما</h5>
+                                    <a href="#" class="btn btn-success my-2">ایجاد آدرس</a>
+                                    <div class="row">
+                                        {% for address in page_obj %}
+                                            <div class="col-12 mb-2">
+                                                <div class="border rounded px-3">
+                                                    <ul class="text-secondary my-3 list-unstyled">
+                                                        <li class="font-vazir-bold-fd text-black mb-2">
+                                                            <i class="fas fa-user"></i>
+                                                            {{ address.name }} | {{ address.phone_number }}
+                                                        </li>
+                                                        <li class="mb-2">
+                                                            <i class="fas fa-location"></i>
+                                                            شهر:
+                                                            {{ address.city }}
+                                                        </li>
+                                                        <li class="mb-2">
+                                                            <i class="fas fa-map"></i>
+                                                            آدرس:
+                                                            {{ address.full_address }}
+                                                        </li>
+                                                        <li class="mb-2">
+                                                            <i class="fas fa-signs-post"></i>
+                                                            کدپستی:
+                                                            {{ address.zip_code }}
+                                                        </li>
+                                                        <li class="mb-2">
+                                                            <i class="fas fa-phone"></i>
+                                                            شماره تماس
+                                                            {{ address.phone_number }}
+                                                        </li>
+                                                        <li class="mb-2">
+                                                            <a href="#" class="btn btn-warning">ویرایش</a>
+                                                            <a href="#" class="btn btn-danger">حذف</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        {% empty %}
+                                            <div class="alert alert-secondary">
+                                                آدرسی یافت نشد.
+                                                <a href="{% url 'product:product-list' %}" class="text-primary">ایجاد
+                                                    آدرس</a>
+                                            </div>
+                                        {% endfor %}
+
+                                    </div>
+                                    {% include 'core/components/paginate_component.html' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

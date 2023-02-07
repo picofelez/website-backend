@@ -7,7 +7,8 @@ from .views import (
     complete_register_view,
     user_profile_view,
     UserFavoriteProductView,
-    user_add_delete_favorite_product_view
+    user_add_delete_favorite_product_view,
+    UserAddressListView
 )
 
 app_name = 'account'
@@ -22,4 +23,6 @@ urlpatterns = [
 
     path('favorites/', UserFavoriteProductView.as_view(), name='user-favorite-product'),
     path('favorites/add', user_add_delete_favorite_product_view, name='user-favorite-product-add-delete'),
+
+    path('address/', UserAddressListView.as_view(), name='user-address-list'),
 ]
