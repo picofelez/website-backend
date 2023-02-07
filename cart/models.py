@@ -7,7 +7,7 @@ User = get_user_model()
 
 class Address(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.PROTECT, related_name='addresses', verbose_name='کاربر'
+        User, on_delete=models.PROTECT, blank=True, related_name='addresses', verbose_name='کاربر'
     )
     city = models.CharField(max_length=50, verbose_name='شهر')
     full_address = models.TextField(verbose_name='آدرس کامل')
@@ -19,6 +19,7 @@ class Address(models.Model):
     class Meta:
         verbose_name = 'آدرس'
         verbose_name_plural = 'آدرس ها'
+        ordering = ('-created',)
 
     def __str__(self):
         return f"{self.name} | {self.city}"

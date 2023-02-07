@@ -8,7 +8,8 @@ from .views import (
     user_profile_view,
     UserFavoriteProductView,
     user_add_delete_favorite_product_view,
-    UserAddressListView
+    UserAddressListView,
+UserAddressCreateView
 )
 
 app_name = 'account'
@@ -25,4 +26,5 @@ urlpatterns = [
     path('favorites/add', user_add_delete_favorite_product_view, name='user-favorite-product-add-delete'),
 
     path('address/', UserAddressListView.as_view(), name='user-address-list'),
+    path('address/create', UserAddressCreateView.as_view(), name='user-address-create'),
 ]

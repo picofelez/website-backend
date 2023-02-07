@@ -1,0 +1,105 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    پیکو فلز | آدرس
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="login-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>بازار آنلاین آهن</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:home' %}">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'account:user-profile' %}">حساب کاربری</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                {% if url_name == 'user-address-create' %}
+                                                    ایجاد آدرس
+                                                {% else %}
+                                                    ویرایش آدرس
+                                                {% endif %}
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-12 col-md-4 mb-2">
+                                    {% include 'account/components/profile_side_component.html' %}
+                                </div>
+                                <div class="col-12 col-md-8 mb-2">
+                                    {% if url_name == 'user-address-create' %}
+                                        <h5 class="title font-vazir-bold-fd mt-3 mt-md-0">ایجاد آدرس جدید</h5>
+                                    {% else %}
+                                        <h5 class="title font-vazir-bold-fd mt-3 mt-md-0">ویرایش آدرس</h5>
+                                    {% endif %}
+                                    <h6 class="font-vazir-bold-fd mt-3">
+                                        <i class="fas fa-info-circle"></i>
+                                        لطفا اطلاعات را به صورت درست وارد نمایید.
+                                    </h6>
+                                    <form method="post">
+                                    {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6 mt-3 mb-2">
+                                                <label for="{{ form.name.id_for_label }}">{{ form.name.label }}*</label>
+                                                {{ form.name|add_class:"form-control" }}
+                                            </div>
+                                            <div class="col-md-6 mt-3 mb-2">
+                                                <label for="{{ form.phone_number.id_for_label }}">{{ form.phone_number.label }}*</label>
+                                                {{ form.phone_number|add_class:"form-control" }}
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label for="{{ form.city.id_for_label }}">{{ form.city.label }}*</label>
+                                                {{ form.city|add_class:"form-control" }}
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label for="{{ form.zip_code.id_for_label }}">{{ form.zip_code.label }}*</label>
+                                                {{ form.zip_code|add_class:"form-control" }}
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <label for="{{ form.full_address.id_for_label }}">{{ form.full_address.label }}*</label>
+                                                {{ form.full_address|add_class:"form-control"|attr:"rows:5" }}
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <button type="submit" class="btn btn-success">
+                                                    {% if url_name == 'user-address-create' %}
+                                                        ایجاد
+                                                    {% else %}
+                                                        ویرایش
+                                                    {% endif %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}
