@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 
@@ -198,3 +198,20 @@ class UserAddressUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView)
         address_form.user = self.request.user
         address_form.save()
         return super(UserAddressUpdateView, self).form_valid(form)
+
+
+def user_delete_address_view(request, address_pk):
+    """
+    ajax view for delete user address.
+    """
+    is_ajax = request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+    if is_ajax and request.user.is_authenticated:
+        address = get_object_or_404(Address, id=address_pk, user=request.user)
+
+        if request.method == "DELETE":
+            address.delete()
+            return JsonResponse({'status': 'deleted'})
+
+        return JsonResponse({'status': 'Invalid request'}, status=400)
+    return HttpResponseBadRequest('Invalid request')

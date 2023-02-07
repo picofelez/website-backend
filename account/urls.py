@@ -10,7 +10,8 @@ from .views import (
     user_add_delete_favorite_product_view,
     UserAddressListView,
     UserAddressCreateView,
-    UserAddressUpdateView
+    UserAddressUpdateView,
+    user_delete_address_view
 )
 
 app_name = 'account'
@@ -29,4 +30,5 @@ urlpatterns = [
     path('address/', UserAddressListView.as_view(), name='user-address-list'),
     path('address/create', UserAddressCreateView.as_view(), name='user-address-create'),
     path('address/update/<int:pk>', UserAddressUpdateView.as_view(), name='user-address-update'),
+    path('address/delete/<address_pk>', user_delete_address_view, name='user-address-delete'),
 ]
