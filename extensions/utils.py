@@ -5,12 +5,20 @@ from django.utils import timezone
 from . import jalali
 
 
-def generate_product_id():
+def generate_product_id() -> str:
     """
     generate random ID for product model.
     """
     number = random.randint(1000000, 9999999)
     return f"pcf-{number}"
+
+
+def generate_order_id() -> int:
+    """
+    generate random ID for Order model.
+    """
+    number = random.randint(1000000, 9999999)
+    return number
 
 
 def get_filename_ext(filepath):

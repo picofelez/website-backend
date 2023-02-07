@@ -2,6 +2,10 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
+from extensions.utils import generate_order_id, jalali_converter_dict
+from product.models import Product
+from shop.models import Shop
+
 User = get_user_model()
 
 
@@ -18,8 +22,106 @@ class Address(models.Model):
 
     class Meta:
         verbose_name = 'آدرس'
-        verbose_name_plural = 'آدرس ها'
+        verbose_name_plural = '5. آدرس ها'
         ordering = ('-created',)
 
     def __str__(self):
         return f"{self.name} | {self.city}"
+
+
+class Order(models.Model):
+    id = models.CharField(
+        max_length=255, default=generate_order_id, primary_key=True, editable=False, unique=True
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.PROTECT, related_name='orders', verbose_name='کاربر'
+    )
+    address = models.ForeignKey(
+        Address, on_delete=models.PROTECT, null=True, blank=True, verbose_name='آدرس'
+    )
+    is_paid = models.BooleanField(default=False, verbose_name='وضعیت پرداخت')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
+
+    class Meta:
+        verbose_name = 'سفارش'
+        verbose_name_plural = '1. سفارشات'
+
+    def total_order_detail_price(self):
+        total = 0
+        for order_detail in self.order_details.filter(is_confirmed=True):
+            total += order_detail.total_price()
+
+        return total
+
+    total_order_detail_price.short_description = 'مجموع سبد خرید'
+
+    def total_transportation_expense(self):
+        total = 0
+        for transfer in self.order_transfers.filter(status__in=['confirmed', 'posted']):
+            total += transfer.expense
+
+        return total
+
+    total_transportation_expense.short_description = 'هزینه حمل و نقل'
+
+    def amount_payable(self):
+        return self.total_transportation_expense() + self.total_order_detail_price()
+
+    amount_payable.short_description = 'مبلغ قابل پرداخت'
+
+    def created_jalali(self):
+        return jalali_converter_dict(self.created)
+
+    def __str__(self):
+        return f"سفارش : {self.user}"
+
+
+class OrderDetail(models.Model):
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, related_name='order_details', verbose_name='سفارش'
+    )
+    product = models.ForeignKey(
+        Product, on_delete=models.PROTECT, verbose_name='محصول'
+    )
+    count = models.IntegerField(default=1, verbose_name='تعداد')
+    price = models.BigIntegerField(verbose_name='قیمت در زمان خرید')
+    is_confirmed = models.BooleanField(default=True, verbose_name='تائید شده/نشده')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
+
+    class Meta:
+        verbose_name = 'محصول در سفارش'
+        verbose_name_plural = '4. محصولات در سفارش'
+
+    def total_price(self):
+        return self.price * self.count
+
+    def __str__(self):
+        return f"{self.product} - {self.order}"
+
+
+class Transportation(models.Model):
+    class StatusChoices(models.TextChoices):
+        posted = 'posted', 'ارسال شده'
+        pending = 'pending', 'درحال بررسی'
+        returned = 'returned', 'برگشت خورده'
+        confirmed = 'confirmed', 'تائید شده'
+
+    shop = models.ForeignKey(
+        Shop, on_delete=models.PROTECT, related_name='transportations', verbose_name='فروشگاه'
+    )
+    order = models.ForeignKey(
+        Order, on_delete=models.PROTECT, related_name='order_transfers', verbose_name='سفارش'
+    )
+    expense = models.BigIntegerField(null=True, blank=True, verbose_name='هزینه حمل و نقل')
+    status = models.CharField(
+        max_length=20, choices=StatusChoices.choices, default=StatusChoices.pending, verbose_name='وضعیت'
+    )
+
+    class Meta:
+        verbose_name = 'حمل و نقل'
+        verbose_name_plural = '2. حمل و نقل ها'
+
+    def __str__(self):
+        return f"{self.order} | وضعیت : {self.status}"
