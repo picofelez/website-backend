@@ -79,7 +79,8 @@
                                                             {{ address.phone_number }}
                                                         </li>
                                                         <li class="mb-2">
-                                                            <a href="#" class="btn btn-warning">ویرایش</a>
+                                                            <a href="{% url 'account:user-address-update' address.pk %}"
+                                                               class="btn btn-warning">ویرایش</a>
                                                             <a href="#" class="btn btn-danger">حذف</a>
                                                         </li>
                                                     </ul>

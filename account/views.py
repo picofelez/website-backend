@@ -10,7 +10,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 from account.forms import PhoneNumberForm, VerifyOtpForm, RegisterForm
 from cart.models import Address
@@ -184,3 +184,17 @@ class UserAddressCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
         address_form.user = self.request.user
         address_form.save()
         return super(UserAddressCreateView, self).form_valid(form)
+
+
+class UserAddressUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Address
+    template_name = 'account/user_address_create_update.html'
+    success_url = reverse_lazy('account:user-address-list')
+    fields = '__all__'
+    success_message = 'updated'
+
+    def form_valid(self, form):
+        address_form = form.save(commit=False)
+        address_form.user = self.request.user
+        address_form.save()
+        return super(UserAddressUpdateView, self).form_valid(form)
