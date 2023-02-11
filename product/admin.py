@@ -16,7 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'title', 'get_thumbnail', 'get_price', 'quantity', 'is_active', 'is_confirmed'
+        'title', 'shop', 'get_price', 'quantity', 'is_active', 'is_confirmed'
     )
     list_editable = ('is_confirmed',)
     list_filter = ('is_active', 'is_confirmed', 'created')
