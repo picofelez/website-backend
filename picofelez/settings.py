@@ -76,6 +76,7 @@ TEMPLATES = [
                 'context_processors.context_processors.latest_products_context_processor',
                 'context_processors.context_processors.latest_articles_context_processor',
                 'context_processors.context_processors.latest_shops_context_processor',
+                'context_processors.context_processors.cart_list_context_processor',
             ],
         },
     },

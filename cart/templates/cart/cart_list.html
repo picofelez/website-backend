@@ -1,0 +1,228 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    سبد خرید | پیکوفلز
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="product-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            سبدخرید
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-12 col-lg-9">
+                                <div id="cart-products">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 py-3">
+                                                <div class="pb-3" id="return-to-shop">
+                                                    می‌خواهید محصولات دیگری اضافه کنید؟
+                                                    <a href="{% url 'product:product-list' %}" class="text-primary">بازگشت
+                                                        به فروشگاه</a>
+                                                </div>
+                                                <div class="d-none d-md-block">
+                                                    <div class="row my-2" id="heading">
+                                                        <div class="col-4">
+                                                            <div>کالا</div>
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <div>قیمت واحد</div>
+                                                        </div>
+                                                        <div class="col-2 pl-4">
+                                                            <div>تعداد</div>
+                                                        </div>
+                                                        <div class="col-2 pr-0">
+                                                            <div class="pr-3">قیمت نهایی</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {% for item in cart %}
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-2 col-md-4 pl-0">
+                                                                    <img
+                                                                            src="{{ item.product.image.url }}"
+                                                                            class="rounded"
+                                                                            alt=""
+                                                                            width="60"
+                                                                            height="60"
+                                                                    />
+                                                                </div>
+                                                                <div class="col-10 col-md-8">
+                                                                    <a href="{% url 'product:product-detail' item.product.id %}"
+                                                                       target="_blank"
+                                                                    >
+                                                                        <div class="pt-2 fw-bold">
+                                                                            {{ item.product.title }}
+                                                                            - {{ item.product.shop.title }}
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 col-md-2">
+                                                            <div class="d-md-none fw-bold">قیمت</div>
+                                                            <div class="pt-1">
+                                                                <span class="product-price">{{ item.price|intcomma:False }}</span>
+                                                                <span>تومان</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 col-md-2 pl-4 pr-0 pr-md-3">
+                                                            <div class="d-md-none fw-bold">
+                                                                تعداد
+                                                            </div>
+                                                            <div class="input-group mb-3 order-number">
+                                                                <div class="input-group-prepend">
+                                                                    <button
+                                                                            class="btn btn-outline-secondary btn-plus"
+                                                                            type="button"
+                                                                    >
+                                                                        +
+                                                                    </button>
+                                                                </div>
+                                                                <input
+                                                                        type="text"
+                                                                        name="order-number[]"
+                                                                        value="{{ item.count }}"
+                                                                        class="form-control text-center order-number"
+                                                                        readonly=""
+                                                                />
+                                                                <div class="input-group-prepend">
+                                                                    <button
+                                                                            class="btn btn-outline-secondary btn-minus"
+                                                                            type="button"
+                                                                    >
+                                                                        _
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 col-md-2 pr-0">
+                                                            <div class="d-md-none fw-bold">
+                                                                قیمت نهایی
+                                                            </div>
+                                                            <div class="pt-1 pr-2 bg-light">
+                                                                <span class="product-total">{{ item.total_price|intcomma:False }}</span>
+                                                                <span>تومان</span>
+                                                            </div>
+                                                            <a
+                                                                    href="#"
+                                                                    class="product-remove btn-remove-from-basket text-danger"
+                                                            >
+                                                                <div class="small pl-2">
+                                                                    <svg
+                                                                            class="svg-inline--fa fa-times fa-w-11"
+                                                                            aria-hidden="true"
+                                                                            focusable="false"
+                                                                            data-prefix="fa"
+                                                                            data-icon="times"
+                                                                            role="img"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 352 512"
+                                                                            data-fa-i2svg=""
+                                                                            style="width: 10px"
+                                                                    >
+                                                                        <path
+                                                                                fill="currentColor"
+                                                                                d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                                                        ></path>
+                                                                    </svg
+                                                                    >
+                                                                    <!-- <i class="fa fa-times"></i> Font Awesome fontawesome.com -->
+                                                                    حذف از سبد
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <hr/>
+                                                {% endfor %}
+
+
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <a
+                                                                href="#"
+                                                                class="product-remove btn-remove-from-basket text-danger"
+                                                                data-id="all"
+                                                        >
+                                                            <div
+                                                                    class="float-end small pl-2 font-weight-bold"
+                                                            >
+                                                                خالی کردن سبد
+                                                            </div>
+                                                        </a
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 mt-2 mt-lg-0 pr-3 pr-lg-0">
+                                <div class="factor">
+                                    <div class="container">
+                                        <div class="row py-2">
+                                            <div class="col-6">
+                                                <div>جمع کل فاکتور:</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div><span id="factor-total-encode4365gbf265g43d">{{ cart.get_total_price|intcomma:False }}</span> تومان
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2 bg-light">
+                                            <div class="col-6">
+                                                <div>هزینه حمل و نقل:</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="font-vazir-bold-fd">توسط فروشنده ها مشخص می شود</small>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-12">
+                                                <a href="./checkout.html"><input type="submit" value="ادامه ثبت سفارش"
+                                                                                 class="btn btn-success w-100"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}

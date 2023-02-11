@@ -1,4 +1,5 @@
 from blog.models import Article
+from cart.cart import Cart
 from product.models import Product
 from shop.models import Shop
 
@@ -16,3 +17,8 @@ def latest_articles_context_processor(request):
 def latest_shops_context_processor(request):
     shops = Shop.active.all()[:4]
     return {'latest_shops': shops}
+
+
+def cart_list_context_processor(request):
+    cart = Cart(request)
+    return {'cart': Cart(request)}

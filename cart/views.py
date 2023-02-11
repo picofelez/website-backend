@@ -2,6 +2,8 @@ import json
 
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import get_object_or_404
+from django.views.generic import TemplateView
+
 from cart.cart import Cart
 from product.models import Product
 
@@ -31,3 +33,7 @@ def cart_add_view(request, product_id):
 
         return JsonResponse({'status': 'Invalid request'}, status=400)
     return HttpResponseBadRequest('Invalid request')
+
+
+class CartListView(TemplateView):
+    template_name = 'cart/cart_list.html'
