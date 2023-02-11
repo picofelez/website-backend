@@ -56,60 +56,76 @@
                                         {{ product.title }}
                                     </h4>
                                     <div class="product-detail-info-meta my-4">
-                                        <small>
-                                            <i class="fas fa-key me-1"></i>
-                                            شناسه محصول: {{ product.id }}
-                                        </small>
-                                        <small>
+                                        <p class="m-0">
+                                            <span class="text-secondary">
+                                                <i class="fas fa-key me-1"></i>شناسه محصول:
+                                            </span> {{ product.id }}
+                                        </p>
+
+                                        <br>
+
+                                        <p class="m-0 text-secondary">
                                             <i class="fas fa-shop me-1"></i>
                                             فروشنده:
                                             <a href="{% url 'shop:shop-detail' product.shop.slug %}">{{ product.shop.title }}</a>
-                                        </small>
+                                        </p>
+
                                         <div class="my-4">
-                                            <span>امتیاز محصول:</span>
+                                            <span class="text-secondary">
+                                                <i class="fa-regular fa-star-half-stroke"></i>
+                                                امتیاز محصول:
+                                            </span>
                                             <i class="fas fa-star text-purple"></i>
                                             <i class="fas fa-star text-purple"></i>
                                             <i class="fas fa-star text-purple"></i>
                                             <i class="fas fa-star text-purple"></i>
                                             <i class="far fa-star"></i>
-                                            (4.5 امتیاز)
+                                            (4.5 ستاره)
+                                        </div>
+
+                                        <div class="product-detail-info-price my-4">
+                                            {% if product.stock > 0 %}
+                                                <p class="text-purple">
+                                            <span class="text-secondary">
+                                                <i class="fas fa-info-circle"></i>
+                                                قیمت فروشنده:
+                                            </span>
+                                                    <strong>{{ product.price|intcomma:False }} تومان
+                                                        (هر {{ product.quantity }})</strong>
+                                                </p>
+                                            {% else %}
+                                                <p class="text-danger">
+                                                    <strong>ناموجود</strong>
+                                                </p>
+                                            {% endif %}
                                         </div>
                                     </div>
-                                    <div class="product-detail-info-price my-4">
-                                        {% if product.stock > 0 %}
-                                            <p class="text-purple">
-                                                <strong>{{ product.price|intcomma:False }} تومان
-                                                    (هر {{ product.quantity }})</strong>
-                                            </p>
-                                        {% else %}
-                                            <p class="text-danger">
-                                                <strong>ناموجود</strong>
-                                            </p>
-                                        {% endif %}
-                                    </div>
-                                    <div class="product-detail-info-description my-4">
-                                        <p>
-                                            <strong> درباره محصول:</strong>
-                                            {{ product.description }}
-                                        </p>
-                                    </div>
-                                    <div class="product-detail-info-cart mt-5 mb-3">
+
+                                    <div class="product-detail-info-cart my-3">
                                         <hr/>
                                         {% if product.stock > 0 %}
                                             <p class="text-gray">
                                                 موجود در انبار -
-                                                <small>حداکثر {{ object.purchase_limit }} تا می توانید بخرید</small>
+                                                <small>حداکثر {{ object.purchase_limit }} {{ object.quantity }} می
+                                                    توانید بخرید</small>
                                             </p>
                                             <div class="row">
                                                 <div class="col-12 col-md-6">
                                                     <input
                                                             type="number"
+                                                            id="orderCount"
                                                             class="form-control w-100 mb-2"
                                                             placeholder="تعداد"
                                                     />
+                                                    <ul class="d-none" id="orderCountErr">
+                                                        <li class="text-danger">
+                                                            حداکثر {{ object.purchase_limit }} {{ object.quantity }}
+                                                            می توانید بخرید
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <button class="btn btn-outline-success w-100 mb-2">
+                                                    <button class="btn btn-outline-success w-100 mb-2" id="addToCart">
                                                         <i class="fas fa-shopping-cart"></i>
                                                         افزودن به سبد خرید
                                                     </button>
@@ -146,6 +162,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-12 my-2">
                                 <div class="row">
                                     <div class="col-12">
@@ -170,6 +187,21 @@
                                     </tr>
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <div class="col-12 my-2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="title font-vazir-bold-fd">درباره محصول</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="product-detail-info-description mb-4">
+                                    <p>
+                                        {{ product.description }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -248,4 +280,50 @@
             })
         </script>
     {% endif %}
+
+    <script>
+        $('#addToCart').click(function () {
+            let countInput = $('#orderCount')
+            let orderCountErr = $('#orderCountErr')
+
+            if (countInput.val() <= parseInt('{{ object.purchase_limit }}')) {
+                orderCountErr.removeClass('d-block')
+                orderCountErr.addClass('d-none')
+
+                $.ajax({
+                    'url': `/cart/add/${'{{object.id}}'}`,
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        payload: {
+                            'count': countInput.val() ? countInput.val() : 1
+                        }
+                    }),
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRFToken": getCookie("csrftoken")
+                    },
+                    success: (data) => {
+                        if (data['status'] === 'added') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'محصول به سبد خرید شما اضافه شد.',
+                                footer: '<a href="/account/favorites/" target="_blank">مشاهده سبد خرید</a>'
+                            })
+                        } else if (data['status'] === 'failed') {
+                            Swal.fire('مقدار درخواستی بیش از حد مجاز میباشد.')
+                        }
+                    },
+                    error: (data) => {
+                        alert("محصول به سبد اضافه نشد!")
+                    }
+                })
+
+
+            } else {
+                orderCountErr.removeClass('d-none')
+                orderCountErr.addClass('d-block')
+            }
+        })
+    </script>
 {% endblock %}
