@@ -117,8 +117,18 @@
                                                             class="form-control w-100 mb-2"
                                                             placeholder="تعداد"
                                                     />
-                                                    <ul class="d-none" id="orderCountErr">
-                                                        <li class="text-danger">
+                                                    <ul>
+                                                        {% if cart|length > 0 %}
+                                                            {% for item in cart %}
+                                                                {% if object == item.product %}
+                                                                    <li id="buyCount">
+                                                                        {{ item.count }} {{ object.quantity }} از این
+                                                                        محصول در سبد موجود است
+                                                                    </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        <li id="orderCountErr" class="text-danger d-none">
                                                             حداکثر {{ object.purchase_limit }} {{ object.quantity }}
                                                             می توانید بخرید
                                                         </li>

@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
+from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
 
@@ -27,7 +27,7 @@ def cart_add_view(request, product_id):
             product = get_object_or_404(Product, id=product_id, is_confirmed=True, is_active=True)
 
             if int(count) <= product.purchase_limit and int(count) <= product.stock:
-                cart.add(product, count=int(count), override_count=False)
+                cart.add(product, count=int(count), override_count=True)
                 return JsonResponse({'status': 'added'})
             return JsonResponse({'status': 'failed'})
 
