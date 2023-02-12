@@ -136,9 +136,10 @@
                                                                 <span class="product-total">{{ item.total_price|intcomma:False }}</span>
                                                                 <span>تومان</span>
                                                             </div>
-                                                            <a
-                                                                    href="#"
+                                                            <span
+                                                                    id="{{ item.product.id }}"
                                                                     class="product-remove btn-remove-from-basket text-danger"
+                                                                    style="cursor: pointer"
                                                             >
                                                                 <div class="small pl-2">
                                                                     <svg
@@ -162,29 +163,17 @@
                                                                     <!-- <i class="fa fa-times"></i> Font Awesome fontawesome.com -->
                                                                     حذف از سبد
                                                                 </div>
-                                                            </a>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <hr/>
-                                                {% endfor %}
-
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <a
-                                                                href="#"
-                                                                class="product-remove btn-remove-from-basket text-danger"
-                                                                data-id="all"
-                                                        >
-                                                            <div
-                                                                    class="float-end small pl-2 font-weight-bold"
-                                                            >
-                                                                خالی کردن سبد
-                                                            </div>
-                                                        </a
-                                                        >
+                                                {% empty %}
+                                                    <div class="alert alert-secondary">سبد خرید شما خالی است.می خواهید
+                                                        محصولی اضافه کنید؟
+                                                        <a href="{% url 'product:product-list' %}" class="text-primary">رفتن
+                                                            به محصولات</a>
                                                     </div>
-                                                </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>
@@ -198,7 +187,9 @@
                                                 <div>جمع کل فاکتور:</div>
                                             </div>
                                             <div class="col-6">
-                                                <div><span id="factor-total-encode4365gbf265g43d">{{ cart.get_total_price|intcomma:False }}</span> تومان
+                                                <div><span
+                                                        id="factorTotal">{{ cart.get_total_price|intcomma:False }}</span>
+                                                    تومان
                                                 </div>
                                             </div>
                                         </div>
@@ -225,4 +216,35 @@
             </div>
         </section>
     </section>
+{% endblock %}
+
+{% block meta_js_codes %}
+    <script>
+        $('.btn-remove-from-basket').click(function () {
+            $.ajax({
+                url: `/cart/remove/${$(this).attr('id')}`,
+                type: "DELETE",
+                dataType: "json",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                success: (data) => {
+                    if (data['status'] === 'deleted') {
+                        $(this).parent().parent().hide()
+                        $('#factorTotal').text(parseInt(data['total_price']).toLocaleString())
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'محصول از سبد خرید شما حذف شد.'
+                        })
+                    } else if (data['status'] === 'failed') {
+                        Swal.fire('حذف محصول با خطا مواجه شد')
+                    }
+                },
+                error: (data) => {
+                    Swal.fire("ارتباط با سرور برقرار نشد.")
+                }
+            })
+        })
+    </script>
 {% endblock %}
