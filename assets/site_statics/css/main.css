@@ -1,150 +1,150 @@
 @font-face {
-  font-family: "Vazir";
-  src: url("../fonts/Vazir.eot");
-  src: url("../fonts/Vazir.eot?#iefix") format("embedded-opentype"),
+    font-family: "Vazir";
+    src: url("../fonts/Vazir.eot");
+    src: url("../fonts/Vazir.eot?#iefix") format("embedded-opentype"),
     url("../fonts/Vazir.woff2") format("woff2"),
     url("../fonts/Vazir.woff") format("woff"),
     url("../fonts/Vazir.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Vazir-fd";
-  src: url("../fonts/Vazir-FD-WOL.eot");
-  src: url("../fonts/Vazir-FD-WOL.eot?#iefix") format("embedded-opentype"),
+    font-family: "Vazir-fd";
+    src: url("../fonts/Vazir-FD-WOL.eot");
+    src: url("../fonts/Vazir-FD-WOL.eot?#iefix") format("embedded-opentype"),
     url("../fonts/Vazir-FD-WOL.woff2") format("woff2"),
     url("../fonts/Vazir-FD-WOL.woff") format("woff"),
     url("../fonts/Vazir-FD-WOL.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Vazir-bold-fd";
-  src: url("../fonts/Vazir-BOLD-FD-WOL.eot");
-  src: url("../fonts/Vazir-BOLD-FD-WOL.eot?#iefix") format("embedded-opentype"),
+    font-family: "Vazir-bold-fd";
+    src: url("../fonts/Vazir-BOLD-FD-WOL.eot");
+    src: url("../fonts/Vazir-BOLD-FD-WOL.eot?#iefix") format("embedded-opentype"),
     url("../fonts/Vazir-BOLD-FD-WOL.woff2") format("woff2"),
     url("../fonts/Vazir-BOLD-FD-WOL.woff") format("woff"),
     url("../fonts/Vazir-BOLD-FD-WOL.ttf") format("truetype");
 }
 
 body {
-  font-family: "Vazir-fd", "Vazir";
+    font-family: "Vazir-fd", "Vazir";
 }
 
 /* root */
 :root {
-  /* color */
-  --white-color: #fff;
-  --black-color: #000;
-  --primary-color: #6400ff;
-  --secondary-color: #019345;
-  --gray-color: #7c7c7c;
+    /* color */
+    --white-color: #fff;
+    --black-color: #000;
+    --primary-color: #6400ff;
+    --secondary-color: #019345;
+    --gray-color: #7c7c7c;
 }
 
 a {
-  text-decoration: none;
-  color: #282828;
-  transition: 0.3s;
+    text-decoration: none;
+    color: #282828;
+    transition: 0.3s;
 }
 
 a:hover {
-  color: #282828;
-  opacity: 0.8;
+    color: #282828;
+    opacity: 0.8;
 }
 
 .no-hover:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .font-vazir-bold-fd {
-  font-family: "Vazir-bold-fd";
+    font-family: "Vazir-bold-fd";
 }
 
 .btn-purple {
-  background-color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
-  color: var(--white-color) !important;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--white-color) !important;
 }
 
 .title {
-  position: relative;
-  padding-bottom: 0.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
 }
 
 .title::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 4rem;
-  height: 0.25rem;
-  background-color: var(--primary-color);
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 4rem;
+    height: 0.25rem;
+    background-color: var(--primary-color);
 }
 
 .text-purple {
-  color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
 }
 
 .bg-purple {
-  background-color: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
 }
 
 .page-title-box {
-  background-color: #f4f4f4;
-  padding-top: 30px;
-  padding-bottom: 30px;
+    background-color: #f4f4f4;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .page-content {
-  padding-top: 30px;
-  padding-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .order-filters {
-  font-size: 17px;
+    font-size: 17px;
 }
 
 .order-filters .order-filter {
-  font-size: 15px;
-  border-radius: 10px;
-  margin: 0 1px;
-  padding: 2px 10px;
-  cursor: pointer;
-  opacity: 1;
-  transition: 0.2s;
+    font-size: 15px;
+    border-radius: 10px;
+    margin: 0 1px;
+    padding: 2px 10px;
+    cursor: pointer;
+    opacity: 1;
+    transition: 0.2s;
 }
 
 .order-filters .order-filter.active {
-  color: #fff;
-  background-color: var(--primary-color);
+    color: #fff;
+    background-color: var(--primary-color);
 }
 
 section.inner-page#products-page
-  .filters-container
-  .accordion-item:first-of-type
-  .accordion-button {
-  color: #282828;
-  background-color: rgb(245, 245, 245);
+.filters-container
+.accordion-item:first-of-type
+.accordion-button {
+    color: #282828;
+    background-color: rgb(245, 245, 245);
 }
 
 .rounded-card {
-  background-color: var(--white-color);
-  padding: 1.2rem;
-  border-radius: 0.4rem;
-  /* box-shadow: 0 0 10px 0 #eaeff4; */
-  border: 1px solid #ecf0f4;
+    background-color: var(--white-color);
+    padding: 1.2rem;
+    border-radius: 0.4rem;
+    /* box-shadow: 0 0 10px 0 #eaeff4; */
+    border: 1px solid #ecf0f4;
 }
 
 input {
-  text-align: right;
+    text-align: right;
 }
 
 .list-group-item.list-group-item-action.active {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .custom-container {
-  border: 1px solid darkgray;
-  border-radius: 3px;
+    border: 1px solid darkgray;
+    border-radius: 3px;
 }
 
 input::-webkit-outer-spin-button,
@@ -154,5 +154,133 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=number] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
+}
+
+
+.radiobtn {
+    position: relative;
+    display: block;
+}
+
+.radiobtn label {
+    display: block;
+    background: #fee8c3;
+    color: #444;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 2px solid #fdd591;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.radiobtn label:after, .radiobtn label:before {
+    content: "";
+    position: absolute;
+    left: 11px;
+    top: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    background: #fdcb77;
+}
+
+.radiobtn label:before {
+    background: transparent;
+    transition: 0.1s width cubic-bezier(0.075, 0.82, 0.165, 1) 0s, 0.3s height cubic-bezier(0.075, 0.82, 0.165, 2) 0.1s;
+    z-index: 2;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: 13px;
+    background-position: center;
+    width: 0;
+    height: 0;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNS4zIDEzLjIiPiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE0LjcuOGwtLjQtLjRhMS43IDEuNyAwIDAgMC0yLjMuMUw1LjIgOC4yIDMgNi40YTEuNyAxLjcgMCAwIDAtMi4zLjFMLjQgN2ExLjcgMS43IDAgMCAwIC4xIDIuM2wzLjggMy41YTEuNyAxLjcgMCAwIDAgMi40LS4xTDE1IDMuMWExLjcgMS43IDAgMCAwLS4yLTIuM3oiIGRhdGEtbmFtZT0iUGZhZCA0Ii8+PC9zdmc+);
+}
+
+.radiobtn input[type=radio] {
+    display: none;
+    position: absolute;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.radiobtn input[type=radio]:checked + label {
+    background: #fdcb77;
+    -webkit-animation-name: blink;
+    animation-name: blink;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    border-color: #fcae2c;
+}
+
+.radiobtn input[type=radio]:checked + label:after {
+    background: #fcae2c;
+}
+
+.radiobtn input[type=radio]:checked + label:before {
+    width: 20px;
+    height: 20px;
+}
+
+@-webkit-keyframes blink {
+    0% {
+        background-color: #fdcb77;
+    }
+    10% {
+        background-color: #fdcb77;
+    }
+    11% {
+        background-color: #fdd591;
+    }
+    29% {
+        background-color: #fdd591;
+    }
+    30% {
+        background-color: #fdcb77;
+    }
+    50% {
+        background-color: #fdd591;
+    }
+    45% {
+        background-color: #fdcb77;
+    }
+    50% {
+        background-color: #fdd591;
+    }
+    100% {
+        background-color: #fdcb77;
+    }
+}
+
+@keyframes blink {
+    0% {
+        background-color: #fdcb77;
+    }
+    10% {
+        background-color: #fdcb77;
+    }
+    11% {
+        background-color: #fdd591;
+    }
+    29% {
+        background-color: #fdd591;
+    }
+    30% {
+        background-color: #fdcb77;
+    }
+    50% {
+        background-color: #fdd591;
+    }
+    45% {
+        background-color: #fdcb77;
+    }
+    50% {
+        background-color: #fdd591;
+    }
+    100% {
+        background-color: #fdcb77;
+    }
 }

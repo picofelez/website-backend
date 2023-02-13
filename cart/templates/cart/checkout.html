@@ -1,0 +1,307 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    تائید نهایی | پیکوفلز
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="product-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'cart:cart-list' %}">سبدخرید</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            تائید نهایی
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>راهنما</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 col-lg-3 mb-2">
+                                                <div
+                                                        class="purchas-step-item d-flex justify-content-between align-items-center"
+                                                >
+                                                    <div class="purchas-step-icon text-success">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
+                                                    <div class="purchas-step-content">
+                                                        <p class="fw-semibold p-0 m-0 mb-1">انتخاب محصول</p>
+                                                        <p class="text-gray">
+                                                            محصولات و فروشگاه ها را مقایسه کنید و بهترین
+                                                            انتخاب را داشته باشید.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3 mb-2">
+                                                <div
+                                                        class="purchas-step-item d-flex justify-content-between align-items-center"
+                                                >
+                                                    <div class="purchas-step-icon text-success">
+                                                        <i class="fas fa-arrow-down"></i>
+                                                    </div>
+                                                    <div class="purchas-step-content">
+                                                        <p class="fw-semibold p-0 m-0 mb-1">
+                                                            تکمیل سبد خرید
+                                                        </p>
+                                                        <p class="text-gray">
+                                                            دراین مرحله سبد خرید خود را تکمیل کنید و سفارش را برای تائید
+                                                            ارسال کنید.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3 mb-2 text-secondary">
+                                                <div
+                                                        class="purchas-step-item d-flex justify-content-between align-items-center"
+                                                >
+                                                    <div class="purchas-step-icon">
+                                                        <i class="fas fa-shop"></i>
+                                                    </div>
+                                                    <div class="purchas-step-content">
+                                                        <p class="fw-semibold p-0 m-0 mb-1">پیش فاکتور</p>
+                                                        <p class="text-gray">
+                                                            پس از تائید فروشگاه ها در کمترین زمان ممکن پیش فاکتور صادر
+                                                            میشود و
+                                                            باید فاکتور را تسویه کنید.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3 mb-2 text-secondary">
+                                                <div
+                                                        class="purchas-step-item d-flex justify-content-between align-items-center"
+                                                >
+                                                    <div class="purchas-step-icon">
+                                                        <i class="fas fa-truck"></i>
+                                                    </div>
+                                                    <div class="purchas-step-content">
+                                                        <p class="fw-semibold p-0 m-0 mb-1">ارسال مرسوله</p>
+                                                        <p class="text-gray">
+                                                            بعد از تسویه شدن پیش فاکتور، فروشنده ها بار شما را ارسال می
+                                                            کنند.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>محصولات سبدخرید</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-none d-md-block">
+                                            <div class="row my-2 font-vazir-bold-fd" id="heading">
+                                                <div class="col-4">
+                                                    <div>کالا</div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div>قیمت واحد</div>
+                                                </div>
+                                                <div class="col-2 pl-4">
+                                                    <div>تعداد</div>
+                                                </div>
+                                                <div class="col-2 pr-0">
+                                                    <div class="pr-3">قیمت نهایی</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {% for item in cart %}
+                                            <div class="row">
+                                                <div class="col-12 col-md-4">
+                                                    <div class="row">
+                                                        <div class="col-2 col-md-4 pl-0">
+                                                            <img
+                                                                    src="{{ item.product.image.url }}"
+                                                                    class="rounded"
+                                                                    alt=""
+                                                                    width="60"
+                                                                    height="60"
+                                                            />
+                                                        </div>
+                                                        <div class="col-10 col-md-8">
+                                                            <a href="{% url 'product:product-detail' item.product.id %}"
+                                                               target="_blank"
+                                                            >
+                                                                <div class="pt-2 fw-bold">
+                                                                    {{ item.product.title }}
+                                                                    - {{ item.product.shop.title }}
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-2">
+                                                    <div class="d-md-none fw-bold">قیمت</div>
+                                                    <div class="pt-1">
+                                                        <span class="product-price">{{ item.price|intcomma:False }}</span>
+                                                        <span>تومان</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-2 pl-4 pr-0 pr-md-3">
+                                                    <div class="d-md-none fw-bold">
+                                                        تعداد
+                                                    </div>
+                                                    <div class="input-group mb-3 order-number">
+                                                        <input
+                                                                type="text"
+                                                                name="order-number[]"
+                                                                value="{{ item.count }}"
+                                                                class="form-control text-center order-number"
+                                                                readonly=""
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-2 pr-0">
+                                                    <div class="d-md-none fw-bold">
+                                                        قیمت نهایی
+                                                    </div>
+                                                    <div class="pt-1 pr-2 bg-light">
+                                                        <span class="product-total">{{ item.total_price|intcomma:False }}</span>
+                                                        <span>تومان</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                        {% empty %}
+                                            <div class="alert alert-secondary">سبد خرید شما خالی است.می خواهید
+                                                محصولی اضافه کنید؟
+                                                <a href="{% url 'product:product-list' %}" class="text-primary">رفتن
+                                                    به محصولات</a>
+                                            </div>
+                                        {% endfor %}
+
+                                        <p class="font-vazir-bold-fd">
+                                            جمع کل فاکتور: {{ cart.get_total_price|intcomma:False }} تومان</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>
+                                            آدرس خودرا انتخاب و یا
+                                            <a class="badge bg-success"
+                                               href="{% url 'account:user-address-create' %}?redirect=/cart/checkout">ایجاد</a>
+                                            کنید
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+
+                                            {% for address in request.user.addresses.all %}
+                                                <div class="radiobtn">
+                                                    <input type="radio" id="{{ address.id }}"
+                                                           name="drone" value="{{ address.id }}" checked/>
+                                                    <label for="{{ address.id }}">
+                                                        <span class="d-block mb-2">
+                                                            <i class="fas fa-user"></i>
+                                                            {{ address.name }} - {{ address.phone_number }}
+                                                        </span>
+                                                        <span class="d-block mb-2">
+                                                            <i class="fas fa-location"></i>
+                                                            شهر:
+                                                            {{ address.city }}
+                                                        </span>
+                                                        <span class="d-block mb-2">
+                                                            <i class="fas fa-map"></i>
+                                                            آدرس:
+                                                            {{ address.full_address }}
+                                                        </span>
+                                                        <span class="d-block mb-2">
+                                                            <i class="fas fa-signs-post"></i>
+                                                            کدپستی:
+                                                            {{ address.zip_code }}
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            {% empty %}
+                                                <div class="alert alert-secondary">
+                                                    آدرسی ندارید،
+                                                    <a class="text-primary"
+                                                       href="{% url 'account:user-address-create' %}?redirect=/cart/checkout/">برای
+                                                        ایجاد آدرس اینجا کلیک کنید.</a>
+                                                </div>
+                                            {% endfor %}
+                                            <hr>
+                                            <div class="col-12 mb-2">
+                                                <label for="">توضیحات:</label>
+                                                <p class="text-secondary">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    مواردی مانند زمان مورد نظر برای دریافت بار، نوع باربری و ... را
+                                                    میتوانید اینجا بنویسید.
+                                                </p>
+                                                <textarea rows="4"
+                                                          class="form-control" placeholder="بنویسید..."></textarea>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>تائید و ارسال</h5>
+                                    </div>
+                                    <div class="card-body font-vazir-bold-fd">
+                                        <p>
+                                            <i class="fas fa-info-circle"></i>
+                                            توجه: هزینه حمل و نقل و باربری توسط فروشنده ها مشخص می شود، با کلیک روی
+                                            گزینه <span class="text-success">"ارسال سفارش"</span> سفارش شما به دست
+                                            فروشنده ها میرسد و پس از تعیین هزینه حمل و
+                                            نقل از طریق پیامک به شما اطلاع داده خواهد شد.
+                                        </p>
+                                        <hr>
+                                        <p>جمع کل فاکتور: {{ cart.get_total_price|intcomma:False }} تومان</p>
+                                        <div class="btn btn-success">ارسال سفارش</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}

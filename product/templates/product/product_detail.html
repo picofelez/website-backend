@@ -122,7 +122,8 @@
                                                             {% for item in cart %}
                                                                 {% if object == item.product %}
                                                                     <li id="buyCount">
-                                                                        {{ item.count }} {{ object.quantity }} از این
+                                                                        <span id="itemInOrder">{{ item.count }}</span> {{ object.quantity }}
+                                                                        از این
                                                                         محصول در سبد موجود است
                                                                     </li>
                                                                 {% endif %}
@@ -300,13 +301,15 @@
                 orderCountErr.removeClass('d-block')
                 orderCountErr.addClass('d-none')
 
+                let count = countInput.val() ? countInput.val() : 1
+
                 $.ajax({
                     'url': `/cart/add/${'{{object.id}}'}`,
                     type: "POST",
                     dataType: "json",
                     data: JSON.stringify({
                         payload: {
-                            'count': countInput.val() ? countInput.val() : 1
+                            'count': count
                         }
                     }),
                     headers: {
@@ -315,6 +318,7 @@
                     },
                     success: (data) => {
                         if (data['status'] === 'added') {
+                            $('#itemInOrder').text(count)
                             Swal.fire({
                                 icon: 'success',
                                 title: 'محصول به سبد خرید شما اضافه شد.',

@@ -1,7 +1,7 @@
 import json
 
 from django.http import HttpResponseBadRequest, JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import TemplateView
 
 from cart.cart import Cart
@@ -50,6 +50,11 @@ def cart_remove_view(request, product_id):
             return JsonResponse({'status': 'deleted', 'total_price': cart.get_total_price()})
         return JsonResponse({'status': 'Invalid request'}, status=400)
     return HttpResponseBadRequest('Invalid request')
+
+
+def checkout_view(request):
+    context = {}
+    return render(request, 'cart/checkout.html', context)
 
 
 class CartListView(TemplateView):
