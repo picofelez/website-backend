@@ -530,6 +530,40 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
   line-height: 19px;
 }
 
+/* orders */
+.orders-card {
+  border: 1px solid #d8dfe8;
+  border-radius: 0.5rem;
+  padding: 0.9rem;
+}
+
+.order-track {
+  display: flex;
+  justify-content: space-around;
+}
+
+.order-track span {
+  text-align: center;
+}
+
+.order-track span i.fa-check {
+  color: var(--white-color);
+  background-color: var(--secondary-color);
+  padding: 0.6rem 0.69rem;
+  border-radius: 50%;
+}
+.order-track span i.fa-times {
+  color: var(--secondary-color);
+  background-color: var(--white-color);
+  border: 1px solid var(--secondary-color);
+  padding: 0.6rem 0.8rem;
+  border-radius: 50%;
+}
+
+.order-detail-meta ul li::marker {
+  color: var(--secondary-color);
+}
+
 @media (max-width: 768px) {
   .main-nav-btn {
     display: block;

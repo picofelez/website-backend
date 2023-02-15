@@ -13,7 +13,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 
 from account.forms import PhoneNumberForm, VerifyOtpForm, RegisterForm
-from cart.models import Address
+from cart.models import Address, Order
 from extensions.utils import get_client_ip
 from extensions.send_otp import send_otp
 
@@ -215,3 +215,10 @@ def user_delete_address_view(request, address_pk):
 
         return JsonResponse({'status': 'Invalid request'}, status=400)
     return HttpResponseBadRequest('Invalid request')
+
+
+class UserOrderListView(LoginRequiredMixin, ListView):
+    model = Order
+    template_name = 'account/user_order_list.html'
+    paginate_by = 9
+    ordering = ('-created',)

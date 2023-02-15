@@ -1,5 +1,5 @@
 {% load static %}
-<div class="list-group">
+<div class="list-group box-shadow">
     <a class="list-group-item list-group-item-action text-center">
         <img src="{% static 'site_statics/img/profile/default.jpg' %}"
              alt="{{ request.user.get_full_name }}" class="rounded my-2">
@@ -13,9 +13,9 @@
         <i class="fas fa-heart"></i>
         محصولات نشان شده
     </a>
-    <a href="#" class="list-group-item list-group-item-action">
+    <a href="{% url 'account:user-order-list' %}" class="list-group-item list-group-item-action">
         <i class="fas fa-shopping-cart"></i>
-        سفارشات شما
+        سفارش های شما
     </a>
     <a href="#" class="list-group-item list-group-item-action">
         <i class="fas fa-newspaper"></i>

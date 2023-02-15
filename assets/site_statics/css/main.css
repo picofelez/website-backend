@@ -284,3 +284,8 @@ input[type=number] {
         background-color: #fdcb77;
     }
 }
+
+.box-shadow {
+    box-shadow: 0 0 10px 0 #eaeff4;
+    border: 1px solid #ecf0f4;
+}
