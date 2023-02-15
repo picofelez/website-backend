@@ -10,7 +10,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 
 from account.forms import PhoneNumberForm, VerifyOtpForm, RegisterForm
 from cart.models import Address, Order
@@ -221,7 +221,14 @@ class UserOrderListView(LoginRequiredMixin, ListView):
     model = Order
     template_name = 'account/user_order_list.html'
     paginate_by = 9
-    ordering = ('-created',)
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+
+class UserOrderDetailView(LoginRequiredMixin, DetailView):
+    model = Order
+    template_name = 'account/user_order_detail.html'
 
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)

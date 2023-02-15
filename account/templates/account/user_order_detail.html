@@ -1,0 +1,250 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    پیکو فلز | سفارش شما
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="login-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>بازار آنلاین آهن</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:home' %}">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'account:user-profile' %}">حساب کاربری</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                سفارش های شما
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-12 col-md-4 mb-2">
+                                    {% include 'account/components/profile_side_component.html' %}
+                                </div>
+                                <div class="col-12 col-md-8 mb-2">
+                                    <div class="row">
+                                        <div class="rounded-card">
+                                            <div class="account-detail">
+                                                <h6 class="fw-bold">جزئیات سفارش</h6>
+                                                <hr/>
+                                                <div class="row">
+                                                    <div class="col-12 mb-3 order-detail-meta">
+                                                        <ul class="text-gray d-flex flex-column flex-lg-row my-3">
+                                                            <li class="me-3 ms-3 ms-lg-0 mb-2">
+                                                                {{ order.created_jalali.day }} {{ order.created_jalali.month }} {{ order.created_jalali.year }}
+                                                            </li>
+                                                            <li class="mx-3 mb-2">کد سفارش : {{ order.id }}</li>
+                                                            <li class="mx-3 mb-2">
+                                                                هزینه های
+                                                                باربری: {{ order.total_transportation_expense|intcomma:False }}
+                                                                تومان
+                                                            </li>
+                                                            <li class="mx-3 mb-2">جمع کل
+                                                                سفارش: {{ order.amount_payable|intcomma:False }} تومان
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="text-gray d-flex flex-column flex-lg-row my-3">
+                                                            <li class="me-3 ms-3 ms-lg-0 mb-2">
+                                                                تحویل گیرنده: {{ order.address.name }}
+                                                                - {{ order.address.phone_number }}
+                                                            </li>
+                                                            <li class="mx-3 mb-2">شهر : {{ order.address.city }}</li>
+                                                            <li class="mx-3 mb-2">آدرس کامل
+                                                                : {{ order.address.full_address|truncatewords:6 }}</li>
+                                                        </ul>
+                                                    </div>
+                                                    <hr/>
+                                                    {% for transfer in order.order_transfers.all %}
+
+                                                        <h6 class="fw-bold">خرید از فروشگاه:
+                                                            <a href="{% url 'shop:shop-detail' transfer.shop.slug %}"
+                                                               class="text-primary"
+                                                               target="_blank">{{ transfer.shop.title }}</a>
+                                                        </h6>
+                                                        <p class="mt-4 font-vazir-bold-fd">وضعیت سفارش از این
+                                                            فروشنده:</p>
+                                                        <div class="col-12 my-3 order-track">
+
+                                                            {% if transfer.status == 'pending' %}
+                                                                <span>
+                                                                  <i class="fas fa-check"></i>
+                                                                  <p>درحال بررسی</p>
+                                                                </span>
+                                                                <span>
+                                                                  <i class="fas fa-spinner"></i>
+                                                                  <p>صدور پیش فاکتور</p>
+                                                                </span>
+                                                                <span>
+                                                                  <i class="fas fa-spinner"></i>
+                                                                  <p>ارسال شده</p>
+                                                                </span>
+                                                                <span>
+                                                                  <i class="fas fa-spinner"></i>
+                                                                  <p>تحویل به مشتری</p>
+                                                                </span>
+
+
+                                                            {% elif transfer.status == 'confirmed' %}
+                                                                <span>
+                                                                  <i class="fas fa-check"></i>
+                                                                  <p>درحال بررسی</p>
+                                                                </span>
+                                                                <span>
+                                                                  <i class="fas fa-check"></i>
+                                                                  <p>صدور پیش فاکتور</p>
+                                                                </span>
+                                                                <span>
+                                                                  <i class="fas fa-spinner"></i>
+                                                                  <p>ارسال شده</p>
+                                                                </span>
+                                                                <span>
+                                                                  <i class="fas fa-spinner"></i>
+                                                                  <p>تحویل به مشتری</p>
+                                                                </span>
+
+                                                            {% elif transfer.status == 'posted' %}
+                                                                <span>
+                                                                  <i class="fas fa-check"></i>
+                                                                  <p>درحال بررسی</p>
+                                                                </span>
+                                                                <span>
+                                                                  <i class="fas fa-check"></i>
+                                                                  <p>صدور پیش فاکتور</p>
+                                                                </span>
+                                                                <span>
+                                                                  <i class="fas fa-check"></i>
+                                                                  <p>ارسال شده</p>
+                                                                </span>
+                                                                <span>
+                                                                  <i class="fas fa-spinner"></i>
+                                                                  <p>تحویل به مشتری</p>
+                                                                </span>
+
+                                                            {% endif %}
+
+
+                                                        </div>
+                                                        <div class="col-12">
+                                                        <p class="mt-4 font-vazir-bold-fd">محصولات خرید شده از این
+                                                            فروشنده:</p>
+
+                                                        {% for order_detail in transfer.order.order_details.all %}
+                                                            {% if order_detail.product.shop == transfer.shop %}
+                                                                <div class="d-flex border rounded p-2 mb-2">
+                                                                    <a href="{% url 'product:product-detail' order_detail.product.id %}"
+                                                                       target="_blank" class="order-detail-img">
+                                                                        <img src="{% static 'site_statics/img/bg/5.jpg' %}"
+                                                                             alt=""/>
+                                                                    </a>
+                                                                    <div class="ms-3">
+                                                                        <a href="{% url 'product:product-detail' order_detail.product.id %}"
+                                                                           target="_blank" class="cart-title">
+                                                                            <h6 class="fw-bold">{{ order_detail.product.title }}</h6>
+                                                                        </a>
+                                                                        <ul class="cart-meta list-unstyled my-3">
+                                                                            {% if order_detail.is_confirmed %}
+                                                                                <li>
+                                                                                    <i class="fas fa-shop text-gray"></i>
+                                                                                    <a href="{% url 'product:product-detail' order_detail.product.shop.slug %}"
+                                                                                       target="_blank"
+                                                                                       class="text-primary">{{ order_detail.product.shop.title }}</a>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <i class="fas fa-shopping-cart text-gray"></i>
+                                                                                    تعداد
+                                                                                    خرید: {{ order_detail.count }} {{ order_detail.product.quantity }}
+                                                                                </li>
+                                                                                <li>
+                                                                                    <i class="fas fa-dollar-sign text-gray"></i>
+                                                                                    قیمت
+                                                                                    واحد: {{ order_detail.price|intcomma:False }}
+                                                                                    تومان
+                                                                                </li>
+
+                                                                                <p class="fw-bold text-success">جمع
+                                                                                    کل: {{ order_detail.total_price|intcomma:False }}
+                                                                                    تومان</p>
+
+                                                                            {% else %}
+                                                                                <li>
+                                                                                    <div class="alert alert-info">
+                                                                                        <i class="fas fa-info-circle"></i>
+                                                                                        این محصول توسط فروشنده ارسال نمی
+                                                                                        شود و در فاکتور هم ذکر نخواهد
+                                                                                        شد.
+                                                                                    </div>
+                                                                                </li>
+                                                                            {% endif %}
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endfor %}
+
+                                                        <p class="mt-4 font-vazir-bold-fd">
+                                                            هزینه باربری تعیین شده توسط فروشنده: <span
+                                                                class="text-success">
+                                                            {% if transfer.expense %}
+                                                                {{ transfer.expense|intcomma:False }} تومان
+                                                            {% else %}
+                                                                نامشخص
+                                                            {% endif %}
+                                                        </span>
+                                                        </p>
+                                                        <hr>
+                                                    {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% include 'core/components/paginate_component.html' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}
+
+
+{% block meta_js_codes %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'سفارش با موفقیت ثبت شد.',
+                    text: 'سفارش شما به دست فروشنده ها می رسد و پس از تائید و مشخص شدن هزینه باربری از طریق پیامک به شما اطلاع داده خواهد شد.'
+                })
+            </script>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

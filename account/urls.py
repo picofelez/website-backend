@@ -12,7 +12,8 @@ from .views import (
     UserAddressCreateView,
     UserAddressUpdateView,
     user_delete_address_view,
-    UserOrderListView
+    UserOrderListView,
+    UserOrderDetailView
 )
 
 app_name = 'account'
@@ -34,4 +35,5 @@ urlpatterns = [
     path('address/delete/<address_pk>', user_delete_address_view, name='user-address-delete'),
 
     path('orders/', UserOrderListView.as_view(), name='user-order-list'),
+    path('orders/<int:pk>', UserOrderDetailView.as_view(), name='user-order-detail'),
 ]

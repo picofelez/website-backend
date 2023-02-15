@@ -1,7 +1,8 @@
 import json
 
+from django.contrib import messages
 from django.http import HttpResponseBadRequest, JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import TemplateView
 
 from cart.cart import Cart
@@ -100,7 +101,8 @@ def checkout_view(request):
         # clear cart
         cart.clear()
 
-        # TODO: redirect user to orders page.
+        messages.success(request, message='سفارش با موفقیت ثبت شد.')
+        return redirect('account:user-order-detail', pk=order.id)
 
     context = {
         'form': form

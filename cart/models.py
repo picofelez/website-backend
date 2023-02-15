@@ -46,6 +46,7 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'سفارش'
         verbose_name_plural = '1. سفارشات'
+        ordering = ('-created',)
 
     def total_order_detail_price(self):
         total = 0
