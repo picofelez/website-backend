@@ -222,3 +222,6 @@ class UserOrderListView(LoginRequiredMixin, ListView):
     template_name = 'account/user_order_list.html'
     paginate_by = 9
     ordering = ('-created',)
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
