@@ -1,6 +1,7 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
 {% load humanize %}
+{% load widget_tweaks %}
 
 {% block title %}
     تائید نهایی | پیکوفلز
@@ -226,13 +227,13 @@
                                         </h5>
                                     </div>
                                     <div class="card-body">
-                                        <form>
-
+                                        <form method="post" id="checkoutForm">
+                                            {% csrf_token %}
                                             {% for address in request.user.addresses.all %}
                                                 <div class="radiobtn">
-                                                    <input type="radio" id="{{ address.id }}"
-                                                           name="drone" value="{{ address.id }}" checked/>
-                                                    <label for="{{ address.id }}">
+                                                    <input type="radio" id="id_address_{{ address.id }}"
+                                                           name="address" value="{{ address.id }}"/>
+                                                    <label for="id_address_{{ address.id }}">
                                                         <span class="d-block mb-2">
                                                             <i class="fas fa-user"></i>
                                                             {{ address.name }} - {{ address.phone_number }}
@@ -270,9 +271,9 @@
                                                     مواردی مانند زمان مورد نظر برای دریافت بار، نوع باربری و ... را
                                                     میتوانید اینجا بنویسید.
                                                 </p>
-                                                <textarea rows="4"
-                                                          class="form-control" placeholder="بنویسید..."></textarea>
+                                                {{ form.description|add_class:"form-control"|attr:"placeholder:بنویسید..."|attr:"rows:5" }}
                                             </div>
+                                            {{ form.address.errors }}
 
                                         </form>
                                     </div>
@@ -294,7 +295,8 @@
                                         </p>
                                         <hr>
                                         <p>جمع کل فاکتور: {{ cart.get_total_price|intcomma:False }} تومان</p>
-                                        <div class="btn btn-success">ارسال سفارش</div>
+                                        <div class="btn btn-success" type="submit" id="submitCheckoutForm">ارسال سفارش
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -304,4 +306,12 @@
             </div>
         </section>
     </section>
+{% endblock %}
+
+{% block meta_js_codes %}
+    <script>
+        $('#submitCheckoutForm').click(function () {
+            $('#checkoutForm').submit()
+        })
+    </script>
 {% endblock %}

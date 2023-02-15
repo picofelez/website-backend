@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import TemplateView
 
 from cart.cart import Cart
+from cart.forms import CheckoutForm
+from cart.models import Address, Order, OrderDetail, Transportation
 from product.models import Product
 
 
@@ -53,7 +55,56 @@ def cart_remove_view(request, product_id):
 
 
 def checkout_view(request):
-    context = {}
+    form = CheckoutForm(request.POST or None)
+
+    if form.is_valid():
+        cd = form.cleaned_data  # cleaned data
+
+        # get address
+        address = get_object_or_404(Address, id=cd.get('address'), user=request.user)
+        # get or create order
+        order, created = Order.objects.get_or_create(user=request.user, is_paid=False, address__isnull=True)
+
+        # save order's address
+        order.address = address
+        order.save()
+
+        # create order detail items from cart object
+        cart = Cart(request)
+        order_details = []
+        for product in cart:
+            order_details.append(
+                OrderDetail(
+                    order=order,
+                    product=product.get('product'),
+                    count=product.get('count'),
+                    price=product.get('price')
+                )
+            )
+        OrderDetail.objects.bulk_create(order_details)
+
+        # create transportations
+        shops = []
+        transportation = []
+        for order_detail in order_details:
+            shop_id = order_detail.product.shop.id
+            if shop_id not in shops:
+                shops.append(shop_id)
+                transportation.append(
+                    Transportation(
+                        shop=order_detail.product.shop, order=order
+                    )
+                )
+        Transportation.objects.bulk_create(transportation)
+
+        # clear cart
+        cart.clear()
+
+        # TODO: redirect user to orders page.
+
+    context = {
+        'form': form
+    }
     return render(request, 'cart/checkout.html', context)
 
 
