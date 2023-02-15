@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model, login
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 
 from account.forms import PhoneNumberForm, VerifyOtpForm, RegisterForm
@@ -175,7 +175,6 @@ class UserAddressListView(LoginRequiredMixin, ListView):
 class UserAddressCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Address
     template_name = 'account/user_address_create_update.html'
-    success_url = reverse_lazy('account:user-address-list')
     fields = '__all__'
     success_message = 'created'
 
@@ -184,6 +183,12 @@ class UserAddressCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView)
         address_form.user = self.request.user
         address_form.save()
         return super(UserAddressCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        redirect_url = self.request.GET.get('redirect')
+        if redirect_url and redirect_url == '/cart/checkout':
+            return reverse('cart:cart-checkout')
+        return reverse('account:user-address-list')
 
 
 class UserAddressUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
