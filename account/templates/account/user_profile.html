@@ -42,7 +42,48 @@
                                 <div class="col-12 col-md-4 mb-2">
                                     {% include 'account/components/profile_side_component.html' %}
                                 </div>
-                                <div class="col-12 col-md-6 mb-2"></div>
+                                <div class="col-12 col-md-8 mb-2">
+                                    <h5 class="title font-vazir-bold-fd">
+                                        {{ request.user.get_full_name }} خوش آمدید!
+                                    </h5>
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 my-2">
+                                            <div class="rounded-card box-shadow">
+                                                <div class="h6 font-vazir-bold-fd">
+                                                    <i class="fas fa-user"></i>
+                                                    <a href="{% url 'account:user-order-list' %}">ویرایش اطلاعات کاربری</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 my-2">
+                                            <div class="rounded-card box-shadow">
+                                                <div class="h6 font-vazir-bold-fd">
+                                                    <i class="fas fa-newspaper"></i>
+                                                    <a href="{% url 'account:user-order-list' %}">مشاهده سفارش های من</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 my-2">
+                                            <div class="rounded-card box-shadow">
+                                                <div class="h6 font-vazir-bold-fd">
+                                                    <i class="fas fa-address-book"></i>
+                                                    <a href="{% url 'account:user-address-list' %}">مدیریت آدرس های من</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 my-2">
+                                            <div class="rounded-card box-shadow">
+                                                <div class="h6 font-vazir-bold-fd">
+                                                    <i class="fas fa-location"></i>
+                                                    <a href="{% url 'account:user-order-list' %}">محصولات مورد علاقه من</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

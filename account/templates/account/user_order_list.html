@@ -54,7 +54,7 @@
                                                 <div class="orders-card box-shadow">
                 <span>
                                     {% if order.is_paid %}
-                                        <i class="fas fa-check text-green me-1"></i>
+                                        <i class="fas fa-check text-success me-1"></i>
                                         پرداخت شده
                                     {% else %}
                                         <i class="fas fa-times text-danger me-1"></i>
@@ -75,8 +75,7 @@
 
                                                         <p class="text-secondary">محصولات در سفارش:</p>
                                                         {% for order_detail in order.order_details.all %}
-                                                            <a href="{% url 'product:product-detail' order_detail.product.id %}"
-                                                               target="_blank">
+                                                            <a href="{% url 'product:product-detail' order_detail.product.id %}">
                                                                 <img
                                                                         src='{{ order_detail.product.image.url }}'
                                                                         width="70"
@@ -99,6 +98,11 @@
                                                         <i class="fas fa-file-invoice ms-1"></i>
                                                     </a>
                                                 </div>
+                                            </div>
+                                            {% empty %}
+                                            <div class="alert alert-secondary">
+                                            تا به حال خریدی نداشتید.
+                                                <a href="{% url 'product:product-list' %}" class="text-primary">برای مشاهده محصولات کلیک کنید.</a>
                                             </div>
                                         {% endfor %}
 

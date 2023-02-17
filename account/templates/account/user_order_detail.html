@@ -8,7 +8,7 @@
 
 {% block content %}
     {% with request.resolver_match.url_name as url_name %}
-        <section class="inner-page" id="login-page">
+        <section class="inner-page" id="order-page">
             <!-- breadcrumb start -->
             <section class="page-title-box container-fluid">
                 <div class="row">
@@ -70,12 +70,8 @@
                                                         </ul>
                                                         <ul class="text-gray d-flex flex-column flex-lg-row my-3">
                                                             <li class="me-3 ms-3 ms-lg-0 mb-2">
-                                                                تحویل گیرنده: {{ order.address.name }}
-                                                                - {{ order.address.phone_number }}
+                                                                تحویل به:   {{ order.address.full_address }} - {{ order.address.name }}
                                                             </li>
-                                                            <li class="mx-3 mb-2">شهر : {{ order.address.city }}</li>
-                                                            <li class="mx-3 mb-2">آدرس کامل
-                                                                : {{ order.address.full_address|truncatewords:6 }}</li>
                                                         </ul>
                                                     </div>
                                                     <hr/>
@@ -150,20 +146,19 @@
 
                                                         </div>
                                                         <div class="col-12">
-                                                        <p class="mt-4 font-vazir-bold-fd">محصولات خرید شده از این
+                                                        <p class="mt-4 font-vazir-bold-fd">محصولات خریداری شده از این
                                                             فروشنده:</p>
 
                                                         {% for order_detail in transfer.order.order_details.all %}
                                                             {% if order_detail.product.shop == transfer.shop %}
                                                                 <div class="d-flex border rounded p-2 mb-2">
-                                                                    <a href="{% url 'product:product-detail' order_detail.product.id %}"
-                                                                       target="_blank" class="order-detail-img">
-                                                                        <img src="{% static 'site_statics/img/bg/5.jpg' %}"
-                                                                             alt=""/>
+                                                                    <a href="{% url 'product:product-detail' order_detail.product.id %}" class="order-detail-img">
+                                                                        <img src="{{ order_detail.product.image.url }}"
+                                                                             alt="{{ order_detail.product.title }}"/>
                                                                     </a>
                                                                     <div class="ms-3">
                                                                         <a href="{% url 'product:product-detail' order_detail.product.id %}"
-                                                                           target="_blank" class="cart-title">
+                                                                            class="cart-title">
                                                                             <h6 class="fw-bold">{{ order_detail.product.title }}</h6>
                                                                         </a>
                                                                         <ul class="cart-meta list-unstyled my-3">
