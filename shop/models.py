@@ -21,6 +21,7 @@ class Shop(models.Model):
         block = 'b', 'بلاک شده'
         spam = 's', 'اسپم'
 
+    unique_uuid = models.UUIDField(unique=True, null=True, blank=True)
     title = models.CharField(max_length=155, verbose_name='نام نمایشی فروشگاه')
     slug = models.SlugField(null=True, blank=True, unique=True, verbose_name='شناسه اسلاگ')
     image = models.ImageField(upload_to=upload_shop_image_path, null=True, blank=True, verbose_name='تصویر')

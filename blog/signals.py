@@ -8,5 +8,4 @@ from extensions.utils import slug_generator
 @receiver(pre_save, sender=Tag)
 def save_tag_slug(sender, instance, *args, **kwargs):
     if instance.slug is None:
-        print(instance.slug)
         instance.slug = slug_generator(instance.name)
