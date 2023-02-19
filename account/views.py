@@ -25,6 +25,11 @@ User = get_user_model()
 
 def login_view(request):
     form = PhoneNumberForm(request.POST or None)
+    ip = get_client_ip(request)
+    next_url = request.GET.get('next')
+
+    if next_url:
+        cache.set(f"{ip}-for-next-url", next_url, 500)
 
     if form.is_valid():
         phone_number = form.cleaned_data.get('phone_number')
@@ -67,6 +72,7 @@ def verify_otp_view(request):
     ip = get_client_ip(request)
     phone = cache.get(f"{ip}-for-authentication")
     otp = cache.get(phone)
+    next_url = cache.get(f"{ip}-for-next-url")
 
     if phone is None:
         raise Http404
@@ -85,6 +91,8 @@ def verify_otp_view(request):
                     return redirect('account:complete-register')
                 else:
                     login(request, user=user)
+                    if next_url:
+                        return redirect(next_url)
                     return redirect('core:home')
             else:
                 messages.error(request, 'کد تائید اشتباه وارد شده است.')
@@ -100,6 +108,8 @@ def verify_otp_view(request):
 
 def complete_register_view(request):
     form = RegisterForm(request.POST or None)
+    ip = get_client_ip(request)
+    next_url = cache.get(f"{ip}-for-next-url")
 
     try:
         user = User.objects.get(username=request.user.username)
@@ -115,6 +125,8 @@ def complete_register_view(request):
         user.save()
 
         login(request, user)
+        if next_url:
+            return redirect(next_url)
         return redirect('core:home')
 
     context = {
