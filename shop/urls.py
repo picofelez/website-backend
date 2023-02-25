@@ -6,7 +6,10 @@ from .views import (
     ShopListView,
     register_shop,
     register_shop_seller_information_create,
-    register_shop_create
+    register_shop_create,
+
+    # panel
+    ShopAccountMainView
 )
 
 app_name = 'shop'
@@ -28,4 +31,7 @@ urlpatterns = [
         register_shop_create,
         name='shop-data-create'
     ),
+
+    # panel
+    path('shop/panel/<unique_uuid>', ShopAccountMainView.as_view(), name='shop-panel-main'),
 ]

@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
@@ -106,3 +107,12 @@ def register_shop_create(request):
                 return JsonResponse({'status': 'fail'})
         return JsonResponse({'status': 'Invalid request'}, status=400)
     return HttpResponseBadRequest('Invalid request')
+
+
+class ShopAccountMainView(LoginRequiredMixin, DetailView):
+    model = Shop
+    template_name = 'shop/panel/shop_main.html'
+
+    def get_object(self, queryset=None):
+        shop = get_object_or_404(Shop, unique_uuid=self.kwargs.get('unique_uuid'))
+        return shop
