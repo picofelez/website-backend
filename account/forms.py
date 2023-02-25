@@ -28,11 +28,11 @@ class PhoneNumberForm(forms.Form):
 class VerifyOtpForm(forms.Form):
     code = forms.CharField(
         widget=forms.NumberInput(attrs={
-            'class': 'form-control', 'placeholder': 'xxxx'
+            'class': 'form-control', 'placeholder': 'xxxx', 'autofocus': True
         }),
         label='کد تائید',
         min_length=4,
-        max_length=4
+        max_length=4,
     )
 
 
