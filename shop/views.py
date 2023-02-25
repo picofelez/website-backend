@@ -5,9 +5,10 @@ from django.http import JsonResponse, HttpResponseBadRequest, Http404
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django_filters.views import FilterView
 
+from product.models import Product
 from shop.filters import ShopFilter
 from shop.forms import ContactForm
 from shop.mixins import ShopPanelAccessMixin
@@ -117,3 +118,12 @@ class ShopAccountMainView(ShopPanelAccessMixin, DetailView):
     def get_object(self, queryset=None):
         shop = get_object_or_404(Shop, unique_uuid=self.kwargs.get('unique_uuid'))
         return shop
+
+
+class ShopProductsListView(ShopPanelAccessMixin, ListView):
+    model = Product
+    template_name = 'shop/panel/shop_product_list.html'
+    paginate_by = 15
+
+    def get_queryset(self):
+        return self.model.objects.filter(shop=self.shop)

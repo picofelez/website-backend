@@ -5,6 +5,12 @@
              alt="{{ request.user.get_full_name }}" class="rounded my-2">
         <h5 class="font-vazir-bold-fd my-2">{{ request.user.get_full_name }}</h5>
     </a>
+    {% if request.user.shops.count != 0 %}
+        <a href="{% url 'shop:register-shop' %}" class="list-group-item list-group-item-action">
+            <i class="fas fa-list-ul"></i>
+            فروشگاه شما
+        </a>
+    {% endif %}
     <a href="#" class="list-group-item list-group-item-action">
         <i class="fas fa-user"></i>
         ویرایش حساب کاربری

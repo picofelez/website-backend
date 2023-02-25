@@ -1,0 +1,184 @@
+{% extends 'shop/panel/base/_shop_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    محصولات شما | پیکوفلز
+{% endblock %}
+
+{% block secondary_title %}
+    محصولات
+{% endblock %}
+
+{% block secondary_title_detail %}{% endblock %}
+
+{% block content %}
+
+    {#    <div class="card card-flush">#}
+    {#        <!--begin::Card header-->#}
+    {#        <div class="card-header align-items-center py-5 gap-2 gap-md-5">#}
+    {#            <!--begin::Card title-->#}
+    {#            <div class="card-title">#}
+    {#                <!--begin::جستجو-->#}
+    {#                <div class="d-flex align-items-center position-relative my-1">#}
+    {#                    <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->#}
+    {#                    <span class="svg-icon svg-icon-1 position-absolute ms-4">#}
+    {#													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"#}
+    {#                                                         viewBox="0 0 24 24" fill="none">#}
+    {#														<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546"#}
+    {#                                                              height="2" rx="1" transform="rotate(45 17.0365 15.1223)"#}
+    {#                                                              fill="currentColor"></rect>#}
+    {#														<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"#}
+    {#                                                              fill="currentColor"></path>#}
+    {#													</svg>#}
+    {#												</span>#}
+    {#                    <!--end::Svg Icon-->#}
+    {#                    <input type="text" data-kt-ecommerce-product-filter="search"#}
+    {#                           class="form-control form-control-solid w-250px ps-14" placeholder="جستجو محصولات">#}
+    {#                </div>#}
+    {#                <!--end::جستجو-->#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <!--end::Card header-->#}
+    {#        <!--begin::Card body-->#}
+    {#        <div class="card-body pt-0">#}
+    {#            <div class="table-responsive">#}
+    {#                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_محصولات_table">#}
+    {#                    <!--begin::Table head-->#}
+    {#                    <thead>#}
+    {#                    <!--begin::Table row-->#}
+    {#                    <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">#}
+    {#                        <th class="min-w-200px">محصول</th>#}
+    {#                        <th class="d-none d-md-table-cell text-end min-w-100px">واحد</th>#}
+    {#                        <th class="d-none d-md-table-cell text-end min-w-70px">تعداد</th>#}
+    {#                        <th class="d-none d-md-table-cell text-end min-w-100px">قیمت</th>#}
+    {#                        <th class="text-end min-w-70px">عملیات</th>#}
+    {#                    </tr>#}
+    {#                    <!--end::Table row-->#}
+    {#                    </thead>#}
+    {#                    <!--end::Table head-->#}
+    {#                    <!--begin::Table body-->#}
+    {#                    <tbody class="fw-bold text-gray-600">#}
+    {##}
+    {#                    {% for product in page_obj %}#}
+    {#                        <tr>#}
+    {#                            <td>#}
+    {#                                <div class="d-flex align-items-center">#}
+    {#                                    <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="symbol symbol-50px">#}
+    {#																<span class="symbol-label" style="background-image:url({{ product.image.url }});"></span>#}
+    {#															</a>#}
+    {#                                    <div class="ms-5">#}
+    {#                                        <!--begin::Title-->#}
+    {#                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html"#}
+    {#                                           class="text-gray-800 text-hover-primary fs-5 fw-bolder"#}
+    {#                                           data-kt-ecommerce-product-filter="product_name">{{ product.title|truncatewords:15 }}</a>#}
+    {#                                        <!--end::Title-->#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {#                            </td>#}
+    {#                            <!--end::دسته بندی=-->#}
+    {#                            <!--begin::SKU=-->#}
+    {#                            <td class="d-none d-md-table-cell text-end pe-0">#}
+    {#                                <span class="fw-bolder">{{ product.quantity }}</span>#}
+    {#                            </td>#}
+    {#                            <td class="d-none d-md-table-cell text-end pe-0" data-order="25">#}
+    {#                                <span class="fw-bolder ms-3">{{ product.stock }}</span>#}
+    {#                            </td>#}
+    {#                            <td class="d-none d-md-table-cell text-end pe-0">#}
+    {#                                <span class="fw-bolder text-dark">{{ product.price|intcomma:False }} ت</span>#}
+    {#                            </td>#}
+    {#                            <!--end::وضعیت=-->#}
+    {#                            <!--begin::عملیات=-->#}
+    {#                            <td class="text-end">#}
+    {#                                <div class="badge badge-light-info">#}
+    {#                                    <a href="#">#}
+    {#                                        مشاهده#}
+    {#                                    </a>#}
+    {#                                </div>#}
+    {#                            </td>#}
+    {#                            <!--end::عملیات=-->#}
+    {#                        </tr>#}
+    {#                    {% endfor %}#}
+    {##}
+    {#                    </tbody>#}
+    {#                    <!--end::Table body-->#}
+    {#                </table>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <!--end::Card body-->#}
+    {#    </div>#}
+
+
+    <div class="tab-content">
+        <!--begin::Tab pane-->
+        <div id="kt_project_کاربران_card_pane" class="tab-pane fade show active">
+            <!--begin::Row-->
+            <div class="row g-6 g-xl-9">
+
+                {% for product in page_obj %}
+
+                    <div class="col-md-6 col-xxl-4">
+                        <div class="card">
+                            <div class="card-body d-flex flex-center flex-column pt-12 p-9">
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-65px symbol-circle mb-5">
+                                    <img src="{{ product.image.url }}" alt="image">
+                                </div>
+                                <!--end::Avatar-->
+                                <!--begin::نام-->
+                                <a href="#"
+                                   class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0">{{ product.title }}</a>
+                                <!--end::نام-->
+                                <!--begin::جایگاه-->
+                                <div class="fw-bold text-gray-400 mb-6">واحد: {{ product.quantity }}</div>
+                                <!--end::جایگاه-->
+                                <!--begin::Info-->
+                                <div class="d-flex flex-center flex-wrap">
+                                    <!--begin::Stats-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
+                                        <div class="fs-6 fw-bolder text-gray-700">{{ product.price|intcomma:False }} ت
+                                        </div>
+                                        <div class="fw-bold text-gray-400">قیمت واحد</div>
+                                    </div>
+                                    <!--end::Stats-->
+                                    <!--begin::Stats-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
+                                        <div class="fs-6 fw-bolder text-gray-700">{{ product.stock }}</div>
+                                        <div class="fw-bold text-gray-400">موجودی</div>
+                                    </div>
+                                    <!--end::Stats-->
+                                    <!--begin::Stats-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
+                                        <div class="fs-6 fw-bolder text-gray-700">
+                                            {% if product.is_active %}
+                                                <i class="fas fa-check text-success"></i>
+                                                فعال
+                                            {% else %}
+                                                <i class="fas fa-trash text-danger"></i>
+                                                غیرفعال
+                                            {% endif %}
+                                        </div>
+                                        <div class="fw-bold text-gray-400">وضعیت نمایش</div>
+                                    </div>
+                                    <!--end::Stats-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
+                                        <a href="#" class="btn btn-light-success">ویرایش</a>
+                                        <a href="#" class="btn btn-light-danger">بروزرسانی قیمت</a>
+                                    </div>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+
+            {% include 'core/components/paginate_component.html' %}
+
+        </div>
+    </div>
+
+{% endblock %}
