@@ -1,7 +1,7 @@
 import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, Http404
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
@@ -10,6 +10,7 @@ from django_filters.views import FilterView
 
 from shop.filters import ShopFilter
 from shop.forms import ContactForm
+from shop.mixins import ShopPanelAccessMixin
 from shop.models import Shop, SellerInformation
 
 
@@ -109,7 +110,7 @@ def register_shop_create(request):
     return HttpResponseBadRequest('Invalid request')
 
 
-class ShopAccountMainView(LoginRequiredMixin, DetailView):
+class ShopAccountMainView(ShopPanelAccessMixin, DetailView):
     model = Shop
     template_name = 'shop/panel/shop_main.html'
 

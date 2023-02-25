@@ -101,12 +101,12 @@
                                     مرحله بعد
                                 </button>
                             {% else %}
-                                <button
-                                        type="button"
+                                <a
+                                        href="{% url 'shop:shop-panel-main' request.user.shops.first.unique_uuid %}"
                                         class="btn btn-success"
                                 >
                                     ورود به فروشگاه
-                                </button>
+                                </a>
                             {% endif %}
                         </fieldset>
 
