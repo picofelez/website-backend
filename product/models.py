@@ -46,7 +46,7 @@ class Product(models.Model):
     )
     title = models.CharField(max_length=100, verbose_name='عنوان')
     description = models.TextField(verbose_name='توضیحات')
-    keywords = models.CharField(max_length=255, verbose_name='کلمات کلیدی')
+    keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
     price = models.BigIntegerField(verbose_name='قیمت')
     stock = models.IntegerField(verbose_name='موجودی در انبار')
     quantity = models.CharField(max_length=50, verbose_name='واحد')

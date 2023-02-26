@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse_lazy
 
-from django.views.generic import DetailView, ListView, UpdateView
+from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from django_filters.views import FilterView
 
 from product.models import Product
@@ -133,7 +133,7 @@ class ShopProductsListView(ShopPanelAccessMixin, ListView):
 
 class ShopProductUpdateView(ShopPanelAccessMixin, SuccessMessageMixin, UpdateView):
     model = Product
-    template_name = 'shop/panel/shop_product_update.html'
+    template_name = 'shop/panel/shop_product_create_update.html'
     fields = (
         'title', 'description', 'stock', 'purchase_limit',
         'quantity', 'width', 'length', 'weight', 'image', 'is_active', 'categories'
@@ -145,3 +145,25 @@ class ShopProductUpdateView(ShopPanelAccessMixin, SuccessMessageMixin, UpdateVie
             'shop:shop-panel-products',
             kwargs={'unique_uuid': self.shop.unique_uuid}
         )
+
+
+class ShopProductCreateView(ShopPanelAccessMixin, SuccessMessageMixin, CreateView):
+    model = Product
+    template_name = 'shop/panel/shop_product_create_update.html'
+    fields = (
+        'title', 'description', 'stock', 'purchase_limit',
+        'quantity', 'width', 'length', 'weight', 'image', 'is_active', 'categories', 'price'
+    )
+    success_message = 'محصول با موفقیت ایجاد شد'
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'shop:shop-panel-products',
+            kwargs={'unique_uuid': self.shop.unique_uuid}
+        )
+
+    def form_valid(self, form):
+        product = form.save(commit=False)
+        product.maker = self.request.user
+        product.shop = self.shop
+        return super(ShopProductCreateView, self).form_valid(form)

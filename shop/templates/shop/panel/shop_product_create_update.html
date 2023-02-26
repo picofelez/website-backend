@@ -3,11 +3,11 @@
 {% load widget_tweaks %}
 
 {% block title %}
-    ویرایش محصول | پیکوفلز
+    محصولات | پیکوفلز
 {% endblock %}
 
 {% block secondary_title %}
-    ویرایش محصول
+    محصولات
 {% endblock %}
 
 {% block secondary_title_detail %}{{ object.title }}{% endblock %}
@@ -19,6 +19,12 @@
             method="post"
     >
         {% csrf_token %}
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                {{ field }}
+                {{ error }}
+            {% endfor %}
+        {% endfor %}
         <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
             <!--begin::Thumbnail settings-->
             <div class="card card-flush py-4">
@@ -205,13 +211,25 @@
 
                                 <div class="mb-4">
                                     <label class="form-label" for="{{ form.quantity.id_for_label }}">
-                                        واحد فروش
+                                        کمیت محصول
                                     </label>
                                     {{ form.quantity|add_class:"form-control mb-2" }}
                                     <div class="text-muted fs-7">
                                         برای مثال: شاخه یا کیلو
                                     </div>
                                 </div>
+
+                                {% if request.resolver_match.url_name == 'shop-panel-products-create' %}
+                                    <div class="mb-4">
+                                        <label class="form-label" for="{{ form.price.id_for_label }}">
+                                            قیمت
+                                        </label>
+                                        {{ form.price|add_class:"form-control mb-2" }}
+                                        <div class="text-muted fs-7">
+                                            قیمت را برحسب کمیت تعیین شده وارد کنید
+                                        </div>
+                                    </div>
+                                {% endif %}
 
                                 <div class="mb-4">
                                     <label class="form-label" for="{{ form.purchase_limit.id_for_label }}">
