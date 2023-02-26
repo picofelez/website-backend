@@ -1,11 +1,13 @@
 import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import JsonResponse, HttpResponseBadRequest, Http404
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from django.urls import reverse_lazy
 
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, UpdateView
 from django_filters.views import FilterView
 
 from product.models import Product
@@ -127,3 +129,19 @@ class ShopProductsListView(ShopPanelAccessMixin, ListView):
 
     def get_queryset(self):
         return self.model.objects.filter(shop=self.shop)
+
+
+class ShopProductUpdateView(ShopPanelAccessMixin, SuccessMessageMixin, UpdateView):
+    model = Product
+    template_name = 'shop/panel/shop_product_update.html'
+    fields = (
+        'title', 'description', 'stock', 'purchase_limit',
+        'quantity', 'width', 'length', 'weight', 'image', 'is_active', 'categories'
+    )
+    success_message = 'تغییرات با موفقیت اعمال شد'
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'shop:shop-panel-products',
+            kwargs={'unique_uuid': self.shop.unique_uuid}
+        )

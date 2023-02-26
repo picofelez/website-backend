@@ -1,0 +1,272 @@
+{% extends 'shop/panel/base/_shop_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    ویرایش محصول | پیکوفلز
+{% endblock %}
+
+{% block secondary_title %}
+    ویرایش محصول
+{% endblock %}
+
+{% block secondary_title_detail %}{{ object.title }}{% endblock %}
+
+{% block content %}
+    <form
+            class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework"
+            enctype="multipart/form-data"
+            method="post"
+    >
+        {% csrf_token %}
+        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+            <!--begin::Thumbnail settings-->
+            <div class="card card-flush py-4">
+                <!--begin::Card header-->
+                <div class="card-header">
+                    <!--begin::Card title-->
+                    <div class="card-title">
+                        <h2>تصویر شاخص</h2>
+                    </div>
+                    <!--end::Card title-->
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body text-center pt-0">
+                    <!--begin::Image input-->
+                    <div class="image-input image-input-outline mb-3 image-input-empty" data-kt-image-input="true"
+                         {% if product.image.url %}style="background-image: url({{ product.image.url }})"{% endif %}
+                    >
+                        <!--begin::نمایش existing avatar-->
+                        <div class="image-input-wrapper w-150px h-150px" style=""></div>
+                        <!--end::نمایش existing avatar-->
+                        <!--begin::Tags-->
+                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                               data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                               data-bs-original-title="تعویض آواتار">
+                            <i class="bi bi-pencil-fill fs-7"></i>
+                            <!--begin::Inputs-->
+                            <input type="file" name="image" id="id_image" accept=".png, .jpg, .jpeg">
+                            <input type="hidden" name="avatar_remove" value="0">
+                            <!--end::Inputs-->
+                        </label>
+                        <!--end::Tags-->
+                        <!--begin::انصراف-->
+                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                              data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title=""
+                              data-bs-original-title="انصراف avatar">
+														<i class="bi bi-x fs-2"></i>
+													</span>
+                        <!--end::انصراف-->
+                        <!--begin::حذف-->
+                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                              data-kt-image-input-action="remove" data-bs-toggle="tooltip" title=""
+                              data-bs-original-title="حذف آواتار">
+														<i class="bi bi-x fs-2"></i>
+													</span>
+                        <!--end::حذف-->
+                    </div>
+                    <!--end::Image input-->
+                    <!--begin::توضیحات-->
+                    <div class="text-muted fs-7">یک تصویر برای محصول بگذارید یا آن را خالی بگذارید تا به صورت اتوماتیک
+                        انتخاب شود.
+                    </div>
+                    <!--end::توضیحات-->
+                </div>
+                <!--end::Card body-->
+            </div>
+            <div class="card card-flush py-4" data-select2-id="select2-data-159-0teg">
+                <!--begin::Card header-->
+                <div class="card-header">
+                    <!--begin::Card title-->
+                    <div class="card-title">
+                        <h2>دسته بندی ها</h2>
+                    </div>
+                    <!--end::Card title-->
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body pt-0" data-select2-id="select2-data-158-3r9w">
+                    <!--begin::Input group-->
+                    <!--begin::Tags-->
+                    <label class="form-label">دسته ها</label>
+                    <!--end::Tags-->
+                    <!--begin::انتخاب2-->
+                    {{ form.categories|add_class:'form-select mb-2' }}
+                    <div class="text-muted fs-7 mb-7">محصول را به یک دسته اضافه کنید یا آن را خالی بگذارید تا به صورت
+                        اتوماتیک انتخاب شود.
+                    </div>
+                </div>
+                <!--end::Card body-->
+            </div>
+            <!--end::دسته بندی & tags-->
+            <!--begin::هفتهly sales-->
+            <div class="card card-flush py-4">
+                <!--begin::Card header-->
+                <div class="card-header">
+                    <!--begin::Card title-->
+                    <div class="card-title">
+                        <h2>تحلیل فروش</h2>
+                    </div>
+                    <!--end::Card title-->
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body pt-0">
+                    <a href="#" class="btn btn-light-info">
+                        مشاهده تحلیل فروش این محصول
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10" data-select2-id="select2-data-140-sczu">
+            <div class="tab-content" data-select2-id="select2-data-139-z1s1">
+                <div class="tab-pane fade active show" id="kt_ecommerce_add_product_general" role="tab-panel">
+                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                        <!--begin::عمومی options-->
+                        <div class="card card-flush py-4">
+                            <!--begin::Card header-->
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>اطلاعات محصول</h2>
+                                </div>
+                            </div>
+                            <!--end::Card header-->
+                            <!--begin::Card body-->
+                            <div class="card-body pt-0">
+                                <!--begin::Input group-->
+                                <div class="mb-10 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
+                                    <!--begin::Tags-->
+                                    <label class="required form-label" for="{{ form.title.id_for_label }}">نام
+                                        محصول</label>
+                                    {{ form.title|add_class:"form-control mb-2" }}
+                                    <div class="text-muted fs-7">
+                                        نام محصول مورد نیاز است و توصیه می شود به طور کامل نوشته شود.
+                                    </div>
+                                    {% if form.title.errors %}
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="product_name" data-validator="notEmpty">
+                                                نام محصول را به طور کامل وارد کنید
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="mb-10 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
+                                    <!--begin::Tags-->
+                                    <label class="required form-label" for="{{ form.description.id_for_label }}">
+                                        توضیحات محصول
+                                    </label>
+                                    {{ form.description|add_class:"form-control mb-2" }}
+                                    <div class="text-muted fs-7">
+                                        می توانید این بخش را خالی بگذارید تا توسط کارشناسان به صورت تخصصی تکمیل شود.
+                                    </div>
+                                    {% if form.title.errors %}
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="product_name" data-validator="notEmpty">
+                                                توضیحات نمی تواند خالی باشد
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="mb-10 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
+                                    {{ form.is_active|add_class:"form-check-input" }}
+                                    <label class="form-label" for="{{ form.is_active.id_for_label }}">
+                                        وضعیت نمایش
+                                    </label>
+                                    <div class="text-muted fs-7">
+                                        در صورت برداشتن این تیک محصول غیرقابل مشاهده خواهد شد.
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--end::Card header-->
+                        </div>
+
+                        <div class="card card-flush py-4">
+                            <!--begin::Card header-->
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>جزئیات محصول</h2>
+                                </div>
+                            </div>
+
+                            <div class="card-body pt-0">
+                                <div class="mb-4">
+                                    <label class="form-label" for="{{ form.stock.id_for_label }}">
+                                        موجودی محصول
+                                    </label>
+                                    {{ form.stock|add_class:"form-control mb-2" }}
+                                    <div class="text-muted fs-7">
+                                        چه تعداد از این محصول دارید؟
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label" for="{{ form.quantity.id_for_label }}">
+                                        واحد فروش
+                                    </label>
+                                    {{ form.quantity|add_class:"form-control mb-2" }}
+                                    <div class="text-muted fs-7">
+                                        برای مثال: شاخه یا کیلو
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label" for="{{ form.purchase_limit.id_for_label }}">
+                                        حداکثر تعداد خرید
+                                    </label>
+                                    {{ form.purchase_limit|add_class:"form-control mb-2" }}
+                                    <div class="text-muted fs-7">
+                                        هر فرد چه تعداد می تواند بخرد؟
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="mb-2">
+                                    <label class="form-label" for="{{ form.width.id_for_label }}">
+                                        ضخامت
+                                    </label>
+                                    {{ form.width|add_class:"form-control mb-2" }}
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="form-label" for="{{ form.weight.id_for_label }}">
+                                        وزن
+                                    </label>
+                                    {{ form.weight|add_class:"form-control mb-2" }}
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="form-label" for="{{ form.length.id_for_label }}">
+                                        طول
+                                    </label>
+                                    {{ form.length|add_class:"form-control mb-2" }}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Tab content-->
+            <div class="d-flex justify-content-end">
+                <!--begin::Button-->
+                <a href="../../demo1/dist/apps/ecommerce/catalog/products.html" id="kt_ecommerce_add_product_cancel"
+                   class="btn btn-light me-5">انصراف</a>
+                <!--end::Button-->
+                <!--begin::Button-->
+                <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                    <span class="indicator-label">ذخیره تغییرات</span>
+                    <span class="indicator-progress">لطفا صبر کنید...
+												<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                </button>
+                <!--end::Button-->
+            </div>
+        </div>
+        <!--end::Main column-->
+        <div></div>
+    </form>
+{% endblock %}
