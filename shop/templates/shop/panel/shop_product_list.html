@@ -10,7 +10,9 @@
     محصولات
 {% endblock %}
 
-{% block secondary_title_detail %}{% endblock %}
+{% block secondary_title_detail %}
+    <a href="{% url 'shop:shop-panel-products-create' shop.unique_uuid %}" class="btn btn-primary btn-sm">ایجاد محصول جدید</a>
+{% endblock %}
 
 {% block content %}
 

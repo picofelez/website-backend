@@ -12,7 +12,8 @@ from .views import (
     ShopAccountMainView,
     ShopProductsListView,
     ShopProductUpdateView,
-    ShopProductCreateView
+    ShopProductCreateView,
+    ShopOrderListView
 )
 
 app_name = 'shop'
@@ -52,5 +53,11 @@ urlpatterns = [
         'shop/panel/<unique_uuid>/products/create',
         ShopProductCreateView.as_view(),
         name='shop-panel-products-create'
+    ),
+
+    path(
+        'shop/panel/<unique_uuid>/orders',
+        ShopOrderListView.as_view(),
+        name='shop-panel-orders'
     ),
 ]

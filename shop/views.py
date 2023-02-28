@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from django_filters.views import FilterView
 
+from cart.models import Order, Transportation
 from product.models import Product
 from shop.filters import ShopFilter
 from shop.forms import ContactForm
@@ -167,3 +168,12 @@ class ShopProductCreateView(ShopPanelAccessMixin, SuccessMessageMixin, CreateVie
         product.maker = self.request.user
         product.shop = self.shop
         return super(ShopProductCreateView, self).form_valid(form)
+
+
+class ShopOrderListView(ShopPanelAccessMixin, ListView):
+    model = Transportation
+    template_name = 'shop/panel/shop_order_list.html'
+    paginate_by = 12
+
+    def get_queryset(self):
+        return self.model.objects.filter(shop=self.shop)

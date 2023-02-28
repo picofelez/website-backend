@@ -120,9 +120,18 @@ class Transportation(models.Model):
         max_length=20, choices=StatusChoices.choices, default=StatusChoices.pending, verbose_name='وضعیت'
     )
 
+    def transfer_total_price(self):
+        price = 0
+        for order_detail in self.order.order_details.all():
+            if order_detail.product.shop == self.shop:
+                price += order_detail.total_price()
+
+        return price
+
     class Meta:
         verbose_name = 'حمل و نقل'
         verbose_name_plural = '2. حمل و نقل ها'
+        ordering = ('-id',)
 
     def __str__(self):
         return f"{self.order} | وضعیت : {self.status}"

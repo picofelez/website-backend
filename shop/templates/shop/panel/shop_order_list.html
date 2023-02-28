@@ -1,0 +1,109 @@
+{% extends 'shop/panel/base/_shop_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    سفارش ها | پیکوفلز
+{% endblock %}
+
+{% block secondary_title %}
+    سفارش ها
+{% endblock %}
+
+{% block secondary_title_detail %}{% endblock %}
+
+{% block content %}
+
+    <div class="row g-6 g-xl-9">
+
+        {% for transfer in page_obj %}
+            <div class="col-md-6 col-xl-4">
+                <!--begin::Card-->
+                <a href="../../demo1/dist/apps/projects/project.html" class="card border-hover-primary">
+                    <!--begin::Card header-->
+                    <div class="card-header border-0 pt-9">
+                        <div class="card-toolbar">
+                            <span class="badge badge-light-primary fw-bolder me-auto px-4 py-3">
+                                شناسه سفارش: {{ transfer.order.id }}
+                            </span>
+                        </div>
+                        <!--end::Card toolbar-->
+                    </div>
+                    <!--end:: Card header-->
+                    <!--begin:: Card body-->
+                    <div class="card-body p-9">
+                        <!--begin::نام-->
+                        <div class="fs-3 fw-bolder text-dark mb-3">سفارش: {{ transfer.order.user.get_full_name }}</div>
+                        <div class="d-flex flex-wrap mb-5">
+                            <!--begin::Due-->
+                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
+                                <div class="fs-6 text-gray-800 fw-bolder">
+                                    {{ transfer.order.created_jalali.day }}
+                                    {{ transfer.order.created_jalali.month }}
+                                    {{ transfer.order.created_jalali.year }}
+                                </div>
+                                <div class="fw-bold text-gray-400">ثبت سفارش</div>
+                            </div>
+                            <!--end::Due-->
+                            <!--begin::بودجه-->
+                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
+                                <div class="fs-6 text-gray-800 fw-bolder">{{ transfer.transfer_total_price|intcomma:False }}
+                                    تومان
+                                </div>
+                                <div class="fw-bold text-gray-400">مبلغ سفارش</div>
+                            </div>
+                            <!--end::بودجه-->
+                        </div>
+                        <!--end::Info-->
+                        <!--begin::پردازش-->
+                        <p class="text-gray-900">وضعیت سفارش: {{ transfer.get_status_display }}</p>
+                        <div class="h-4px w-100 bg-light mb-5">
+                            {% if transfer.status == 'pending' %}
+                                <div class="bg-warning rounded h-4px" role="progressbar" style="width: 25%"
+                                     aria-valuenow="25"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                </div>
+
+                                {% elif transfer.status == 'confirmed' %}
+                                <div class="bg-info rounded h-4px" role="progressbar" style="width: 75%"
+                                     aria-valuenow="75"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                </div>
+
+                                {% elif transfer.status == 'posted' %}
+                                <div class="bg-success rounded h-4px" role="progressbar" style="width: 100%"
+                                     aria-valuenow="100"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                </div>
+
+                                {% elif transfer.status == 'returned' %}
+                                <div class="bg-danger rounded h-4px" role="progressbar" style="width: 100%"
+                                     aria-valuenow="100"
+                                     aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            {% endif %}
+                        </div>
+                        <!--end::پردازش-->
+                        <!--begin::users-->
+                        <div class="symbol-group symbol-hover">
+
+                            {% for order_detail in transfer.order.order_details.all %}
+                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title=""
+                                 data-bs-original-title="{{ order_detail.product.title }}">
+                                <img alt="{{ order_detail.product.title }}" src="{{ order_detail.product.image.url }}">
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                        <!--end::users-->
+                    </div>
+                    <!--end:: Card body-->
+                </a>
+                <!--end::Card-->
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}
