@@ -177,3 +177,8 @@ class ShopOrderListView(ShopPanelAccessMixin, ListView):
 
     def get_queryset(self):
         return self.model.objects.filter(shop=self.shop)
+
+
+class ShopOrderDetailView(ShopPanelAccessMixin, DetailView):
+    model = Transportation
+    template_name = 'shop/panel/shop_order_detail.html'

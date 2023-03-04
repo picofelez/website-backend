@@ -128,6 +128,10 @@ class Transportation(models.Model):
 
         return price
 
+    def transfer_final_price(self):
+        if self.expense:
+            return self.transfer_total_price() + self.expense
+
     class Meta:
         verbose_name = 'حمل و نقل'
         verbose_name_plural = '2. حمل و نقل ها'

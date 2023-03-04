@@ -19,7 +19,7 @@
         {% for transfer in page_obj %}
             <div class="col-md-6 col-xl-4">
                 <!--begin::Card-->
-                <a href="../../demo1/dist/apps/projects/project.html" class="card border-hover-primary">
+                <a href="{% url 'shop:shop-panel-orders-detail' shop.unique_uuid transfer.id %}" class="card border-hover-primary">
                     <!--begin::Card header-->
                     <div class="card-header border-0 pt-9">
                         <div class="card-toolbar">
