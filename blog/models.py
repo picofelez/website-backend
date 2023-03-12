@@ -1,10 +1,11 @@
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils import timezone
 from django.utils.html import format_html
 from blog.managers import PublishedArticleManager
 
 from extensions.utils import upload_article_image_path, jalali_converter_dict
-
 
 # Create your models here.
 
@@ -36,7 +37,7 @@ class Article(models.Model):
 
     title = models.CharField(max_length=155, verbose_name='عنوان')
     summary = models.CharField(max_length=255, verbose_name='خلاصه')
-    description = models.TextField(verbose_name='توضیحات')
+    description = RichTextUploadingField(verbose_name='توضیحات')
     image = models.ImageField(upload_to=upload_article_image_path, verbose_name='تصویر اصلی')
     tags = models.ManyToManyField(
         Tag, related_name='articles', verbose_name='برچسب ها'

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # third-party packages
     'widget_tweaks',
     'django_filters',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # local apps
     'account',
@@ -148,3 +150,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EXPIRY_TIME_OTP = 300  # second
 
 CART_SESSION_ID = 'cart'
+
+# ckeditor section
+CKEDITOR_UPLOAD_PATH = 'uploads/'
