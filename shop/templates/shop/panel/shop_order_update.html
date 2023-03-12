@@ -1,0 +1,205 @@
+{% extends 'shop/panel/base/_shop_base.html' %}
+{% load static %}
+{% load humanize %}
+{% load widget_tweaks %}
+
+{% block title %}
+    تائید سفارش | پیکوفلز
+{% endblock %}
+
+{% block secondary_title %}
+    تائید و قیمت گذاری سفارش
+{% endblock %}
+
+{% block secondary_title_detail %}
+    شناسه سفارش: {{ transportation.order.id }}
+{% endblock %}
+
+{% block content %}
+
+    <form
+            class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework"
+            enctype="multipart/form-data"
+            method="post"
+    >
+        {% csrf_token %}
+        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+
+            <div class="card card-flush py-4">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>جزئیات سفارش</h2>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10" data-select2-id="select2-data-140-sczu">
+            <div class="tab-content" data-select2-id="select2-data-139-z1s1">
+                <div class="tab-pane fade active show" id="kt_ecommerce_add_product_general" role="tab-panel">
+                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                        <div class="card card-flush py-4">
+                            <!--begin::Card header-->
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>تعیین هزینه باربری</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div style="font-size: 1.2rem">
+                                    <div class="alert alert-warning mb-10 fv-row fv-plugins-icon-container">
+                                        <i class="fas fa-info-circle"></i>
+                                        لطفا آدرس زیر که توسط خریدار وارد شده را به طور کامل بررسی کنید و سپس هزینه حمل
+                                        و نقل را
+                                        مشخص کنید.
+                                    </div>
+                                    <p class="mb-10 fv-row fv-plugins-icon-container">
+                                        <i class="fas fa-truck"></i>
+                                        <span class="h5">آدرس کامل خریدار:</span>
+                                        {{ object.order.address.city }}
+                                        - {{ object.order.address.full_address }}
+                                    </p>
+                                    <hr class="my-5">
+                                </div>
+                                <div class="mb-10 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
+                                    <!--begin::Tags-->
+                                    <label class="required form-label" for="{{ form.expense.id_for_label }}">هزینه حمل و
+                                        نقل</label>
+                                    {{ form.expense|add_class:"form-control mb-2" }}
+                                    <div class="text-muted fs-7">
+                                        لطفا هزینه حمل و و نقل را درست و منصفانه وارد کنید در غیر اینصورت حساب
+                                        شما مسدود خواهد شد.
+                                    </div>
+                                    {% if form.title.errors %}
+                                        <div class="fv-plugins-message-container invalid-feedback">
+                                            <div data-field="product_name" data-validator="notEmpty">
+                                                هزینه حمل و نقل را به درستی وارد کنید
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!--end::Card header-->
+                        </div>
+
+                        <div class="card card-flush py-4">
+                            <!--begin::Card header-->
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>تائید سفارش</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div style="font-size: 1.2rem">
+                                    <div class="alert alert-info mb-10 fv-row fv-plugins-icon-container">
+                                        <i class="fas fa-info-circle"></i>
+                                        لطفا هر یک از محصولات زیر را به درستی بررسی کنید و سپس اطلاعات را ارسال کنید.
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <!--begin::Table-->
+                                    <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                        <!--begin::Table head-->
+                                        <thead>
+                                        <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                            <th class="min-w-175px">نام محصول</th>
+                                            <th class="min-w-70px text-end">تعداد</th>
+                                            <th class="min-w-100px text-end">قیمت</th>
+                                            <th class="min-w-100px text-end">جمع قیمت</th>
+                                        </tr>
+                                        </thead>
+                                        <!--end::Table head-->
+                                        <!--begin::Table body-->
+                                        <tbody class="fw-bold text-gray-600">
+
+                                        {% for order_detail in transportation.order.order_details.all %}
+                                            {% if order_detail.product.shop == shop %}
+                                                <tr>
+                                                    <!--begin::product-->
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <!--begin::Thumbnail-->
+                                                            <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html"
+                                                               class="symbol symbol-50px">
+                                                    <span class="symbol-label"
+                                                          style="background-image:url({{ order_detail.product.image.url }});"></span>
+                                                            </a>
+                                                            <!--end::Thumbnail-->
+                                                            <!--begin::Title-->
+                                                            <div class="ms-5">
+                                                                <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html"
+                                                                   class="fw-bolder text-gray-600 text-hover-primary">
+                                                                    {{ order_detail.product.title }}
+                                                                </a>
+                                                            </div>
+                                                            <!--end::Title-->
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-end">{{ order_detail.count }} {{ order_detail.product.quantity }}</td>
+                                                    <td class="text-end">{{ order_detail.price|intcomma:False }} ت</td>
+                                                    <td class="text-end">{{ order_detail.total_price|intcomma:False }} ت
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+
+                                        <tr>
+                                            <td colspan="4" class="text-end">جمع قیمت محصولات</td>
+                                            <td class="text-end">{{ transportation.transfer_total_price|intcomma:False }}
+                                                تومان
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" class="text-end">هزینه حمل و نقل</td>
+                                            <td class="text-end">
+                                                {% if transportation.transfer_final_price %}
+                                                    {{ transportation.expense|intcomma:False }} تومان
+                                                {% else %}
+                                                    مشخص نشده
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" class="fs-5 text-dark text-end">جمع کل سفارش (قیمت محصولات +
+                                                هزینه حمل و نقل)
+                                            </td>
+                                            <td class="text-dark fs-5 fw-boldest text-end">
+                                                {% if transportation.transfer_final_price %}
+                                                    {{ transportation.transfer_final_price|intcomma:False }} تومان
+                                                {% else %}
+                                                    مشخص نشده
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <!--end::Grو total-->
+                                        </tbody>
+                                        <!--end::Table head-->
+                                    </table>
+                                    <!--end::Table-->
+                                </div>
+
+                            </div>
+                            <!--end::Card header-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Tab content-->
+            <div class="d-flex justify-content-end">
+                <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                    <span class="indicator-label">ذخیره تغییرات</span>
+                    <span class="indicator-progress">لطفا صبر کنید...
+												<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                </button>
+                <!--end::Button-->
+            </div>
+        </div>
+        <!--end::Main column-->
+        <div></div>
+    </form>
+
+{% endblock %}

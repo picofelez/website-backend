@@ -182,3 +182,9 @@ class ShopOrderListView(ShopPanelAccessMixin, ListView):
 class ShopOrderDetailView(ShopPanelAccessMixin, DetailView):
     model = Transportation
     template_name = 'shop/panel/shop_order_detail.html'
+
+
+class ShopOrderUpdateView(ShopPanelAccessMixin, UpdateView):
+    model = Transportation
+    template_name = 'shop/panel/shop_order_update.html'
+    fields = '__all__'

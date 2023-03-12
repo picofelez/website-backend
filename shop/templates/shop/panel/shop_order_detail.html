@@ -313,7 +313,7 @@
                 <div class="alert bg-warning">
                     سفارش مشتری ثبت شده است لطفا هزینه حمل و نقل را مشخص کنید تا مشتری بتواند پرداخت
                     را انجام بدهد.
-                    <a href="#" class="btn btn-dark btn-sm mt-2 mt-sm-0">تعیین هزینه حمل و نقل</a>
+                    <a href="{% url 'shop:shop-panel-orders-update' shop.unique_uuid transportation.id %}" class="btn btn-dark btn-sm mt-2 mt-sm-0">تعیین هزینه حمل و نقل</a>
                 </div>
             {% elif transportation.status == 'confirmed' %}
                 <div class="alert bg-info text-light">
@@ -322,8 +322,9 @@
                 </div>
             {% elif transportation.status == 'posted' %}
                 <div class="alert bg-success">
-                    محصول توسط شما ارسال شده است ، پس از دریافت توسط مشتری می توانید سود خود از این محصول را از قسمت کیف
+                    محصول توسط شما ارسال شده است ، پس از دریافت توسط مشتری می توانید سهم فروش خود را از قسمت کیف
                     پول برداشت کنید.
+                <a href="#" class="btn btn-dark btn-sm mt-2 mt-sm-0">برداشت از کیف پول</a>
                 </div>
             {% elif transportation.status == 'returned' %}
                 <div class="alert bg-danger">
