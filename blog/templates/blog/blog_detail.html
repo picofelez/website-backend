@@ -133,7 +133,8 @@
                                                                 <!-- Side Panel Product -->
                                                                 {% for product in latest_products %}
                                                                     <div class="col-12 col-lg-12 px-0 mt-2">
-                                                                        <a target="_blank" href="{% url 'product:product-detail' product.id %}">
+                                                                        <a target="_blank"
+                                                                           href="{% url 'product:product-detail' product.id %}">
                                                                             <div class="side-blog-product">
                                                                                 <div class="row pl-3">
                                                                                     <div class="col-4 pl-2">
@@ -148,14 +149,20 @@
                                                                                     </div>
                                                                                     <div class="col-8 px-0">
                                                                                         <h2>
-                                                                                            {{ product.title }} - 10 فروشنده
+                                                                                            {{ product.title }}
+                                                                                            - {{ product.shop.title }}
                                                                                         </h2>
                                                                                         <div class="row">
                                                                                             <div class="col-8 pl-0">
-                                                <span
-                                                        class="side-blog-product-price"
-                                                >{{ product.price|intcomma:False }} تومان</span
-                                                >
+                                                                                                <span class="side-blog-product-price">
+                                                                                                    {% if product.stock < 1 %}
+                                                                                                        ناموجود
+                                                                                                    {% else %}
+                                                                                                        {{ product.price|intcomma:False }}
+                                                                                                        تومان
+                                                                                                        (هر{{ product.quantity }})
+                                                                                                    {% endif %}
+                                                                                                </span>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -175,188 +182,64 @@
                                                     <div class="blog-side-panel">
                                                         <div class="row pt-4 pt-sm-2">
                                                             <div class="col">
-                                                                <h6 class="title font-vazir-bold-fd">نوشته های مرتبط</h6>
+                                                                <h6 class="title font-vazir-bold-fd">نوشته های
+                                                                    مرتبط</h6>
                                                             </div>
                                                         </div>
                                                         <div class="container">
                                                             <div class="row">
-                                                                <!-- Side Panel Post -->
-                                                                <div class="col-12 col-lg-12 px-0 mt-2">
-                                                                    <div class="side-blog-post">
-                                                                        <div class="row pl-3">
-                                                                            <div class="col-4 pl-2">
-                                                                                <a href="./blog-post.html"
-                                                                                >
-                                                                                    <div
-                                                                                            class="image"
-                                                                                            style="
-                                                background-image: url(img/bg/5.jpg);
-                                              "
-                                                                                    ></div
+
+                                                                {% for article in latest_articles %}
+                                                                    <div class="col-12 col-lg-12 px-0 mt-2">
+                                                                        <div class="side-blog-post">
+                                                                            <div class="row pl-3">
+                                                                                <div class="col-4 pl-2">
+                                                                                    <a href="{% url 'blog:blog-detail' article.id %}"
                                                                                     >
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-8 px-0">
-                                                                                <a href="./blog-post.html"
-                                                                                ><h2>
-                                                                                    بررسی آیفون 12 پرو مکس اپل
-                                                                                </h2></a
-                                                                                >
-                                                                                <div class="row">
-                                                                                    <div class="col-12 col-xl-6 pl-0">
+                                                                                        <div
+                                                                                                class="image"
+                                                                                                style="
+                                                                                                        background-image: url({{ article.image.url }});
+                                                                                                        "
+                                                                                        ></div
+                                                                                        >
+                                                                                    </a>
+                                                                                </div>
+                                                                                <div class="col-8 px-0">
+                                                                                    <a href="{% url 'blog:blog-detail' article.id %}"
+                                                                                    ><h2>
+                                                                                        {{ article.title }}
+                                                                                    </h2></a
+                                                                                    >
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 col-xl-7 pl-0">
                                               <span class="category"
                                               >دسته بندی:
                                                 <a href="./blog.html"
-                                                >اخبار</a
+                                                >
+                                                    {{ article.tags.first.name }}
+                                                </a
                                                 ></span
                                               >
-                                                                                    </div>
-                                                                                    <div
-                                                                                            class="col-12 col-xl-6 pr-0 text-start text-xl-end d-none d-xl-block"
-                                                                                    >
+                                                                                        </div>
+                                                                                        <div
+                                                                                                class="col-12 col-xl-5 pr-0 text-start text-xl-end d-none d-xl-block"
+                                                                                        >
                                               <span class="date"
-                                              >30 خرداد 1400</span
                                               >
+                                                  {{ object.published_jalali_dict.day }}
+                                                                {{ object.published_jalali_dict.month }}
+                                                                {{ object.published_jalali_dict.year }}
+                                              </span
+                                              >
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <!-- /Side Panel Post -->
-                                                                <!-- Side Panel Post -->
-                                                                <div class="col-12 col-lg-12 px-0 mt-2">
-                                                                    <div class="side-blog-post">
-                                                                        <div class="row pl-3">
-                                                                            <div class="col-4 pl-2">
-                                                                                <a href="./blog-post.html"
-                                                                                >
-                                                                                    <div
-                                                                                            class="image"
-                                                                                            style="
-                                                background-image: url(img/bg/6.png);
-                                              "
-                                                                                    ></div
-                                                                                    >
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-8 px-0">
-                                                                                <a href="./blog-post.html"
-                                                                                ><h2>
-                                                                                    سامسونگ گلکسی S21 اولترا 5G
-                                                                                </h2></a
-                                                                                >
-                                                                                <div class="row">
-                                                                                    <div class="col-12 col-xl-6 pl-0">
-                                              <span class="category"
-                                              >دسته بندی:
-                                                <a href="./blog.html"
-                                                >اخبار</a
-                                                ></span
-                                              >
-                                                                                    </div>
-                                                                                    <div
-                                                                                            class="col-12 col-xl-6 pr-0 text-start text-xl-end d-none d-xl-block"
-                                                                                    >
-                                              <span class="date"
-                                              >30 خرداد 1400</span
-                                              >
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- /Side Panel Post -->
-                                                                <!-- Side Panel Post -->
-                                                                <div class="col-12 col-lg-12 px-0 mt-2">
-                                                                    <div class="side-blog-post">
-                                                                        <div class="row pl-3">
-                                                                            <div class="col-4 pl-2">
-                                                                                <a href="./blog-post.html"
-                                                                                >
-                                                                                    <div
-                                                                                            class="image"
-                                                                                            style="
-                                                background-image: url(img/bg/7.jpg);
-                                              "
-                                                                                    ></div
-                                                                                    >
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-8 px-0">
-                                                                                <a href="./blog-post.html"
-                                                                                ><h2>
-                                                                                    دریافت گواهی بلوتوث گلکسی A03s
-                                                                                    سامسونگ
-                                                                                </h2></a
-                                                                                >
-                                                                                <div class="row">
-                                                                                    <div class="col-12 col-xl-6 pl-0">
-                                              <span class="category"
-                                              >دسته بندی:
-                                                <a href="./blog.html"
-                                                >اخبار</a
-                                                ></span
-                                              >
-                                                                                    </div>
-                                                                                    <div
-                                                                                            class="col-12 col-xl-6 pr-0 text-start text-xl-end d-none d-xl-block"
-                                                                                    >
-                                              <span class="date"
-                                              >30 خرداد 1400</span
-                                              >
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- /Side Panel Post -->
-                                                                <!-- Side Panel Post -->
-                                                                <div class="col-12 col-lg-12 px-0 mt-2">
-                                                                    <div class="side-blog-post">
-                                                                        <div class="row pl-3">
-                                                                            <div class="col-4 pl-2">
-                                                                                <a href="./blog-post.html"
-                                                                                >
-                                                                                    <div
-                                                                                            class="image"
-                                                                                            style="
-                                                background-image: url(img/bg/8.jpg);
-                                              "
-                                                                                    ></div
-                                                                                    >
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-8 px-0">
-                                                                                <a href="./blog-post.html"
-                                                                                ><h2>
-                                                                                    خرابی نمایشگرهای سری گلکسی S20
-                                                                                </h2></a
-                                                                                >
-                                                                                <div class="row">
-                                                                                    <div class="col-12 col-xl-6 pl-0">
-                                              <span class="category"
-                                              >دسته بندی:
-                                                <a href="./blog.html"
-                                                >اخبار</a
-                                                ></span
-                                              >
-                                                                                    </div>
-                                                                                    <div
-                                                                                            class="col-12 col-xl-6 pr-0 text-start text-xl-end d-none d-xl-block"
-                                                                                    >
-                                              <span class="date"
-                                              >30 خرداد 1400</span
-                                              >
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- /Side Panel Post -->
+                                                                {% endfor %}
+
                                                             </div>
                                                         </div>
                                                     </div>
