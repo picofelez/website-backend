@@ -201,12 +201,15 @@
                                                 <small class="font-vazir-bold-fd">توسط فروشنده ها مشخص می شود</small>
                                             </div>
                                         </div>
-                                        <div class="row py-2">
-                                            <div class="col-12">
-                                                <a href="{% url 'cart:cart-checkout' %}"><input type="submit" value="ادامه ثبت سفارش"
-                                                                                 class="btn btn-success w-100"></a>
+                                        {% if cart|length > 0 %}
+                                            <div class="row py-2">
+                                                <div class="col-12">
+                                                    <a href="{% url 'cart:cart-checkout' %}"><input type="submit"
+                                                                                                    value="ادامه ثبت سفارش"
+                                                                                                    class="btn btn-success w-100"></a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

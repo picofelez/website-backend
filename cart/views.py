@@ -58,6 +58,10 @@ def cart_remove_view(request, product_id):
 def checkout_view(request):
     form = CheckoutForm(request.POST or None)
 
+    cart = Cart(request)
+    if len(cart) < 1:
+        return redirect('product:product-list')
+
     if form.is_valid():
         cd = form.cleaned_data  # cleaned data
 
