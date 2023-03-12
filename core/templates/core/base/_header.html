@@ -1,120 +1,137 @@
 {% load static %}
 
 {% with request.resolver_match.url_name as url_name %}
-<header class="main-header">
-    <section class="top-main-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-8 d-none d-md-block">
-                    <ul>
-                        <li><a href="{% url 'core:home' %}">صفحه نخست</a></li>
-                        <li><a href="{% url 'core:about-us' %}">درباره ما</a></li>
-                        <li><a href="{% url 'shop:register-shop' %}">فروشنده شوید</a></li>
-                    </ul>
-                </div>
-                <div
-                        class="col-12 col-md-4 text-center text-md-end top-main-header-support"
-                >
+    <header class="main-header">
+        <section class="top-main-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 d-none d-md-block">
+                        <ul>
+                            <li><a href="{% url 'core:home' %}">صفحه نخست</a></li>
+                            <li><a href="{% url 'core:about-us' %}">درباره ما</a></li>
+                            <li><a href="{% url 'shop:register-shop' %}">فروشنده شوید</a></li>
+                        </ul>
+                    </div>
+                    <div
+                            class="col-12 col-md-4 text-center text-md-end top-main-header-support"
+                    >
               <span>
                 <i class="fa fa-phone"></i>
                 تلفن مشاوره: 09199060659
               </span>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="middle-main-header">
-        <div class="container pt-1">
-            <div class="row py-3 align-content-center">
-                <div
-                        class="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2 middle-main-header-logo"
-                >
-                    <a href="{% url 'core:home' %}">
-                        <img src="{% static 'site_statics/img/logo/forSiteHeader.png' %}" alt="پیکوفلز"/>
-                    </a>
-                </div>
-                <div class="col-12 col-md-5 col-xl-6 middle-main-header-search">
-                    <div id="search-bar">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="جستجو بین محصولات..."/>
                     </div>
                 </div>
-                <div class="col-12 col-md-4">
-                    <div class="row">
-                        <div
-                                class="col-12 col-md-7 col-lg-6 text-center mt-3 mb-3 mt-md-1 mb-md-0"
-                        >
-                            {% if request.user.is_authenticated %}
-                                <a href="{% url 'account:user-profile' %}">
-                                    <img
-                                            src="{% static 'site_statics/img/profile/default.jpg' %}"
-                                            alt="تصویر پروفایل"
-                                            width="30"
-                                            height="30"
-                                            class="rounded-circle"
-                                    >
-                                    {{ request.user.get_full_name }}
+            </div>
+        </section>
+        <section class="middle-main-header">
+            <div class="container pt-1">
+                <div class="row py-3 align-content-center">
+                    <div
+                            class="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2 middle-main-header-logo"
+                    >
+                        <a href="{% url 'core:home' %}">
+                            <img src="{% static 'site_statics/img/logo/forSiteHeader.png' %}" alt="پیکوفلز"/>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-4 col-xl-4 middle-main-header-search">
+                        <div id="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="جستجو بین محصولات..."/>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2 col-xl-2 my-3 my-md-0 text-center">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'account:user-profile' %}">
+                                <img
+                                        src="{% static 'site_statics/img/profile/default.jpg' %}"
+                                        alt="تصویر پروفایل"
+                                        width="30"
+                                        height="30"
+                                        class="rounded-circle"
+                                >
+                                {{ request.user.get_full_name }}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'account:otp-login' %}" class="font-vazir-bold-fd">ورود</a>
+                            /
+                            <a href="{% url 'account:otp-register' %}" class="font-vazir-bold-fd">عضویت</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-md-3 col-xl-4">
+                        <div class="row">
+                            <div
+                                    class="col-12 col-md-7 col-lg-6 mb-1 mb-md-0"
+                            >
+                                {% if request.user.is_anonymous or request.user.shops.count < 1 %}
+                                    <a href="{% url 'shop:register-shop' %}">
+                                        <div class="btn btn-purple w-100">
+                                            <i class="fab fa-shopify"></i>
+                                            فروشنده شوید
+                                        </div>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'shop:shop-panel-main' request.user.shops.last.unique_uuid %}">
+                                        <div class="btn btn-purple w-100">
+                                            <i class="fab fa-shopify"></i>
+                                            ورود به فروشگاه
+                                        </div>
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="col-12 col-md-5 col-lg-6">
+                                <a href="{% url 'cart:cart-list' %}">
+                                    <div class="btn btn-purple w-100">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        سبد خرید
+                                        <span class="badge bg-white text-black">{{ cart|length }}</span>
+                                    </div>
                                 </a>
-                            {% else %}
-                                <a href="{% url 'account:otp-login' %}" class="font-vazir-bold-fd">ورود</a>
-                                /
-                                <a href="{% url 'account:otp-register' %}" class="font-vazir-bold-fd">عضویت</a>
-                            {% endif %}
-                        </div>
-                        <div class="col-12 col-md-5 col-lg-6">
-                            <a href="{% url 'cart:cart-list' %}">
-                                <div class="btn btn-purple w-100">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    سبد خرید
-                                    <span class="badge bg-white text-black">{{ cart|length }}</span>
-                                </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <nav class="bottom-main-header main-nav">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <ul class="main-nav-items">
-                        <li>
-                            <a href="{% url 'product:product-list' %}">
-                                <i class="fas fa-bars"></i>
-                                دسته بندی محصولات
-                            </a>
-                        </li>
-                        <li {% if url_name == 'home' %}class="main-nav-active-item"{% endif %}>
-                            <a href="{% url 'core:home' %}">خانه</a>
-                        </li>
-                        <li {% if url_name == 'product-list' %}class="main-nav-active-item"{% endif %}>
-                            <a href="{% url 'product:product-list' %}">محصولات</a>
-                        </li>
-                        <li {% if url_name == 'blog-list' %}class="main-nav-active-item"{% endif %}>
-                            <a href="{% url 'blog:blog-list' %}">مجله پیکوفلز</a>
-                        </li>
-                        <li {% if url_name == 'shop-list' %}class="main-nav-active-item"{% endif %}>
-                            <a href="{% url 'shop:shop-list' %}">فروشگاه ها</a>
-                        </li>
-                        <li {% if url_name == 'register-shop' %}class="main-nav-active-item"{% endif %}>
-                            <a href="{% url 'shop:register-shop' %}">ثبت نام فروشنده</a>
-                        </li>
-                        <li {% if url_name == 'contact-us' %}class="main-nav-active-item"{% endif %}>
-                            <a href="{% url 'core:contact-us' %}">تماس با ما</a>
-                        </li>
-                        <li {% if url_name == 'about-us' %}class="main-nav-active-item"{% endif %}>
-                            <a href="{% url 'core:about-us' %}">درباره ما</a>
-                        </li>
-                    </ul>
-                    <div class="main-nav-btn">
-                        <i class="fas fa-bars"></i>
-                        منو
+        </section>
+        <nav class="bottom-main-header main-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="main-nav-items">
+                            <li>
+                                <a href="{% url 'product:product-list' %}">
+                                    <i class="fas fa-bars"></i>
+                                    دسته بندی محصولات
+                                </a>
+                            </li>
+                            <li {% if url_name == 'home' %}class="main-nav-active-item"{% endif %}>
+                                <a href="{% url 'core:home' %}">خانه</a>
+                            </li>
+                            <li {% if url_name == 'product-list' %}class="main-nav-active-item"{% endif %}>
+                                <a href="{% url 'product:product-list' %}">محصولات</a>
+                            </li>
+                            <li {% if url_name == 'blog-list' %}class="main-nav-active-item"{% endif %}>
+                                <a href="{% url 'blog:blog-list' %}">مجله پیکوفلز</a>
+                            </li>
+                            <li {% if url_name == 'shop-list' %}class="main-nav-active-item"{% endif %}>
+                                <a href="{% url 'shop:shop-list' %}">فروشگاه ها</a>
+                            </li>
+                            <li {% if url_name == 'register-shop' %}class="main-nav-active-item"{% endif %}>
+                                <a href="{% url 'shop:register-shop' %}">ثبت نام فروشنده</a>
+                            </li>
+                            <li {% if url_name == 'contact-us' %}class="main-nav-active-item"{% endif %}>
+                                <a href="{% url 'core:contact-us' %}">تماس با ما</a>
+                            </li>
+                            <li {% if url_name == 'about-us' %}class="main-nav-active-item"{% endif %}>
+                                <a href="{% url 'core:about-us' %}">درباره ما</a>
+                            </li>
+                        </ul>
+                        <div class="main-nav-btn">
+                            <i class="fas fa-bars"></i>
+                            منو
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 {% endwith %}

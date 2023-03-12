@@ -1,6 +1,7 @@
 import json
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import TemplateView
@@ -55,6 +56,7 @@ def cart_remove_view(request, product_id):
     return HttpResponseBadRequest('Invalid request')
 
 
+@login_required
 def checkout_view(request):
     form = CheckoutForm(request.POST or None)
 
