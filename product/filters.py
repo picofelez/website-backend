@@ -9,6 +9,7 @@ class ProductFilter(django_filters.FilterSet):
         queryset=Category.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )
+    title = django_filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Product

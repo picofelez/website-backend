@@ -23,7 +23,11 @@
                         <small>{{ product.shop.title }}</small>
                     </h2>
                 </a>
+                {% if product.stock < 1 %}
+                    <div class="product-price text-danger">ناموجود</div>
+                    {% else %}
                 <div class="product-price">{{ product.price|intcomma:False }} تومان</div>
+                {% endif %}
                 <div class="product-rate">
                     <i class="fas fa-star text-purple"></i>
                     <i class="fas fa-star text-purple"></i>

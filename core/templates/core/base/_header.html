@@ -35,8 +35,10 @@
                     </div>
                     <div class="col-12 col-md-4 col-xl-4 middle-main-header-search">
                         <div id="search-bar">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="جستجو بین محصولات..."/>
+                            <form action="{% url 'product:product-list' %}">
+                                <i class="fas fa-search"></i>
+                                <input name="title" type="text" placeholder="جستجو بین محصولات..."/>
+                            </form>
                         </div>
                     </div>
                     <div class="col-12 col-md-2 col-xl-2 my-3 my-md-0 text-center">
