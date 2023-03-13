@@ -1,0 +1,33 @@
+{% with request.resolver_match.url_name as url_name %}
+
+    <div class="mobile-main-nav" id="mobile-main-nav">
+        <div id="mobile-main-nav-close">
+            <i class="fas fa-times"></i>
+            بستن منو
+        </div>
+        <ul id="mobile-main-nav-items">
+            <li {% if url_name == 'home' %}class="main-nav-active-item"{% endif %}>
+                <a href="{% url 'core:home' %}">خانه</a>
+            </li>
+            <li {% if url_name == 'product-list' %}class="main-nav-active-item"{% endif %}>
+                <a href="{% url 'product:product-list' %}">محصولات</a>
+            </li>
+            <li {% if url_name == 'blog-list' %}class="main-nav-active-item"{% endif %}>
+                <a href="{% url 'blog:blog-list' %}">مجله پیکوفلز</a>
+            </li>
+            <li {% if url_name == 'shop-list' %}class="main-nav-active-item"{% endif %}>
+                <a href="{% url 'shop:shop-list' %}">فروشگاه ها</a>
+            </li>
+            <li {% if url_name == 'register-shop' %}class="main-nav-active-item"{% endif %}>
+                <a href="{% url 'shop:register-shop' %}">ثبت نام فروشنده</a>
+            </li>
+            <li {% if url_name == 'contact-us' %}class="main-nav-active-item"{% endif %}>
+                <a href="{% url 'core:contact-us' %}">تماس با ما</a>
+            </li>
+            <li {% if url_name == 'about-us' %}class="main-nav-active-item"{% endif %}>
+                <a href="{% url 'core:about-us' %}">درباره ما</a>
+            </li>
+        </ul>
+    </div>
+
+{% endwith %}
