@@ -232,6 +232,7 @@
 .purchas-steps {
     background-color: #f8f8f8;
     border-top: 2px solid #ebebeb;
+    border-bottom: 2px solid #ebebeb;
 }
 
 .purchas-step-item {
