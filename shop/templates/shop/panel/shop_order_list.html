@@ -19,7 +19,8 @@
         {% for transfer in page_obj %}
             <div class="col-md-6 col-xl-4">
                 <!--begin::Card-->
-                <a href="{% url 'shop:shop-panel-orders-detail' shop.unique_uuid transfer.id %}" class="card border-hover-primary">
+                <a href="{% url 'shop:shop-panel-orders-detail' shop.unique_uuid transfer.id %}"
+                   class="card border-hover-primary">
                     <!--begin::Card header-->
                     <div class="card-header border-0 pt-9">
                         <div class="card-toolbar">
@@ -64,19 +65,19 @@
                                      aria-valuemin="0" aria-valuemax="100">
                                 </div>
 
-                                {% elif transfer.status == 'confirmed' %}
+                            {% elif transfer.status == 'confirmed' %}
                                 <div class="bg-info rounded h-4px" role="progressbar" style="width: 75%"
                                      aria-valuenow="75"
                                      aria-valuemin="0" aria-valuemax="100">
                                 </div>
 
-                                {% elif transfer.status == 'posted' %}
+                            {% elif transfer.status == 'posted' %}
                                 <div class="bg-success rounded h-4px" role="progressbar" style="width: 100%"
                                      aria-valuenow="100"
                                      aria-valuemin="0" aria-valuemax="100">
                                 </div>
 
-                                {% elif transfer.status == 'returned' %}
+                            {% elif transfer.status == 'returned' %}
                                 <div class="bg-danger rounded h-4px" role="progressbar" style="width: 100%"
                                      aria-valuenow="100"
                                      aria-valuemin="0" aria-valuemax="100">
@@ -88,10 +89,13 @@
                         <div class="symbol-group symbol-hover">
 
                             {% for order_detail in transfer.order.order_details.all %}
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title=""
-                                 data-bs-original-title="{{ order_detail.product.title }}">
-                                <img alt="{{ order_detail.product.title }}" src="{{ order_detail.product.image.url }}">
-                            </div>
+                                {% if order_detail.product.shop == shop %}
+                                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title=""
+                                         data-bs-original-title="{{ order_detail.product.title }}">
+                                        <img alt="{{ order_detail.product.title }}"
+                                             src="{{ order_detail.product.image.url }}">
+                                    </div>
+                                {% endif %}
                             {% endfor %}
 
                         </div>

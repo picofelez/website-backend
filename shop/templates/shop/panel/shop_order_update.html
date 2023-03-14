@@ -49,18 +49,19 @@
                             </div>
                             <div class="card-body pt-0">
                                 <div style="font-size: 1.2rem">
-                                    <div class="alert alert-warning mb-10 fv-row fv-plugins-icon-container">
+                                    <div class="alert alert-warning pt-6 mb-10 fv-row fv-plugins-icon-container">
                                         <i class="fas fa-info-circle"></i>
                                         لطفا آدرس زیر که توسط خریدار وارد شده را به طور کامل بررسی کنید و سپس هزینه حمل
                                         و نقل را
                                         مشخص کنید.
+                                        <p class="mt-3 fv-row fv-plugins-icon-container">
+                                            <i class="fas fa-truck"></i>
+                                            <span class="h5">آدرس کامل خریدار:</span>
+                                            {{ object.order.address.city }}
+                                            - {{ object.order.address.full_address }}
+                                        </p>
                                     </div>
-                                    <p class="mb-10 fv-row fv-plugins-icon-container">
-                                        <i class="fas fa-truck"></i>
-                                        <span class="h5">آدرس کامل خریدار:</span>
-                                        {{ object.order.address.city }}
-                                        - {{ object.order.address.full_address }}
-                                    </p>
+
                                     <hr class="my-5">
                                 </div>
                                 <div class="mb-10 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
