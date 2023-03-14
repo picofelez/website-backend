@@ -1,4 +1,4 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django_filters.views import FilterView
 
 from .filters import ProductFilter
