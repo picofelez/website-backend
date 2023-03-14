@@ -67,7 +67,8 @@
                                                             {{ category }}
                                                         </div>
                                                     {% endfor %}
-                                                    <button class="btn btn-purple d-block mt-3" type="submit">اعمال انتخاب ها
+                                                    <button class="btn btn-purple d-block mt-3" type="submit">اعمال
+                                                        انتخاب ها
                                                     </button>
                                                 </form>
                                             </div>
@@ -83,19 +84,26 @@
                           <span class="d-block d-sm-inline-block"
                           >مرتب سازی بر اساس:</span
                           >
-                                                <span
-                                                        class="order-filter d-block d-sm-inline-block active"
-                                                >جدیدترین</span
-                                                >
-                                                <span class="order-filter d-block d-sm-inline-block"
-                                                >پربازدیدترین</span
-                                                >
-                                                <span class="order-filter d-block d-sm-inline-block"
-                                                >پرفروش‌ترین</span
-                                                >
-                                                <span class="order-filter d-block d-sm-inline-block"
-                                                >ارزان‌ترین</span
-                                                >
+                                                <a
+                                                        href="{% url 'product:product-list' %}?sort_by=-time"
+                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == '-time' %}active{% endif %}">
+                                                    جدید ترین
+                                                </a>
+                                                <a
+                                                        href="{% url 'product:product-list' %}?sort_by=price"
+                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == 'price' %}active{% endif %}">
+                                                    ارزان ترین
+                                                </a>
+                                                <a
+                                                        href="{% url 'product:product-list' %}?sort_by=-price"
+                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == '-price' %}active{% endif %}">
+                                                    گران ترین
+                                                </a>
+                                                <a
+                                                        href="{% url 'product:product-list' %}?sort_by=-hits"
+                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == '-hits' %}active{% endif %}">
+                                                    پربازدید
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

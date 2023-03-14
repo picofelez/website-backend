@@ -12,6 +12,7 @@ class ProductFilter(django_filters.FilterSet):
     )
     title = django_filters.CharFilter(lookup_expr='icontains')
     search = django_filters.CharFilter(method='search_query')
+    sort_by = django_filters.CharFilter(method='sort_query')
 
     def search_query(self, queryset, search, value):
         lookup = (
@@ -20,6 +21,17 @@ class ProductFilter(django_filters.FilterSet):
                 Q(keywords__icontains=value)
         )
         return queryset.filter(lookup)
+
+    def sort_query(self, queryset, search, value):
+        if value == '-time':
+            return queryset.order_by('-created')
+        elif value == '-hits':
+            print('پربازدیدترین')
+        elif value == 'price':
+            return queryset.filter(stock__gt=1).order_by('price')
+        elif value == '-price':
+            return queryset.filter(stock__gt=1).order_by('-price')
+        return queryset
 
     class Meta:
         model = Product
