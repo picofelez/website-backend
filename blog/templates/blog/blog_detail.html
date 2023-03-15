@@ -89,7 +89,7 @@
                                                                     <span>برچسب ها:</span>
 
                                                                     {% for tag in object.tags.all %}
-                                                                        <a href="#">
+                                                                        <a href="{% url 'blog:blog-list' %}?tags={{ tag.id }}">
                                                                             <span class="keyword">{{ tag.name }}</span>
                                                                         </a>
                                                                     {% endfor %}
@@ -215,7 +215,7 @@
                                                                                         <div class="col-12 col-xl-7 pl-0">
                                               <span class="category"
                                               >دسته بندی:
-                                                <a href="./blog.html"
+                                                <a href="{% url 'blog:blog-list' %}?tags={{ article.tags.first.id }}"
                                                 >
                                                     {{ article.tags.first.name }}
                                                 </a

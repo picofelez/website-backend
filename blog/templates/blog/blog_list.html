@@ -42,6 +42,10 @@
 
                                     {% for article in page_obj %}
                                         {% include 'blog/components/article_card_component.html' %}
+                                    {% empty %}
+                                        <div class="alert alert-secondary">
+                                            مقاله ای یافت نشد.
+                                        </div>
                                     {% endfor %}
 
                                 </div>
