@@ -1,3 +1,5 @@
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 
@@ -24,3 +26,25 @@ class Question(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Rating(models.Model):
+    """
+    The Rating main model,
+    GenericRelation.
+    """
+    stars = models.IntegerField(null=True, blank=True, verbose_name='ستاره ها')
+    comment = models.TextField(null=True, blank=True, verbose_name='کامنت')
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.CharField(max_length=255)
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["content_type", "object_id"]),
+        ]
+        verbose_name = 'امتیاز'
+        verbose_name_plural = 'امتیاز ها'
+
+    def __str__(self):
+        return f"{self.content_type}"

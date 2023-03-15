@@ -1,8 +1,6 @@
 import json
-
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import JsonResponse, HttpResponseBadRequest, Http404
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -10,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from django_filters.views import FilterView
 
-from cart.models import Order, Transportation
+from cart.models import Transportation
 from product.models import Product
 from shop.filters import ShopFilter
 from shop.forms import ContactForm
