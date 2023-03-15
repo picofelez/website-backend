@@ -22,7 +22,7 @@ class ProductFilter(django_filters.FilterSet):
         )
         return queryset.filter(lookup)
 
-    def sort_query(self, queryset, search, value):
+    def sort_query(self, queryset, sort_by, value):
         if value == '-time':
             return queryset.order_by('-created')
         elif value == '-hits':

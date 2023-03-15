@@ -1,5 +1,7 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
+{% load widget_tweaks %}
+
 {% block title %}
     پیکوفلز | مجله پیکو فلز
 {% endblock %}
@@ -37,6 +39,21 @@
                 <div class="col-12">
                     <div class="page-content">
                         <div class="row">
+
+                            <div class="col-12 col-sm-12 py-2 px-3 mt-1 mb-3 border rounded-1 bg-light">
+                                <form method="get">
+                                    <div class="row">
+                                        <div class="col-12 col-md-3 mb-2">
+                                            <label for="{{ filter.form.search.id_for_label }}">جستجو مقالات:</label>
+                                            {{ filter.form.search|add_class:'form-control' }}
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-purple">جستجو</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
                             <div class="col-lg-12">
                                 <div class="row">
 
