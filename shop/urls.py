@@ -3,6 +3,8 @@ from .views import (
     ShopDetailView,
     create_shop_contact,
     ShopProductsView,
+    ShopRatingView,
+
     ShopListView,
     register_shop,
     register_shop_seller_information_create,
@@ -25,6 +27,7 @@ urlpatterns = [
     path('<slug>', ShopDetailView.as_view(), name='shop-detail'),
     path('<slug>/contact', create_shop_contact, name='shop-contact'),
     path('<slug>/products', ShopProductsView.as_view(), name='shop-products'),
+    path('<slug>/rating', ShopRatingView.as_view(), name='shop-rating'),
 
     # ajax urls
     path(

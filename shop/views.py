@@ -6,9 +6,12 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
+from django.views.generic.edit import FormMixin
 from django_filters.views import FilterView
 
 from cart.models import Transportation
+from core.forms import RatingForm
+from core.models import Rating
 from product.models import Product
 from shop.filters import ShopFilter
 from shop.forms import ContactForm
@@ -27,6 +30,34 @@ class ShopDetailView(DetailView):
 class ShopProductsView(DetailView):
     queryset = Shop.active.all()
     template_name = 'shop/shop_products.html'
+
+
+class ShopRatingView(FormMixin, DetailView):
+    queryset = Shop.active.all()
+    template_name = 'shop/shop_rating.html'
+    form_class = RatingForm
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        form = self.get_form()
+        form.fields['rating'].required = True
+
+        if form.is_valid() and self.request.user.is_authenticated:
+            rate = Rating(
+                stars=form.cleaned_data.get('rating'),
+                content_object=self.get_object(),
+                user=self.request.user
+            )
+            rate.save()
+
+            messages.success(request, 'نظر شما با موفقیت ارسال شد.')
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('shop:shop-rating', args=[self.get_object().slug])
 
 
 def create_shop_contact(request, **kwargs):

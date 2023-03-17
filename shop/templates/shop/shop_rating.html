@@ -1,0 +1,137 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    {{ object }} | پیکوفلز
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="shop-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'shop:shop-detail' shop.slug %}">{{ shop.title }}</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            امتیاز دادن
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-12 col-lg-12 px-0 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
+                                {% include 'shop/components/shop_profile_component.html' %}
+                            </div>
+                            <div class="col-12 my-2 col-md-4">
+                                <a href="{% url 'shop:shop-products' shop.slug %}" class="btn btn-purple w-100">محصولات فروشگاه</a>
+                            </div>
+                            <div class="col-12 my-2 col-md-4">
+                                <a href="{% url 'shop:shop-contact' shop.slug %}" class="btn btn-success w-100">ارتباط
+                                    با فروشگاه</a>
+                            </div>
+                            <div class="col-12 my-2 col-md-4">
+                                <a href="{% url 'shop:shop-rating' shop.slug %}" class="btn btn-warning w-100">امتیاز
+                                    دادن</a>
+                            </div>
+                            <hr class="my-4">
+                            <div class="mt-2">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12 mb-2 d-flex flex-column justify-content-center align-items-center">
+                                            <h5 class="font-vazir-bold-fd mt-2 my-3">امتیاز دادن به فروشگاه</h5>
+
+                                            {% if messages %}
+                                                {% for message in messages %}
+                                                    <div class="alert alert-success">
+                                                        <p class="font-vazir-bold-fd">نظر شما با موفقیت ارسال شد.</p>
+                                                    </div>
+                                                {% endfor %}
+
+                                            {% else %}
+                                                <p class="font-vazir-bold-fd">نظر شما برای ما اهمیت دارد؛ با دادن امتیاز
+                                                    به
+                                                    فروشگاه ما را در بهبود کیفیت خدمات یاری کنید.</p>
+                                            {% endif %}
+                                            {% if request.user.is_authenticated %}
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+
+                                                        <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
+                                                            <fieldset>
+                                                    <span class="star-cb-group">
+                                                      <input type="radio" id="id_rating_5" name="rating"
+                                                             value="5"/><label for="id_rating_5">5</label>
+                                                      <input type="radio" id="id_rating_4" name="rating" value="4"
+                                                             checked="checked"/><label for="id_rating_4">4</label>
+                                                      <input type="radio" id="id_rating_3" name="rating"
+                                                             value="3"/><label for="id_rating_3">3</label>
+                                                      <input type="radio" id="id_rating_2" name="rating"
+                                                             value="2"/><label for="id_rating_2">2</label>
+                                                      <input type="radio" id="id_rating_1" name="rating"
+                                                             value="1"/><label for="id_rating_1">1</label>
+                                                      <input type="radio" id="id_rating_0" name="rating" value="0"
+                                                             class="star-cb-clear"/><label for="rating-0">0</label>
+                                                    </span>
+                                                            </fieldset>
+                                                        </div>
+                                                        {% if form.non_fields_errors or form.comment.errors or form.rating.errors %}
+                                                            <div class="col-12 mb-2">
+                                                                {{ form.non_fields_errors }}
+                                                                {{ form.comment.errors }}
+                                                                {{ form.rating.errors }}
+                                                            </div>
+                                                        {% endif %}
+
+                                                        <div class="col-md-12 mb-2 text-center">
+                                                            <button class="btn btn-outline-success">
+                                                                امتیاز دادن
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            {% else %}
+                                                <div class="col-12 mb-3">
+                                                    <div class="alert alert-danger">
+                                                        برای نظر دادن ابتدا
+                                                        <a href="{% url 'account:otp-login' %}?next={% url 'product:product-detail' object.pk %}"
+                                                           class="text-primary">وارد حساب خود
+                                                            شوید.</a>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}
