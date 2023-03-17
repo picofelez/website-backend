@@ -1,6 +1,7 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
 {% load humanize %}
+{% load widget_tweaks %}
 
 {% block title %}
     {{ object }} | پیکوفلز
@@ -47,6 +48,16 @@
                                     <div class="row">
                                         <div class="col-12 col-lg-9">
                                             <div class="row">
+                                                {% if messages %}
+                                                    {% for message in messages %}
+                                                        <div class="col-12">
+                                                            <div class="alert alert-success">
+                                                                {{ message }}
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+
+                                                {% endif %}
                                                 <div class="col-12">
                                                     <div class="blog-container">
                                                         <div class="row pt-2 px-3" id="post-title">
@@ -96,6 +107,7 @@
 
                                                                 </div>
                                                             </div>
+
                                                         </div>
                                                         <div class="row pt-3 pb-4 pb-lg-0">
                                                             <div class="col-12" id="share-links">
@@ -113,6 +125,52 @@
                                                             </div>
                                                         </div>
                                                         <hr/>
+                                                        <div class="col-12 my-2">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <h5 class="title font-vazir-bold-fd">نظرات
+                                                                        محصول</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {% if request.user.is_authenticated %}
+                                                            <div class="col-12 mb-3">
+                                                                <div class="rounded-card" id="comment-section">
+                                                                    <form method="post">
+                                                                        {% csrf_token %}
+                                                                        <div class="row">
+                                                                            <div class="col-12 mb-2">
+                                                                                <label for="{{ form.comment.id_for_label }}"
+                                                                                       class="font-vazir-bold-fd">متن
+                                                                                    نظر:</label>
+                                                                                {{ form.comment|add_class:"form-control"|attr:"rows:4" }}
+                                                                            </div>
+                                                                            {% if form.non_fields_errors or form.comment.errors or form.rating.errors %}
+                                                                                <div class="col-12 mb-2">
+                                                                                    {{ form.non_fields_errors }}
+                                                                                    {{ form.comment.errors }}
+                                                                                </div>
+                                                                            {% endif %}
+
+                                                                            <div class="col-md-12 mb-2">
+                                                                                <button class="btn btn-outline-success">
+                                                                                    ارسال نظر
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="col-12 mb-3">
+                                                                <div class="alert alert-danger">
+                                                                    برای نظر دادن ابتدا
+                                                                    <a href="{% url 'account:otp-login' %}?next={% url 'product:product-detail' object.pk %}"
+                                                                       class="text-primary">وارد حساب خود
+                                                                        شوید.</a>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,7 +218,9 @@
                                                                                                     {% else %}
                                                                                                         {{ product.price|intcomma:False }}
                                                                                                         تومان
-                                                                                                        (هر{{ product.quantity }})
+                                                                                                        (هر
+                                                                                                        {{ product.quantity }}
+                                                                                                        )
                                                                                                     {% endif %}
                                                                                                 </span>
                                                                                             </div>
