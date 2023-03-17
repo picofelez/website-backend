@@ -2,8 +2,12 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
+from cart.models import User
+
 
 # Create your models here.
+
+
 class Question(models.Model):
     """
     The Question main model.
@@ -33,6 +37,9 @@ class Rating(models.Model):
     The Rating main model,
     GenericRelation.
     """
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='ratings', null=True, blank=True, verbose_name='کاربر'
+    )
     stars = models.IntegerField(null=True, blank=True, verbose_name='ستاره ها')
     comment = models.TextField(null=True, blank=True, verbose_name='کامنت')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)

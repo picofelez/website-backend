@@ -30,11 +30,12 @@ class ProductDetailView(FormMixin, DetailView):
         form.fields['comment'].required = True
         form.fields['rating'].required = True
 
-        if form.is_valid():
+        if form.is_valid() and self.request.user.is_authenticated:
             rate = Rating(
                 comment=form.cleaned_data.get('comment'),
                 stars=form.cleaned_data.get('rating'),
-                content_object=self.get_object()
+                content_object=self.get_object(),
+                user=self.request.user
             )
             rate.save()
 
