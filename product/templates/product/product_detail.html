@@ -234,19 +234,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 mb-3">
-                                <div class="rounded-card" id="comment-section">
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        <div class="row">
-                                            <div class="col-md-6 mb-2">
-                                                <label for="" class="font-vazir-bold-fd">متن نظر:</label>
-                                                {{ form.comment|add_class:"form-control" }}
-                                            </div>
+                            {% if request.user.is_authenticated %}
+                                <div class="col-12 mb-3">
+                                    <div class="rounded-card" id="comment-section">
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <label for="" class="font-vazir-bold-fd">متن نظر:</label>
+                                                    {{ form.comment|add_class:"form-control" }}
+                                                </div>
 
-                                            <div class="col-md-6 mb-2 d-flex flex-column justify-content-center align-items-center">
-                                                <p class="h5 font-vazir-bold-fd">امتیاز</p>
-                                                <fieldset>
+                                                <div class="col-md-6 mb-2 d-flex flex-column justify-content-center align-items-center">
+                                                    <p class="h5 font-vazir-bold-fd">امتیاز</p>
+                                                    <fieldset>
                                                     <span class="star-cb-group">
                                                       <input type="radio" id="id_rating_5" name="rating"
                                                              value="5"/><label for="id_rating_5">5</label>
@@ -261,23 +262,33 @@
                                                       <input type="radio" id="id_rating_0" name="rating" value="0"
                                                              class="star-cb-clear"/><label for="rating-0">0</label>
                                                     </span>
-                                                </fieldset>
-                                            </div>
-                                            {% if form.non_fields_errors or form.comment.errors or form.rating.errors %}
-                                                <div class="col-12 mb-2">
-                                                    {{ form.non_fields_errors }}
-                                                    {{ form.comment.errors }}
-                                                    {{ form.rating.errors }}
+                                                    </fieldset>
                                                 </div>
-                                            {% endif %}
+                                                {% if form.non_fields_errors or form.comment.errors or form.rating.errors %}
+                                                    <div class="col-12 mb-2">
+                                                        {{ form.non_fields_errors }}
+                                                        {{ form.comment.errors }}
+                                                        {{ form.rating.errors }}
+                                                    </div>
+                                                {% endif %}
 
-                                            <div class="col-md-12 mb-2">
-                                                <button class="btn btn-outline-success">ارسال نظر</button>
+                                                <div class="col-md-12 mb-2">
+                                                    <button class="btn btn-outline-success">ارسال نظر</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            {% else %}
+                                <div class="col-12 mb-3">
+                                    <div class="alert alert-danger">
+                                        برای نظر دادن ابتدا
+                                        <a href="{% url 'account:otp-login' %}?next={% url 'product:product-detail' object.pk %}"
+                                           class="text-primary">وارد حساب خود
+                                            شوید.</a>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
