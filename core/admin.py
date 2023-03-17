@@ -11,3 +11,4 @@ class QuestionAdmin(admin.ModelAdmin):
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     list_filter = ('content_type',)
+    readonly_fields = ('created',)
