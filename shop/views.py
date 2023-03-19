@@ -152,6 +152,18 @@ class ShopAccountMainView(ShopPanelAccessMixin, DetailView):
         return shop
 
 
+class ShopUpdateView(ShopPanelAccessMixin, UpdateView):
+    model = Shop
+    template_name = 'shop/panel/shop_update.html'
+    fields = ('title', 'image', 'about', 'demand', 'supply',)
+
+    def get_success_url(self):
+        return reverse_lazy('shop:shop-panel-main', args=[self.shop.unique_uuid])
+
+    def get_object(self, queryset=None):
+        return self.model.objects.get(id=self.shop.id, unique_uuid=self.shop.unique_uuid)
+
+
 class ShopProductsListView(ShopPanelAccessMixin, ListView):
     model = Product
     template_name = 'shop/panel/shop_product_list.html'
