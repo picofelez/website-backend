@@ -249,3 +249,13 @@ class UserOrderDetailView(LoginRequiredMixin, DetailView):
 
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
+
+
+class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    template_name = 'account/user_profile_update.html'
+    fields = ('first_name', 'last_name')
+    success_url = reverse_lazy('account:user-profile')
+
+    def get_object(self, queryset=None):
+        return self.model.objects.get(id=self.request.user.id)

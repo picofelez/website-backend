@@ -13,12 +13,14 @@ from .views import (
     UserAddressUpdateView,
     user_delete_address_view,
     UserOrderListView,
-    UserOrderDetailView
+    UserOrderDetailView,
+    UserProfileUpdateView
 )
 
 app_name = 'account'
 urlpatterns = [
     path('', user_profile_view, name='user-profile'),
+    path('update/', UserProfileUpdateView.as_view(), name='user-profile-update'),
 
     path('login/', login_view, name='otp-login'),
     path('logout/', LogoutView.as_view(), name='logout'),

@@ -65,13 +65,13 @@
 
                                             {% if messages %}
                                                 {% for message in messages %}
-                                                    <div class="alert alert-success">
+                                                    <div class="alert alert-success text-center">
                                                         <p class="font-vazir-bold-fd">نظر شما با موفقیت ارسال شد.</p>
                                                     </div>
                                                 {% endfor %}
 
                                             {% else %}
-                                                <p class="font-vazir-bold-fd">نظر شما برای ما اهمیت دارد؛ با دادن امتیاز
+                                                <p class="font-vazir-bold-fd text-center">نظر شما برای ما اهمیت دارد؛ با دادن امتیاز
                                                     به
                                                     فروشگاه ما را در بهبود کیفیت خدمات یاری کنید.</p>
                                             {% endif %}
@@ -117,7 +117,7 @@
                                                 <div class="col-12 mb-3">
                                                     <div class="alert alert-danger">
                                                         برای نظر دادن ابتدا
-                                                        <a href="{% url 'account:otp-login' %}?next={% url 'product:product-detail' object.pk %}"
+                                                        <a href="{% url 'account:otp-login' %}?next={% url 'shop:shop-rating' shop.slug %}"
                                                            class="text-primary">وارد حساب خود
                                                             شوید.</a>
                                                     </div>

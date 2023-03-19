@@ -6,12 +6,12 @@
         <h5 class="font-vazir-bold-fd my-2">{{ request.user.get_full_name }}</h5>
     </a>
     {% if request.user.shops.count != 0 %}
-        <a href="{% url 'shop:register-shop' %}" class="list-group-item list-group-item-action">
+        <a href="{% url 'shop:shop-panel-main' request.user.shops.last.unique_uuid %}" class="list-group-item list-group-item-action">
             <i class="fas fa-list-ul"></i>
             فروشگاه شما
         </a>
     {% endif %}
-    <a href="#" class="list-group-item list-group-item-action">
+    <a href="{% url 'account:user-profile-update' %}" class="list-group-item list-group-item-action">
         <i class="fas fa-user"></i>
         ویرایش حساب کاربری
     </a>
