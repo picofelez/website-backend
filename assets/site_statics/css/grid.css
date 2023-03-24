@@ -633,4 +633,8 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
     .contact-page-info {
         height: 15rem;
     }
+
+    .page-title-box{
+        display: none;
+    }
 }

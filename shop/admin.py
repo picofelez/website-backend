@@ -34,6 +34,6 @@ class ShopAdmin(admin.ModelAdmin):
 @admin.register(SellerInformation)
 class SellerInformationAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'shop')
-    search_fields = ('full_name', 'phone_number', 'shop')
+    search_fields = ('full_name', 'phone_number')
     list_filter = ('created',)
     readonly_fields = ('created', 'updated')
