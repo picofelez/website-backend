@@ -1,6 +1,6 @@
 import json
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, Http404
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -143,6 +143,11 @@ def register_shop_create(request):
     return HttpResponseBadRequest('Invalid request')
 
 
+"""
+From this line onwards, the views are related to the shop's panel.
+"""
+
+
 class ShopAccountMainView(ShopPanelAccessMixin, DetailView):
     model = Shop
     template_name = 'shop/panel/shop_main.html'
@@ -228,4 +233,21 @@ class ShopOrderDetailView(ShopPanelAccessMixin, DetailView):
 class ShopOrderUpdateView(ShopPanelAccessMixin, UpdateView):
     model = Transportation
     template_name = 'shop/panel/shop_order_update.html'
-    fields = '__all__'
+    fields = ('expense',)
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.get_object().status != 'pending':
+            raise Http404
+        return super(ShopOrderUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('shop:shop-panel-orders-detail', args=[
+            self.shop.unique_uuid, self.get_object().pk
+        ])
+
+    def form_valid(self, form):
+        # TODO: send notification to buyer.
+        transport = form.save(commit=False)
+        transport.status = 'confirmed'
+        transport.save()
+        return super(ShopOrderUpdateView, self).form_valid(form)
