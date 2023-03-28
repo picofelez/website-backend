@@ -1,8 +1,10 @@
+import uuid
+
 from django.db import models
 from django.utils.html import format_html
 
 from account.models import User
-from extensions.utils import upload_shop_image_path
+from extensions.utils import upload_shop_image_path, jalali_converter
 from .managers import ActiveShopManager
 
 
@@ -114,3 +116,75 @@ class SellerInformation(models.Model):
 
     def __str__(self):
         return f"{self.shop} | {self.full_name}"
+
+
+class Wallet(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        User, on_delete=models.PROTECT, related_name='wallets', verbose_name='کاربر'
+    )
+    shop = models.ForeignKey(
+        Shop, on_delete=models.PROTECT, related_name='shops', verbose_name='فروشگاه'
+    )
+    balance = models.BigIntegerField(default=0, verbose_name='موجودی')
+    sheba = models.CharField(max_length=255, null=True, blank=True, verbose_name='شماره شبا')
+    confirmed = models.BooleanField(verbose_name='تائید شده/نشده')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
+
+    class Meta:
+        verbose_name_plural = '4. کیف پول ها'
+        verbose_name = 'کیف پول'
+
+    def created_jalali(self):
+        return f"{jalali_converter(self.created)} ساعت {self.created.hour}:{self.created.minute}"
+
+    created_jalali.short_description = 'تاریخ ایجاد'
+
+    def get_balance(self):
+        return f"{self.balance:,} ت"
+
+    get_balance.short_description = 'موجودی'
+
+    def __str__(self):
+        return f"{self.user.get_full_name()} | {self.shop.title}"
+
+
+class WalletTransaction(models.Model):
+    class TransactionTypeChoices(models.TextChoices):
+        deposit = 'd', 'واریز'
+        withdraw = 'w', 'برداشت'
+
+    wallet = models.ForeignKey(
+        Wallet, on_delete=models.PROTECT, related_name='transactions', verbose_name='کیف پول'
+    )
+    value = models.BigIntegerField(verbose_name='مبلغ')
+    running_balance = models.BigIntegerField(verbose_name='موجودی بعد از تراکنش')
+    transaction_type = models.CharField(max_length=2, choices=TransactionTypeChoices.choices, verbose_name='نوع تراکنش')
+    transaction_status = models.BooleanField(verbose_name='وضعیت انجام تراکنش')
+    description = models.TextField(null=True, blank=True, verbose_name='توضیحات')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
+
+    class Meta:
+        verbose_name_plural = '5. تراکنش های کیف پول'
+        verbose_name = 'تراکنش کیف پول'
+        ordering = ('-created',)
+
+    def created_jalali(self):
+        return f"{jalali_converter(self.created)} ساعت {self.created.hour}:{self.created.minute}"
+
+    created_jalali.short_description = 'تاریخ ایجاد'
+
+    def updated_jalali(self):
+        return f"{jalali_converter(self.updated)} ساعت {self.updated.hour}:{self.updated.minute}"
+
+    updated_jalali.short_description = 'تاریخ انجام تراکنش'
+
+    def get_value(self):
+        return f"{self.value:,} ت"
+
+    get_value.short_description = 'مبلغ تراکنش'
+
+    def __str__(self):
+        return f"{self.wallet}"
