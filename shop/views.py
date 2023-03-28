@@ -1,4 +1,6 @@
 import json
+
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import JsonResponse, HttpResponseBadRequest, Http404
 from django.shortcuts import render, get_object_or_404
@@ -14,9 +16,9 @@ from core.forms import RatingForm
 from core.models import Rating
 from product.models import Product
 from shop.filters import ShopFilter
-from shop.forms import ContactForm
+from shop.forms import ContactForm, WalletForm
 from shop.mixins import ShopPanelAccessMixin
-from shop.models import Shop, SellerInformation
+from shop.models import Shop, SellerInformation, Wallet
 
 
 # Create your views here.
@@ -251,3 +253,23 @@ class ShopOrderUpdateView(ShopPanelAccessMixin, UpdateView):
         transport.status = 'confirmed'
         transport.save()
         return super(ShopOrderUpdateView, self).form_valid(form)
+
+
+@login_required
+def shop_wallet_view(request, unique_uuid):
+    context = {}
+    shop = get_object_or_404(Shop, unique_uuid=unique_uuid, owner=request.user)
+    wallet, created = Wallet.objects.get_or_create(user=request.user, shop=shop)
+
+    if not wallet.sheba and not wallet.confirmed:
+        wallet_form = WalletForm(request.POST or None)
+        context['form'] = wallet_form
+
+        if wallet_form.is_valid():
+            wallet.sheba = wallet_form.cleaned_data.get('sheba')
+            wallet.save()
+
+    context['shop'] = shop
+    context['wallet'] = wallet
+
+    return render(request, 'shop/panel/shop_wallet.html', context)
