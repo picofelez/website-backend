@@ -146,6 +146,25 @@ class Wallet(models.Model):
 
     get_balance.short_description = 'موجودی'
 
+    def deposit(self, value):
+        self.transactions.create(
+            value=value,
+            running_balance=self.balance + value,
+            transaction_type='d',  # deposit
+            transaction_status=True
+        )
+        self.balance += value
+        self.save()
+
+    def withdraw(self, value):
+        if value <= self.balance:
+            self.transactions.create(
+                value=value,
+                running_balance=self.balance - value,
+                transaction_type='w',  # withdraw
+                transaction_status=False
+            )
+
     def __str__(self):
         return f"{self.user.get_full_name()} | {self.shop.title}"
 
