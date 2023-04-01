@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from product.models import Product, Category, FavoriteProduct
+from product.models import Product, Category, FavoriteProduct, PriceHistory
 
 
 # Register your models here.
@@ -38,4 +38,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(FavoriteProduct)
 class FavoriteProductAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(PriceHistory)
+class PriceHistory(admin.ModelAdmin):
     pass

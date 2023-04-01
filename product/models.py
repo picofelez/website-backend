@@ -106,3 +106,20 @@ class FavoriteProduct(models.Model):
 
     def __str__(self):
         return f"{self.user.get_full_name()} | {self.product.title}"
+
+
+class PriceHistory(models.Model):
+    """
+    The Product Price History main model.
+    """
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='price_histories', verbose_name='محصول')
+    price = models.BigIntegerField(verbose_name='قیمت')
+    is_confirmed = models.BooleanField(verbose_name='تائید شده/نشده')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+
+    class Meta:
+        verbose_name = 'تغیر قیمت'
+        verbose_name_plural = '4. تغییرات قیمت'
+
+    def __str__(self):
+        return f"{self.product.title} - {self.price:,}"

@@ -262,7 +262,11 @@
                                             </div>
                                         </td>
                                         <td class="fw-bolder text-end">
-                                            {{ transfer.description }}
+                                            {% if transfer.description %}
+                                                {{ transfer.description }}
+                                            {% else %}
+                                                درحال بررسی
+                                            {% endif %}
                                         </td>
                                     </tr>
                                     </tbody>

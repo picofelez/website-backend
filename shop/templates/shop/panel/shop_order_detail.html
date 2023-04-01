@@ -17,6 +17,32 @@
 {% block content %}
 
     <div class="d-flex flex-column gap-7 gap-lg-10">
+        <div style="font-size: 1.3rem;">
+            {% if transportation.status == 'pending' %}
+                <div class="alert bg-warning">
+                    سفارش مشتری ثبت شده است لطفا هزینه حمل و نقل را مشخص کنید تا مشتری بتواند پرداخت
+                    را انجام بدهد.
+                    <a href="{% url 'shop:shop-panel-orders-update' shop.unique_uuid transportation.id %}"
+                       class="btn btn-dark btn-sm mt-2 mt-sm-0">تعیین هزینه حمل و نقل</a>
+                </div>
+            {% elif transportation.status == 'confirmed' %}
+                <div class="alert bg-info text-light">
+                    سفارش توسط شما تائید شده و هزینه حمل و نقل مشخص شده است، پس از تسویه حساب توسط مشتری به شما اطلاع
+                    رسانی خواهد شد.
+                </div>
+            {% elif transportation.status == 'posted' %}
+                <div class="alert bg-success">
+                    محصول توسط شما ارسال شده است ، پس از دریافت توسط مشتری می توانید سهم فروش خود را از قسمت کیف
+                    پول برداشت کنید.
+                    <a href="#" class="btn btn-dark btn-sm mt-2 mt-sm-0">برداشت از کیف پول</a>
+                </div>
+            {% elif transportation.status == 'returned' %}
+                <div class="alert bg-danger">
+                    سفارش توسط شما برگشت خورده است.
+                </div>
+            {% endif %}
+        </div>
+
         <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
             <!--begin::Order details-->
             <div class="card card-flush py-4 flex-row-fluid">
@@ -306,31 +332,6 @@
                 <!--end::Card body-->
             </div>
             <!--end::اسناد-->
-        </div>
-
-        <div style="font-size: 1.3rem;">
-            {% if transportation.status == 'pending' %}
-                <div class="alert bg-warning">
-                    سفارش مشتری ثبت شده است لطفا هزینه حمل و نقل را مشخص کنید تا مشتری بتواند پرداخت
-                    را انجام بدهد.
-                    <a href="{% url 'shop:shop-panel-orders-update' shop.unique_uuid transportation.id %}" class="btn btn-dark btn-sm mt-2 mt-sm-0">تعیین هزینه حمل و نقل</a>
-                </div>
-            {% elif transportation.status == 'confirmed' %}
-                <div class="alert bg-info text-light">
-                    سفارش توسط شما تائید شده و هزینه حمل و نقل مشخص شده است، پس از تسویه حساب توسط مشتری به شما اطلاع
-                    رسانی خواهد شد.
-                </div>
-            {% elif transportation.status == 'posted' %}
-                <div class="alert bg-success">
-                    محصول توسط شما ارسال شده است ، پس از دریافت توسط مشتری می توانید سهم فروش خود را از قسمت کیف
-                    پول برداشت کنید.
-                <a href="#" class="btn btn-dark btn-sm mt-2 mt-sm-0">برداشت از کیف پول</a>
-                </div>
-            {% elif transportation.status == 'returned' %}
-                <div class="alert bg-danger">
-                    سفارش توسط شما برگشت خورده است.
-                </div>
-            {% endif %}
         </div>
 
         <div class="tab-content">
