@@ -83,25 +83,9 @@
                                                 </label>
                                                 {{ form.password }}
                                                 <ul class="text-secondary mt-1">
-                                                    {{ form.password.help_text }}
 
                                                     {% if form.password.errors %}
                                                         {% for error in form.password.errors %}
-                                                            <li class="text-danger">{{ error }}</li>
-                                                        {% endfor %}
-                                                    {% endif %}
-                                                </ul>
-                                            </div>
-
-                                            <div class="col-12 mt-2">
-                                                <label for="{{ form.re_password.id_for_label }}"
-                                                       class="font-vazir-bold-fd">
-                                                    {{ form.re_password.label }}*
-                                                </label>
-                                                {{ form.re_password }}
-                                                <ul class="text-secondary mt-1">
-                                                    {% if form.re_password.errors %}
-                                                        {% for error in form.re_password.errors %}
                                                             <li class="text-danger">{{ error }}</li>
                                                         {% endfor %}
                                                     {% endif %}

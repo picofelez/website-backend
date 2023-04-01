@@ -56,21 +56,3 @@ class RegisterForm(forms.Form):
         help_text=password_validation.password_validators_help_text_html(),
         label='رمزعبور'
     )
-    re_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={
-            'class': 'form-control', 'placeholder': 'تکرار رمزعبور'
-        }),
-        label='تکرار رمزعبور'
-    )
-
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
-        validate_password(password)
-        return password
-
-    def clean_re_password(self):
-        password = self.cleaned_data.get('password')
-        re_password = self.cleaned_data.get('re_password')
-        if password and re_password and password != re_password:
-            raise forms.ValidationError('لطفا تکرار رمز عبور را به درستی وارد کنید.')
-        return re_password
