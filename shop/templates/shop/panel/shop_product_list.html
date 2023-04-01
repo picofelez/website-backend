@@ -11,7 +11,8 @@
 {% endblock %}
 
 {% block secondary_title_detail %}
-    <a href="{% url 'shop:shop-panel-products-create' shop.unique_uuid %}" class="btn btn-primary btn-sm">ایجاد محصول جدید</a>
+    <a href="{% url 'shop:shop-panel-products-create' shop.unique_uuid %}" class="btn btn-primary btn-sm">ایجاد محصول
+        جدید</a>
 {% endblock %}
 
 {% block content %}
@@ -69,8 +70,10 @@
                                     </div>
                                     <!--end::Stats-->
                                     <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
-                                        <a href="{% url 'shop:shop-panel-products-update' shop.unique_uuid product.pk %}" class="btn btn-light-success">ویرایش</a>
-                                        <a href="#" class="btn btn-light-danger">بروزرسانی قیمت</a>
+                                        <a href="{% url 'shop:shop-panel-products-update' shop.unique_uuid product.pk %}"
+                                           class="btn btn-light-success">ویرایش</a>
+                                        <a href="{% url 'shop:shop-panel-products-update-price' shop.unique_uuid product.pk %}"
+                                           class="btn btn-light-danger">بروزرسانی قیمت</a>
                                     </div>
                                 </div>
                                 <!--end::Info-->

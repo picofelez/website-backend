@@ -14,7 +14,7 @@ from django_filters.views import FilterView
 from cart.models import Transportation
 from core.forms import RatingForm
 from core.models import Rating
-from product.models import Product
+from product.models import Product, PriceHistory
 from shop.filters import ShopFilter
 from shop.forms import ContactForm, WalletForm
 from shop.mixins import ShopPanelAccessMixin
@@ -273,3 +273,22 @@ def shop_wallet_view(request, unique_uuid):
     context['wallet'] = wallet
 
     return render(request, 'shop/panel/shop_wallet.html', context)
+
+
+class ShopUpdateProductPriceView(ShopPanelAccessMixin, UpdateView):
+    model = Product
+    template_name = 'shop/panel/shop_update_product_price.html'
+    fields = ('price',)
+
+    def get_success_url(self):
+        return reverse_lazy('shop:shop-panel-products', args=[
+            self.shop.unique_uuid
+        ])
+
+    def form_valid(self, form):
+        product_form = form.save(commit=False)
+        price_history = PriceHistory(product=self.get_object(), price=product_form.price, is_confirmed=True)
+
+        product_form.save()
+        price_history.save()
+        return super(ShopUpdateProductPriceView, self).form_valid(form)

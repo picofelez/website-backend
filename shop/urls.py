@@ -19,7 +19,8 @@ from .views import (
     ShopOrderDetailView,
     ShopOrderUpdateView,
     ShopUpdateView,
-    shop_wallet_view
+    shop_wallet_view,
+    ShopUpdateProductPriceView
 )
 
 app_name = 'shop'
@@ -57,6 +58,11 @@ urlpatterns = [
         'shop/panel/<unique_uuid>/products/update/<str:pk>',
         ShopProductUpdateView.as_view(),
         name='shop-panel-products-update'
+    ),
+    path(
+        'shop/panel/<unique_uuid>/products/update/price/<str:pk>',
+        ShopUpdateProductPriceView.as_view(),
+        name='shop-panel-products-update-price'
     ),
     path(
         'shop/panel/<unique_uuid>/products/create',

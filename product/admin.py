@@ -42,5 +42,5 @@ class FavoriteProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(PriceHistory)
-class PriceHistory(admin.ModelAdmin):
+class PriceHistoryAdmin(admin.ModelAdmin):
     pass
