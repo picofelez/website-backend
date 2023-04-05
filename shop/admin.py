@@ -7,16 +7,19 @@ from .models import Shop, Contact, SellerInformation, Wallet, WalletTransaction
 
 class SellerInformationInline(admin.StackedInline):
     model = SellerInformation
+    extra = 0
 
 
 class WalletTransactionInline(admin.TabularInline):
     model = WalletTransaction
+    readonly_fields = ('created_jalali',)
+    extra = 0
 
 
 @admin.register(Shop)
 class ShopAdmin(admin.ModelAdmin):
     list_display = ('title', 'owner', 'status', 'is_special')
-    search_fields = ('title', 'owner', 'slug')
+    search_fields = ('title', 'slug')
     list_editable = ('status',)
     list_filter = ('status', 'is_special', 'created')
     readonly_fields = ('created', 'updated', 'unique_uuid')
@@ -27,7 +30,7 @@ class ShopAdmin(admin.ModelAdmin):
 
 
 @admin.register(Contact)
-class ShopAdmin(admin.ModelAdmin):
+class ContactAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'subject', 'phone', 'status')
     search_fields = ('full_name', 'phone')
     list_editable = ('status',)

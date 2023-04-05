@@ -80,7 +80,11 @@
                             </div>
                         </div>
                     </div>
-
+                {% empty %}
+                    <div class="alert alert-dark">محصولی یافت نشد !
+                        <a href="{% url 'shop:shop-panel-products-create' shop.unique_uuid %}">برای ایجاد محصول کلیک
+                            کنید.</a>
+                    </div>
                 {% endfor %}
 
 

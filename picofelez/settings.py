@@ -32,6 +32,8 @@ ALLOWED_HOSTS = config(
 # Application definition
 
 INSTALLED_APPS = [
+    "admin_interface",
+    "colorfield",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -168,3 +170,6 @@ CART_SESSION_ID = 'cart'
 
 # ckeditor section
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+# django admin interface section
+X_FRAME_OPTIONS = "SAMEORIGIN"

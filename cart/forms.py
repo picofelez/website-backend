@@ -9,4 +9,5 @@ class CheckoutForm(forms.Form):
     )
     description = forms.CharField(
         widget=forms.Textarea,
+        required=False
     )

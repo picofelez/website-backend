@@ -314,4 +314,15 @@
             $('#checkoutForm').submit()
         })
     </script>
+
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'آدرس شما با موفقیت ذخیره شد، لطفا در قسمت آدرس ها آن را انتخاب کنید.'
+                })
+            </script>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

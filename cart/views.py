@@ -74,6 +74,7 @@ def checkout_view(request):
 
         # save order's address
         order.address = address
+        order.message = cd.get('description')
         order.save()
 
         # create order detail items from cart object

@@ -278,6 +278,10 @@
                         <!--end::Card body-->
                     </div>
                 </div>
+            {% empty %}
+                <div class="alert alert-dark">
+                    تراکنشی ثبت نشده.
+                </div>
             {% endfor %}
 
 
@@ -291,7 +295,8 @@
                     </h5>
                     <h6 class="my-5">
                         <i class="fas fa-info-circle"></i>
-                        درصورت مغایرت کدملی با دارنده حساب شماره شبا ، کیف پول شما مسدود خواهد شد.
+                        دقت داشته باشید کدملی ثبت شده توسط شما باید به نام دارنده حساب بانکی شماره شبا باشد. در صورت
+                        تداخل با پشتیبانی تماس بگیرید.
                     </h6>
                     <button class="btn btn-dark" id="accept-sheba">تائید و ادامه</button>
                     <a href="tel:09199060659" class="btn btn-danger">تماس با پشتیبانی</a>
@@ -300,7 +305,7 @@
             <div class="card card-flush p-6 flex-row-fluid" style="display: none;" id="sheba-section">
                 <h6 class="mb-2">
                     <i class="fas fa-info-circle"></i>
-                    همه درخواست های برداشت شما به این حساب این شماره شبا واریز خواهد شد لطفا با دقت وارد کنید.
+                    همه درخواست های برداشت شما به حساب این شماره شبا واریز خواهد شد لطفا با دقت وارد کنید.
                 </h6>
                 <form method="post">
                     {% csrf_token %}

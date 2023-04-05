@@ -39,6 +39,7 @@ class Order(models.Model):
     address = models.ForeignKey(
         Address, on_delete=models.PROTECT, null=True, blank=True, verbose_name='آدرس'
     )
+    message = models.TextField(null=True, blank=True, verbose_name='پیام')
     is_paid = models.BooleanField(default=False, verbose_name='وضعیت پرداخت')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')

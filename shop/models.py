@@ -128,18 +128,24 @@ class Wallet(models.Model):
     )
     balance = models.BigIntegerField(default=0, verbose_name='موجودی')
     sheba = models.CharField(max_length=255, null=True, blank=True, verbose_name='شماره شبا')
-    confirmed = models.BooleanField(verbose_name='تائید شده/نشده')
+    confirmed = models.BooleanField(default=False, verbose_name='تائید شده/نشده')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
 
     class Meta:
         verbose_name_plural = '4. کیف پول ها'
         verbose_name = 'کیف پول'
+        ordering = ('-created',)
 
     def created_jalali(self):
         return f"{jalali_converter(self.created)} ساعت {self.created.hour}:{self.created.minute}"
 
     created_jalali.short_description = 'تاریخ ایجاد'
+
+    def updated_jalali(self):
+        return f"{jalali_converter(self.updated)} ساعت {self.updated.hour}:{self.updated.minute}"
+
+    updated_jalali.short_description = 'تاریخ آخرین ویرایش'
 
     def get_balance(self):
         return f"{self.balance:,} ت"
