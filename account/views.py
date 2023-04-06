@@ -254,7 +254,7 @@ class UserOrderDetailView(LoginRequiredMixin, DetailView):
 class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     template_name = 'account/user_profile_update.html'
-    fields = ('first_name', 'last_name')
+    fields = ('first_name', 'last_name', 'email')
     success_url = reverse_lazy('account:user-profile')
 
     def get_object(self, queryset=None):

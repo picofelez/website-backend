@@ -81,7 +81,7 @@
                                     </div>
                                     <div>
                                     <span class="text-secondary">
-                                        شماره تماس: {{ request.user.username }}
+                                        شماره موبایل: {{ request.user.username }}
                                         <br>
                                         {% if request.user.shops.count == 0 %}
                                             فروشگاه فعال ندارید
@@ -134,7 +134,7 @@
                                             name="title"
                                             class="form-control"
                                     />
-                                    <label class="fieldlabels" for="location">موقعیت مکانی: *</label>
+                                    <label class="fieldlabels" for="location">شهر: *</label>
                                     <select
                                             id="location"
                                             name="location"
@@ -142,7 +142,7 @@
                                     >
                                         <option value="krj">البرز-کرج</option>
                                     </select>
-                                    <label class="fieldlabels" for="slug">آدرس فروشگاه(برای مثال: picoflez): *</label>
+                                    <label class="fieldlabels" for="slug">شناسه فروشگاه(به انگلیسی و بدون فاصله بنویسید): *</label>
                                     <input
                                             type="text"
                                             id="slug"
@@ -155,15 +155,16 @@
                                             id="about"
                                             name="about"
                                             class="form-control"
+                                            placeholder="برای مثال: آهن فروشی xxx عرضه کننده پروفیل..."
                                     ></textarea>
-                                    <label class="fieldlabels" for="demand">کالاهای مورد نیاز: *</label>
+                                    <label class="fieldlabels" for="demand">کالاهایی که خریداری میکنید: </label>
                                     <textarea
                                             type="text"
                                             id="demand"
                                             name="demand"
                                             class="form-control"
                                     ></textarea>
-                                    <label class="fieldlabels" for="supply">کالا هایی که عرضه میکنید: *</label>
+                                    <label class="fieldlabels" for="supply">کالا هایی که عرضه میکنید: </label>
                                     <textarea
                                             type="text"
                                             id="supply"
@@ -202,7 +203,7 @@
                                                 نمایش داده نخواهد شد.</p>
                                         </div>
                                     </div>
-                                    <label class="fieldlabels">شماره تماس فروشنده: *</label>
+                                    <label class="fieldlabels">شماره موبایل فروشنده: *</label>
                                     <input
                                             type="phone"
                                             id="phone"
@@ -243,12 +244,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button
-                                        type="button"
+                                <a href="{% url 'core:home' %}"
                                         class="btn btn-purple action-button"
                                 >
-                                    ورود به فروشگاه
-                                </button>
+                                    بازگشت به سایت
+                                </a>
                             </fieldset>
                         {% endif %}
                     {% else %}

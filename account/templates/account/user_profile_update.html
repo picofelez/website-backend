@@ -48,34 +48,28 @@
                                 </div>
                                 <div class="col-12 col-md-8 mb-2 rounded-card box-shadow">
                                     <h5 class="title font-vazir-bold-fd mt-3 mt-md-0">ویرایش حساب کاربری</h5>
-                                    <h6 class="font-vazir-bold-fd mt-3">
-                                        <i class="fas fa-info-circle"></i>
-                                        درحال حاضر امکان ویرایش اطلاعات نمی باشد.
-                                    </h6>
-                                    <form method="get">
+                                    <form method="post">
+                                        {% csrf_token %}
                                         <div class="row">
                                             <div class="col-md-6 mt-3 mb-2">
-                                                <label for="number">شماره تلفن</label>
+                                                <label for="number">شماره موبایل</label>
                                                 <input type="text" value="{{ object.username }}" disabled="on"
                                                        class="form-control">
                                             </div>
                                             <div class="col-md-6 mt-0 mt-md-3 mb-2">
                                                 <label for="email">ایمیل</label>
-                                                <input type="eamil" value="{{ object.email }}" disabled="on"
-                                                       class="form-control">
+                                                {{ form.email|add_class:'form-control' }}
                                             </div>
                                             <div class="col-md-6 mb-2">
                                                 <label for="first_name">نام</label>
-                                                <input type="text" value="{{ object.first_name }}" disabled="on"
-                                                       class="form-control">
+                                                {{ form.first_name|add_class:'form-control' }}
                                             </div>
                                             <div class="col-md-6 mb-2">
                                                 <label for="last_name">نام خانوادگی</label>
-                                                <input type="text" value="{{ object.last_name }}" disabled="on"
-                                                       class="form-control">
+                                                {{ form.last_name|add_class:'form-control' }}
                                             </div>
                                             <div class="col-md-6 mb-2">
-                                                <button type="submit" class="btn btn-success disabled" disabled="on">
+                                                <button type="submit" class="btn btn-success">
                                                     ویرایش
                                                 </button>
                                             </div>

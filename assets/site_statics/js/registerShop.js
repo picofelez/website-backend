@@ -28,9 +28,7 @@ $(document).ready(function () {
                 (shop_title === "" || shop_title.length <= 4) ||
                 (shop_location === "" || shop_location.length <= 2) ||
                 (shop_slug === "" || shop_slug.length <= 4) ||
-                (shop_about === "" || shop_about.length < 5) ||
-                (shop_demand === "" || shop_demand.length < 5) ||
-                (shop_supply === "" || shop_supply.length < 5)
+                (shop_about === "" || shop_about.length < 5)
             ) {
                 Swal.fire({
                     icon: 'question',
