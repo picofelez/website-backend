@@ -3,6 +3,7 @@ import random
 from django.core.cache import cache
 from django.conf import settings
 
+from extensions.sms_services import send_verification_code
 from extensions.utils import get_client_ip
 
 
@@ -12,5 +13,5 @@ def send_otp(request, phone):
     cache.set(f"{ip}-for-authentication", phone, settings.EXPIRY_TIME_OTP)
     cache.set(phone, str(otp_code), settings.EXPIRY_TIME_OTP)
 
-    # TODO: send otp code with SMS service.
+    send_verification_code(otp_code, phone)
     print(otp_code)

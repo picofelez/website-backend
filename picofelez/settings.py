@@ -173,3 +173,8 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 # django admin interface section
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+# sms services section
+SMS_PANEL_BASE_API = config('SMS_PANEL_BASE_API')
+SMS_ORIGINATOR = config('SMS_ORIGINATOR')
+SMS_PANEL_ACCESS_KEY = config('SMS_PANEL_ACCESS_KEY')
