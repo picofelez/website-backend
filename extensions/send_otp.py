@@ -14,4 +14,3 @@ def send_otp(request, phone):
     cache.set(phone, str(otp_code), settings.EXPIRY_TIME_OTP)
 
     send_verification_code(otp_code, phone)
-    print(otp_code)
