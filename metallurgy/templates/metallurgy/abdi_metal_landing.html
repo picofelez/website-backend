@@ -1,0 +1,134 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    پیکوفلز | فلزکاری برادران عبدی
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="shop-page">
+
+            <section id="intro" class="abdi-metal-intro d-flex justify-content-center align-items-center">
+                <section class="d-flex justify-content-center align-items-center flex-column">
+                    <h3 class="abdi-metal-intro-title">
+                        گروه فلزکاری برادران عبدی<br>
+                        <span>
+                        پیکوفلز
+                    </span>
+                        </h1>
+                        <p class="abdi-metal-intro-text">
+                            تمام سفارشات مشتریان ما به صورت آنلاین در پنل آنها نمایش داده می شود و در هر زمان می توانند
+                            به صورت
+                            آنلاین صورتحساب های
+                            خودرا مشاهده کنند ، پروژه را پیگیری کنند و از خدمات آنلاین ما بهرهمند شوند.
+                        </p>
+                        <a href="#" class="btn btn-warning mb-3 rounded-0"> ورود به پنل مشتریان</a>
+                </section>
+            </section>
+
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="title font-vazir-bold-fd">
+                                        نمونه کارها
+                                    </h4>
+                                </div>
+
+                                {% for worksample in portfolio %}
+                                    <section class="col-lg-4 col-md-6 col-12 mb-3">
+                                        <div class="portfolio-card text-decoration-none">
+                                            <div class="portfolio-header">
+                                                <img src="{{ worksample.image.url }}" alt="{{ worksample.title }}">
+                                            </div>
+                                            <div class="portfolio-body">
+                                                <h4 class="portfolio-title mb-3">{{ worksample.title }}</h4>
+                                                <p class="portfolio-text mb-3">{{ worksample.description|truncatewords:12 }}</p>
+                                                <a href="{% url 'metallurgy:work-sample-detail' worksample.pk worksample.get_name_replace %}" class="btn btn-warning mb-3 rounded-0">مشاهده نمونه کار</a>
+                                            </div>
+                                        </div>
+                                    </section>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+            <section id="call-info" class="call-info">
+                <section class="container">
+                    <p class="h6">شبکه یکپارچه</p>
+                    <p class="h4 my-4">گروه فلزکاری برادران عبدی - پیکوفلز</p>
+                    <p class="call-info-text">
+                        تمام سفارشات مشتریان ما به صورت آنلاین در پنل آنها نمایش داده می شود و در هر زمان می توانند به
+                        صورت
+                        آنلاین صورتحساب های
+                        خودرا مشاهده کنند ، پروژه را پیگیری کنند و از خدمات آنلاین ما بهرهمند شوند.
+                    </p>
+                    <a href="#" class="btn btn-warning rounded-0">ورود به پنل مشتریان</a>
+                </section>
+            </section>
+
+            <section id="contact-info" class="contact-info">
+                <section class="container">
+                    <section class="text-center contact-info-title">
+                        <p class="h4">همکاری با ما</p>
+                        <p>برای همکاری با ما روی یکی از گزینه های زیر کلیک کنید</p>
+                    </section>
+                    <section class="row mt-4">
+                        <section class="col-md-3 col-12 mb-2">
+                            <a href="#" class="contact-info-card flex-center">
+                            <span>
+                                <i class="fas fa-building"></i>
+                            </span>
+                                <p>
+                                    اسکلت ساختمان<br>
+                                    <small>مشاوره و همکاری</small>
+                                </p>
+                            </a>
+                        </section>
+                        <section class="col-md-3 col-12 mb-2">
+                            <a href="#" class="contact-info-card flex-center">
+                            <span>
+                                <i class="fas fa-industry"></i>
+                            </span>
+                                <p>
+                                    تیرچه<br>
+                                    <small>مشاوره و همکاری</small>
+                                </p>
+                            </a>
+                        </section>
+                        <section class="col-md-3 col-12 mb-2">
+                            <a href="#" class="contact-info-card flex-center">
+                            <span>
+                                <i class="fas fa-door-closed"></i>
+                            </span>
+                                <p>
+                                    درب و پنجره<br>
+                                    <small>مشاوره و همکاری</small>
+                                </p>
+                            </a>
+                        </section>
+                        <section class="col-md-3 col-12 mb-2">
+                            <a href="#" class="contact-info-card flex-center">
+                            <span>
+                                <i class="fas fa-tools"></i>
+                            </span>
+                                <p>
+                                    نمای ساختمان<br>
+                                    <small>مشاوره و همکاری</small>
+                                </p>
+                            </a>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

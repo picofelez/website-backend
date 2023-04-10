@@ -83,52 +83,52 @@
 }
 
 .main-nav-active-item a {
-  color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
 }
 
 .main-nav-btn {
-  margin-top: 0.5rem;
-  display: none;
+    margin-top: 0.5rem;
+    display: none;
 }
 
 .mobile-main-nav {
-  background-color: #fff;
-  z-index: 1000 !important;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  min-height: 60vh;
-  border-radius: .5rem;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  flex-direction: column;
-  box-shadow: 0 0 2px dimgrey;
-  display: none;
+    background-color: #fff;
+    z-index: 1000 !important;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    min-height: 60vh;
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    box-shadow: 0 0 2px dimgrey;
+    display: none;
 }
 
 #mobile-main-nav-close {
-  margin: 0 1rem 1rem 0;
-  font-size: 1.1rem;
-  color: #000;
+    margin: 0 1rem 1rem 0;
+    font-size: 1.1rem;
+    color: #000;
 }
 
 .mobile-main-nav #mobile-main-nav-items {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  flex-direction: column;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
 }
 
 .mobile-main-nav #mobile-main-nav-items li {
-  margin: .3rem 0;
+    margin: .3rem 0;
 }
 
-.mobile-main-nav #mobile-main-nav-items li a{
-  color: #000;
+.mobile-main-nav #mobile-main-nav-items li a {
+    color: #000;
 }
 
 /* intor */
@@ -615,9 +615,163 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
     color: var(--secondary-color);
 }
 
-.order-detail-img img{
+.order-detail-img img {
     width: 100px;
     height: 100px;
+    border-radius: 0.5rem;
+}
+
+/* abdi metal landing */
+.portfolio-card {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
+    transition: all 0.3s ease-in-out;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-0.5rem);
+}
+
+.portfolio-header img {
+    width: 100%;
+    height: 216px;
+}
+
+.portfolio-body {
+    width: 100%;
+    padding: 1rem;
+    background-color: #fff;
+}
+
+.portfolio-title {
+    position: relative;
+    padding-bottom: 1.2rem;
+    color: var(--dark-color);
+    font-weight: 700;
+}
+
+.portfolio-text {
+    color: #5c5c5c;
+}
+
+/* call info */
+.call-info {
+    width: 100%;
+    padding: 2.5rem 0;
+    background: linear-gradient(-155deg,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)),
+    url("../img/bg/14.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.call-info .h6 {
+    font-weight: 600;
+}
+
+.call-info .h4 {
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+.call-info-text {
+    width: 43%;
+    font-weight: 500;
+}
+
+/* contact info */
+.contact-info {
+    width: 100%;
+    padding: 2.5rem 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.contact-info-title {
+    color: #000;
+    font-weight: 700;
+}
+
+.contact-info-title .h4 {
+    font-weight: 600;
+    font-size: 2.5rem;
+}
+
+.contact-info-card {
+    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 10%);
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    display: block;
+    padding: 1rem 0;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-0.5rem);
+}
+
+.contact-info-card span {
+    font-size: 2rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.contact-info-card p {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.contact-info-card p small {
+    font-weight: 500;
+    color: #5c5c5c;
+}
+
+/* abdi metal intro */
+
+.abdi-metal-intro {
+    width: 100%;
+    min-height: 10rem;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(../img/bg/15.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2rem 0;
+}
+
+.abdi-metal-intro-title {
+    color: #fff;
+    font-weight: 900;
+    text-align: center;
+    line-height: 5.2rem;
+    font-size: 3rem;
+}
+
+.abdi-metal-intro-title span {
+    color: #fdc716;
+}
+
+.abdi-metal-intro-text {
+    width: 50%;
+    text-align: center;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* worksample */
+.worksample-img {
+    height: 30rem;
     border-radius: 0.5rem;
 }
 
@@ -634,7 +788,27 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
         height: 15rem;
     }
 
-    .page-title-box{
+    .page-title-box {
         display: none;
+    }
+
+    /* call info */
+    .call-info-text {
+        width: 95%;
+    }
+
+    /* abdi metal intro */
+    .abdi-metal-intro-title {
+        line-height: 4.2rem;
+        font-size: 2rem;
+    }
+
+    .abdi-metal-intro-text {
+        width: 95%;
+    }
+
+    /* worksample */
+    .worksample-img {
+        height: 20rem;
     }
 }
