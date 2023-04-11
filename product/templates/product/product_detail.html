@@ -7,6 +7,12 @@
     {{ object }} | پیکوفلز
 {% endblock %}
 
+{% block meta_tags %}
+    <meta name="description"
+          content="{{ object.title }} - {{ object.shop.title }}">
+    <meta name="keywords" content="{{ object.keywords }}">
+{% endblock %}
+
 {% block content %}
     <section class="inner-page" id="product-page">
         <!-- breadcrumb start -->

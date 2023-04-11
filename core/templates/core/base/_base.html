@@ -4,6 +4,12 @@
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    {% block meta_tags %}
+        <meta name="description"
+              content="پیکوفلز بازار آنلاین خرید و فروش آهن ، محصولات فولادی خودرا به صورت آنلاین به فروش برسانید ، به سادگی خرید کنید.">
+        <meta name="keywords" content="پیکوفلز ، بازار آنلاین آهن ، بازار آهن ، فولاد ، فلز ، میلگرد ، تیرآهن">
+    {% endblock %}
+    <meta name="author" content="پیکوفلز - بازار خرید و فروش آنلاین آهن">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="{% static 'site_statics/img/logo/16x16.png' %}"/>
     <title>{% block title %}{% endblock %}</title>
