@@ -6,6 +6,12 @@
     پیکوفلز | فلزکاری برادران عبدی
 {% endblock %}
 
+{% block meta_tags %}
+    <meta name="description"
+          content="فلزکاری برادران عبدی با بیش از 50 سال سابقه در بازار فلزکاری ایران ، سازنده انواع درب و پنجرخه، اسکلت ساختمان، تیرچه، سازه های صنعتی، مشاوره ساخت و ... ">
+    <meta name="keywords" content="فلزکاری برادران عبدی ، فلزکاری ، جوشکاری ، آهن ، عبدی ، فلزکاری حکمت ، سازه های فولادی">
+{% endblock %}
+
 {% block content %}
     {% with request.resolver_match.url_name as url_name %}
         <section class="inner-page" id="shop-page">
@@ -48,7 +54,8 @@
                                             <div class="portfolio-body">
                                                 <h4 class="portfolio-title mb-3">{{ worksample.title }}</h4>
                                                 <p class="portfolio-text mb-3">{{ worksample.description|truncatewords:12 }}</p>
-                                                <a href="{% url 'metallurgy:work-sample-detail' worksample.pk worksample.get_name_replace %}" class="btn btn-warning mb-3 rounded-0">مشاهده نمونه کار</a>
+                                                <a href="{% url 'metallurgy:work-sample-detail' worksample.pk worksample.get_name_replace %}"
+                                                   class="btn btn-warning mb-3 rounded-0">مشاهده نمونه کار</a>
                                             </div>
                                         </div>
                                     </section>
