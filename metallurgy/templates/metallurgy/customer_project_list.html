@@ -1,0 +1,83 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    پیکوفلز | فلزکاری عبدی - پروژه ها
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="shop-page">
+            <section class="container my-5">
+                <section class="row">
+                    <div class="col-12 mb-3">
+                        <div class="rounded-card shadow-card">
+                            <h5 class="font-vazir-bold-fd mb-4">پنل ارتباط با مشتریان گروه فلزکاری عبدی</h5>
+                            <h5>{{ request.user.get_full_name }} خوش آمدید!</h5>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <h4 class="title font-vazir-bold-fd">پروژه ها</h4>
+                            </div>
+
+                            {% for project in object_list %}
+                                <div class="col-md-6 col-xl-4 mb-3">
+                                    <a href="#" class="card box-shadow">
+                                        <div class="card-body">
+                                            <div class="badge bg-primary">
+                                                در حال کار
+                                            </div>
+                                            <div class="my-4">
+                                                <p class="h6 font-vazir-bold-fd mb-3">{{ project.name }}</p>
+                                                <p class="text-secondary abdi-metal-project-desc">{{ project.description }}</p>
+                                            </div>
+                                            <div class="abdi-metal-project-meta">
+                                                <p>
+                                                    {% if project.start_date_jalali %}
+                                                        {{ project.start_date_jalali }}
+                                                    {% else %}
+                                                        نامشخص
+                                                    {% endif %}
+                                                    <br>
+                                                    <span>
+                                                شروع کار
+                                            </span>
+                                                </p>
+                                                <p>
+                                                    {% if project.end_date_jalali %}
+                                                        {{ project.end_date_jalali }}
+                                                    {% else %}
+                                                        نامشخص
+                                                    {% endif %}
+                                                    <br>
+                                                    <span>
+                                                پایان کار
+                                            </span>
+                                                </p>
+                                                <p>
+                                                    {{ project.get_total_expenses }} تومان
+                                                    <br>
+                                                    <span>
+                                                جمع فاکتور ها
+                                            </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-success btn-sm">مشاهده پروژه</button>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

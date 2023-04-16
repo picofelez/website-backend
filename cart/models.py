@@ -76,7 +76,7 @@ class Order(models.Model):
         return jalali_converter_dict(self.created)
 
     def __str__(self):
-        return f"سفارش : {self.user}"
+        return f"سفارش : {self.user} - شناسه : {self.id}"
 
 
 class OrderDetail(models.Model):

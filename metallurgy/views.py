@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.utils import timezone
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 
-from metallurgy.models import WorkSample
+from metallurgy.models import WorkSample, Project
 
 
 # Create your views here.
@@ -20,3 +20,11 @@ def metallurgy_landing_view(request):
 class WorkSampleDetailView(DetailView):
     model = WorkSample
     template_name = 'metallurgy/work_sample_detail.html'
+
+
+class CustomerProjectsListView(ListView):
+    model = Project
+    template_name = 'metallurgy/customer_project_list.html'
+
+    def get_queryset(self):
+        return self.model.objects.filter(customers__in=[self.request.user])

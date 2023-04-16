@@ -775,6 +775,31 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
     border-radius: 0.5rem;
 }
 
+/* projects */
+.abdi-metal-project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.abdi-metal-project-meta p {
+    font-size: 0.8rem;
+    border: 1px dashed #b8b8b8;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.3rem;
+    font-weight: 600;
+}
+
+.abdi-metal-project-meta p span {
+    font-size: 0.7rem;
+    color: #696969;
+    font-weight: normal;
+}
+
+.abdi-metal-project-desc {
+    font-size: 0.95rem;
+}
+
 @media (max-width: 768px) {
     .main-nav-btn {
         display: block;

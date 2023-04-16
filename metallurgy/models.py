@@ -5,6 +5,7 @@ from account.models import User
 
 # Create your models here.
 from cart.models import Order
+from extensions.utils import jalali_converter
 
 
 class WorkSample(models.Model):
@@ -70,6 +71,17 @@ class Project(models.Model):
     class Meta:
         verbose_name = 'پروژه'
         verbose_name_plural = '3. پروژه ها'
+        ordering = ('-created',)
+
+    def start_date_jalali(self):
+        if self.start_date:
+            return jalali_converter(self.start_date)
+        return None
+
+    def end_date_jalali(self):
+        if self.end_date:
+            return jalali_converter(self.end_date)
+        return None
 
     def get_total_expenses(self):
         total = 0
