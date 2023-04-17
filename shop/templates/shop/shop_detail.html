@@ -1,67 +1,88 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
+
 {% block title %}
-{{ object }} | پیکوفلز
+    پیکوفلز | {{ object.title }}
+{% endblock %}
+
+{% block meta_tags %}
+    <meta property="og:url" content="https://picofelez.ir/{{ object.slug }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پیکوفلز | {{ object.title }}">
+    <meta property="og:description" content="{{ object.about }}">
+    <meta name="description" content="{{ object.about }}">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:domain" content="picofelez.ir">
+    <meta property="twitter:url" content="https://picofelez.ir/{{ object.slug }}">
+    <meta name="twitter:title" content="پیکوفلز | {{ object.title }}">
+    <meta name="twitter:description" content="{{ object.about }}">
+
+    <meta name="keywords"
+          content="آهن فروشی {{ object.title }} ، {{ object.title }}">
 {% endblock %}
 
 {% block content %}
-<section class="inner-page" id="shop-page">
-      <!-- breadcrumb start -->
-      <section class="page-title-box container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="container">
-              <div class="row">
-                <div class="col-12 px-0">
-                  <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
-                  <p>بازار آنلاین آهن</p>
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item">
-                        <a href="{% url 'core:home' %}">خانه</a>
-                      </li>
-                      <li class="breadcrumb-item active" aria-current="page">
-                        آهن فروشی عبدی
-                      </li>
-                    </ol>
-                  </nav>
+    <section class="inner-page" id="shop-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            آهن فروشی عبدی
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <!-- breadcrumb end -->
-      <section class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="page-content">
-              <div class="row">
-                <div class="col-12 col-lg-12 px-0 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
-                  {% include 'shop/components/shop_profile_component.html' %}
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-12 col-lg-12 px-0 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
+                                {% include 'shop/components/shop_profile_component.html' %}
+                            </div>
+                            <div class="col-12 my-2 col-md-4">
+                                <a href="{% url 'shop:shop-products' shop.slug %}" class="btn btn-purple w-100">محصولات
+                                    فروشگاه</a>
+                            </div>
+                            <div class="col-12 my-2 col-md-4">
+                                <a href="{% url 'shop:shop-contact' shop.slug %}" class="btn btn-success w-100">ارتباط
+                                    با فروشگاه</a>
+                            </div>
+                            <div class="col-12 my-2 col-md-4">
+                                <a href="{% url 'shop:shop-rating' shop.slug %}" class="btn btn-warning w-100">امتیاز
+                                    دادن</a>
+                            </div>
+                            <hr class="my-4">
+                            <div class="col-12 my-2">
+                                <h5 class="fw-bold title">
+                                    با {{ object.title }} بیشتر آشنا شوید!
+                                </h5>
+                                <p>
+                                    {{ object.about }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 my-2 col-md-4">
-                    <a href="{% url 'shop:shop-products' shop.slug %}" class="btn btn-purple w-100">محصولات فروشگاه</a>
-                </div>
-                <div class="col-12 my-2 col-md-4">
-                    <a href="{% url 'shop:shop-contact' shop.slug %}" class="btn btn-success w-100">ارتباط با فروشگاه</a>
-                </div>
-                <div class="col-12 my-2 col-md-4">
-                    <a href="{% url 'shop:shop-rating' shop.slug %}" class="btn btn-warning w-100">امتیاز دادن</a>
-                </div>
-                <hr class="my-4">
-                <div class="col-12 my-2">
-                    <h5 class="fw-bold title">
-                      با {{ object.title }} بیشتر آشنا شوید!
-                    </h5>
-                    <p>
-                      {{ object.about }}
-                    </p>
-                  </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
     </section>
 {% endblock %}

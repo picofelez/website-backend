@@ -5,11 +5,33 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     {% block meta_tags %}
-        <meta name="description"
-              content="پیکوفلز بازار آنلاین خرید و فروش آهن ، محصولات فولادی خودرا به صورت آنلاین به فروش برسانید ، به سادگی خرید کنید.">
-        <meta name="keywords" content="پیکوفلز ، بازار آنلاین آهن ، بازار آهن ، فولاد ، فلز ، میلگرد ، تیرآهن">
+        <meta property="og:url" content="https://picofelez.ir">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="پیکوفلز | بازار آنلاین خرید و فروش آهن">
+        <meta property="og:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید ! با ساخت فروشگاه آنلاین آهن خودتان به فروش آنلاین بپردازید
+و همچنین می توانید از بین محصولات سایت کالای مورد نظر خود را پیدا کرده و تجربه خرید آنلاین آهن را داشته باشید.
+">
+        <meta name="description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید ! با ساخت فروشگاه آنلاین آهن خودتان به فروش آنلاین بپردازید
+و همچنین می توانید از بین محصولات سایت کالای مورد نظر خود را پیدا کرده و تجربه خرید آنلاین آهن را داشته باشید.
+">
+
+        <!-- Twitter Meta Tags -->
+        <meta property="twitter:domain" content="picofelez.ir">
+        <meta property="twitter:url" content="https://picofelez.ir">
+        <meta name="twitter:title" content="پیکوفلز | بازار آنلاین خرید و فروش آهن">
+        <meta name="twitter:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید ! با ساخت فروشگاه آنلاین آهن خودتان به فروش آنلاین بپردازید
+و همچنین می توانید از بین محصولات سایت کالای مورد نظر خود را پیدا کرده و تجربه خرید آنلاین آهن را داشته باشید.
+">
+
+        <meta name="keywords"
+              content="بازار آنلاین آهن ، خرید آهن ، بازار آهن ، پیکوفلز ، قیمت آهن ، فروش آنلاین آهن ، مارکت پلیس آهن">
     {% endblock %}
-    <meta name="author" content="پیکوفلز - بازار خرید و فروش آنلاین آهن">
+    <meta name="author" content="پیکوفلز - بازار آنلاین خرید و فروش آهن">
+    <meta property="og:image" content="{% static 'site_statics/img/logo/forInstagramProfile.jpg' %}">
+    <meta property="og:image:width" content="500">
+    <meta property="og:image:height" content="300">
+    <meta name="twitter:image" content="{% static 'site_statics/img/logo/forInstagramProfile.jpg' %}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="{% static 'site_statics/img/logo/16x16.png' %}"/>
     <title>{% block title %}{% endblock %}</title>

@@ -6,7 +6,30 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>PicoFelez | Shop Register</title>
+
+    <meta property="og:url" content="https://picofelez.ir/shops/register-shop/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پیکوفلز | ثبت نام فروشنده">
+    <meta property="og:description"
+          content="به سادگی فروشگاه آنلاین آهن خود را ایجاد کنید و فروش خود را آنلاین کنید. با فروش آنلاین در پیکوفلز میتوانید در پنل اختصاصی فروشگاه خود سفارشات را مدیریت کنید ، نمودار تغییرات قیمت محصولتان را مشاهده کنید و تمام خدمات خودرا به صورت آنلاین به مشتریان خود ارائه دهید و بدون محدودیت کالای خودرا عرضه کنید.">
+    <meta name="description"
+          content="به سادگی فروشگاه آنلاین آهن خود را ایجاد کنید و فروش خود را آنلاین کنید. با فروش آنلاین در پیکوفلز میتوانید در پنل اختصاصی فروشگاه خود سفارشات را مدیریت کنید ، نمودار تغییرات قیمت محصولتان را مشاهده کنید و تمام خدمات خودرا به صورت آنلاین به مشتریان خود ارائه دهید و بدون محدودیت کالای خودرا عرضه کنید.">
+    <meta property="og:image" content="{% static 'site_statics/img/logo/forInstagramProfile.jpg' %}">
+    <meta property="og:image:width" content="500">
+    <meta property="og:image:height" content="300">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:domain" content="picofelez.ir">
+    <meta property="twitter:url" content="https://picofelez.ir/shops/register-shop/">
+    <meta name="twitter:title" content="پیکوفلز | ثبت نام فروشنده">
+    <meta name="twitter:description"
+          content="به سادگی فروشگاه آنلاین آهن خود را ایجاد کنید و فروش خود را آنلاین کنید. با فروش آنلاین در پیکوفلز میتوانید در پنل اختصاصی فروشگاه خود سفارشات را مدیریت کنید ، نمودار تغییرات قیمت محصولتان را مشاهده کنید و تمام خدمات خودرا به صورت آنلاین به مشتریان خود ارائه دهید و بدون محدودیت کالای خودرا عرضه کنید.">
+    <meta name="twitter:image" content="{% static 'site_statics/img/logo/forInstagramProfile.jpg' %}">
+
+    <meta name="keywords"
+          content="میلگرد ، آهن ، فروشنده آهن ، فروش آنلاین آهن ، خرید آنلاین آهن ، بازار آهن ، بازار آنلاین آهن ، قیمت آهن ، فولاد ، سایت آهن ، آهن فروش آنلاین">
+
+    <title>پیکوفلز | ثبت نام فروشنده</title>
 
     <link rel="stylesheet" href="{% static 'site_statics/css/bootstrap/bootstrap.rtl.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'site_statics/css/all.min.css' %}"/>
@@ -142,7 +165,8 @@
                                     >
                                         <option value="krj">البرز-کرج</option>
                                     </select>
-                                    <label class="fieldlabels" for="slug">شناسه فروشگاه(به انگلیسی و بدون فاصله بنویسید): *</label>
+                                    <label class="fieldlabels" for="slug">شناسه فروشگاه(به انگلیسی و بدون فاصله
+                                        بنویسید): *</label>
                                     <input
                                             type="text"
                                             id="slug"
@@ -245,7 +269,7 @@
                                     </div>
                                 </div>
                                 <a href="{% url 'core:home' %}"
-                                        class="btn btn-purple action-button"
+                                   class="btn btn-purple action-button"
                                 >
                                     بازگشت به سایت
                                 </a>
@@ -259,9 +283,11 @@
                                         <i class="fas fa-user"></i>
                                         <span class="font-vazir-bold-fd">
                                             لطفا ابتدا
-                                            <a href="{% url 'account:otp-login' %}?next=/shops/register-shop/" class="text-primary">وارد</a>
+                                            <a href="{% url 'account:otp-login' %}?next=/shops/register-shop/"
+                                               class="text-primary">وارد</a>
                                             حساب کاربری خود شوید یا یک
-                                            <a href="{% url 'account:otp-register' %}?next=/shops/register-shop/" class="text-primary">حساب کاربری جدید</a>
+                                            <a href="{% url 'account:otp-register' %}?next=/shops/register-shop/"
+                                               class="text-primary">حساب کاربری جدید</a>
                                             بسازید.
                                         </span>
                                     </div>

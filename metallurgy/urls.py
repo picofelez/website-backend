@@ -4,7 +4,7 @@ from .views import metallurgy_landing_view, WorkSampleDetailView, CustomerProjec
 app_name = 'metallurgy'
 urlpatterns = [
     path('', metallurgy_landing_view, name='landing'),
-    path('<int:pk>/<str:title>', WorkSampleDetailView.as_view(), name='work-sample-detail'),
+    path('portfolio/<int:pk>/<str:title>', WorkSampleDetailView.as_view(), name='work-sample-detail'),
 
     path('customer/projects/', CustomerProjectsListView.as_view(), name='customer-project-list'),
 ]
