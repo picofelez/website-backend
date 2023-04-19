@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.generic import DetailView, ListView
@@ -22,7 +23,7 @@ class WorkSampleDetailView(DetailView):
     template_name = 'metallurgy/work_sample_detail.html'
 
 
-class CustomerProjectsListView(ListView):
+class CustomerProjectsListView(LoginRequiredMixin, ListView):
     model = Project
     template_name = 'metallurgy/customer_project_list.html'
 

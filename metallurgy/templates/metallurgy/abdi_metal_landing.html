@@ -45,7 +45,7 @@
                         آنلاین صورتحساب های
                         خودرا مشاهده کنند ، پروژه را پیگیری کنند و از خدمات آنلاین ما بهرهمند شوند.
                     </p>
-                    <a href="#" class="btn btn-warning mb-3 rounded-0"> ورود به پنل مشتریان</a>
+                    <a href="{% if request.user.is_authenticated %}{% url 'metallurgy:customer-project-list' %}{% else %}{% url 'account:otp-login' %}?next=/metallurgy/customer/projects/{% endif %}" class="btn btn-warning mb-3 rounded-0"> ورود به پنل مشتریان</a>
                 </section>
             </section>
 
@@ -93,7 +93,7 @@
                         آنلاین صورتحساب های
                         خودرا مشاهده کنند ، پروژه را پیگیری کنند و از خدمات آنلاین ما بهرهمند شوند.
                     </p>
-                    <a href="#" class="btn btn-warning rounded-0">ورود به پنل مشتریان</a>
+                    <a href="{% if request.user.is_authenticated %}{% url 'metallurgy:customer-project-list' %}{% else %}{% url 'account:otp-login' %}?next=/metallurgy/customer/projects/{% endif %}" class="btn btn-warning rounded-0">ورود به پنل مشتریان</a>
                 </section>
             </section>
 
