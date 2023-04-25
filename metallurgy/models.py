@@ -179,7 +179,7 @@ class ProjectTransaction(models.Model):
 
     summary = models.CharField(max_length=255, verbose_name='خلاصه')
     description = models.TextField(verbose_name='توضیحات تراکنش')
-    date = models.DateField(null=True, blank=True, verbose_name='تاریخ')
+    date = models.DateTimeField(null=True, blank=True, verbose_name='تاریخ')
     status = models.CharField(max_length=10, choices=StatusChoices.choices, verbose_name='وضعیت پرداخت')
     project = models.ForeignKey(
         Project,
@@ -203,6 +203,7 @@ class ProjectTransaction(models.Model):
     class Meta:
         verbose_name = 'تراکنش'
         verbose_name_plural = '6. تراکنش های پروژه'
+        ordering = ('-created',)
 
     def date_jalali(self):
         if self.date:

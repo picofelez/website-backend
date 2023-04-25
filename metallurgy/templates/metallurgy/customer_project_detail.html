@@ -160,6 +160,48 @@
                                             </table>
                                         </div>
                                     </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="col-12">
+                                        <p class="font-vazir-bold-fd mb-4 h5 title">تراکنش ها</p>
+                                        <div class="row">
+                                            {% for transaction in project.transactions.all %}
+                                                <div class="col-md-4 mb-3" style="font-size: 0.98rem">
+                                                    <div class="card box-shadow">
+                                                        <div class="card-header">
+                                                            <p class="h6">{{ transaction.summary }}</p>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p>
+                                                                <small class="font-vazir-bold-fd">تاریخ:</small>
+                                                                {{ transaction.date_jalali }}
+                                                            </p>
+                                                            <p>
+                                                                <small class="font-vazir-bold-fd">وضعیت پرداخت:</small>
+                                                                {% if transaction.status == 's' %}
+                                                                    پرداخت موفق
+                                                                    <i class="fas fa-check text-success"></i>
+                                                                {% elif transaction.status == 'uns' %}
+                                                                    پرداخت ناموفق
+                                                                    <i class="fas fa-times text-danger"></i>
+                                                                {% elif transaction.status == 'awp' %}
+                                                                    درانتظار پرداخت
+                                                                    <i class="fas fa-clock text-primary"></i>
+                                                                {% endif %}
+                                                            </p>
+                                                            <p>
+                                                                <small class="font-vazir-bold-fd">جزئیات پرداخت:</small>
+                                                                {{ transaction.description }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
