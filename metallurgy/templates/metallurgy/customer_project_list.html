@@ -25,7 +25,8 @@
 
                             {% for project in object_list %}
                                 <div class="col-md-6 col-xl-4 mb-3">
-                                    <a href="#" class="card box-shadow">
+                                    <a href="{% url 'metallurgy:customer-project-detail' project.pk %}"
+                                       class="card box-shadow">
                                         <div class="card-body">
                                             <div class="badge bg-primary">
                                                 در حال کار

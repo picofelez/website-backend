@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views.generic import DetailView, ListView
 
+from metallurgy.mixins import CustomerProjectAccessMixin
 from metallurgy.models import WorkSample, Project
 
 
@@ -29,3 +30,8 @@ class CustomerProjectsListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return self.model.objects.filter(customers__in=[self.request.user])
+
+
+class CustomerProjectDetailView(CustomerProjectAccessMixin, DetailView):
+    model = Project
+    template_name = 'metallurgy/customer_project_detail.html'

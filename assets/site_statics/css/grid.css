@@ -777,27 +777,40 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
 
 /* projects */
 .abdi-metal-project-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .abdi-metal-project-meta p {
-    font-size: 0.8rem;
-    border: 1px dashed #b8b8b8;
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.3rem;
-    font-weight: 600;
+  font-size: 0.8rem;
+  border: 1px dashed #b8b8b8;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
 }
 
 .abdi-metal-project-meta p span {
-    font-size: 0.7rem;
-    color: #696969;
-    font-weight: normal;
+  font-size: 0.7rem;
+  color: #696969;
+  font-weight: normal;
 }
 
 .abdi-metal-project-desc {
-    font-size: 0.95rem;
+  font-size: 0.95rem;
+}
+
+.abdi-metal-project-detail-meta li {
+  margin: 0.8rem 0;
+  font-size: 0.95rem;
+}
+
+.abdi-metal-project-detail-meta li span{
+  font-weight: 600;
+}
+
+.abdi-metal-project-detail-meta li::marker {
+  color: var(--primary-color);
 }
 
 @media (max-width: 768px) {

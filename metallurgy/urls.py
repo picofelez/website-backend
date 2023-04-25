@@ -1,5 +1,10 @@
 from django.urls import path
-from .views import metallurgy_landing_view, WorkSampleDetailView, CustomerProjectsListView
+from .views import (
+    metallurgy_landing_view,
+    WorkSampleDetailView,
+    CustomerProjectsListView,
+    CustomerProjectDetailView
+)
 
 app_name = 'metallurgy'
 urlpatterns = [
@@ -7,4 +12,5 @@ urlpatterns = [
     path('portfolio/<int:pk>/<str:title>', WorkSampleDetailView.as_view(), name='work-sample-detail'),
 
     path('customer/projects/', CustomerProjectsListView.as_view(), name='customer-project-list'),
+    path('customer/projects/<int:pk>', CustomerProjectDetailView.as_view(), name='customer-project-detail'),
 ]

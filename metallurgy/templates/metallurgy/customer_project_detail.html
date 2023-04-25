@@ -1,0 +1,171 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block title %}
+    پیکوفلز | فلزکاری عبدی - {{ project.name }}
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="shop-page">
+            <section class="container my-5">
+                <section class="row">
+                    <div class="col-12 col-md-12 mb-2">
+                        <div class="rounded-card">
+                            <div class="abdi-metal-project-detail">
+                                <h6 class="fw-bold">
+                                    {{ project.name }}
+                                    <span class="badge bg-primary">وضعیت: درحال کار</span>
+                                </h6>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <ul class="abdi-metal-project-detail-meta">
+                                            <li>
+                                                <span>کارفرما (مشتری):</span>
+                                                {% for user in project.customers.all %}
+                                                    {{ user.get_full_name }}
+                                                    {% if forloop.revcounter > 1 %}
+                                                        ,
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            </li>
+                                            <li>
+                                                <span>تاریخ شروع پروژه:</span>
+                                                {% if project.start_date_jalali %}
+                                                    {{ project.start_date_jalali }}
+                                                {% else %}
+                                                    نامشخص
+                                                {% endif %}
+                                            </li>
+                                            <li>
+                                                <span>تاریخ پایان پروژه:</span>
+                                                {% if project.end_date_jalali %}
+                                                    {{ project.end_date_jalali }}
+                                                {% else %}
+                                                    نامشخص
+                                                {% endif %}
+                                            </li>
+                                            <li>
+                                                <span>جمع فاکتور ها:</span>
+                                                {{ project.get_total_expenses }} تومان
+                                            </li>
+                                            <li>
+                                                <span>فاکتور های پرداخت شده:</span>
+                                                {{ project.get_total_expenses_paid }} تومان
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <div class="col-12">
+                                        <p class="font-vazir-bold-fd mb-4 h5 title">فاکتور ها</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">عنوان</th>
+                                                    <th scope="col">تاریخ</th>
+                                                    <th scope="col">مبلغ</th>
+                                                    <th scope="col">وضعیت پرداخت</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for invoice in project.invoices.all %}
+                                                    <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <td>{{ invoice.description }}</td>
+                                                        <td>{{ invoice.date_jalali }}</td>
+                                                        <td>{{ invoice.get_total_invoice_price|intcomma:False }} تومان
+                                                        </td>
+                                                        <td>
+                                                            {% if invoice.is_paid %}
+                                                                <span class="badge bg-success">پرداخت شده</span>
+                                                            {% else %}
+                                                                <span class="badge bg-danger">پرداخت نشده</span>
+
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-link btn-sm">مشاهده</a>
+                                                        </td>
+                                                    </tr>
+                                                {% empty %}
+                                                    <tr>
+                                                        <td>فاکتوری ثبت نشده</td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="col-12">
+                                        <p class="font-vazir-bold-fd mb-4 h5 title">فاکتور های آهن</p>
+                                        <p>
+                                            <i class="fas fa-info-circle"></i>
+                                            فاکتور های خرید آهن به صورت مستقیم از آهن فروش خرید و ثبت می شود و می توانید
+                                            آنهارا به صورت مجزا مشاهده و مدیریت کنید.
+                                        </p>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">عنوان</th>
+                                                    <th scope="col">تاریخ</th>
+                                                    <th scope="col">مبلغ</th>
+                                                    <th scope="col">وضعیت پرداخت</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for metal_order in project.metal_orders.all %}
+                                                    <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <td>{{ metal_order.message|truncatewords:7 }}</td>
+                                                        <td>
+                                                            {{ metal_order.created_jalali.day }}
+                                                            {{ metal_order.created_jalali.month }}
+                                                            {{ metal_order.created_jalali.year }}
+                                                        </td>
+                                                        <td>{{ metal_order.amount_payable|intcomma:False }} تومان</td>
+                                                        <td>
+                                                            {% if metal_order.is_paid %}
+                                                                <span class="badge bg-success">پرداخت شده</span>
+                                                            {% else %}
+                                                                <span class="badge bg-danger">پرداخت نشده</span>
+
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            <a href="{% url 'account:user-order-detail' metal_order.pk %}"
+                                                               class="btn btn-link btn-sm">مشاهده</a>
+                                                        </td>
+                                                    </tr>
+                                                {% empty %}
+                                                    <tr>
+                                                        <td>فاکتوری ثبت نشده</td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

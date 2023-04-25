@@ -70,9 +70,15 @@
                                                         </ul>
                                                         <ul class="text-gray d-flex flex-column flex-lg-row my-3">
                                                             <li class="me-3 ms-3 ms-lg-0 mb-2">
-                                                                تحویل به:   {{ order.address.full_address }} - {{ order.address.name }}
+                                                                تحویل به: {{ order.address.full_address }}
+                                                                - {{ order.address.name }}
                                                             </li>
                                                         </ul>
+                                                        {% if order.message %}
+                                                            <div class="alert alert-success">
+                                                                {{ order.message }}
+                                                            </div>
+                                                        {% endif %}
                                                     </div>
                                                     <hr/>
                                                     {% for transfer in order.order_transfers.all %}
@@ -152,13 +158,14 @@
                                                         {% for order_detail in transfer.order.order_details.all %}
                                                             {% if order_detail.product.shop == transfer.shop %}
                                                                 <div class="d-flex border rounded p-2 mb-2">
-                                                                    <a href="{% url 'product:product-detail' order_detail.product.id %}" class="order-detail-img">
+                                                                    <a href="{% url 'product:product-detail' order_detail.product.id %}"
+                                                                       class="order-detail-img">
                                                                         <img src="{{ order_detail.product.image.url }}"
                                                                              alt="{{ order_detail.product.title }}"/>
                                                                     </a>
                                                                     <div class="ms-3">
                                                                         <a href="{% url 'product:product-detail' order_detail.product.id %}"
-                                                                            class="cart-title">
+                                                                           class="cart-title">
                                                                             <h6 class="fw-bold">{{ order_detail.product.title }}</h6>
                                                                         </a>
                                                                         <ul class="cart-meta list-unstyled my-3">

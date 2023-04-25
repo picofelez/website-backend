@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 from account.models import User
@@ -87,6 +88,9 @@ class Project(models.Model):
         total = 0
         for factor in self.invoices.all():
             total += factor.get_total_invoice_price()
+
+        for metal_order in self.metal_orders.all():
+            total += metal_order.amount_payable()
         return f"{total:,}"
 
     get_total_expenses.short_description = 'مجموع فاکتور ها'
@@ -95,9 +99,15 @@ class Project(models.Model):
         total = 0
         for factor in self.invoices.filter(is_paid=True).all():
             total += factor.get_total_invoice_price()
+
+        for metal_order in self.metal_orders.filter(is_paid=True):
+            total += metal_order.amount_payable()
         return f"{total:,}"
 
     get_total_expenses_paid.short_description = 'مجموع فاکتور های پرداخت شده'
+
+    def get_absolute_url(self):
+        return reverse('metallurgy:customer-project-detail', args=[self.id])
 
     def __str__(self):
         return f"{self.name}"
@@ -124,6 +134,11 @@ class Invoice(models.Model):
     class Meta:
         verbose_name = 'فاکتور'
         verbose_name_plural = '4. فاکتور ها'
+
+    def date_jalali(self):
+        if self.date:
+            return jalali_converter(self.date)
+        return None
 
     def get_total_invoice_price(self):
         total = 0
