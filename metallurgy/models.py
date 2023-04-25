@@ -169,3 +169,45 @@ class InvoiceDetail(models.Model):
 
     def __str__(self):
         return f"{self.get_total_price():,} تومان"
+
+
+class ProjectTransaction(models.Model):
+    class StatusChoices(models.TextChoices):
+        success = 's', 'موفق'
+        unsuccessful = 'uns', 'ناموفق'
+        awaiting_payment = 'awp', 'دراننتظار پرداخت'
+
+    summary = models.CharField(max_length=255, verbose_name='خلاصه')
+    description = models.TextField(verbose_name='توضیحات تراکنش')
+    date = models.DateField(null=True, blank=True, verbose_name='تاریخ')
+    status = models.CharField(max_length=10, choices=StatusChoices.choices, verbose_name='وضعیت پرداخت')
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name='transactions',
+        verbose_name='پروژه'
+    )
+    invoice = models.ForeignKey(
+        Invoice,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='invoice_transaction',
+        verbose_name='فاکتور'
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'تراکنش'
+        verbose_name_plural = '6. تراکنش های پروژه'
+
+    def date_jalali(self):
+        if self.date:
+            return jalali_converter(self.date)
+        return None
+
+    def __str__(self):
+        return f"{self.summary} - {self.date_jalali()}"

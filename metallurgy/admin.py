@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import WorkSample, WorkSampleImage, Project, Invoice, InvoiceDetail
+from .models import (
+    WorkSample,
+    WorkSampleImage,
+    Project,
+    Invoice,
+    InvoiceDetail,
+    ProjectTransaction
+)
 
 
 # Register your models here.
@@ -10,6 +17,12 @@ class WorkSampleImageInline(admin.TabularInline):
 
 class InvoiceInline(admin.TabularInline):
     model = Invoice
+    extra = 0
+    show_change_link = True
+
+
+class ProjectTransactionInline(admin.TabularInline):
+    model = ProjectTransaction
     extra = 0
     show_change_link = True
 
@@ -45,17 +58,24 @@ class ProjectAdmin(admin.ModelAdmin):
     filter_horizontal = ('customers', 'metal_orders')
     inlines = [
         InvoiceInline,
-        MetalOrderInline
+        MetalOrderInline,
+        ProjectTransactionInline
     ]
 
 
 @admin.register(Invoice)
 class InvoiceAdmin(admin.ModelAdmin):
     inlines = [
-        InvoiceDetailInline
+        InvoiceDetailInline,
+        ProjectTransactionInline
     ]
 
 
 @admin.register(InvoiceDetail)
 class InvoiceDetailAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ProjectTransaction)
+class ProjectTransactionAdmin(admin.ModelAdmin):
     pass
