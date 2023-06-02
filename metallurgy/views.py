@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views.generic import DetailView, ListView
 
-from metallurgy.mixins import CustomerProjectAccessMixin
-from metallurgy.models import WorkSample, Project
+from metallurgy.mixins import CustomerProjectAccessMixin, CustomerInvoiceAccessMixin
+from metallurgy.models import WorkSample, Project, Invoice
 
 
 # Create your views here.
@@ -35,3 +35,8 @@ class CustomerProjectsListView(LoginRequiredMixin, ListView):
 class CustomerProjectDetailView(CustomerProjectAccessMixin, DetailView):
     model = Project
     template_name = 'metallurgy/customer_project_detail.html'
+
+
+class CustomerInvoiceDetailView(CustomerInvoiceAccessMixin, DetailView):
+    model = Invoice
+    template_name = 'metallurgy/customer_invoice_detail.html'

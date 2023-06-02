@@ -3,7 +3,8 @@ from .views import (
     metallurgy_landing_view,
     WorkSampleDetailView,
     CustomerProjectsListView,
-    CustomerProjectDetailView
+    CustomerProjectDetailView,
+    CustomerInvoiceDetailView
 )
 
 app_name = 'metallurgy'
@@ -13,4 +14,6 @@ urlpatterns = [
 
     path('customer/projects/', CustomerProjectsListView.as_view(), name='customer-project-list'),
     path('customer/projects/<int:pk>', CustomerProjectDetailView.as_view(), name='customer-project-detail'),
+
+    path('customer/invoices/<int:pk>', CustomerInvoiceDetailView.as_view(), name='customer-invoice-detail'),
 ]

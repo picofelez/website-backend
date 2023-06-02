@@ -1,0 +1,128 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block title %}
+    پیکوفلز | فلزکاری عبدی - {{ object.description }}
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="shop-page">
+            <section class="container my-5">
+                <section class="row">
+                    <div class="col-12 col-md-12 mb-2">
+                        <div class="rounded-card">
+                            <div class="abdi-metal-project-detail">
+                                <h6>
+                                    <span class="fw-bold">
+                                    جزئیات فاکتور :
+                                    </span>
+                                    {{ object.description }}
+                                </h6>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <ul class="abdi-metal-project-detail-meta">
+                                        <li>
+                                            <span>پروژه مربوطه:</span>
+                                            <a href="{% url 'metallurgy:customer-project-detail' object.project.pk %}" class="text-primary">
+                                                {{ object.project.name }}
+                                            </a>
+                                        </li>
+                                            <li>
+                                                <span>تاریخ ثبت فاکتور:</span>
+                                                {% if object.date_jalali %}
+                                                    {{ object.date_jalali }}
+                                                {% else %}
+                                                    نامشخص
+                                                {% endif %}
+                                            </li>
+                                            <li>
+                                                <span>وضعیت پرداخت:</span>
+                                                {% if object.is_paid %}
+                                                    پرداخت شده
+                                                {% else %}
+                                                    پرداخت نشده
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <div class="col-12">
+                                        <p class="font-vazir-bold-fd mb-4 h5 title">جزئیات فاکتور</p>
+
+                                        <div class="d-none d-md-block font-vazir-bold-fd">
+                                            <div class="row my-2" id="heading">
+                                                <div class="col-4">
+                                                    <div>عنوان</div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div>مقدار</div>
+                                                </div>
+                                                <div class="col-2 pl-4">
+                                                    <div>مبلغ</div>
+                                                </div>
+                                                <div class="col-2 pr-0">
+                                                    <div class="pr-3">جمع کل</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+
+                                        {% for item in object.invoice_details.all %}
+                                            <div class="row">
+                                                <div class="col-12 col-md-4 mb-4">
+                                                    <small class="d-md-none fw-bold">عنوان:</small>
+                                                    <span class="pt-1">
+                                                        <span class="product-price">{{ item.name }}</span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 col-md-2 mb-4">
+                                                    <small class="d-md-none fw-bold">مقدار:</small>
+                                                    <span class="pt-1">
+                                                        <span class="product-price">{{ item.quantity }}</span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-12 col-md-2 pl-4 pr-0 pr-md-3 mb-4">
+                                                    <small class="d-md-none fw-bold">
+                                                        قیمت واحد:
+                                                    </small>
+                                                    <span class="pt-1">
+                                                        {{ item.amount|intcomma:False }} تومان
+                                                    </span>
+                                                </div>
+                                                <div class="col-6 col-md-2 pr-0 mb-2">
+                                                    <small class="d-md-none fw-bold">
+                                                        جمع کل:
+                                                    </small>
+                                                    <div class="pt-1 pr-2 bg-light p-2 mb-3">
+                                                        <span class="product-total">{{ item.get_total_price|intcomma:False }}</span>
+                                                        <span>تومان</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                        {% endfor %}
+
+                                    </div>
+
+                                <div class="col-12 mb-3">
+                                        <ul class="abdi-metal-project-detail-meta list-unstyled">
+                                            <li class="bg-light p-2">
+                                                <span>جمع کل فاکتور:</span>
+                                                {{ object.get_total_invoice_price|intcomma:False }} تومان
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}
