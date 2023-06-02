@@ -15,10 +15,15 @@
                     <div class="col-12 col-md-12 mb-2">
                         <div class="rounded-card">
                             <div class="abdi-metal-project-detail">
-                                <h6 class="fw-bold">
-                                    {{ project.name }}
-                                    <span class="badge bg-primary">وضعیت: درحال کار</span>
-                                </h6>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="font-vazir-bold-fd">
+                                        {{ project.name }}
+                                        <span class="badge bg-primary">وضعیت: درحال کار</span>
+                                    </h6>
+                                    <button class="btn btn-outline-success disabled-print" onclick="print()">
+                                        پرینت
+                                    </button>
+                                </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-12 mb-3">
@@ -84,19 +89,19 @@
                                         {% for item in project.invoices.all %}
                                             <div class="row">
                                                 <div class="col-12 col-md-4 mb-4">
-                                                    <small class="d-md-none fw-bold">عنوان:</small>
+                                                    <small class="d-md-none font-vazir-bold-fd">عنوان:</small>
                                                     <span class="pt-1">
                                                         <span class="product-price">{{ item.description }}</span>
                                                     </span>
                                                 </div>
                                                 <div class="col-12 col-md-2 mb-4">
-                                                    <small class="d-md-none fw-bold">تاریخ:</small>
+                                                    <small class="d-md-none font-vazir-bold-fd">تاریخ:</small>
                                                     <span class="pt-1">
                                                         <span class="product-price">{{ item.date_jalali }}</span>
                                                     </span>
                                                 </div>
                                                 <div class="col-12 col-md-2 pl-4 pr-0 pr-md-3 mb-4">
-                                                    <small class="d-md-none fw-bold">
+                                                    <small class="d-md-none font-vazir-bold-fd">
                                                         وضعیت پرداخت:
                                                     </small>
                                                     <span class="pt-1">
@@ -108,7 +113,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="col-6 col-md-2 pr-0 mb-2">
-                                                    <small class="d-md-none fw-bold">
+                                                    <small class="d-md-none font-vazir-bold-fd">
                                                         جمع کل:
                                                     </small>
                                                     <div class="pt-1 pr-2 bg-light mb-3">
@@ -117,7 +122,7 @@
                                                     </div>
                                                     <a
                                                             href="{% url 'metallurgy:customer-invoice-detail' item.pk %}"
-                                                            class="product-remove btn-remove-from-basket text-primary"
+                                                            class="product-remove btn-remove-from-basket text-primary disabled-print"
                                                             style="cursor: pointer"
                                                     >
                                                         <div class="small pl-2">
@@ -135,7 +140,7 @@
 
                                     <div class="col-12 my-5">
                                         <p class="font-vazir-bold-fd mb-4 h5 title">فاکتور های آهن</p>
-                                        <p>
+                                        <p class="disabled-print">
                                             <i class="fas fa-info-circle"></i>
                                             فاکتور های خرید آهن به صورت مستقیم از آهن فروش خرید و ثبت می شود و می توانید
                                             آنهارا به صورت مجزا مشاهده و مدیریت کنید.
@@ -162,13 +167,13 @@
                                         {% for item in project.metal_orders.all %}
                                             <div class="row">
                                                 <div class="col-12 col-md-4 mb-4">
-                                                    <small class="d-md-none fw-bold">عنوان:</small>
+                                                    <small class="d-md-none font-vazir-bold-fd">عنوان:</small>
                                                     <span class="pt-1">
                                                         <span class="product-price">{{ item.message|truncatewords:5 }}</span>
                                                     </span>
                                                 </div>
                                                 <div class="col-12 col-md-2 mb-4">
-                                                    <small class="d-md-none fw-bold">تاریخ:</small>
+                                                    <small class="d-md-none font-vazir-bold-fd">تاریخ:</small>
                                                     <div class="pt-1">
                                                         <span class="product-price">
                                                             {{ item.created_jalali.day }}
@@ -178,7 +183,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-2 pl-4 pr-0 pr-md-3 mb-4">
-                                                    <small class="d-md-none fw-bold">
+                                                    <small class="d-md-none font-vazir-bold-fd">
                                                         وضعیت پرداخت:
                                                     </small>
                                                     <span class="pt-1">
@@ -190,7 +195,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="col-6 col-md-2 pr-0 mb-2">
-                                                    <small class="d-md-none fw-bold">
+                                                    <small class="d-md-none font-vazir-bold-fd">
                                                         جمع کل:
                                                     </small>
                                                     <div class="pt-1 pr-2 bg-light mb-3">
@@ -199,7 +204,7 @@
                                                     </div>
                                                     <a
                                                             href="{% url 'account:user-order-detail' item.id %}"
-                                                            class="product-remove btn-remove-from-basket text-primary"
+                                                            class="product-remove btn-remove-from-basket text-primary disabled-print"
                                                             style="cursor: pointer"
                                                     >
                                                         <div class="small pl-2">
@@ -218,7 +223,7 @@
                                         <div class="row">
                                             {% for transaction in project.transactions.all %}
                                                 <div class="col-md-4 mb-3" style="font-size: 0.98rem">
-                                                    <div class="card box-shadow">
+                                                    <div class="card box-shadow disabled-shadow">
                                                         <div class="card-header">
                                                             <p class="h6">{{ transaction.summary }}</p>
                                                         </div>

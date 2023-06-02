@@ -65,7 +65,7 @@ class ProjectAdmin(ExportActionMixin, admin.ModelAdmin):
 
 
 @admin.register(Invoice)
-class InvoiceAdmin(admin.ModelAdmin):
+class InvoiceAdmin(ExportActionMixin, admin.ModelAdmin):
     inlines = [
         InvoiceDetailInline,
         ProjectTransactionInline
