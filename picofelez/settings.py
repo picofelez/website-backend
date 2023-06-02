@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_filters',
     'ckeditor',
     'ckeditor_uploader',
+    'import_export',
 
     # local apps
     'account',

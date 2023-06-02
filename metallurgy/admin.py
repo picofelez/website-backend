@@ -7,6 +7,7 @@ from .models import (
     InvoiceDetail,
     ProjectTransaction
 )
+from import_export.admin import ExportActionMixin
 
 
 # Register your models here.
@@ -50,7 +51,7 @@ class WorkSampleImageAdmin(admin.ModelAdmin):
 
 
 @admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(ExportActionMixin, admin.ModelAdmin):
     list_filter = ('accessibility_status', 'created')
     list_display = ('name', 'get_total_expenses', 'get_total_expenses_paid', 'accessibility_status', 'is_paid')
     list_editable = ('accessibility_status',)
