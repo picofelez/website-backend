@@ -26,7 +26,7 @@ class ProductFilter(django_filters.FilterSet):
         if value == '-time':
             return queryset.order_by('-created')
         elif value == '-hits':
-            print('پربازدیدترین')
+            return queryset
         elif value == 'price':
             return queryset.filter(stock__gt=1).order_by('price')
         elif value == '-price':
