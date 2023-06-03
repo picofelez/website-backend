@@ -93,6 +93,36 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-content" data-select2-id="select2-data-139-z1s1">
+                <div class="d-flex flex-column gap-7 gap-lg-10">
+                    <!--begin::عمومی options-->
+                    <div class="card card-flush py-4">
+                        <!--begin::Card header-->
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h3>آخرین تغییرات قیمت</h3>
+                            </div>
+                        </div>
+                        <!--end::Card header-->
+                        <!--begin::Card body-->
+                        <div class="card-body pt-1">
+                            <!--begin::Input group-->
+                            <div class="mb-10 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
+                                {% for price_history in product.price_histories.all|dictsortreversed:"created" %}
+                                    <div class="border-bottom py-5">
+                                        <p class="h6">
+                                            {{ price_history.created_jalali }} ({{ price_history.created }})
+                                            - {{ price_history.price|intcomma:False }} تومان
+                                        </p>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        <!--end::Card header-->
+                    </div>
+                </div>
+            </div>
         </div>
         <!--end::Main column-->
         <div></div>
