@@ -281,8 +281,9 @@ class ShopUpdateProductPriceView(ShopPanelAccessMixin, UpdateView):
     fields = ('price',)
 
     def get_success_url(self):
-        return reverse_lazy('shop:shop-panel-products', args=[
-            self.shop.unique_uuid
+        return reverse_lazy('shop:shop-panel-products-update-price', args=[
+            self.shop.unique_uuid,
+            self.get_object().id
         ])
 
     def form_valid(self, form):

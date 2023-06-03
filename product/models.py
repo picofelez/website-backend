@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.html import format_html
 
-from extensions.utils import upload_product_image_path, generate_product_id
+from extensions.utils import upload_product_image_path, generate_product_id, jalali_converter
 from product.managers import PublishedProductsManager
 from shop.models import Shop
 
@@ -120,6 +120,9 @@ class PriceHistory(models.Model):
     class Meta:
         verbose_name = 'تغیر قیمت'
         verbose_name_plural = '4. تغییرات قیمت'
+
+    def created_jalali(self):
+        return jalali_converter(self.created)
 
     def __str__(self):
         return f"{self.product.title} - {self.price:,}"

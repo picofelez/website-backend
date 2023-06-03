@@ -298,6 +298,7 @@
                                                     </div>
                                                 {% endif %}
 
+
                                                 <div class="col-md-12 mb-2">
                                                     <button class="btn btn-outline-success">ارسال نظر</button>
                                                 </div>
@@ -326,7 +327,8 @@
 {% block meta_js_codes %}
     <script src="{% static 'site_statics/js/chart.min.js' %}"></script>
     <script>
-        const labels = ["1401/02/02", "1401/02/03", "1401/02/04", "1401/02/05", "1401/02/06", "1401/02/07"];
+        console.log({{ price_labels|safe }})
+        const labels = {{ price_labels|safe }};
 
         const data = {
             labels: labels,
@@ -335,7 +337,7 @@
                     label: "تغییرات قیمت",
                     backgroundColor: "#6400ff",
                     borderColor: "#6400ff",
-                    data: [23000, 23500, 24500, 23265, 21015, 23145, 23145],
+                    data: {{ price_data }},
                 },
             ],
         };

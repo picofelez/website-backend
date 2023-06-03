@@ -44,6 +44,12 @@ class ProductDetailView(FormMixin, DetailView):
         else:
             return self.form_invalid(form)
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
+        context['price_data'] = [price.price for price in self.get_object().price_histories.all()]
+        context['price_labels'] = [price.created_jalali() for price in self.get_object().price_histories.all()]
+        return context
+
     def get_success_url(self):
         return reverse_lazy('product:product-detail', args=[self.get_object().id])
 
