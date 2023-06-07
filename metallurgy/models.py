@@ -156,6 +156,7 @@ class InvoiceDetail(models.Model):
     )
     name = models.CharField(max_length=75, verbose_name='نام')
     quantity = models.BigIntegerField(default=1, verbose_name='مقدار')
+    quantity_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='واحد')
     amount = models.BigIntegerField(verbose_name='قیمت')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
