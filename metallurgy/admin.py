@@ -55,7 +55,7 @@ class ProjectAdmin(ExportActionMixin, admin.ModelAdmin):
     list_filter = ('accessibility_status', 'created')
     list_display = ('name', 'get_total_expenses', 'get_total_expenses_paid', 'accessibility_status', 'is_paid')
     list_editable = ('accessibility_status',)
-    search_fields = ('name', 'description',)
+    search_fields = ('name', 'description', 'customers__last_name')
     filter_horizontal = ('customers', 'metal_orders')
     inlines = [
         InvoiceInline,
