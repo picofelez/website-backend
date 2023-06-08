@@ -30,6 +30,9 @@ class WorkSample(models.Model):
     def get_name_replace(self):
         return f"{self.title.replace(' ', '-')}"
 
+    def get_absolute_url(self):
+        return reverse('metallurgy:work-sample-detail', args=[self.id, self.get_name_replace()])
+
     def __str__(self):
         return f"{self.title}"
 
@@ -106,6 +109,16 @@ class Project(models.Model):
 
     get_total_expenses_paid.short_description = 'مجموع فاکتور های پرداخت شده'
 
+    def get_project_status(self):
+        """
+        True means working,
+        False means finished.
+        """
+        now_date = timezone.now().date()
+        if self.end_date and self.end_date >= now_date:
+            return True
+        return False
+
     def get_absolute_url(self):
         return reverse('metallurgy:customer-project-detail', args=[self.id])
 
@@ -145,6 +158,9 @@ class Invoice(models.Model):
         for invoice_detail in self.invoice_details.all():
             total += invoice_detail.get_total_price()
         return total
+
+    def get_absolute_url(self):
+        return reverse('metallurgy:customer-invoice-detail', args=[self.id])
 
     def __str__(self):
         return f"{self.project.name} | {self.get_total_invoice_price():,} تومان"
@@ -210,6 +226,9 @@ class ProjectTransaction(models.Model):
         if self.date:
             return jalali_converter(self.date)
         return None
+
+    def get_absolute_url(self):
+        return reverse('metallurgy:customer-project-detail', args=[self.project.id])
 
     def __str__(self):
         return f"{self.summary} - {self.date_jalali()}"

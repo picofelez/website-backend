@@ -18,7 +18,13 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h6 class="font-vazir-bold-fd">
                                         {{ project.name }}
-                                        <span class="badge bg-primary">وضعیت: درحال کار</span>
+                                        {% if project.end_date %}
+                                           {% if project.get_project_status %}
+                                            <span class="badge bg-primary">وضعیت: درحال کار</span>
+                                               {% else %}
+                                            <span class="badge bg-primary">وضعیت: به اتمام رسیده</span>
+                                           {% endif %}
+                                        {% endif %}
                                     </h6>
                                     <button class="btn btn-outline-success disabled-print" onclick="print()">
                                         پرینت
