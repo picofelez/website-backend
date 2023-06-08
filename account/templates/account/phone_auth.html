@@ -58,10 +58,18 @@
                                         <p>با عضویت در پیکوفلز از همه امکانات سایت بهره مند شوید.</p>
                                     {% endif %}
 
+                                    {% if request.GET.next %}
+                                        <div class="alert alert-success mt-4 mb-2">
+                                            <p class="mb-0">
+                                                لطفا ابتدا وارد حساب خود شوید.
+                                            </p>
+                                        </div>
+                                    {% endif %}
+
                                     <form method="post">
                                         {% csrf_token %}
                                         <div class="row">
-                                            <div class="col-12 mt-2">
+                                            <div class="col-12 mt-3 mb-2">
                                                 <label for="{{ form.phone_number.id_for_label }}"
                                                        class="font-vazir-bold-fd">
                                                     {{ form.phone_number.label }}
@@ -86,7 +94,7 @@
                                                     {% endfor %}
                                                 </ul>
                                             </div>
-                                            <div class="col-12 mb-2">
+                                            <div class="col-12 mb-3">
                                                 <button type="submit" class="btn btn-purple">
                                                     دریافت کد
                                                 </button>
