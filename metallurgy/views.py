@@ -2,7 +2,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.generic import DetailView, ListView
+from django_filters.views import FilterView
 
+from metallurgy.filters import WorkSampleFilter
 from metallurgy.mixins import CustomerProjectAccessMixin, CustomerInvoiceAccessMixin
 from metallurgy.models import WorkSample, Project, Invoice
 
@@ -11,12 +13,19 @@ from metallurgy.models import WorkSample, Project, Invoice
 
 
 def metallurgy_landing_view(request):
-    portfolio = WorkSample.objects.filter(status='p', publish_time__lte=timezone.now())
+    portfolio = WorkSample.objects.filter(status='p', publish_time__lte=timezone.now())[:3]
 
     context = {
         'portfolio': portfolio
     }
     return render(request, 'metallurgy/abdi_metal_landing.html', context)
+
+
+class WorkSampleListView(FilterView):
+    queryset = WorkSample.objects.filter(status='p', publish_time__lte=timezone.now())
+    template_name = 'metallurgy/work_sample_list.html'
+    paginate_by = 15
+    filterset_class = WorkSampleFilter
 
 
 class WorkSampleDetailView(DetailView):

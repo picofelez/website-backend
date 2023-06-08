@@ -1,0 +1,82 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    پیکوفلز | نمونه کارها - گروه فلزکاری برادران عبدی
+{% endblock %}
+
+{% block meta_tags %}
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url"
+          content="https://picofelez.ir/metallurgy/portfolio/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پیکوفلز | نمونه کارها - گروه فلزکاری برادران عبدی">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:domain" content="picofelez.ir">
+    <meta property="twitter:url"
+          content="https://picofelez.ir/metallurgy/portfolio/{{ object.pk }}/{{ object.get_name_replace }}">
+    <meta name="twitter:title" content="پیکوفلز | فلزکاری برادران عبدی">
+
+    <meta name="keywords"
+          content="فلزکاری برادران عبدی ، فلزکاری ، جوشکاری ، آهن ، عبدی ، فلزکاری حکمت ، سازه های فولادی ، ">
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="portfolio-page">
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="title font-vazir-bold-fd">
+                                        نمونه کارها
+                                    </h4>
+                                </div>
+                                <div class="col-12 col-md-5 my-4">
+                                    <form action="{% url 'metallurgy:work-sample-list' %}" method="get">
+                                        <label for="search">جستجوی نمونه کار:</label>
+                                        <div class="d-flex justify-content-around align-items-center mt-2">
+                                            <input type="text" name="search" value="{{ request.GET.search }}"
+                                                   placeholder="جستجو نمونه کار" class="form-control">
+                                            <button type="submit" class="btn btn- btn-outline-success ms-1">
+{#                                                <i class="fas fa-search"></i>#}
+                                                جستجو
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-12"></div>
+
+                                {% for worksample in page_obj %}
+                                    <section class="col-lg-4 col-md-6 col-12 mb-3">
+                                        <div class="portfolio-card text-decoration-none">
+                                            <div class="portfolio-header">
+                                                <img src="{{ worksample.image.url }}" alt="{{ worksample.title }}">
+                                            </div>
+                                            <div class="portfolio-body">
+                                                <h4 class="portfolio-title mb-3">{{ worksample.title }}</h4>
+                                                <p class="portfolio-text mb-3">{{ worksample.description|truncatewords:8 }}</p>
+                                                <a href="{% url 'metallurgy:work-sample-detail' worksample.pk worksample.get_name_replace %}"
+                                                   class="btn btn-warning mb-3 rounded-0">مشاهده نمونه کار</a>
+                                            </div>
+                                        </div>
+                                    </section>
+                                {% endfor %}
+
+                                <div class="col-12 my-2">
+                                    {% include 'core/components/paginate_component.html' %}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

@@ -4,12 +4,14 @@ from .views import (
     WorkSampleDetailView,
     CustomerProjectsListView,
     CustomerProjectDetailView,
-    CustomerInvoiceDetailView
+    CustomerInvoiceDetailView,
+    WorkSampleListView
 )
 
 app_name = 'metallurgy'
 urlpatterns = [
     path('', metallurgy_landing_view, name='landing'),
+    path('portfolio/', WorkSampleListView.as_view(), name='work-sample-list'),
     path('portfolio/<int:pk>/<str:title>', WorkSampleDetailView.as_view(), name='work-sample-detail'),
 
     path('customer/projects/', CustomerProjectsListView.as_view(), name='customer-project-list'),

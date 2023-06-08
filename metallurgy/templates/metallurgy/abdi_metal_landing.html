@@ -45,7 +45,10 @@
                         آنلاین صورتحساب های
                         خودرا مشاهده کنند ، پروژه را پیگیری کنند و از خدمات آنلاین ما بهرهمند شوند.
                     </p>
-                    <a href="{% if request.user.is_authenticated %}{% url 'metallurgy:customer-project-list' %}{% else %}{% url 'account:otp-login' %}?next=/metallurgy/customer/projects/{% endif %}" class="btn btn-warning mb-3 rounded-0"> ورود به پنل مشتریان</a>
+                    <a href="
+
+                            {% if request.user.is_authenticated %}{% url 'metallurgy:customer-project-list' %}{% else %}{% url 'account:otp-login' %}?next=/metallurgy/customer/projects/{% endif %}"
+                       class="btn btn-warning mb-3 rounded-0"> ورود به پنل مشتریان</a>
                 </section>
             </section>
 
@@ -68,13 +71,18 @@
                                             </div>
                                             <div class="portfolio-body">
                                                 <h4 class="portfolio-title mb-3">{{ worksample.title }}</h4>
-                                                <p class="portfolio-text mb-3">{{ worksample.description|truncatewords:12 }}</p>
+                                                <p class="portfolio-text mb-3">{{ worksample.description|truncatewords:8 }}</p>
                                                 <a href="{% url 'metallurgy:work-sample-detail' worksample.pk worksample.get_name_replace %}"
                                                    class="btn btn-warning mb-3 rounded-0">مشاهده نمونه کار</a>
                                             </div>
                                         </div>
                                     </section>
                                 {% endfor %}
+                                <div class="col-12 my-2">
+                                    <a href="{% url 'metallurgy:work-sample-list' %}" class="btn btn-purple">
+                                        همه نمونه کارها
+                                    </a>
+                                </div>
 
                             </div>
                         </div>
@@ -93,7 +101,10 @@
                         آنلاین صورتحساب های
                         خودرا مشاهده کنند ، پروژه را پیگیری کنند و از خدمات آنلاین ما بهرهمند شوند.
                     </p>
-                    <a href="{% if request.user.is_authenticated %}{% url 'metallurgy:customer-project-list' %}{% else %}{% url 'account:otp-login' %}?next=/metallurgy/customer/projects/{% endif %}" class="btn btn-warning rounded-0">ورود به پنل مشتریان</a>
+                    <a href="
+
+                            {% if request.user.is_authenticated %}{% url 'metallurgy:customer-project-list' %}{% else %}{% url 'account:otp-login' %}?next=/metallurgy/customer/projects/{% endif %}"
+                       class="btn btn-warning rounded-0">ورود به پنل مشتریان</a>
                 </section>
             </section>
 
