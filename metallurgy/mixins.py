@@ -1,4 +1,6 @@
 from django.http import Http404
+from django.shortcuts import redirect
+from django.urls import reverse
 
 
 class CustomerProjectAccessMixin:
@@ -7,7 +9,9 @@ class CustomerProjectAccessMixin:
                 request.user in self.get_object().customers.all() or request.user.is_superuser
         ):
             return super().dispatch(request, *args, **kwargs)
-        raise Http404
+        return redirect(
+            f"{reverse('account:otp-login')}?next={reverse('metallurgy:customer-project-detail', args=[self.get_object().id])}"
+        )
 
 
 class CustomerInvoiceAccessMixin:
@@ -16,4 +20,6 @@ class CustomerInvoiceAccessMixin:
                 request.user in self.get_object().project.customers.all() or request.user.is_superuser
         ):
             return super().dispatch(request, *args, **kwargs)
-        raise Http404
+        return redirect(
+            f"{reverse('account:otp-login')}?next={reverse('metallurgy:customer-invoice-detail', args=[self.get_object().id])}"
+        )
