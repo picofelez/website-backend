@@ -66,6 +66,10 @@ class ProjectAdmin(ExportActionMixin, admin.ModelAdmin):
 
 @admin.register(Invoice)
 class InvoiceAdmin(ExportActionMixin, admin.ModelAdmin):
+    list_filter = ('date', 'is_paid', 'accessibility_status')
+    list_display = ('__str__', 'get_humanized_invoice_price', 'is_paid')
+    search_fields = ('description', 'project__name', 'project__customers__last_name')
+
     inlines = [
         InvoiceDetailInline,
         ProjectTransactionInline

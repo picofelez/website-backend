@@ -159,6 +159,11 @@ class Invoice(models.Model):
             total += invoice_detail.get_total_price()
         return total
 
+    def get_humanized_invoice_price(self):
+        return f"{self.get_total_invoice_price():,} تومان"
+
+    get_humanized_invoice_price.short_description = 'جمع کل'
+
     def get_absolute_url(self):
         return reverse('metallurgy:customer-invoice-detail', args=[self.id])
 
