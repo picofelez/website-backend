@@ -15,17 +15,15 @@
                     <div class="col-12 col-md-12 mb-2">
                         <div class="rounded-card">
                             <div class="abdi-metal-project-detail">
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div class="py-1">
                                     <h6>
                                     <span class="font-vazir-bold-fd">
                                     درباره فاکتور :
                                     </span>
                                         {{ object.description }}
                                     </h6>
-                                    <button class="btn btn-outline-success disabled-print" onclick="print()">
-                                        پرینت
-                                    </button>
                                 </div>
+
                                 <hr>
                                 <div class="row">
                                     <div class="col-12 mb-3">
@@ -112,6 +110,13 @@
                                                 {{ object.get_total_invoice_price|intcomma:False }} تومان
                                             </li>
                                         </ul>
+                                    </div>
+
+                                    <div class="col-12 mb-3">
+                                        <button class="btn btn-outline-success disabled-print mt-3 mt-md-0"
+                                                onclick="print()">
+                                            دانلود pdf
+                                        </button>
                                     </div>
 
                                 </div>
