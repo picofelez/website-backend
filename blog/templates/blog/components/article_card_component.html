@@ -6,7 +6,7 @@
         <div class="article-media">
             <a href="{% url 'blog:blog-detail' article.pk %}"
                class="article-img">
-                <img src="{{ article.image.url }}" alt="{{ article.title }}"/>
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" loading="lazy"/>
             </a>
             <div class="article-calender">
                 <span class="article-date">{{ article.published_jalali_dict.day }}</span>
