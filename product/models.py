@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 from django.utils.html import format_html
 
 from extensions.utils import upload_product_image_path, generate_product_id, jalali_converter
@@ -80,6 +81,9 @@ class Product(models.Model):
         return f"{self.price:,}"
 
     get_price.short_description = 'قیمت'
+
+    def get_absolute_url(self):
+        return reverse('product:product-detail', args=[self.id])
 
     def __str__(self):
         return f"{self.title} - {self.shop}"

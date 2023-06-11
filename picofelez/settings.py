@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 
     # third-party packages
     'widget_tweaks',
@@ -180,3 +182,5 @@ X_FRAME_OPTIONS = "SAMEORIGIN"
 SMS_PANEL_BASE_API = config('SMS_PANEL_BASE_API')
 SMS_ORIGINATOR = config('SMS_ORIGINATOR')
 SMS_PANEL_ACCESS_KEY = config('SMS_PANEL_ACCESS_KEY')
+
+SITE_ID = 1

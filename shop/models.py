@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.urls import reverse
 from django.utils.html import format_html
 
 from account.models import User
@@ -58,6 +59,9 @@ class Shop(models.Model):
         return format_html(f"<img width=100 height=75 style='border-radius: 5px;' src='{self.image.url}'>")
 
     get_thumbnail.short_description = "تصویر فروشگاه"
+
+    def get_absolute_url(self):
+        return reverse('shop:shop-detail', args=[self.slug])
 
     def __str__(self):
         return self.title
