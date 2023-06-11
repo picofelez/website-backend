@@ -98,14 +98,14 @@ WSGI_APPLICATION = 'picofelez.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if config('DEBUG'):
+if config('DEBUG') == 'True':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-else:
+elif config('DEBUG') == 'False':
     DATABASES = {
         'default': {
             'ENGINE': config('DATABASE_ENGINE'),
