@@ -637,7 +637,7 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
 
 .portfolio-header img {
     width: 100%;
-    height: 216px;
+    height: 240px;
 }
 
 .portfolio-body {
@@ -771,7 +771,7 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
 
 /* worksample */
 .worksample-img {
-    height: 30rem;
+    height: 40rem;
     border-radius: 0.5rem;
 }
 
@@ -847,7 +847,7 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
 
     /* worksample */
     .worksample-img {
-        height: 20rem;
+        height: 15rem;
     }
 }
 

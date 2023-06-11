@@ -43,7 +43,6 @@
                                             <input type="text" name="search" value="{{ request.GET.search }}"
                                                    placeholder="جستجو نمونه کار" class="form-control">
                                             <button type="submit" class="btn btn- btn-outline-success ms-1">
-{#                                                <i class="fas fa-search"></i>#}
                                                 جستجو
                                             </button>
                                         </div>
@@ -58,7 +57,7 @@
                                                 <img src="{{ worksample.image.url }}" alt="{{ worksample.title }}" loading="lazy">
                                             </div>
                                             <div class="portfolio-body">
-                                                <h4 class="portfolio-title mb-3">{{ worksample.title }}</h4>
+                                                <h4 class="portfolio-title mb-0">{{ worksample.title }}</h4>
                                                 <p class="portfolio-text mb-3">{{ worksample.description|truncatewords:8 }}</p>
                                                 <a href="{% url 'metallurgy:work-sample-detail' worksample.pk worksample.get_name_replace %}"
                                                    class="btn btn-warning mb-3 rounded-0">مشاهده نمونه کار</a>
