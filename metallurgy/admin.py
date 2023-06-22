@@ -10,7 +10,7 @@ from .models import (
 from import_export.admin import ExportActionMixin, ImportExportModelAdmin
 
 # Register your models here.
-from .resources import ProjectResources
+from .resources import ProjectResources, InvoiceResource, InvoiceDetailResource
 
 
 class WorkSampleImageInline(admin.TabularInline):
@@ -71,10 +71,13 @@ class ProjectAdmin(ImportExportModelAdmin):
 
 
 @admin.register(Invoice)
-class InvoiceAdmin(ExportActionMixin, admin.ModelAdmin):
+class InvoiceAdmin(ImportExportModelAdmin):
     list_filter = ('date', 'is_paid', 'accessibility_status')
     list_display = ('__str__', 'get_humanized_invoice_price', 'is_paid')
     search_fields = ('description', 'project__name', 'project__customers__last_name')
+
+    # resources
+    resource_classes = [InvoiceResource]
 
     inlines = [
         InvoiceDetailInline,
@@ -83,8 +86,9 @@ class InvoiceAdmin(ExportActionMixin, admin.ModelAdmin):
 
 
 @admin.register(InvoiceDetail)
-class InvoiceDetailAdmin(admin.ModelAdmin):
-    pass
+class InvoiceDetailAdmin(ImportExportModelAdmin):
+    # resources
+    resource_classes = [InvoiceDetailResource]
 
 
 @admin.register(ProjectTransaction)
