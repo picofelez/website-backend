@@ -7,10 +7,12 @@ from .models import (
     InvoiceDetail,
     ProjectTransaction
 )
-from import_export.admin import ExportActionMixin
-
+from import_export.admin import ExportActionMixin, ImportExportModelAdmin
 
 # Register your models here.
+from .resources import ProjectResources
+
+
 class WorkSampleImageInline(admin.TabularInline):
     model = WorkSampleImage
     extra = 0
@@ -51,12 +53,16 @@ class WorkSampleImageAdmin(admin.ModelAdmin):
 
 
 @admin.register(Project)
-class ProjectAdmin(ExportActionMixin, admin.ModelAdmin):
+class ProjectAdmin(ImportExportModelAdmin):
     list_filter = ('accessibility_status', 'created')
     list_display = ('name', 'get_total_expenses', 'get_total_expenses_paid', 'accessibility_status', 'is_paid')
     list_editable = ('accessibility_status',)
     search_fields = ('name', 'description', 'customers__last_name')
     filter_horizontal = ('customers', 'metal_orders')
+
+    # resources
+    resource_classes = [ProjectResources]
+
     inlines = [
         InvoiceInline,
         MetalOrderInline,
