@@ -6,7 +6,7 @@ from django.urls import reverse
 class CustomerProjectAccessMixin:
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated and (
-                request.user in self.get_object().customers.all() or request.user.is_superuser
+                request.user in self.get_object().customers.all() or request.user.is_staff
         ):
             return super().dispatch(request, *args, **kwargs)
         return redirect(
@@ -17,7 +17,7 @@ class CustomerProjectAccessMixin:
 class CustomerInvoiceAccessMixin:
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated and (
-                request.user in self.get_object().project.customers.all() or request.user.is_superuser
+                request.user in self.get_object().project.customers.all() or request.user.is_staff
         ):
             return super().dispatch(request, *args, **kwargs)
         return redirect(
