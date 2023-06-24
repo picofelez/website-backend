@@ -168,7 +168,7 @@ class Invoice(models.Model):
         return reverse('metallurgy:customer-invoice-detail', args=[self.id])
 
     def __str__(self):
-        return f"{self.project.name} | {self.get_total_invoice_price():,} تومان"
+        return f"{self.description} | {self.get_total_invoice_price():,} تومان"
 
 
 class InvoiceDetail(models.Model):
