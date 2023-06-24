@@ -23,8 +23,8 @@ class ProjectResources(resources.ModelResource):
 
 class InvoiceResource(resources.ModelResource):
     project_name = fields.Field(
-        column_name='project',
-        attribute='project',
+        column_name='project_name',
+        attribute='project_name',
         widget=widgets.ForeignKeyWidget(Project, field='name')
     )
 
@@ -34,7 +34,7 @@ class InvoiceResource(resources.ModelResource):
             'id', 'date', 'project', 'description', 'is_paid', 'accessibility_status'
         )
         export_order = (
-            'id', 'date', 'project_name', 'description', 'is_paid', 'accessibility_status'
+            'id', 'date', 'project', 'project_name', 'description', 'is_paid', 'accessibility_status'
         )
 
 
