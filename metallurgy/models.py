@@ -7,6 +7,7 @@ from account.models import User
 # Create your models here.
 from cart.models import Order
 from extensions.utils import jalali_converter
+from django_jalali.db import models as jmodels
 
 
 class WorkSample(models.Model):
@@ -127,7 +128,7 @@ class Project(models.Model):
 
 
 class Invoice(models.Model):
-    date = models.DateField(null=True, blank=True, verbose_name='تاریخ')
+    date = jmodels.jDateField(null=True, blank=True, verbose_name='تاریخ')
     project = models.ForeignKey(
         Project,
         related_name='invoices',
@@ -147,11 +148,6 @@ class Invoice(models.Model):
     class Meta:
         verbose_name = 'فاکتور'
         verbose_name_plural = '4. فاکتور ها'
-
-    def date_jalali(self):
-        if self.date:
-            return jalali_converter(self.date)
-        return None
 
     def get_total_invoice_price(self):
         total = 0

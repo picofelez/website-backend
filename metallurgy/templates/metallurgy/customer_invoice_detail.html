@@ -37,8 +37,10 @@
                                             </li>
                                             <li>
                                                 <span>تاریخ ثبت فاکتور:</span>
-                                                {% if object.date_jalali %}
-                                                    {{ object.date_jalali }}
+                                                {% if object.date %}
+                                                    <span dir="rtl">
+                                                    {{ object.date }}
+                                                    </span>
                                                 {% else %}
                                                     نامشخص
                                                 {% endif %}
