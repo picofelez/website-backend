@@ -150,7 +150,10 @@
 .product .product-img {
     width: auto;
     max-width: 100%;
-    height: 200px;
+    display: block;
+    margin: 8px auto;
+    border-radius: 0.5rem;
+    height: 170px;
     border-bottom: 2px solid #ededed;
     transition: all 1s ease-out;
 }
@@ -206,10 +209,11 @@
 .store .store-img {
     width: auto;
     max-width: 100%;
-    height: 210px;
-    border-bottom: 2px solid #ededed;
+    display: block;
+    margin: 8px auto;
+    border-radius: 0.5rem;
+    height: 170px;
     transition: all 1s ease-out;
-    border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .store .store-name {
