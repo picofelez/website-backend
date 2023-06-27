@@ -57,7 +57,7 @@
                                             </li>
                                             <li>
                                                 <span>تاریخ پایان پروژه:</span>
-                                                {% if project.end_date%}
+                                                {% if project.end_date %}
                                                     <span dir="rtl">
                                                     {{ project.end_date }}
                                                     </span>
@@ -98,52 +98,54 @@
                                         <hr>
 
                                         {% for item in project.invoices.all %}
-                                            <div class="row">
-                                                <div class="col-12 col-md-4 mb-4">
-                                                    <small class="d-md-none font-vazir-bold-fd">عنوان:</small>
-                                                    <span class="pt-1">
+                                            {% if item.accessibility_status == 'c' %}
+                                                <div class="row">
+                                                    <div class="col-12 col-md-4 mb-4">
+                                                        <small class="d-md-none font-vazir-bold-fd">عنوان:</small>
+                                                        <span class="pt-1">
                                                         <span class="product-price">{{ item.description }}</span>
                                                     </span>
-                                                </div>
-                                                <div class="col-12 col-md-2 mb-4">
-                                                    <small class="d-md-none font-vazir-bold-fd">تاریخ:</small>
-                                                    <span class="pt-1">
+                                                    </div>
+                                                    <div class="col-12 col-md-2 mb-4">
+                                                        <small class="d-md-none font-vazir-bold-fd">تاریخ:</small>
+                                                        <span class="pt-1">
                                                         <span class="product-price">{{ item.date }}</span>
                                                     </span>
-                                                </div>
-                                                <div class="col-12 col-md-2 pl-4 pr-0 pr-md-3 mb-4">
-                                                    <small class="d-md-none font-vazir-bold-fd">
-                                                        وضعیت پرداخت:
-                                                    </small>
-                                                    <span class="pt-1">
+                                                    </div>
+                                                    <div class="col-12 col-md-2 pl-4 pr-0 pr-md-3 mb-4">
+                                                        <small class="d-md-none font-vazir-bold-fd">
+                                                            وضعیت پرداخت:
+                                                        </small>
+                                                        <span class="pt-1">
                                                         {% if item.is_paid %}
                                                             <span class="badge bg-success">پرداخت شده</span>
                                                         {% else %}
                                                             <span class="badge bg-danger">پرداخت نشده</span>
                                                         {% endif %}
                                                     </span>
-                                                </div>
-                                                <div class="col-6 col-md-2 pr-0 mb-2">
-                                                    <small class="d-md-none font-vazir-bold-fd">
-                                                        جمع کل:
-                                                    </small>
-                                                    <div class="pt-1 pr-2 bg-light mb-3">
-                                                        <span class="product-total">{{ item.get_total_invoice_price|intcomma:False }}</span>
-                                                        <span>تومان</span>
                                                     </div>
-                                                    <a
-                                                            href="{% url 'metallurgy:customer-invoice-detail' item.pk %}"
-                                                            class="product-remove btn-remove-from-basket text-primary disabled-print"
-                                                            style="cursor: pointer"
-                                                    >
-                                                        <div class="small pl-2">
-                                                            <i class="fas fa-eye"></i>
-                                                            مشاهده
+                                                    <div class="col-6 col-md-2 pr-0 mb-2">
+                                                        <small class="d-md-none font-vazir-bold-fd">
+                                                            جمع کل:
+                                                        </small>
+                                                        <div class="pt-1 pr-2 bg-light mb-3">
+                                                            <span class="product-total">{{ item.get_total_invoice_price|intcomma:False }}</span>
+                                                            <span>تومان</span>
                                                         </div>
-                                                    </a>
+                                                        <a
+                                                                href="{% url 'metallurgy:customer-invoice-detail' item.pk %}"
+                                                                class="product-remove btn-remove-from-basket text-primary disabled-print"
+                                                                style="cursor: pointer"
+                                                        >
+                                                            <div class="small pl-2">
+                                                                <i class="fas fa-eye"></i>
+                                                                مشاهده
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <hr/>
+                                                <hr/>
+                                            {% endif %}
                                         {% empty %}
                                             <div class="alert alert-secondary">
                                                 فاکتوری برای این پروژه ثبت نشده.
@@ -236,48 +238,52 @@
                                         </div>
                                     {% endif %}
 
-                                    <div class="col-12">
-                                        <p class="font-vazir-bold-fd mb-4 h5 title">تراکنش ها</p>
-                                        <div class="row">
-                                            {% for transaction in project.transactions.all %}
-                                                <div class="col-md-4 mb-3" style="font-size: 0.98rem">
-                                                    <div class="card box-shadow disabled-shadow">
-                                                        <div class="card-header">
-                                                            <p class="h6">{{ transaction.summary }}</p>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <p>
-                                                                <small class="font-vazir-bold-fd">تاریخ:</small>
-                                                                {{ transaction.date_jalali }}
-                                                            </p>
-                                                            <p>
-                                                                <small class="font-vazir-bold-fd">وضعیت پرداخت:</small>
-                                                                {% if transaction.status == 's' %}
-                                                                    پرداخت موفق
-                                                                    <i class="fas fa-check text-success"></i>
-                                                                {% elif transaction.status == 'uns' %}
-                                                                    پرداخت ناموفق
-                                                                    <i class="fas fa-times text-danger"></i>
-                                                                {% elif transaction.status == 'awp' %}
-                                                                    درانتظار پرداخت
-                                                                    <i class="fas fa-clock text-primary"></i>
-                                                                {% endif %}
-                                                            </p>
-                                                            <p>
-                                                                <small class="font-vazir-bold-fd">جزئیات پرداخت:</small>
-                                                                {{ transaction.description }}
-                                                            </p>
+                                    {% if project.transactions.all %}
+                                        <div class="col-12">
+                                            <p class="font-vazir-bold-fd mb-4 h5 title">تراکنش ها</p>
+                                            <div class="row">
+                                                {% for transaction in project.transactions.all %}
+                                                    <div class="col-md-4 mb-3" style="font-size: 0.98rem">
+                                                        <div class="card box-shadow disabled-shadow">
+                                                            <div class="card-header">
+                                                                <p class="h6">{{ transaction.summary }}</p>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p>
+                                                                    <small class="font-vazir-bold-fd">تاریخ:</small>
+                                                                    {{ transaction.date_jalali }}
+                                                                </p>
+                                                                <p>
+                                                                    <small class="font-vazir-bold-fd">وضعیت
+                                                                        پرداخت:</small>
+                                                                    {% if transaction.status == 's' %}
+                                                                        پرداخت موفق
+                                                                        <i class="fas fa-check text-success"></i>
+                                                                    {% elif transaction.status == 'uns' %}
+                                                                        پرداخت ناموفق
+                                                                        <i class="fas fa-times text-danger"></i>
+                                                                    {% elif transaction.status == 'awp' %}
+                                                                        درانتظار پرداخت
+                                                                        <i class="fas fa-clock text-primary"></i>
+                                                                    {% endif %}
+                                                                </p>
+                                                                <p>
+                                                                    <small class="font-vazir-bold-fd">جزئیات
+                                                                        پرداخت:</small>
+                                                                    {{ transaction.description }}
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            {% empty %}
-                                                <div class="alert alert-secondary">
-                                                    تراکنشی برای این پروژه ثبت نشده.
-                                                </div>
-                                            {% endfor %}
+                                                {% empty %}
+                                                    <div class="alert alert-secondary">
+                                                        تراکنشی برای این پروژه ثبت نشده.
+                                                    </div>
+                                                {% endfor %}
 
+                                            </div>
                                         </div>
-                                    </div>
+                                    {% endif %}
 
                                 </div>
                             </div>
