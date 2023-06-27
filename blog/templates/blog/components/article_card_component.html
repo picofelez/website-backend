@@ -20,8 +20,8 @@
                     برچسب ها:
                     {% for tag in article.tags.all %}
                         <span class="badge bg-secondary">
-                                                                    <a href="{% url 'blog:blog-list' %}?tags={{ tag.id }}">{{ tag }}</a>
-                                                                </span>
+                            <a href="{% url 'blog:blog-list' %}?tags={{ tag.id }}" class="text-white">{{ tag }}</a>
+                        </span>
                     {% endfor %}
                 </li>
             </ul>
