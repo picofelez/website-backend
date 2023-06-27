@@ -49,3 +49,10 @@ class CustomerProjectDetailView(CustomerProjectAccessMixin, DetailView):
 class CustomerInvoiceDetailView(CustomerInvoiceAccessMixin, DetailView):
     model = Invoice
     template_name = 'metallurgy/customer_invoice_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CustomerInvoiceDetailView, self).get_context_data(**kwargs)
+        context['related_invoices'] = Invoice.objects.filter(
+            project=self.get_object().project, accessibility_status='c'
+        ).exclude(id=self.get_object().id)
+        return context

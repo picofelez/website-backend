@@ -125,6 +125,60 @@
                             </div>
                         </div>
                     </div>
+
+                    {% if related_invoices %}
+                        <div class="col-12 my-4">
+                            <p class="font-vazir-bold-fd mb-4 h5 title">فاکتور های مرتبط</p>
+                            <div class="row">
+                                {% for related_invoice in related_invoices %}
+                                    <div class="col-md-6 col-xl-4 mb-3">
+                                        <a href="{% url 'metallurgy:customer-invoice-detail' related_invoice.id %}"
+                                           class="card box-shadow">
+                                            <div class="card-body py-4 px-4">
+                                                <div class="mb-4">
+                                                    <p class="h6 font-vazir-bold-fd">{{ related_invoice.description }}</p>
+                                                    <p class="text-secondary abdi-metal-project-desc">
+                                                        پروژه {{ related_invoice.project.name }}
+                                                    </p>
+                                                </div>
+                                                <div class="abdi-metal-project-meta">
+                                                    <p>
+
+                                                        {{ related_invoice.date }}
+
+                                                        <br>
+                                                        <span>
+                                                تاریخ
+                                            </span>
+                                                    </p>
+                                                    <p>
+                                                        {% if related_invoice.is_paid %}
+                                                            پرداخت شده
+                                                        {% else %}
+                                                            پرداخت نشده
+                                                        {% endif %}
+                                                        <br>
+                                                        <span>
+                                                وضعیت پرداخت
+                                            </span>
+                                                    </p>
+                                                    <p>
+                                                        {{ related_invoice.get_total_invoice_price|intcomma:False }}
+                                                        تومان
+                                                        <br>
+                                                        <span>
+                                                جمع کل
+                                            </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    {% endif %}
                 </section>
             </section>
         </section>
