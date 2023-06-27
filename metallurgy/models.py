@@ -61,8 +61,8 @@ class Project(models.Model):
     customers = models.ManyToManyField(
         User, related_name='metallurgy_projects_user', verbose_name='مشتریان'
     )
-    start_date = models.DateField(null=True, blank=True, verbose_name='تاریخ شروع پروژه')
-    end_date = models.DateField(null=True, blank=True, verbose_name='تاریخ پایان پروژه')
+    start_date = jmodels.jDateField(null=True, blank=True, verbose_name='تاریخ شروع پروژه')
+    end_date = jmodels.jDateField(null=True, blank=True, verbose_name='تاریخ پایان پروژه')
     metal_orders = models.ManyToManyField(
         Order, blank=True, related_name='metallurgy_projects_order', verbose_name='سفارشات آهن'
     )
@@ -77,16 +77,6 @@ class Project(models.Model):
         verbose_name = 'پروژه'
         verbose_name_plural = '3. پروژه ها'
         ordering = ('-created',)
-
-    def start_date_jalali(self):
-        if self.start_date:
-            return jalali_converter(self.start_date)
-        return None
-
-    def end_date_jalali(self):
-        if self.end_date:
-            return jalali_converter(self.end_date)
-        return None
 
     def get_total_expenses(self):
         total = 0

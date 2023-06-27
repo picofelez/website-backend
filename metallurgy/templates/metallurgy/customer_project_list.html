@@ -37,8 +37,8 @@
                                             </div>
                                             <div class="abdi-metal-project-meta">
                                                 <p>
-                                                    {% if project.start_date_jalali %}
-                                                        {{ project.start_date_jalali }}
+                                                    {% if project.start_date %}
+                                                        {{ project.start_date }}
                                                     {% else %}
                                                         نامشخص
                                                     {% endif %}
@@ -48,8 +48,8 @@
                                             </span>
                                                 </p>
                                                 <p>
-                                                    {% if project.end_date_jalali %}
-                                                        {{ project.end_date_jalali }}
+                                                    {% if project.end_date %}
+                                                        {{ project.end_date }}
                                                     {% else %}
                                                         نامشخص
                                                     {% endif %}
