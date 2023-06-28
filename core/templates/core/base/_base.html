@@ -5,19 +5,31 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TX8GF3N1Z1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'G-TX8GF3N1Z1');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-TX8GF3N1Z1');
     </script>
 
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NDDPCGJ');</script>
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NDDPCGJ');</script>
     <!-- End Google Tag Manager -->
 
 
@@ -46,13 +58,14 @@
               content="بازار آنلاین آهن ، خرید آهن ، بازار آهن ، پیکوفلز ، قیمت آهن ، فروش آنلاین آهن ، مارکت پلیس آهن">
     {% endblock %}
     <meta name="author" content="پیکوفلز - بازار آنلاین خرید و فروش آهن">
-    <meta property="og:image" content="{% static 'site_statics/img/logo/forInstagramProfile.jpg' %}">
+    <meta property="og:image" content="https://picofelez.ir/static/site_statics/img/logo/16x16.png">
     <meta property="og:image:width" content="500">
     <meta property="og:image:height" content="300">
-    <meta name="twitter:image" content="{% static 'site_statics/img/logo/forInstagramProfile.jpg' %}">
+    <meta name="twitter:image" content="https://picofelez.ir/static/site_statics/img/logo/16x16.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="shortcut icon" href="{% static 'site_statics/img/logo/16x16.png' %}"/>
+    <link rel="shortcut icon" href="https://picofelez.ir/static/site_statics/img/logo/16x16.png"/>
+    <link href="https://picofelez.ir/static/site_statics/img/logo/16x16.png" type="image/png" rel="icon"/>
     <title>{% block title %}{% endblock %}</title>
     {% include 'core/base/_header_refrences.html' %}
     {% block meta_css_codes %}
@@ -61,8 +74,10 @@
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDDPCGJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDDPCGJ"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 {% include 'core/base/_header.html' %}
