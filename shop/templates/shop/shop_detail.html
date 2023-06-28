@@ -1,17 +1,16 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
 
-{% block title %}
-    پیکوفلز | {{ object.title }}
-{% endblock %}
+{% block title %} پیکوفلز | {{ object.title }}{% endblock %}
 
 {% block meta_tags %}
     <meta property="og:url" content="https://picofelez.ir/{{ object.slug }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="پیکوفلز | {{ object.title }}">
     <meta property="og:description" content="{{ object.about }}">
-    <meta name="description" content="{{ object.about }}">
 
+    <meta name="title" content="پیکوفلز | {{ object.about }}">
+    <meta name="description" content="{{ object.about }}">
     <!-- Twitter Meta Tags -->
     <meta property="twitter:domain" content="picofelez.ir">
     <meta property="twitter:url" content="https://picofelez.ir/{{ object.slug }}">

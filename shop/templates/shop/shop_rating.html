@@ -2,8 +2,24 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block title %}
-    {{ object }} | پیکوفلز
+{% block title %}{{ object.title }} | پیکوفلز{% endblock %}
+
+{% block meta_tags %}
+    <meta property="og:url" content="https://picofelez.ir/{{ object.slug }}/rating">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پیکوفلز | {{ object.title }}">
+    <meta name="og:description" content="به {{ object.title }} امتیاز دهید">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:url" content="https://picofelez.ir/">
+    <meta name="twitter:title" content="پیکوفلز | مرجع آنلاین آهن">
+    <meta name="twitter:description" content="به {{ object.title }} امتیاز دهید">
+
+    <meta name="keywords"
+          content="بازار آنلاین آهن ، خرید آهن ، بازار آهن ، پیکوفلز ، قیمت آهن ، فروش آنلاین آهن ، مارکت پلیس آهن">
+
+    <meta name="title" content="پیکوفلز | {{ object.title }}"/>
+    <meta name="description" content="به {{ object.title }} امتیاز دهید">
 {% endblock %}
 
 {% block content %}
@@ -46,7 +62,8 @@
                                 {% include 'shop/components/shop_profile_component.html' %}
                             </div>
                             <div class="col-12 my-2 col-md-4">
-                                <a href="{% url 'shop:shop-products' shop.slug %}" class="btn btn-purple w-100">محصولات فروشگاه</a>
+                                <a href="{% url 'shop:shop-products' shop.slug %}" class="btn btn-purple w-100">محصولات
+                                    فروشگاه</a>
                             </div>
                             <div class="col-12 my-2 col-md-4">
                                 <a href="{% url 'shop:shop-contact' shop.slug %}" class="btn btn-success w-100">ارتباط
@@ -71,7 +88,8 @@
                                                 {% endfor %}
 
                                             {% else %}
-                                                <p class="font-vazir-bold-fd text-center">نظر شما برای ما اهمیت دارد؛ با دادن امتیاز
+                                                <p class="font-vazir-bold-fd text-center">نظر شما برای ما اهمیت دارد؛ با
+                                                    دادن امتیاز
                                                     به
                                                     فروشگاه ما را در بهبود کیفیت خدمات یاری کنید.</p>
                                             {% endif %}

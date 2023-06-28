@@ -3,9 +3,7 @@
 {% load widget_tweaks %}
 {% load humanize %}
 
-{% block title %}
-    پیکوفلز | فلزکاری عبدی - {{ object.description }}
-{% endblock %}
+{% block title %}    پیکوفلز | فلزکاری عبدی - {{ object.description }}{% endblock %}
 
 {% block content %}
     {% with request.resolver_match.url_name as url_name %}

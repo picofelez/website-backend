@@ -1,8 +1,24 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
-{% block title %}
-    پیکو فلز | با ما آشنا شوید
-{% endblock %}
+{% block title %}پیکوفلز | درباره ما{% endblock %}
+
+{% block meta_tags %}
+        <meta property="og:url" content="https://picofelez.ir/about-us/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="پیکوفلز | ارتباط با ما">
+        <meta name="og:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
+
+        <!-- Twitter Meta Tags -->
+        <meta property="twitter:url" content="https://picofelez.ir/about-us/">
+        <meta name="twitter:title" content="پیکوفلز | ارتباط با ما">
+        <meta name="twitter:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
+
+        <meta name="keywords"
+              content="بازار آنلاین آهن ، خرید آهن ، بازار آهن ، پیکوفلز ، قیمت آهن ، فروش آنلاین آهن ، مارکت پلیس آهن">
+
+        <meta name="title" content="پیکوفلز | ارتباط با ما"/>
+        <meta name="description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
+    {% endblock %}
 
 {% block content %}
     <section class="inner-page" id="about-page">

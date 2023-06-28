@@ -1,8 +1,25 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
-{% block title %}
-    پیکو فلز | سوالات شما
-{% endblock %}
+
+{% block title %}پیکوفلز | سوالات شما{% endblock %}
+
+{% block meta_tags %}
+        <meta property="og:url" content="https://picofelez.ir/faq/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="پیکوفلز | سوالات متداول">
+        <meta name="og:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
+
+        <!-- Twitter Meta Tags -->
+        <meta property="twitter:url" content="https://picofelez.ir/">
+        <meta name="twitter:title" content="پیکوفلز | سوالات متداول">
+        <meta name="twitter:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
+
+        <meta name="keywords"
+              content="بازار آنلاین آهن ، خرید آهن ، بازار آهن ، پیکوفلز ، قیمت آهن ، فروش آنلاین آهن ، مارکت پلیس آهن">
+
+        <meta name="title" content="پیکوفلز | سوالات متداول"/>
+        <meta name="description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
+    {% endblock %}
 
 {% block content %}
     <section class="inner-page" id="faq-page">

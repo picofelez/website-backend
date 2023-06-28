@@ -2,29 +2,30 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block title %}
-    پیکوفلز | {{ object.title }}
-{% endblock %}
+{% block title %} پیکوفلز | {{ object.title }}{% endblock %}
 
 {% block meta_tags %}
     <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://picofelez.ir/metallurgy/portfolio/{{ object.pk }}/{{ object.get_name_replace }}">
+    <meta property="og:url"
+          content="https://picofelez.ir/metallurgy/portfolio/{{ object.pk }}/{{ object.get_name_replace }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="پیکوفلز | {{ object.title }}">
     <meta property="og:description"
           content="{{ object.description }}">
-    <meta property="description"
-          content="{{ object.description }}">
 
     <!-- Twitter Meta Tags -->
     <meta property="twitter:domain" content="picofelez.ir">
-    <meta property="twitter:url" content="https://picofelez.ir/metallurgy/portfolio/{{ object.pk }}/{{ object.get_name_replace }}">
+    <meta property="twitter:url"
+          content="https://picofelez.ir/metallurgy/portfolio/{{ object.pk }}/{{ object.get_name_replace }}">
     <meta name="twitter:title" content="پیکوفلز | فلزکاری برادران عبدی">
     <meta name="twitter:description"
           content="{{ object.description }}">
 
     <meta name="keywords"
           content="فلزکاری برادران عبدی ، فلزکاری ، جوشکاری ، آهن ، عبدی ، فلزکاری حکمت ، سازه های فولادی ، {{ object.title }}">
+
+    <meta name="name" content="پیکوفلز | {{ object.title }}">
+    <meta name="description" content="{{ object.description }}">
 {% endblock %}
 
 {% block content %}

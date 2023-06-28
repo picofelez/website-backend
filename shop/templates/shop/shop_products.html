@@ -1,8 +1,24 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
 
-{% block title %}
-    {{ object }} | پیکوفلز
+{% block title %}{{ object.title }} | پیکوفلز{% endblock %}
+
+{% block meta_tags %}
+    <meta property="og:url" content="https://picofelez.ir/{{ object.slug }}/products">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پیکوفلز | {{ object.title }}">
+    <meta name="og:description" content="محصولات {{ object.title }}">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:url" content="https://picofelez.ir/">
+    <meta name="twitter:title" content="پیکوفلز | مرجع آنلاین آهن">
+    <meta name="twitter:description" content="محصولات {{ object.title }}">
+
+    <meta name="keywords"
+          content="بازار آنلاین آهن ، خرید آهن ، بازار آهن ، پیکوفلز ، قیمت آهن ، فروش آنلاین آهن ، مارکت پلیس آهن">
+
+    <meta name="title" content="پیکوفلز | {{ object.title }}"/>
+    <meta name="description" content="محصولات {{ object.title }}">
 {% endblock %}
 
 {% block content %}

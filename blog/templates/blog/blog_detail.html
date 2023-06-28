@@ -3,9 +3,7 @@
 {% load humanize %}
 {% load widget_tweaks %}
 
-{% block title %}
-    {{ object }} | پیکوفلز
-{% endblock %}
+{% block title %}{{ object }} | پیکوفلز{% endblock %}
 
 {% block meta_tags %}
     <!-- Facebook Meta Tags -->
@@ -13,8 +11,6 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="پیکوفلز | {{ object.title }}">
     <meta property="og:description"
-          content="{{ object.summary }}">
-    <meta property="description"
           content="{{ object.summary }}">
 
     <!-- Twitter Meta Tags -->
@@ -26,6 +22,9 @@
 
     <meta name="keywords"
           content="{{ object.title }}">
+
+    <meta name="description" content="{{ object.summary }}">
+    <meta name="title" content="{{ object }} | پیکوفلز">
 {% endblock %}
 
 {% block content %}

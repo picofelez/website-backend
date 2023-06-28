@@ -1,9 +1,8 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %}
-    {{ shop }} | پیکوفلز
-{% endblock %}
+
+{% block title %}{{ shop }} | پیکوفلز{% endblock %}
 
 {% block content %}
     <section class="inner-page" id="shop-page">
@@ -47,17 +46,20 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12 my-2 col-md-4">
-                                                <a href="{% url 'shop:shop-products' shop.slug %}" class="btn btn-purple w-100"
+                                                <a href="{% url 'shop:shop-products' shop.slug %}"
+                                                   class="btn btn-purple w-100"
                                                 >محصولات فروشگاه</a
                                                 >
                                             </div>
                                             <div class="col-12 my-2 col-md-4">
-                                                <a href="{% url 'shop:shop-detail' shop.slug %}" class="btn btn-success w-100"
+                                                <a href="{% url 'shop:shop-detail' shop.slug %}"
+                                                   class="btn btn-success w-100"
                                                 >درباره فروشگاه</a
                                                 >
                                             </div>
                                             <div class="col-12 my-2 col-md-4">
-                                                <a href="{% url 'shop:shop-rating' shop.slug %}" class="btn btn-warning w-100"
+                                                <a href="{% url 'shop:shop-rating' shop.slug %}"
+                                                   class="btn btn-warning w-100"
                                                 >امتیاز دادن</a
                                                 >
                                             </div>
