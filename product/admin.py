@@ -16,14 +16,15 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'title', 'shop', 'get_price', 'quantity', 'is_active', 'is_confirmed'
+        '__str__', 'get_price', 'quantity', 'is_active', 'is_confirmed'
     )
     list_editable = ('is_confirmed',)
-    list_filter = ('is_active', 'is_confirmed', 'created')
+    list_filter = ('product_type', 'is_active', 'is_confirmed', 'created')
     search_fields = ('title', 'description', 'categories', 'id')
+    filter_horizontal = ('shops',)
     fieldsets = (
         ('عنوان', {'fields': ('id', 'title', 'description', 'image')}),
-        ('مالک', {'fields': ('shop', 'maker')}),
+        ('مالک', {'fields': ('shop', 'maker', 'product_type', 'shops')}),
         ('قیمت گذاری', {'fields': ('price', 'quantity', 'stock', 'purchase_limit')}),
         ('اطلاعات', {'fields': ('weight', 'length', 'width', 'keywords')}),
         ('وضعیت نمایش', {'fields': ('is_active', 'is_confirmed')}),

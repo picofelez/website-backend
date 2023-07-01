@@ -36,31 +36,42 @@ class Product(models.Model):
     Many-to-One relationship with User,
     Many-To-Many relationship wit Category.
     """
+
+    class ProductTypeChoices(models.TextChoices):
+        multiple_seller = 'multiple', 'چند فروشنده'
+        solo_seller = 'solo', 'تک فروشنده'
+
     id = models.CharField(
         max_length=255, default=generate_product_id, primary_key=True, editable=False, unique=True
     )
     shop = models.ForeignKey(
-        Shop, on_delete=models.PROTECT, related_name='shop_products', verbose_name='فروشگاه'
+        Shop, on_delete=models.PROTECT, null=True, blank=True, related_name='shop_products', verbose_name='فروشگاه'
     )
     maker = models.ForeignKey(
-        User, on_delete=models.PROTECT, related_name='user_products', verbose_name='سازنده'
+        User, on_delete=models.PROTECT, null=True, blank=True, related_name='user_products', verbose_name='سازنده'
     )
     title = models.CharField(max_length=100, verbose_name='عنوان')
     description = models.TextField(verbose_name='توضیحات')
     keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
-    price = models.BigIntegerField(verbose_name='قیمت')
-    stock = models.IntegerField(verbose_name='موجودی در انبار')
-    quantity = models.CharField(max_length=50, verbose_name='واحد')
-    weight = models.CharField(max_length=100, verbose_name='وزن')
-    length = models.CharField(max_length=100, verbose_name='طول')
-    width = models.CharField(max_length=100, verbose_name='ضخامت')
-    image = models.ImageField(upload_to=upload_product_image_path, verbose_name='تصویر محصول')
+    price = models.BigIntegerField(verbose_name='قیمت', null=True, blank=True, )
+    stock = models.IntegerField(verbose_name='موجودی در انبار', null=True, blank=True, )
+    quantity = models.CharField(max_length=50, verbose_name='واحد', null=True, blank=True)
+    weight = models.CharField(max_length=100, verbose_name='وزن', null=True, blank=True)
+    length = models.CharField(max_length=100, verbose_name='طول', null=True, blank=True)
+    width = models.CharField(max_length=100, verbose_name='ضخامت', null=True, blank=True)
+    image = models.ImageField(upload_to=upload_product_image_path, null=True, blank=True, verbose_name='تصویر محصول')
     is_active = models.BooleanField(default=True, verbose_name='فعال/غیرفعال')
     is_confirmed = models.BooleanField(default=True, verbose_name='تائید شده/نشده')
     categories = models.ManyToManyField(
         Category, related_name='products', verbose_name='دسته بندی ها'
     )
     purchase_limit = models.IntegerField(null=True, blank=True, verbose_name='محدودیت خرید')
+    product_type = models.CharField(
+        max_length=20, choices=ProductTypeChoices.choices, default=ProductTypeChoices.solo_seller, verbose_name='نوع'
+    )
+    shops = models.ManyToManyField(
+        Shop, related_name='multiple_products', verbose_name='فروشنده ها'
+    )
     created = models.DateTimeField(auto_now_add=True, null=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, null=True, verbose_name='تاریخ ویرایش')
 
@@ -78,7 +89,9 @@ class Product(models.Model):
     get_thumbnail.short_description = "تصویر محصول"
 
     def get_price(self):
-        return f"{self.price:,}"
+        if self.price:
+            return f"{self.price:,}"
+        return 0
 
     get_price.short_description = 'قیمت'
 
@@ -86,7 +99,7 @@ class Product(models.Model):
         return reverse('product:product-detail', args=[self.id])
 
     def __str__(self):
-        return f"{self.title} - {self.shop}"
+        return f"{self.title} - {self.shop if self.shop else f'{self.shops.count()} فروشنده'}"
 
 
 class FavoriteProduct(models.Model):
