@@ -1,6 +1,14 @@
 from django.contrib import admin
 
-from .models import Shop, Contact, SellerInformation, Wallet, WalletTransaction
+from .models import (
+    Shop,
+    Contact,
+    SellerInformation,
+    Wallet,
+    WalletTransaction,
+    ShopInvoice,
+    ShopInvoiceDetail
+)
 
 
 # Register your models here.
@@ -13,6 +21,11 @@ class SellerInformationInline(admin.StackedInline):
 class WalletTransactionInline(admin.TabularInline):
     model = WalletTransaction
     readonly_fields = ('created_jalali',)
+    extra = 0
+
+
+class ShopInvoiceDetailInline(admin.TabularInline):
+    model = ShopInvoiceDetail
     extra = 0
 
 
@@ -62,3 +75,15 @@ class WalletAdmin(admin.ModelAdmin):
 class WalletTransactionAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'transaction_type', 'transaction_status', 'get_value', 'created_jalali')
     list_filter = ('transaction_type', 'transaction_status')
+
+
+@admin.register(ShopInvoice)
+class ShopInvoiceAdmin(admin.ModelAdmin):
+    inlines = [
+        ShopInvoiceDetailInline
+    ]
+
+
+@admin.register(ShopInvoiceDetail)
+class ShopInvoiceDetailAdmin(admin.ModelAdmin):
+    pass

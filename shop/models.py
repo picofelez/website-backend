@@ -5,8 +5,9 @@ from django.urls import reverse
 from django.utils.html import format_html
 
 from account.models import User
-from extensions.utils import upload_shop_image_path, jalali_converter
+from extensions.utils import upload_shop_image_path, jalali_converter, generate_product_id
 from .managers import ActiveShopManager
+from django_jalali.db import models as jmodels
 
 
 # Create your models here.
@@ -217,3 +218,67 @@ class WalletTransaction(models.Model):
 
     def __str__(self):
         return f"{self.wallet}"
+
+
+class ShopInvoice(models.Model):
+    class InvoiceTypeChoices(models.TextChoices):
+        pre_invoice = 'pre', 'پیش فاکتور'
+        sales_invoice = 'sales', 'فاکتور فروش'
+
+    id = models.CharField(
+        max_length=255, default=generate_product_id, primary_key=True, editable=False, unique=True
+    )
+    shop = models.ForeignKey(
+        Shop, on_delete=models.PROTECT, related_name='shop_invoices', verbose_name='فروشگاه'
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.PROTECT, null=True, blank=True, related_name='order_invoices', verbose_name='خریدار'
+    )
+    address = models.CharField(max_length=255, null=True, blank=True, verbose_name='نشانی')
+    date = jmodels.jDateField(null=True, blank=True, verbose_name='تاریخ')
+    tax = models.BigIntegerField(default=0, verbose_name='مالیات')
+    discount = models.BigIntegerField(default=0, verbose_name='تخفیف')
+    invoice_shop = models.CharField(max_length=20, choices=InvoiceTypeChoices.choices, verbose_name='تایپ فاکتور')
+    life_time = jmodels.jDateTimeField(null=True, blank=True, verbose_name='تاریخ اعتبار')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
+
+    class Meta:
+        verbose_name_plural = '6. فاکتور های فروشگاه'
+        verbose_name = 'فاکتور فروشگاه'
+
+    def get_total_invoice_details(self):
+        total = 0
+        for invoice_detail in self.invoice_details.select_related(None).all():
+            total += invoice_detail.get_total_price()
+        return total
+
+    def get_total_invoice_price(self):
+        tax_percent = int(((self.get_total_invoice_details() * self.tax) / 100) + self.get_total_invoice_details())
+        return tax_percent - self.discount
+
+    def __str__(self):
+        return f"{self.shop} - {self.get_total_invoice_details():,} - {self.get_total_invoice_price():,}"
+
+
+class ShopInvoiceDetail(models.Model):
+    invoice = models.ForeignKey(
+        ShopInvoice, on_delete=models.CASCADE, related_name='invoice_details', verbose_name='فاکتور'
+    )
+    name = models.CharField(max_length=75, verbose_name='نام')
+    quantity = models.BigIntegerField(default=1, verbose_name='مقدار')
+    quantity_name = models.CharField(max_length=255, null=True, blank=True, verbose_name='واحد')
+    amount = models.BigIntegerField(verbose_name='قیمت')
+    count_of_order = models.CharField(max_length=255, null=True, blank=True, verbose_name='تعداد')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = '7. جزئیات فاکتور ها'
+        verbose_name = 'جزئیات فاکتور'
+
+    def get_total_price(self):
+        return self.quantity * self.amount
+
+    def __str__(self):
+        return f"{self.get_total_price():,} تومان"
