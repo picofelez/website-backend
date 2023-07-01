@@ -62,3 +62,8 @@ class ProductListView(FilterView):
     template_name = 'product/product_list.html'
     paginate_by = 15
     filterset_class = ProductFilter
+
+
+class MultipleProductDetailView(DetailView):
+    queryset = Product.objects.filter(is_active=True)
+    template_name = 'product/multiple_product_detail.html'

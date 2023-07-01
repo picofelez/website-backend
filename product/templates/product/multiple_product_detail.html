@@ -1,0 +1,143 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load humanize %}
+{% load widget_tweaks %}
+
+{% block title %}{{ object }} | پیکوفلز{% endblock %}
+
+{% block meta_tags %}
+    <meta property="og:url" content="https://picofelez.ir/products/multiple/{{ object.pk }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پیکوفلز | {{ object.title }}">
+    <meta property="og:description" content="{{ object.description }}">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:domain" content="picofelez.ir">
+    <meta property="twitter:url" content="https://picofelez.ir/products/{{ object.pk }}">
+    <meta name="twitter:title" content="پیکوفلز | {{ object.title }}">
+    <meta name="twitter:description" content="{{ object.description }}">
+
+    <meta name="keywords" content="{{ object.keywords }}">
+
+    <meta name="title" content="پیکوفلز | {{ object.title }}">
+    <meta name="description" content="{{ object.description }}">
+{% endblock %}
+
+{% block content %}
+    <section class="inner-page" id="product-page">
+        <!-- breadcrumb start -->
+        <section class="page-title-box container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                <p>بازار آنلاین آهن</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'core:home' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'product:product-list' %}">محصولات</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            {{ product.title }} - {{ product.shops.count }} فروشنده
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb end -->
+        <section class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-content">
+                        <div class="row">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="col-12 mb-2">
+                                        <div class="alert alert-success">
+                                            {{ message }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            {% endif %}
+
+                            <div class="col-12 col-lg-4 mb-3">
+                                <div class="rounded-card box-shadow">
+                                    <div class="text-center">
+                                        <img
+                                                src="{{ product.image.url }}"
+                                                alt="{{ product.title }}"
+                                                class="multiple-product-detail-img"
+                                        />
+                                        <p class="h4 font-vazir-bold-fd my-3">{{ product.title }}</p>
+                                        <div>
+                                                <span class="badge border rounded text-black">
+                                                   ضخامت {{ product.width }}
+                                                </span>
+                                            <span class="badge border rounded text-black">
+                                                   وزن تقریبی هر شاخه {{ product.weight }}
+                                                </span>
+                                            <span class="badge border rounded text-black">
+                                                   طول هر شاخه {{ product.length }}
+                                                </span>
+                                        </div>
+                                        <a href="tel:09199060659" class="btn btn-purple mt-3">
+                                            <i class="fas fa-phone"></i>
+                                            برای خرید تماس بگیرید
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-8 mb-3 mt-4 mt-md-0">
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <p class="h5 title font-vazir-bold-fd">فروشنده ها</p>
+                                    </div>
+
+
+                                    {% for shop in product.shops.all %}
+                                        <div class="col-12 mb-4">
+                                            <div class="rounded-card box-shadow">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p class="font-vazir-bold-fd w-50">
+                                                        {{ shop.title }}
+                                                    </p>
+                                                    <p class="w-25">
+                                                        <span class="font-vazir-bold-fd">امتیاز: </span>
+                                                        254
+                                                    </p>
+                                                    <p class="w-25 text-end">
+                                                        <span class="font-vazir-bold-fd">شهر: </span>
+                                                        {{ shop.location }}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <a href="#" class="btn btn-outline-success btn-sm">
+                                                        <i class="fas fa-shop"></i>
+                                                        درباره فروشنده
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}

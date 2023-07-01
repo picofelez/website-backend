@@ -190,6 +190,12 @@
     border-radius: 0.4rem;
 }
 
+.multiple-product-detail-img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+}
+
 .price-changes-chart {
     margin-top: 1rem;
     width: 100%;
