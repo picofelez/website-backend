@@ -58,7 +58,7 @@ class ProductListView(FilterView):
     """
     This view show all published products.
     """
-    queryset = Product.published.all()
+    queryset = Product.objects.filter(product_type='multiple', is_active=True)
     template_name = 'product/product_list.html'
     paginate_by = 15
     filterset_class = ProductFilter

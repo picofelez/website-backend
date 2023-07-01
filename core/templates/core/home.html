@@ -68,18 +68,21 @@
         <section class="container">
             <!-- title -->
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 mb-2">
                     <h1 class="title h4 font-vazir-bold-fd">آخرین محصولات</h1>
                 </div>
             </div>
             <!-- products -->
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 products">
-                {% for product in latest_products %}
-                    {% include 'product/components/product_card_component.html' %}
+                {#                {% for product in latest_products %}#}
+                {#                    {% include 'product/components/product_card_component.html' %}#}
+                {#                {% endfor %}#}
+                {% for product in latest_multiple_products %}
+                    {% include 'product/components/multiple_product_card_component.html' %}
                 {% endfor %}
 
             </div>
-            <a href="{% url 'product:product-list' %}" class="btn btn-purple">همه محصولات</a>
+            <a href="{% url 'product:product-list' %}" class="btn btn-outline-success">همه محصولات</a>
         </section>
     </section>
 

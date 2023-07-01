@@ -82,7 +82,8 @@
                                                             {{ category }}
                                                         </div>
                                                     {% endfor %}
-                                                    <button class="btn btn-purple d-block mt-3" type="submit">اعمال
+                                                    <button class="btn btn-outline-success d-block mt-3" type="submit">
+                                                        اعمال
                                                         انتخاب ها
                                                     </button>
                                                 </form>
@@ -123,13 +124,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-2">
+                                <div class="mt-3">
                                     <div class="container">
                                         <div
-                                                class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-md-4"
+                                                class="row "
                                         >
                                             {% for product in page_obj %}
-                                                {% include 'product/components/product_card_component.html' %}
+                                                {#                                                {% include 'product/components/product_card_component.html' %}#}
+                                                {% include 'product/components/multiple_product_card_component.html' %}
                                             {% empty %}
                                                 <div class="col-12">
                                                     <div class="alert alert-secondary">محصولی یافت نشد.</div>
