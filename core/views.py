@@ -39,3 +39,7 @@ class QuestionListView(ListView):
     """
     queryset = Question.objects.filter(status='a')
     template_name = 'core/faq.html'
+
+
+class IronCalculatorTemplateView(TemplateView):
+    template_name = 'core/calculator.html'
