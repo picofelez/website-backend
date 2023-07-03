@@ -238,6 +238,7 @@ class ShopInvoice(models.Model):
     date = jmodels.jDateField(null=True, blank=True, verbose_name='تاریخ')
     tax = models.BigIntegerField(default=0, verbose_name='مالیات')
     discount = models.BigIntegerField(default=0, verbose_name='تخفیف')
+    transport_cost = models.BigIntegerField(default=0, verbose_name='کرایه باربری')
     invoice_shop = models.CharField(max_length=20, choices=InvoiceTypeChoices.choices, verbose_name='تایپ فاکتور')
     life_time = jmodels.jDateTimeField(null=True, blank=True, verbose_name='تاریخ اعتبار')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
@@ -256,7 +257,7 @@ class ShopInvoice(models.Model):
 
     def get_total_invoice_price(self):
         tax_percent = int(((self.get_total_invoice_details() * self.tax) / 100) + self.get_total_invoice_details())
-        return tax_percent - self.discount
+        return tax_percent - self.discount + self.transport_cost
 
     def __str__(self):
         return f"{self.shop} - {self.get_total_invoice_details():,} - {self.get_total_invoice_price():,}"

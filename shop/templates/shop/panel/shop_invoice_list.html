@@ -69,7 +69,7 @@
         {% for invoice in page_obj %}
             <div class="col-md-6 col-xl-4">
                 <!--begin::Card-->
-                <a href=""
+                <a href="{% url 'shop:shop-panel-invoices-detail' shop.unique_uuid invoice.pk %}"
                    class="card border-hover-primary">
                     <!--begin::Card header-->
                     <div class="card-header border-0 pt-9">

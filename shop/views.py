@@ -301,4 +301,12 @@ class ShopInvoiceListListView(ShopPanelAccessMixin, ListView):
     paginate_by = 20
 
     def get_queryset(self):
+        return self.model.objects.filter(shop=self.shop).select_related("user", "shop")
+
+
+class ShopInvoiceDetailDetailView(ShopPanelAccessMixin, DetailView):
+    model = ShopInvoice
+    template_name = 'shop/panel/shop_invoice_detail.html'
+
+    def get_queryset(self):
         return self.model.objects.filter(shop=self.shop)

@@ -21,7 +21,8 @@ from .views import (
     ShopUpdateView,
     shop_wallet_view,
     ShopUpdateProductPriceView,
-    ShopInvoiceListListView
+    ShopInvoiceListListView,
+    ShopInvoiceDetailDetailView
 )
 
 app_name = 'shop'
@@ -92,5 +93,10 @@ urlpatterns = [
         'shop/panel/<unique_uuid>/invoices',
         ShopInvoiceListListView.as_view(),
         name='shop-panel-invoices'
+    ),
+    path(
+        'shop/panel/<unique_uuid>/invoices/<str:pk>',
+        ShopInvoiceDetailDetailView.as_view(),
+        name='shop-panel-invoices-detail'
     ),
 ]
