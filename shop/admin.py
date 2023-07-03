@@ -79,6 +79,7 @@ class WalletTransactionAdmin(admin.ModelAdmin):
 
 @admin.register(ShopInvoice)
 class ShopInvoiceAdmin(admin.ModelAdmin):
+    readonly_fields = ('created',)
     inlines = [
         ShopInvoiceDetailInline
     ]

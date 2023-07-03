@@ -6,7 +6,7 @@ from django.utils.html import format_html
 
 from account.models import User
 from extensions.utils import upload_shop_image_path, jalali_converter, generate_product_id
-from .managers import ActiveShopManager
+from .managers import ActiveShopManager, ShopInvoiceManager
 from django_jalali.db import models as jmodels
 
 
@@ -248,6 +248,8 @@ class ShopInvoice(models.Model):
         verbose_name_plural = '6. فاکتور های فروشگاه'
         verbose_name = 'فاکتور فروشگاه'
         ordering = ('-created',)
+
+    objects = ShopInvoiceManager()
 
     def get_total_invoice_details(self):
         total = 0
