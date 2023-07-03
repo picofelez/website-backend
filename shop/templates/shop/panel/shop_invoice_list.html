@@ -1,0 +1,139 @@
+{% extends 'shop/panel/base/_shop_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    فاکتور ها | پیکوفلز
+{% endblock %}
+
+{% block secondary_title %}
+    فاکتور ها
+{% endblock %}
+
+{% block secondary_title_detail %}{% endblock %}
+
+{% block content %}
+
+    <div class="row g-6 g-xl-9">
+        <div class="card">
+            <div class="card-header align-items-center py-5 gap-2 gap-md-5" data-select2-id="select2-data-124-w3ha">
+                <!--begin::Card title-->
+                <div class="card-title">
+                    <!--begin::جستجو-->
+                    <div class="d-flex align-items-center position-relative my-1">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+                        <span class="svg-icon svg-icon-1 position-absolute ms-4">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                         viewBox="0 0 24 24" fill="none">
+														<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546"
+                                                              height="2" rx="1" transform="rotate(45 17.0365 15.1223)"
+                                                              fill="currentColor"></rect>
+														<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
+                                                              fill="currentColor"></path>
+													</svg>
+												</span>
+                        <!--end::Svg Icon-->
+                        <input type="text" data-kt-ecommerce-product-filter="search"
+                               class="form-control form-control-solid w-250px ps-14" placeholder="جستجو فاکتور">
+                    </div>
+                    <!--end::جستجو-->
+                </div>
+                <!--end::Card title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar flex-row-fluid justify-content-start gap-5"
+                     data-select2-id="select2-data-123-36cp">
+                    <div class="w-100 mw-md-300px mw-100" data-select2-id="select2-data-122-vfos">
+                        <!--begin::انتخاب2-->
+                        <select class="form-select form-select-solid select2-hidden-accessible" data-control="select2"
+                                data-hide-search="true" data-placeholder="نمایش براساس"
+                                data-kt-ecommerce-product-filter="status" data-select2-id="select2-data-10-p0w2"
+                                tabindex="-1" aria-hidden="true">
+                            <option data-select2-id="select2-data-12-2tok"></option>
+                            <option value="all" data-select2-id="select2-data-127-b21s">همه</option>
+                            <option value="published" data-select2-id="select2-data-128-uo42">فاکتور فروش</option>
+                            <option value="scheduled" data-select2-id="select2-data-129-0jo5">پیش فاکتور</option>
+                        </select>
+                        <!--end::انتخاب2-->
+                    </div>
+                    <!--begin::Add product-->
+                    <a href="../../demo1/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-success">افزودن
+                        فاکتور فروش</a>
+                    <a href="../../demo1/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-info">افزودن پیش
+                        فاکتور</a>
+                    <!--end::Add product-->
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+        </div>
+
+        {% for invoice in page_obj %}
+            <div class="col-md-6 col-xl-4">
+                <!--begin::Card-->
+                <a href=""
+                   class="card border-hover-primary">
+                    <!--begin::Card header-->
+                    <div class="card-header border-0 pt-9">
+                        <div class="card-toolbar">
+                            <span class="badge badge-light-primary fw-bolder me-auto px-4 py-3">
+                                شناسه فاکتور: {{ invoice.id }}
+                            </span>
+                        </div>
+                        <!--end::Card toolbar-->
+                    </div>
+                    <!--end:: Card header-->
+                    <!--begin:: Card body-->
+                    <div class="card-body p-9">
+                        <!--begin::نام-->
+                        <div class="fs-3 fw-bolder text-dark mb-3">
+                            خریدار: {{ invoice.user.get_full_name }}
+                        </div>
+                        <div class="fs-5 fw-bolder text-dark mb-3">
+                            {% if invoice.invoice_shop == 'pre' %}
+                                <div class="badge badge-info">{{ invoice.get_invoice_shop_display }}</div>
+                            {% elif invoice.invoice_shop == 'sales' %}
+                                <div class="badge badge-success">{{ invoice.get_invoice_shop_display }}</div>
+                            {% endif %}
+                            -
+                            {% if invoice.date %}
+                                تاریخ ثبت:
+                                <span dir="rtl">
+                                   {{ invoice.date }}
+                                </span>
+                            {% else %}
+                                اعتبار فاکتور تا
+                                <span dir="rtl">
+                                {{ invoice.life_time.date }}
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex flex-wrap mb-5">
+                            <!--begin::Due-->
+                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
+                                <div class="fs-6 text-gray-800 fw-bolder">
+                                    {{ invoice.get_total_invoice_details|intcomma:False }} تومان
+                                </div>
+                                <div class="fw-bold text-gray-400">جمع خالص فاکتور</div>
+                            </div>
+                            <!--end::Due-->
+                            <!--begin::بودجه-->
+                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
+                                <div class="fs-6 text-gray-800 fw-bolder">{{ invoice.get_total_invoice_price|intcomma:False }}
+                                    تومان
+                                </div>
+                                <div class="fw-bold text-gray-400">جمع کل فاکتور</div>
+                            </div>
+                            <!--end::بودجه-->
+                        </div>
+                    </div>
+                    <!--end:: Card body-->
+                </a>
+                <!--end::Card-->
+            </div>
+        {% empty %}
+            <div class="alert alert-dark">سفارشی برای شما ثبت نشده</div>
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}

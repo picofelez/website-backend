@@ -246,6 +246,7 @@ class ShopInvoice(models.Model):
     class Meta:
         verbose_name_plural = '6. فاکتور های فروشگاه'
         verbose_name = 'فاکتور فروشگاه'
+        ordering = ('-created',)
 
     def get_total_invoice_details(self):
         total = 0

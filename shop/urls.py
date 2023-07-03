@@ -20,7 +20,8 @@ from .views import (
     ShopOrderUpdateView,
     ShopUpdateView,
     shop_wallet_view,
-    ShopUpdateProductPriceView
+    ShopUpdateProductPriceView,
+    ShopInvoiceListListView
 )
 
 app_name = 'shop'
@@ -84,5 +85,12 @@ urlpatterns = [
         'shop/panel/<unique_uuid>/orders/update/<int:pk>',
         ShopOrderUpdateView.as_view(),
         name='shop-panel-orders-update'
-    )
+    ),
+
+    # special shops
+    path(
+        'shop/panel/<unique_uuid>/invoices',
+        ShopInvoiceListListView.as_view(),
+        name='shop-panel-invoices'
+    ),
 ]

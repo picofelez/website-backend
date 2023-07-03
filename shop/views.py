@@ -18,7 +18,7 @@ from product.models import Product, PriceHistory
 from shop.filters import ShopFilter
 from shop.forms import ContactForm, WalletForm
 from shop.mixins import ShopPanelAccessMixin
-from shop.models import Shop, SellerInformation, Wallet
+from shop.models import Shop, SellerInformation, Wallet, ShopInvoice
 
 
 # Create your views here.
@@ -293,3 +293,12 @@ class ShopUpdateProductPriceView(ShopPanelAccessMixin, UpdateView):
         product_form.save()
         price_history.save()
         return super(ShopUpdateProductPriceView, self).form_valid(form)
+
+
+class ShopInvoiceListListView(ShopPanelAccessMixin, ListView):
+    model = ShopInvoice
+    template_name = 'shop/panel/shop_invoice_list.html'
+    paginate_by = 20
+
+    def get_queryset(self):
+        return self.model.objects.filter(shop=self.shop)
