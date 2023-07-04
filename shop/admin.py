@@ -79,6 +79,9 @@ class WalletTransactionAdmin(admin.ModelAdmin):
 
 @admin.register(ShopInvoice)
 class ShopInvoiceAdmin(admin.ModelAdmin):
+    list_display = ('shop', 'invoice_shop', 'date', 'user', 'get_total_details_display', 'get_total_price_display')
+    list_filter = ('date', 'created', 'invoice_shop')
+    search_fields = ('shop__title', 'user__first_name', 'user__last_name')
     readonly_fields = ('created',)
     inlines = [
         ShopInvoiceDetailInline
@@ -87,4 +90,6 @@ class ShopInvoiceAdmin(admin.ModelAdmin):
 
 @admin.register(ShopInvoiceDetail)
 class ShopInvoiceDetailAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', '__str__', 'quantity', 'quantity_name', 'get_total_price_display')
+    list_filter = ('created',)
+    search_fields = ('invoice__shop__title',)

@@ -261,6 +261,16 @@ class ShopInvoice(models.Model):
         tax_percent = int(((self.get_total_invoice_details() * self.tax) / 100) + self.get_total_invoice_details())
         return tax_percent - self.discount + self.transport_cost
 
+    def get_total_details_display(self):
+        return f"{self.get_total_invoice_details():,}"
+
+    get_total_details_display.short_description = 'جمع خالص فاکتور'
+
+    def get_total_price_display(self):
+        return f"{self.get_total_invoice_price():,}"
+
+    get_total_price_display.short_description = 'جمع کل فاکتور'
+
     def __str__(self):
         return f"{self.shop} - {self.get_total_invoice_details():,} - {self.get_total_invoice_price():,}"
 
@@ -283,6 +293,11 @@ class ShopInvoiceDetail(models.Model):
 
     def get_total_price(self):
         return self.quantity * self.amount
+
+    def get_total_price_display(self):
+        return f"{self.get_total_price():,}"
+
+    get_total_price_display.short_description = 'جمع'
 
     def __str__(self):
         return f"{self.get_total_price():,} تومان"
