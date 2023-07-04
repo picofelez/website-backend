@@ -77,6 +77,11 @@
                             <span class="badge badge-light-primary fw-bolder me-auto px-4 py-3">
                                 شناسه فاکتور: {{ invoice.id }}
                             </span>
+                            {% if invoice.invoice_shop == 'pre' %}
+                                <span class="badge ms-1 badge-info px-4 py-2">{{ invoice.get_invoice_shop_display }}</span>
+                            {% elif invoice.invoice_shop == 'sales' %}
+                                <span class="badge ms-1 badge-success px-4 py-2">{{ invoice.get_invoice_shop_display }}</span>
+                            {% endif %}
                         </div>
                         <!--end::Card toolbar-->
                     </div>
@@ -84,22 +89,16 @@
                     <!--begin:: Card body-->
                     <div class="card-body p-9">
                         <!--begin::نام-->
-                        <div class="fs-3 fw-bolder text-dark mb-3">
+                        <div class="fs-4 fw-bolder text-dark mb-4">
                             خریدار: {{ invoice.user.get_full_name }}
                         </div>
-                        <div class="fs-5 fw-bolder text-dark mb-3">
-                            {% if invoice.invoice_shop == 'pre' %}
-                                <div class="badge badge-info">{{ invoice.get_invoice_shop_display }}</div>
-                            {% elif invoice.invoice_shop == 'sales' %}
-                                <div class="badge badge-success">{{ invoice.get_invoice_shop_display }}</div>
-                            {% endif %}
-                            -
-                            {% if invoice.date %}
+                        <div class="fs-6 fw-bolder text-dark mb-4">
+                            {% if invoice.invoice_shop == 'sales' %}
                                 تاریخ ثبت:
                                 <span dir="rtl">
                                    {{ invoice.date }}
                                 </span>
-                            {% else %}
+                            {% elif invoice.invoice_shop == 'pre' %}
                                 اعتبار فاکتور تا
                                 <span dir="rtl">
                                 {{ invoice.life_time.date }}

@@ -300,7 +300,7 @@
                                         <th class="min-w-70px text-end">مقدار</th>
                                         <th class="min-w-70px text-end">تعداد</th>
                                         <th class="min-w-100px text-end">قیمت واحد</th>
-                                        <th class="min-w-100px text-end">جمع</th>
+                                        <th class="min-w-200px text-end">جمع</th>
                                     </tr>
                                     </thead>
                                     <!--end::Table head-->
@@ -308,7 +308,7 @@
                                     <tbody class="fw-bold text-gray-600">
 
                                     {% for item in object.invoice_details.all %}
-                                        <tr class="text-black">
+                                        <tr class="text-gray-700">
                                             <!--begin::product-->
                                             <td>
                                                   {{ item.name }}
@@ -324,28 +324,28 @@
                                     {% endfor %}
 
 
-                                    <tr>
+                                    <tr class="text-gray-700">
                                         <td colspan="4" class="text-end">جمع خالص فاکتور</td>
                                         <td class="text-end">{{ object.get_total_invoice_details|intcomma:False }}
                                             تومان
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="text-gray-700">
                                         <td colspan="4" class="text-end">مالیات</td>
                                         <td class="text-end">
                                             {{ object.tax }} %
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="text-gray-700">
                                         <td colspan="4" class="text-end">تخفیف</td>
                                         <td class="text-end">
-                                            {{ object.discount }} تومان
+                                            {{ object.discount|intcomma:False }} تومان
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" class="text-end">کرایه</td>
                                         <td class="text-end">
-                                            {{ object.transport_cost }} توان
+                                            {{ object.transport_cost|intcomma:False }} توان
                                         </td>
                                     </tr>
                                     <tr>
