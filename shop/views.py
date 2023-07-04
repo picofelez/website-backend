@@ -158,6 +158,11 @@ class ShopAccountMainView(ShopPanelAccessMixin, DetailView):
         shop = get_object_or_404(Shop, unique_uuid=self.kwargs.get('unique_uuid'))
         return shop
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ShopAccountMainView, self).get_context_data(*args, **kwargs)
+        context['weekly_records'] = ShopInvoice.objects.get_weekly_records(self.get_object())
+        return context
+
 
 class ShopUpdateView(ShopPanelAccessMixin, UpdateView):
     model = Shop
