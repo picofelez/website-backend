@@ -96,7 +96,10 @@ class Product(models.Model):
     get_price.short_description = 'قیمت'
 
     def get_absolute_url(self):
-        return reverse('product:product-detail', args=[self.id])
+        if self.product_type == 'solo':
+            return reverse('product:product-detail', args=[self.id])
+        elif self.product_type == 'multiple':
+            return reverse('product:multiple-product-detail', args=[self.id])
 
     def __str__(self):
         return f"{self.title} - {self.shop if self.shop else f'{self.shops.count()} فروشنده'}"
