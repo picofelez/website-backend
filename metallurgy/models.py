@@ -171,6 +171,7 @@ class InvoiceDetail(models.Model):
     class Meta:
         verbose_name = 'جزئیات فاکتور'
         verbose_name_plural = '5. جزئیات فاکتور'
+        ordering = ('created',)
 
     def get_total_price(self):
         return self.quantity * self.amount
