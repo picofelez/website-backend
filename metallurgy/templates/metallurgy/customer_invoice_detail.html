@@ -63,9 +63,11 @@
                                                         <td>{{ item.name|safe }}</td>
                                                         <td>
                                                             {{ item.quantity }}
-                                                            <small>
-                                                                ({{ item.quantity_name }})
-                                                            </small>
+                                                            {% if not item.quantity_name == '-' %}
+                                                                <small>
+                                                                    ({{ item.quantity_name }})
+                                                                </small>
+                                                            {% endif %}
                                                         </td>
                                                         <td>
                                                             {{ item.amount|intcomma:False }}
