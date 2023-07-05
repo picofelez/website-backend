@@ -111,14 +111,14 @@
                             <li {% if url_name == 'product-list' %}class="main-nav-active-item"{% endif %}>
                                 <a href="{% url 'product:product-list' %}">محصولات</a>
                             </li>
+                            <li {% if url_name == 'calculator' %}class="main-nav-active-item"{% endif %}>
+                                <a href="{% url 'core:calculator' %}">محاسبه وزن</a>
+                            </li>
                             <li {% if url_name == 'blog-list' %}class="main-nav-active-item"{% endif %}>
                                 <a href="{% url 'blog:blog-list' %}">مجله پیکوفلز</a>
                             </li>
                             <li {% if url_name == 'shop-list' %}class="main-nav-active-item"{% endif %}>
                                 <a href="{% url 'shop:shop-list' %}">فروشگاه ها</a>
-                            </li>
-                            <li {% if url_name == 'register-shop' %}class="main-nav-active-item"{% endif %}>
-                                <a href="{% url 'shop:register-shop' %}">ثبت نام فروشنده</a>
                             </li>
                             <li {% if url_name == 'contact-us' %}class="main-nav-active-item"{% endif %}>
                                 <a href="{% url 'core:contact-us' %}">تماس با ما</a>
