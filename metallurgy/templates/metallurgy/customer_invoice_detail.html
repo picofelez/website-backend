@@ -25,21 +25,18 @@
                                         <ul class="abdi-metal-project-detail-meta">
                                             <li>
                                                 <span>پروژه :</span>
-                                                <a href="{% url 'metallurgy:customer-project-detail' object.project.pk %}"
-                                                   class="text-primary">
+                                                <span class="text-primary">
                                                     {{ object.project.name }}
-                                                </a>
+                                                </span>
                                             </li>
-                                            <li>
-                                                <span>تاریخ ثبت فاکتور:</span>
-                                                {% if object.date %}
-                                                    <span dir="rtl">
+                                            {% if object.date %}
+                                                <li>
+                                                    <span>تاریخ ثبت فاکتور:</span>
+                                                    <span dir="rtl" class="text-primary">
                                                     {{ object.date }}
                                                     </span>
-                                                {% else %}
-                                                    نامشخص
-                                                {% endif %}
-                                            </li>
+                                                </li>
+                                            {% endif %}
                                         </ul>
                                     </div>
 
