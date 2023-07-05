@@ -15,9 +15,6 @@
                             <div class="abdi-metal-project-detail">
                                 <div class="py-1">
                                     <h6>
-                                    <span class="font-vazir-bold-fd">
-                                    درباره فاکتور :
-                                    </span>
                                         {{ object.description }}
                                     </h6>
                                 </div>
@@ -41,14 +38,6 @@
                                                     </span>
                                                 {% else %}
                                                     نامشخص
-                                                {% endif %}
-                                            </li>
-                                            <li>
-                                                <span>وضعیت پرداخت:</span>
-                                                {% if object.is_paid %}
-                                                    پرداخت شده
-                                                {% else %}
-                                                    پرداخت نشده
                                                 {% endif %}
                                             </li>
                                         </ul>
