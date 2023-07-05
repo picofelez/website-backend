@@ -79,9 +79,9 @@
                                     <div
                                             class="row row-cols-1 row-cols-sm-3 row-cols-lg-4 gx-md-4"
                                     >
-                                        {% for product in object.shop_products.all %}
-                                            {% if product.is_confirmed == True and product.is_active == True %}
-                                                {% include 'product/components/product_card_component.html' %}
+                                        {% for product in object.multiple_products.all %}
+                                            {% if product.is_active == True %}
+                                                {% include 'product/components/multiple_product_card_component.html' with in_shop_page=True %}
                                             {% endif %}
                                         {% empty %}
                                             <div class="alert alert-secondary">محصولی یافت نشد.</div>
