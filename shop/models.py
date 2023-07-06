@@ -240,7 +240,7 @@ class ShopInvoice(models.Model):
     discount = models.BigIntegerField(default=0, verbose_name='تخفیف')
     transport_cost = models.BigIntegerField(default=0, verbose_name='کرایه باربری')
     invoice_shop = models.CharField(max_length=20, choices=InvoiceTypeChoices.choices, verbose_name='تایپ فاکتور')
-    life_time = jmodels.jDateTimeField(null=True, blank=True, verbose_name='تاریخ اعتبار')
+    life_time = jmodels.jDateField(null=True, blank=True, verbose_name='تاریخ اعتبار')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
 

@@ -2,8 +2,9 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
+from django.forms import formset_factory
 from django.http import JsonResponse, HttpResponseBadRequest, Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
 
@@ -16,7 +17,7 @@ from core.forms import RatingForm
 from core.models import Rating
 from product.models import Product, PriceHistory
 from shop.filters import ShopFilter
-from shop.forms import ContactForm, WalletForm
+from shop.forms import ContactForm, WalletForm, ShopInvoiceForm, ShopInvoiceDetailForm
 from shop.mixins import ShopPanelAccessMixin
 from shop.models import Shop, SellerInformation, Wallet, ShopInvoice
 
@@ -315,3 +316,35 @@ class ShopInvoiceDetailDetailView(ShopPanelAccessMixin, DetailView):
 
     def get_queryset(self):
         return self.model.objects.filter(shop=self.shop)
+
+
+def create_shop_invoice_view(request, **kwargs):
+    shop = get_object_or_404(Shop, unique_uuid=kwargs.get('unique_uuid'))
+
+    invoice_form = ShopInvoiceForm(request.POST or None)
+    invoice_detail_formset = formset_factory(ShopInvoiceDetailForm, extra=0)
+    formset = invoice_detail_formset(request.POST or None)
+
+    if all([invoice_form.is_valid(), formset.is_valid()]):
+        invoice = invoice_form.save(commit=False)
+        invoice.shop = shop
+        invoice.save()
+        for form in formset:
+            factor_detail = form.save(commit=False)
+            factor_detail.invoice = invoice
+            factor_detail.save()
+
+        return redirect(
+            reverse_lazy(
+                'shop:shop-panel-invoices',
+                kwargs={'unique_uuid': kwargs.get('unique_uuid')}
+            )
+        )
+
+    context = {
+        'shop': shop,
+        'factor_form': invoice_form,
+        'factor_detail_formset': formset,
+        'form_length': 0
+    }
+    return render(request, 'shop/panel/shop_invoice_create_update.html', context)

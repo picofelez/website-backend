@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'import_export',
     'django_jalali',
+    'jalali_date',
+    'crispy_forms',
+    'crispy_bootstrap4',
 
     # local apps
     'account',
@@ -189,3 +192,6 @@ SITE_ID = 1
 
 # import export
 IMPORT_EXPORT_USE_TRANSACTIONS = False
+
+# crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

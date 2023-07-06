@@ -56,11 +56,8 @@
                         <!--end::انتخاب2-->
                     </div>
                     <!--begin::Add product-->
-                    <a href="../../demo1/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-success">افزودن
-                        فاکتور فروش</a>
-                    <a href="../../demo1/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-info">افزودن پیش
+                    <a href="{% url 'shop:shop-panel-invoices-create' shop.unique_uuid %}" class="btn btn-primary">افزودن
                         فاکتور</a>
-                    <!--end::Add product-->
                 </div>
                 <!--end::Card toolbar-->
             </div>
@@ -101,7 +98,7 @@
                             {% elif invoice.invoice_shop == 'pre' %}
                                 اعتبار فاکتور تا
                                 <span dir="rtl">
-                                {{ invoice.life_time.date }}
+                                {{ invoice.life_time }}
                                 </span>
                             {% endif %}
                         </div>
