@@ -23,7 +23,8 @@ from .views import (
     ShopUpdateProductPriceView,
     ShopInvoiceListListView,
     ShopInvoiceDetailDetailView,
-    create_shop_invoice_view
+    create_shop_invoice_view,
+    update_shop_invoice_view
 )
 
 app_name = 'shop'
@@ -99,6 +100,11 @@ urlpatterns = [
         'shop/panel/<unique_uuid>/invoices/create',
         create_shop_invoice_view,
         name='shop-panel-invoices-create'
+    ),
+    path(
+        'shop/panel/<unique_uuid>/invoices/update/<str:pk>',
+        update_shop_invoice_view,
+        name='shop-panel-invoices-update'
     ),
     path(
         'shop/panel/<unique_uuid>/invoices/<str:pk>',

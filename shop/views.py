@@ -2,7 +2,7 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from django.forms import formset_factory
+from django.forms import formset_factory, modelformset_factory
 from django.http import JsonResponse, HttpResponseBadRequest, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
@@ -19,7 +19,7 @@ from product.models import Product, PriceHistory
 from shop.filters import ShopFilter
 from shop.forms import ContactForm, WalletForm, ShopInvoiceForm, ShopInvoiceDetailForm
 from shop.mixins import ShopPanelAccessMixin
-from shop.models import Shop, SellerInformation, Wallet, ShopInvoice
+from shop.models import Shop, SellerInformation, Wallet, ShopInvoice, ShopInvoiceDetail
 
 
 # Create your views here.
@@ -346,5 +346,46 @@ def create_shop_invoice_view(request, **kwargs):
         'factor_form': invoice_form,
         'factor_detail_formset': formset,
         'form_length': 0
+    }
+    return render(request, 'shop/panel/shop_invoice_create_update.html', context)
+
+
+def update_shop_invoice_view(request, *args, **kwargs):
+    shop = get_object_or_404(Shop, unique_uuid=kwargs.get('unique_uuid'))
+
+    invoice = get_object_or_404(ShopInvoice, pk=kwargs.get('pk'))
+    invoice_form = ShopInvoiceForm(request.POST or None, instance=invoice)
+    invoice_detail_formset = modelformset_factory(
+        ShopInvoiceDetail, form=ShopInvoiceDetailForm, extra=0, can_delete=True
+    )
+    qs = invoice.invoice_details.all()
+    formset = invoice_detail_formset(request.POST or None, queryset=qs)
+
+    if all([invoice_form.is_valid(), formset.is_valid()]):
+        invoice = invoice_form.save(commit=False)
+        invoice.shop = shop
+        invoice.save()
+
+        for form in formset:
+            factor_detail = form.save(commit=False)
+            factor_detail.invoice = invoice
+            if form.cleaned_data['DELETE']:
+                factor_detail.delete()
+            else:
+                factor_detail.save()
+
+        return redirect(
+            reverse_lazy(
+                'shop:shop-panel-invoices-detail',
+                kwargs={'pk': invoice.pk, 'unique_uuid': kwargs.get('unique_uuid')}
+            )
+        )
+
+    context = {
+        'factor_form': invoice_form,
+        'factor_detail_formset': formset,
+        'factor': invoice,
+        'form_length': qs.count(),
+        'shop': shop
     }
     return render(request, 'shop/panel/shop_invoice_create_update.html', context)

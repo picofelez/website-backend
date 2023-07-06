@@ -41,19 +41,19 @@ class ShopInvoiceDetailForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'name': forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder': 'نام'}
+                attrs={'class': 'form-control py-5 py-md-3', 'placeholder': 'نام'}
             ),
             'quantity': forms.NumberInput(
-                attrs={'class': 'form-control', 'placeholder': 'تعداد'}
+                attrs={'class': 'form-control py-5 py-md-3', 'placeholder': 'مقدار'}
             ),
-            'quantity_name': forms.NumberInput(
-                attrs={'class': 'form-control', 'placeholder': 'تعداد'}
+            'quantity_name': forms.TextInput(
+                attrs={'class': 'form-control py-5 py-md-3', 'placeholder': 'واحد'}
             ),
             'amount': forms.NumberInput(
-                attrs={'class': 'form-control', 'placeholder': 'قیمت'}
+                attrs={'class': 'form-control py-5 py-md-3', 'placeholder': 'قیمت'}
             ),
-            'count_of_order': forms.NumberInput(
-                attrs={'class': 'form-control', 'placeholder': 'تعداد'}
+            'count_of_order': forms.TextInput(
+                attrs={'class': 'form-control py-5 py-md-3', 'placeholder': 'تعداد'}
             ),
         }
 
