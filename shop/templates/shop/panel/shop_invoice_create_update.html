@@ -12,168 +12,193 @@
 {% endblock %}
 
 {% block content %}
+    {% with request.resolver_match.url_name as url_name %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-custom">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            {% if url_name == 'invoice_create' %}
-                                ایجاد صورتحساب
-                            {% else %}
-                                ویرایش صورتحساب
-                            {% endif %}
-                        </h3>
-                    </div>
-                    <!--begin::Form-->
-                    <form class="form" method="post" autocomplete="off">
-                        {% csrf_token %}
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4 mb-5">
-                                    <div class="form-group">
-                                        {{ factor_form.address|as_crispy_field }}
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-5">
-                                    <div class="form-group">
-                                        {{ factor_form.invoice_shop|as_crispy_field }}
-                                    </div>
-                                </div>
-                                <div class="col-md-2 mb-5">
-                                    <label class="form-control-label">تاریخ اعتبار*</label>
-                                    {{ factor_form.life_time }}
-                                    {% if factor_form.life_time.errors %}
-                                        <span class="form-text text-muted">{{ factor_form.life_time.errors }}</span>
-                                    {% endif %}
-                                </div>
-                                <div class="col-md-2 mb-5">
-                                    <label class="form-control-label">تاریخ ثبت*</label>
-                                    {{ factor_form.date }}
-                                    {% if factor_form.date.errors %}
-                                        <span class="form-text text-muted">{{ factor_form.date.errors }}</span>
-                                    {% endif %}
-                                </div>
-                                <div class="col-md-4 mb-5">
-                                    <div class="form-group">
-                                        {{ factor_form.tax|as_crispy_field }}
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-5">
-                                    <div class="form-group">
-                                        {{ factor_form.discount|as_crispy_field }}
-                                    </div>
-                                </div>
-                                <div class="col-md-4" mb-5>
-                                    <div class="form-group">
-                                        {{ factor_form.transport_cost|as_crispy_field }}
-                                    </div>
-                                </div>
-                                {{ factor_detail_formset.management_form }}
-                                <div class="col-md-12 mt-5">
-                                    <h3>جزئیات فاکتور:</h3>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="row" id="factorDetailContainer">
-                                        {% for form in factor_detail_formset %}
-                                            {{ form.errors }}
-                                            <div class="col-md-12 border-bottom pb-4 mb-5">
-                                                <div class="row">
-                                                    <div class="col-md-3 mb-3">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">نام:</label>
-                                                            <div class="input-group">
-                                                                {{ form.name }}
-                                                                {{ form.id }}
-                                                            </div>
-                                                            {% if form.name.errors %}
-                                                                <span class="form-text text-danger">{{ form.name.errors }}</span>
-                                                            {% endif %}
-                                                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cards casrd-custom">
+                        <form class="form" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                {% if url_name == 'shop-panel-invoices-create' %}
+                                                    افزودن فاکتور
+                                                {% else %}
+                                                    ویرایش فاکتور
+                                                {% endif %}
+                                            </h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-4 mb-5">
+                                                    <div class="form-group">
+                                                        {{ factor_form.address|as_crispy_field }}
                                                     </div>
-                                                    <div class="col-md-2 mb-3">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">مقدار:</label>
-                                                            <div class="input-group">
-                                                                {{ form.quantity }}
-                                                            </div>
-                                                            {% if form.quantity.errors %}
-                                                                <span class="form-text text-danger">{{ form.quantity.errors }}</span>
-                                                            {% endif %}
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-4 mb-5">
+                                                    <div class="form-group">
+                                                        {{ factor_form.invoice_shop|as_crispy_field }}
                                                     </div>
-                                                    <div class="col-md-1 mb-3">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">واحد:</label>
-                                                            <div class="input-group">
-                                                                {{ form.quantity_name }}
-                                                            </div>
-                                                            {% if form.quantity_name.errors %}
-                                                                <span class="form-text text-danger">{{ form.quantity_name.errors }}</span>
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 mb-3">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">قیمت واحد:</label>
-                                                            <div class="input-group">
-                                                                {{ form.amount }}
-                                                            </div>
-                                                            {% if form.amount.errors %}
-                                                                <span class="form-text text-danger">{{ form.amount.errors }}</span>
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2 mb-3">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">تعداد:</label>
-                                                            <div class="input-group">
-                                                                {{ form.count_of_order }}
-                                                            </div>
-                                                            {% if form.count_of_order.errors %}
-                                                                <span class="form-text text-danger">{{ form.count_of_order.errors }}</span>
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    {% if form.DELETE %}
-                                                        <div class="col-md-1 mb-3">
-                                                            <div class="form-group">
-                                                                <label class="checkbox">حذف:</label>
-                                                                {{ form.DELETE }}
-                                                                {% if form.DELETE.errors %}
-                                                                    <span class="form-text text-danger">{{ form.DELETE.errors }}</span>
-                                                                {% endif %}
-                                                            </div>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-2 mb-5">
+                                                    <label class="form-control-label">تاریخ اعتبار*</label>
+                                                    {{ factor_form.life_time }}
+                                                    {% if factor_form.life_time.errors %}
+                                                        <span class="form-text text-muted">{{ factor_form.life_time.errors }}</span>
                                                     {% endif %}
                                                 </div>
+                                                <div class="col-md-2 mb-5">
+                                                    <label class="form-control-label">تاریخ ثبت*</label>
+                                                    {{ factor_form.date }}
+                                                    {% if factor_form.date.errors %}
+                                                        <span class="form-text text-muted">{{ factor_form.date.errors }}</span>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-md-4 mb-5">
+                                                    <div class="form-group">
+                                                        {{ factor_form.tax|as_crispy_field }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-5">
+                                                    <div class="form-group">
+                                                        {{ factor_form.discount|as_crispy_field }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" mb-5>
+                                                    <div class="form-group">
+                                                        {{ factor_form.transport_cost|as_crispy_field }}
+                                                    </div>
+                                                </div>
                                             </div>
-                                        {% endfor %}
+                                        </div>
                                     </div>
+
+                                    <div class="card mt-5">
+                                        <div class="card-header">
+                                            {{ factor_detail_formset.management_form }}
+                                            <div class="card-title">
+                                                <h3>جزئیات فاکتور:</h3>
+                                                <h6 class="ms-2">
+                                                    <a href="{% url 'core:calculator' %}" target="_blank">برای محاسبه وزن کلیک کنید</a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row" id="factorDetailContainer">
+                                                {% for form in factor_detail_formset %}
+                                                    {{ form.errors }}
+                                                    <div class="col-md-12 border-bottom pb-4 mb-5">
+                                                        <div class="row">
+                                                            <div class="col-md-3 mb-3">
+                                                                <div class="form-group">
+                                                                    <label class="form-control-label">نام:</label>
+                                                                    <div class="input-group">
+                                                                        {{ form.name }}
+                                                                        {{ form.id }}
+                                                                    </div>
+                                                                    {% if form.name.errors %}
+                                                                        <span class="form-text text-danger">{{ form.name.errors }}</span>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 mb-3">
+                                                                <div class="form-group">
+                                                                    <label class="form-control-label">
+                                                                        مقدار
+                                                                    </label>
+                                                                    <div class="input-group">
+                                                                        {{ form.quantity }}
+                                                                    </div>
+                                                                    {% if form.quantity.errors %}
+                                                                        <span class="form-text text-danger">{{ form.quantity.errors }}</span>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1 mb-3">
+                                                                <div class="form-group">
+                                                                    <label class="form-control-label">واحد:</label>
+                                                                    <div class="input-group">
+                                                                        {{ form.quantity_name }}
+                                                                    </div>
+                                                                    {% if form.quantity_name.errors %}
+                                                                        <span class="form-text text-danger">{{ form.quantity_name.errors }}</span>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 mb-3">
+                                                                <div class="form-group">
+                                                                    <label class="form-control-label">قیمت واحد:</label>
+                                                                    <div class="input-group">
+                                                                        {{ form.amount }}
+                                                                    </div>
+                                                                    {% if form.amount.errors %}
+                                                                        <span class="form-text text-danger">{{ form.amount.errors }}</span>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 mb-3">
+                                                                <div class="form-group">
+                                                                    <label class="form-control-label">تعداد:</label>
+                                                                    <div class="input-group">
+                                                                        {{ form.count_of_order }}
+                                                                    </div>
+                                                                    {% if form.count_of_order.errors %}
+                                                                        <span class="form-text text-danger">{{ form.count_of_order.errors }}</span>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                            {% if form.DELETE %}
+                                                                <div class="col-md-1 mb-3">
+                                                                    <div class="form-group">
+                                                                        <label class="checkbox">حذف:</label>
+                                                                        {{ form.DELETE }}
+                                                                        {% if form.DELETE.errors %}
+                                                                            <span class="form-text text-danger">{{ form.DELETE.errors }}</span>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-light-info" id="addFormBtn">
+                                                    <i class="fa fa-plus-circle"></i> آیتم جدید
+                                                </button>
+                                                <button type="button" class="btn btn-light-danger d-none"
+                                                        id="deleteFormBtn">
+                                                    <i class="fa fa-minus-circle"></i> حذف آیتم
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
-
-                                <div class="col-md-12">
-                                    <button type="button" class="btn btn-light-info" id="addFormBtn">
-                                        <i class="fa fa-plus-circle"></i> اضافه کردن
-                                    </button>
-                                </div>
-
-
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-light-success font-weight-bold mr-2">ایجاد
-                            </button>
-                        </div>
-                    </form>
-                    <!-- end::Form -->
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if url_name == 'shop-panel-invoices-create' %}
+                                        <button type="submit" class="btn btn-success font-weight-bold mr-2">ایجاد
+                                        </button>
+                                    {% else %}
+                                        <button type="submit" class="btn btn-warning font-weight-bold mr-2">ویرایش
+                                        </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                        <!-- end::Form -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    {% endwith %}
 {% endblock %}
 
 {% block meta_js_code %}
@@ -182,12 +207,14 @@
 
     <script>
         const add_form_btn = document.getElementById('addFormBtn')
+        const delete_form_btn = document.getElementById('deleteFormBtn')
         const total_forms = document.getElementById('id_form-TOTAL_FORMS')
         const factor_detail_container = document.getElementById('factorDetailContainer')
         let form_length = parseInt("{{ form_length }}")
 
         add_form_btn.addEventListener('click', () => {
             form_length += 1
+            delete_form_btn.classList = 'btn btn-light-danger'
             // increase total forms value
             total_forms.value = form_length
             // add new item
@@ -237,6 +264,21 @@
                 </div>
             </div>
             `)
+        })
+
+        delete_form_btn.addEventListener('click', () => {
+            if (form_length > 0) {
+                form_length -= 1
+
+                if (form_length < 1 || form_length === parseInt("{{ form_length }}")) {
+                    delete_form_btn.classList = 'btn btn-light-danger d-none'
+                }
+
+                // increase total forms value
+                total_forms.value = form_length
+                // remove last item
+                factor_detail_container.removeChild(factor_detail_container.lastElementChild)
+            }
         })
 
         const jalali_date_picker = document.getElementById('id_date')

@@ -311,12 +311,14 @@
                                         <tr class="text-gray-700">
                                             <!--begin::product-->
                                             <td>
-                                                  {{ item.name }}
+                                                {{ item.name }}
                                             </td>
                                             <td class="text-end">
                                                 {{ item.quantity }} {{ item.quantity_name }}
                                             </td>
-                                            <td class="text-end">{% if item.count_of_order %}{{ item.count_of_order }}{% else %}-{% endif %}</td>
+                                            <td class="text-end">
+                                                {% if item.count_of_order %}{{ item.count_of_order }}{% else %}
+                                                    -{% endif %}</td>
                                             <td class="text-end">{{ item.amount|intcomma:False }} ت</td>
                                             <td class="text-end">{{ item.get_total_price|intcomma:False }} ت
                                             </td>
@@ -363,6 +365,10 @@
                             </div>
                         </div>
                         <!--end::Card body-->
+                        <div class="card-footer border-top py-4">
+                            <a href="{% url 'shop:shop-panel-invoices-update' shop.unique_uuid object.pk %}"
+                               class="btn btn-info">ویرایش فاکتور</a>
+                        </div>
                     </div>
                     <!--end::محصولات لیست-->
                 </div>

@@ -117,6 +117,7 @@
 {% block meta_js_code %}
     <script src="{% static 'site_statics/js/chart.min.js' %}"></script>
     <script>
+        console.log({{ weekly_records|safe }})
         let chrt = document.getElementById("weeklyInvoice").getContext("2d");
         new Chart(chrt, {
             type: 'bar',
