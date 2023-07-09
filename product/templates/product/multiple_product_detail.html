@@ -72,8 +72,8 @@
 
                             <div class="col-12 col-lg-4 mb-3">
                                 <p class="h5 title font-vazir-bold-fd mb-4">
-                                        درباره محصول
-                                    </p>
+                                    درباره محصول
+                                </p>
                                 <div class="rounded-card box-shadow">
                                     <div class="text-center">
                                         <img
@@ -100,7 +100,8 @@
                                     </div>
                                 </div>
                                 <div class="rounded-card box-shadow my-3">
-                                    <a href="" class="btn btn-outline-purple w-100">محاسبه وزن پروفیل</a>
+                                    <a href="{% url 'core:calculator' %}" class="btn btn-outline-purple w-100">محاسبه
+                                        وزن {{ object.title }}</a>
                                 </div>
                             </div>
 
