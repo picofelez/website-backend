@@ -63,7 +63,7 @@
                                 </td>
                                 <td class="fw-bolder text-end">
                                     {% if object.invoice_shop == 'pre' %}
-                                        {{ object.life_time.date }}
+                                        {{ object.life_time }}
                                     {% elif object.invoice_shop == 'sales' %}
                                         {{ object.date }}
                                     {% endif %}

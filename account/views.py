@@ -19,6 +19,7 @@ from extensions.send_otp import send_otp
 
 # Create your views here.
 from product.models import FavoriteProduct
+from shop.models import ShopInvoice
 
 User = get_user_model()
 
@@ -259,3 +260,18 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.model.objects.get(id=self.request.user.id)
+
+
+class UserShopInvoiceDetailView(LoginRequiredMixin, DetailView):
+    model = ShopInvoice
+    template_name = 'account/user_shop_invoice_detail.html'
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super(UserShopInvoiceDetailView, self).get_context_data(**kwargs)
+        context['related_invoices'] = ShopInvoice.objects.filter(
+            user=self.request.user
+        ).exclude(id=self.get_object().id)
+        return context
