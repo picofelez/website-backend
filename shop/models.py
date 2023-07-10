@@ -45,16 +45,25 @@ class Shop(models.Model):
     about = models.TextField(verbose_name='متن دباره ما')
     is_special = models.BooleanField(default=False, null=True, blank=True, verbose_name='برگزیده')
     is_special_date = models.DateTimeField(null=True, blank=True, verbose_name='تاریخ برگزیده شدن')
+    score = models.IntegerField(default=0, verbose_name='امتیاز')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
 
     class Meta:
         verbose_name = 'فروشگاه'
         verbose_name_plural = '1. فروشگاه ها'
-        ordering = ('-created',)
+        ordering = ('-score',)
 
     objects = models.Manager()
     active = ActiveShopManager()
+
+    def increase_score(self, increase_count, summary):
+        self.score_histories.create(
+            value=increase_count,
+            summary=summary
+        )
+        self.score += increase_count
+        self.save()
 
     def get_thumbnail(self):
         return format_html(f"<img width=100 height=75 style='border-radius: 5px;' src='{self.image.url}'>")
@@ -241,6 +250,7 @@ class ShopInvoice(models.Model):
     transport_cost = models.BigIntegerField(default=0, verbose_name='کرایه باربری')
     invoice_shop = models.CharField(max_length=20, choices=InvoiceTypeChoices.choices, verbose_name='تایپ فاکتور')
     life_time = jmodels.jDateField(null=True, blank=True, verbose_name='تاریخ اعتبار')
+    seen = models.BooleanField(default=False, verbose_name='مشاهده شده توسط مشتری')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
 
@@ -301,3 +311,20 @@ class ShopInvoiceDetail(models.Model):
 
     def __str__(self):
         return f"{self.get_total_price():,} تومان"
+
+
+class ShopScoreHistory(models.Model):
+    value = models.IntegerField(default=0, verbose_name='مقدار امتیاز')
+    summary = models.CharField(max_length=255, verbose_name='دلیل امتیاز')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    shop = models.ForeignKey(
+        Shop, on_delete=models.PROTECT, related_name='score_histories', verbose_name='برای فروشگاه'
+    )
+
+    class Meta:
+        verbose_name = 'تاریخچه امتیاز'
+        verbose_name_plural = '8. تاریخجه امتیازات'
+
+    def __str__(self):
+        return f"{self.shop.title} - {self.value} امتیاز"

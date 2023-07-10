@@ -283,4 +283,11 @@ class UserShopInvoiceDetailView(LoginRequiredMixin, DetailView):
         context['related_invoices'] = ShopInvoice.objects.filter(
             user=self.request.user
         ).exclude(id=self.get_object().id)
+
+        if not self.get_object().seen:
+            summary = f"کاربر {self.request.user.get_full_name()} فاکتور را مشاهده کرد."
+            self.object.seen = True
+            self.get_object().shop.increase_score(increase_count=1, summary=summary)
+            self.object.save()
+
         return context

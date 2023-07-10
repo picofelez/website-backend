@@ -7,7 +7,8 @@ from .models import (
     Wallet,
     WalletTransaction,
     ShopInvoice,
-    ShopInvoiceDetail
+    ShopInvoiceDetail,
+    ShopScoreHistory
 )
 
 
@@ -93,3 +94,8 @@ class ShopInvoiceDetailAdmin(admin.ModelAdmin):
     list_display = ('name', '__str__', 'quantity', 'quantity_name', 'get_total_price_display')
     list_filter = ('created',)
     search_fields = ('invoice__shop__title',)
+
+
+@admin.register(ShopScoreHistory)
+class ShopScoreHistoryAdmin(admin.ModelAdmin):
+    pass
