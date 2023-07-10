@@ -82,7 +82,7 @@
                         </div>
                     </a>
                 {% else %}
-                    <a href="{% url 'shop:shop-panel-main' request.user.shops.last.unique_uuid %}">
+                    <a href="{% url 'shop:shop-panel-main' request.user.shops.first.unique_uuid %}">
                         <div class="btn btn-outline-dark px-4 py-2">
                             ورود به فروشگاه
                         </div>

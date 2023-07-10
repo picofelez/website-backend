@@ -72,7 +72,7 @@
                                         </div>
                                     </a>
                                 {% else %}
-                                    <a href="{% url 'shop:shop-panel-main' request.user.shops.last.unique_uuid %}">
+                                    <a href="{% url 'shop:shop-panel-main' request.user.shops.first.unique_uuid %}">
                                         <div class="btn btn-purple w-100">
                                             <i class="fab fa-shopify"></i>
                                             ورود به فروشگاه
