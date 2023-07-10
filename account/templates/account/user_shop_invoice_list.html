@@ -1,0 +1,124 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}پیکوفلز | سفارشات{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="login-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>بازار آنلاین آهن</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:home' %}">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'account:user-profile' %}">حساب کاربری</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                فاکتور ها و صورتحساب ها
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-12 col-md-4 mb-2">
+                                    {% include 'account/components/profile_side_component.html' %}
+                                </div>
+                                <div class="col-12 col-md-8 mb-2">
+                                    <h5 class="title font-vazir-bold-fd mt-5 mb-4 mt-md-0">فاکتور ها و صورتحساب های شما</h5>
+                                    <div class="row">
+                                        {% for related_invoice in page_obj %}
+                                            <div class="col-md-6 col-xl-6 mb-3">
+                                                <a href="{% url 'account:user-shop-invoices-detail' related_invoice.pk %}"
+                                                   class="card box-shadow">
+                                                    <div class="card-body py-5 px-4">
+                                                        <div class="mb-4">
+                                                            <p class="h6 font-vazir-bold-fd">
+                                                                فروشگاه : {{ related_invoice.shop.title }}
+                                                                {% if related_invoice.invoice_shop == 'pre' %}
+                                                                    <span class="badge bg-purple">
+                                                        {{ related_invoice.get_invoice_shop_display }}
+                                                        </span>
+                                                                {% elif related_invoice.invoice_shop == 'sales' %}
+                                                                    <span class="badge bg-success">
+                                                            {{ related_invoice.get_invoice_shop_display }}
+                                                            </span>
+                                                                {% endif %}
+                                                            </p>
+                                                        </div>
+                                                        <div class="abdi-metal-project-meta">
+                                                            <p>
+                                                                {% if related_invoice.life_time %}
+                                                                    {{ related_invoice.life_time }}
+                                                                {% else %}
+                                                                    -
+                                                                {% endif %}
+                                                                <br>
+                                                                <span>
+                                                اعتبار تا تاریخ
+                                            </span>
+                                                            </p>
+                                                            <p>
+
+                                                                {% if related_invoice.date %}
+                                                                    {{ related_invoice.date }}
+                                                                {% else %}
+                                                                    -
+                                                                {% endif %}
+
+                                                                <br>
+                                                                <span>
+                                                تاریخ ثبت
+                                            </span>
+                                                            </p>
+                                                            <p>
+                                                                {{ related_invoice.get_total_invoice_price|intcomma:False }}
+                                                                تومان
+                                                                <br>
+                                                                <span>
+                                                جمع کل
+                                            </span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        {% empty %}
+                                            <div class="alert alert-secondary">
+                                                فاکتوری برای شما ثبت نشده.
+                                                <a href="{% url 'product:product-list' %}" class="text-primary">برای
+                                                    مشاهده محصولات کلیک کنید.</a>
+                                            </div>
+                                        {% endfor %}
+
+                                    </div>
+                                    {% include 'core/components/paginate_component.html' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

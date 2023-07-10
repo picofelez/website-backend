@@ -15,7 +15,8 @@ from .views import (
     UserOrderListView,
     UserOrderDetailView,
     UserProfileUpdateView,
-    UserShopInvoiceDetailView
+    UserShopInvoiceDetailView,
+    UserShopInvoiceListView
 )
 
 app_name = 'account'
@@ -40,5 +41,6 @@ urlpatterns = [
     # path('orders/', UserOrderListView.as_view(), name='user-order-list'),
     # path('orders/<int:pk>', UserOrderDetailView.as_view(), name='user-order-detail'),
 
+    path('invoices', UserShopInvoiceListView.as_view(), name='user-shop-invoices-list'),
     path('invoices/<str:pk>', UserShopInvoiceDetailView.as_view(), name='user-shop-invoices-detail')
 ]

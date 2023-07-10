@@ -40,7 +40,7 @@
                                 <div class="col-12 col-md-4 mb-2">
                                     {% include 'account/components/profile_side_component.html' %}
                                 </div>
-                                <div class="col-12 col-md-8 mb-2">
+                                <div class="col-12 col-md-8  mt-5 mb-4 mt-md-0">
                                     <h5 class="title font-vazir-bold-fd">
                                         {{ request.user.get_full_name }} خوش آمدید!
                                     </h5>
@@ -58,7 +58,7 @@
                                             <div class="rounded-card box-shadow">
                                                 <div class="h6 font-vazir-bold-fd">
                                                     <i class="fas fa-file-invoice"></i>
-                                                    <a href="{% url 'account:user-profile-update' %}">فاکتور ها و صورتحساب ها</a>
+                                                    <a href="{% url 'account:user-shop-invoices-list' %}">فاکتور ها و صورتحساب ها</a>
                                                 </div>
                                             </div>
                                         </div>

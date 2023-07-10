@@ -262,6 +262,15 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
         return self.model.objects.get(id=self.request.user.id)
 
 
+class UserShopInvoiceListView(LoginRequiredMixin, ListView):
+    model = ShopInvoice
+    template_name = 'account/user_shop_invoice_list.html'
+    paginate_by = 15
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+
 class UserShopInvoiceDetailView(LoginRequiredMixin, DetailView):
     model = ShopInvoice
     template_name = 'account/user_shop_invoice_detail.html'
