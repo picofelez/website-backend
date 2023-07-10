@@ -6,7 +6,8 @@
         <h5 class="font-vazir-bold-fd my-2">{{ request.user.get_full_name }}</h5>
     </a>
     {% if request.user.shops.count != 0 %}
-        <a href="{% url 'shop:shop-panel-main' request.user.shops.last.unique_uuid %}" class="list-group-item list-group-item-action">
+        <a href="{% url 'shop:shop-panel-main' request.user.shops.last.unique_uuid %}"
+           class="list-group-item list-group-item-action">
             <i class="fas fa-list-ul"></i>
             فروشگاه شما
         </a>
@@ -15,17 +16,9 @@
         <i class="fas fa-user"></i>
         ویرایش حساب کاربری
     </a>
-    <a href="{% url 'account:user-favorite-product' %}" class="list-group-item list-group-item-action">
-        <i class="fas fa-heart"></i>
-        محصولات نشان شده
-    </a>
-    <a href="{% url 'account:user-order-list' %}" class="list-group-item list-group-item-action">
-        <i class="fas fa-shopping-cart"></i>
-        سفارش های شما
-    </a>
-    <a href="{% url 'account:user-address-list' %}" class="list-group-item list-group-item-action">
-        <i class="fas fa-location"></i>
-        آدرس های شما
+    <a href="{% url 'account:user-profile-update' %}" class="list-group-item list-group-item-action">
+        <i class="fas fa-user"></i>
+        فاکتور ها و صورتحساب ها
     </a>
     <a href="{% url 'account:logout' %}"
        class="list-group-item bg-danger text-white list-group-item-action">
