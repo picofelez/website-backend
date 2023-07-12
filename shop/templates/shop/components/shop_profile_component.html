@@ -2,22 +2,22 @@
 <div class="my-2">
     <div class="container">
         <div class="rounded border p-2">
-            <div class="row">
-                <div class="col-12 col-md-2 mb-3 mb-md-0">
+            <div class="row text-center">
+                <div class="col-12 mb-2">
                     <img
                             {% if shop.image %}
                                 src="{{ shop.image.url }}"
-                                class="rounded"
+                                class="shop-profile-img"
                             {% else %}
                                 src="{% static 'site_statics/img/bg/no-image.png' %}"
-                                class="rounded border"
+                                class="shop-profile-img border"
                             {% endif %}
-                                alt="name"
+                                alt="{{ shop.title }}"
                                 width="100%"
                                 height="150"
                     />
                 </div>
-                <div class="col-12 col-md-8">
+                <div class="col-12">
                     <h4 class="font-vazir-bold-fd">{{ shop.title }}</h4>
                     <div class="mt-2">
                         <i class="fas fa-star text-purple"></i>

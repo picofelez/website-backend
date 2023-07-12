@@ -261,6 +261,12 @@
     margin: 10px 0;
 }
 
+.shop-profile-img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+}
+
 .store .store-img {
     width: auto;
     max-width: 100%;
