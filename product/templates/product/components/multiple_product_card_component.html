@@ -7,12 +7,14 @@
                     class="multiple-product-detail-img"
             />
             <p class="h5 font-vazir-bold-fd my-3">
-                {{ product.title }} {% if not in_shop_page %}<small> - {{ product.shops.count }} فروشنده</small>{% endif %}
+                {{ product.title }}
             </p>
             <div>
-                                                <span class="badge border rounded text-black">
+                {% if product.width %}
+                    <span class="badge border rounded text-black">
                                                    ضخامت {{ product.width }}
                                                 </span>
+                {% endif %}
                 <span class="badge border rounded text-black">
                                                    وزن تقریبی هر شاخه {{ product.weight }}
                                                 </span>

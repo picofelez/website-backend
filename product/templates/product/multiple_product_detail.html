@@ -83,9 +83,11 @@
                                         />
                                         <p class="h4 font-vazir-bold-fd my-3">{{ product.title }}</p>
                                         <div>
-                                                <span class="badge border rounded text-black">
+                                                {% if product.width %}
+                    <span class="badge border rounded text-black">
                                                    ضخامت {{ product.width }}
                                                 </span>
+                {% endif %}
                                             <span class="badge border rounded text-black">
                                                    وزن تقریبی هر شاخه {{ product.weight }}
                                                 </span>
