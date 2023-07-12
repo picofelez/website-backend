@@ -17,6 +17,14 @@
 {% block content %}
 
     <div class="d-flex flex-column gap-7 gap-lg-10">
+        {% if object.seen %}
+            <div style="font-size: 1.3rem">
+                <div class="alert bg-warning">
+                    <i class="fas fa-trophy text-dark" style="font-size: 1.5rem"></i>
+                    شما امتیاز این فاکتور را دریافت کرده اید !
+                </div>
+            </div>
+        {% endif %}
         <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
             <!--begin::Order details-->
             <div class="card card-flush py-4 flex-row-fluid">
