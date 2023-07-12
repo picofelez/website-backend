@@ -51,44 +51,44 @@ urlpatterns = [
     # panel
     path('shop/panel/<unique_uuid>', ShopAccountMainView.as_view(), name='shop-panel-main'),
     path('shop/panel/<unique_uuid>/update', ShopUpdateView.as_view(), name='shop-panel-update'),
-    path('shop/panel/<unique_uuid>/wallet', shop_wallet_view, name='shop-panel-wallet'),
+    # path('shop/panel/<unique_uuid>/wallet', shop_wallet_view, name='shop-panel-wallet'),
 
-    path(
-        'shop/panel/<unique_uuid>/products',
-        ShopProductsListView.as_view(),
-        name='shop-panel-products'
-    ),
-    path(
-        'shop/panel/<unique_uuid>/products/update/<str:pk>',
-        ShopProductUpdateView.as_view(),
-        name='shop-panel-products-update'
-    ),
-    path(
-        'shop/panel/<unique_uuid>/products/update/price/<str:pk>',
-        ShopUpdateProductPriceView.as_view(),
-        name='shop-panel-products-update-price'
-    ),
-    path(
-        'shop/panel/<unique_uuid>/products/create',
-        ShopProductCreateView.as_view(),
-        name='shop-panel-products-create'
-    ),
+    # path(
+    #     'shop/panel/<unique_uuid>/products',
+    #     ShopProductsListView.as_view(),
+    #     name='shop-panel-products'
+    # ),
+    # path(
+    #     'shop/panel/<unique_uuid>/products/update/<str:pk>',
+    #     ShopProductUpdateView.as_view(),
+    #     name='shop-panel-products-update'
+    # ),
+    # path(
+    #     'shop/panel/<unique_uuid>/products/update/price/<str:pk>',
+    #     ShopUpdateProductPriceView.as_view(),
+    #     name='shop-panel-products-update-price'
+    # ),
+    # path(
+    #     'shop/panel/<unique_uuid>/products/create',
+    #     ShopProductCreateView.as_view(),
+    #     name='shop-panel-products-create'
+    # ),
 
-    path(
-        'shop/panel/<unique_uuid>/orders',
-        ShopOrderListView.as_view(),
-        name='shop-panel-orders'
-    ),
-    path(
-        'shop/panel/<unique_uuid>/orders/<int:pk>',
-        ShopOrderDetailView.as_view(),
-        name='shop-panel-orders-detail'
-    ),
-    path(
-        'shop/panel/<unique_uuid>/orders/update/<int:pk>',
-        ShopOrderUpdateView.as_view(),
-        name='shop-panel-orders-update'
-    ),
+    # path(
+    #     'shop/panel/<unique_uuid>/orders',
+    #     ShopOrderListView.as_view(),
+    #     name='shop-panel-orders'
+    # ),
+    # path(
+    #     'shop/panel/<unique_uuid>/orders/<int:pk>',
+    #     ShopOrderDetailView.as_view(),
+    #     name='shop-panel-orders-detail'
+    # ),
+    # path(
+    #     'shop/panel/<unique_uuid>/orders/update/<int:pk>',
+    #     ShopOrderUpdateView.as_view(),
+    #     name='shop-panel-orders-update'
+    # ),
 
     # special shops
     path(

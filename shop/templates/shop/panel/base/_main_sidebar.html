@@ -32,7 +32,7 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-                        <span class="menu-title">مدیریت فروشگاه</span>
+                        <span class="menu-title">صفحه فروشگاه شما</span>
                     </a>
                 </div>
             </div>
@@ -43,51 +43,29 @@
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-                        <span class="menu-title">ویرایش فروشگاه</span>
+                        <span class="menu-title">ویرایش اطلاعات</span>
                     </a>
                 </div>
             </div>
 
             <div class="menu-sub menu-sub-accordion menu-active-bg">
                 <div class="menu-item">
-                    <a class="menu-link" href="{% url 'shop:shop-panel-products' shop.unique_uuid %}">
+                    <a class="menu-link" href="{% url 'shop:shop-panel-invoices' shop.unique_uuid %}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-                        <span class="menu-title">محصولات شما</span>
+                        <span class="menu-title">فاکتور های شما</span>
                     </a>
                 </div>
             </div>
 
             <div class="menu-sub menu-sub-accordion menu-active-bg">
                 <div class="menu-item">
-                    <a class="menu-link" href="{% url 'shop:shop-panel-products-create' shop.unique_uuid %}">
+                    <a class="menu-link" href="">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-                        <span class="menu-title">ایجاد محصول</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="menu-sub menu-sub-accordion menu-active-bg">
-                <div class="menu-item">
-                    <a class="menu-link" href="{% url 'shop:shop-panel-orders' shop.unique_uuid %}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                        <span class="menu-title">سفارش ها</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="menu-sub menu-sub-accordion menu-active-bg">
-                <div class="menu-item">
-                    <a class="menu-link" href="{% url 'shop:shop-panel-wallet' shop.unique_uuid %}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                        <span class="menu-title">کیف پول</span>
+                        <span class="menu-title">امتیازات</span>
                     </a>
                 </div>
             </div>
