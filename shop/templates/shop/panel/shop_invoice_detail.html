@@ -367,7 +367,13 @@
                         <!--end::Card body-->
                         <div class="card-footer border-top py-4">
                             <a href="{% url 'shop:shop-panel-invoices-update' shop.unique_uuid object.pk %}"
-                               class="btn btn-info">ویرایش فاکتور</a>
+                               class="btn btn-info">
+                                <i class="fa fa-edit"></i>
+                                ویرایش فاکتور
+                            </a>
+                            <div class="alert alert-dark mt-2 fw-bolder">
+                                لینک مشتری: https://picofelez.ir/account/invoices/{{ object.pk }}
+                            </div>
                         </div>
                     </div>
                     <!--end::محصولات لیست-->
