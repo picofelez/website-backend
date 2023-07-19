@@ -39,8 +39,8 @@
                                         </ul>
                                     </div>
 
-                                    <div class="col-12 mb-4 mt-3">
-                                        <p class="font-vazir-bold-fd mb-4 h5 title">جزئیات فاکتور</p>
+                                    <div class="col-12 mb-3 mt-3">
+                                        <p class="font-vazir-bold-fd mb-3 h5 title">جزئیات فاکتور</p>
                                         <div class="table-responsive">
                                             <table class="table table-striped">
                                                 <thead>
@@ -83,20 +83,22 @@
                                                         <td>فاکتوری ثبت نشده</td>
                                                     </tr>
                                                 {% endfor %}
+                                                <tr>
+                                                        <th scope="row"></th>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td class="font-vazir-bold-fd">جمع کل فاکتور</td>
+                                                        <td class="font-vazir-bold-fd">
+                                                            {{ object.get_total_invoice_price|intcomma:False }}
+                                                            <small>
+                                                                تومان
+                                                            </small>
+                                                        </td>
+                                                    </tr>
 
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
-
-
-                                    <div class="col-12 mb-3">
-                                        <ul class="abdi-metal-project-detail-meta list-unstyled">
-                                            <li class="bg-light p-2">
-                                                <span>جمع کل فاکتور:</span>
-                                                {{ object.get_total_invoice_price|intcomma:False }} تومان
-                                            </li>
-                                        </ul>
                                     </div>
 
                                     {% if invoice.show_stamp %}
