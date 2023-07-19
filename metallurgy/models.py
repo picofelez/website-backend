@@ -132,6 +132,7 @@ class Invoice(models.Model):
     accessibility_status = models.CharField(
         max_length=20, choices=AccessibilityChoices.choices, verbose_name='وضعیت دسترسی'
     )
+    show_stamp = models.BooleanField(default=True, verbose_name='نمایش مهر')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
