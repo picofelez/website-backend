@@ -379,6 +379,11 @@
                                 <i class="fa fa-edit"></i>
                                 ویرایش فاکتور
                             </a>
+                            <a href="{% url 'account:user-shop-invoices-detail' object.pk %}?print=true"
+                               class="btn btn-primary">
+                                <i class="fa fa-edit"></i>
+                                دانلود pdf
+                            </a>
                             <div class="alert alert-dark mt-2 fw-bolder">
                                 لینک مشتری: https://picofelez.ir/account/invoices/{{ object.pk }}
                             </div>
