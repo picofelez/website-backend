@@ -34,6 +34,142 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
+                                                <div class="col-12 mb-5">
+                                                    <div class="border rounded p-3 d-flex justify-content-start align-items-center">
+                                                        <div class="me-3">
+                                                            <img
+                                                                    src="{% static 'shop_panel_static/media/svg/avatars/001-boy.svg' %}"
+                                                                    alt="customer"
+                                                                    width="70"
+                                                                    height="70"
+                                                            >
+                                                        </div>
+                                                        <div>
+                                                            {% if factor.user %}
+                                                                <h6>
+                                                                    مشتری: {{ factor.user.get_full_name }}
+                                                                </h6>
+                                                                <h6 class="mt-3">
+                                                                    شماره:
+                                                                    {{ factor.user.username }}
+                                                                </h6>
+                                                                <input type="text" id="username" name="username"
+                                                                       value="{{ factor.user.username }}" hidden>
+                                                            {% else %}
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#customerModal">
+                                                                    انتخاب مشتری
+                                                                </button>
+
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="customerModal" tabindex="-1"
+                                                                     aria-labelledby="selectCustomerModal"
+                                                                     aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title"
+                                                                                    id="selectCustomerModal">انتخاب
+                                                                                    مشتری</h5>
+                                                                                <button type="button" class="btn-close"
+                                                                                        data-bs-dismiss="modal"
+                                                                                        aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <div>
+                                                                                    <label for="phone">
+                                                                                        شماره موبایل
+                                                                                        <span class="text-danger">*</span>
+                                                                                    </label>
+                                                                                    <input type="tel"
+                                                                                           class="form-control"
+                                                                                           placeholder="شماره موبایل"
+                                                                                           id="phone"
+                                                                                    >
+
+                                                                                    <label for="first_name"
+                                                                                           class="mt-5">
+                                                                                        نام
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           placeholder="نام"
+                                                                                           id="first_name"
+                                                                                    >
+
+                                                                                    <label for="last_name" class="mt-5">
+                                                                                        نام خانوادگی
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           placeholder="نام خانوادگی"
+                                                                                           id="last_name"
+                                                                                    >
+                                                                                    <input type="text" name="username"
+                                                                                           id="username" hidden>
+
+                                                                                    <div class="alert bg-light-success mt-5 mb-0"
+                                                                                         id="customerModalSuccess"
+                                                                                         style="display: none">
+                                                                                        <h6>
+                                                                                          <span>
+                                                                                               <i class="fas fa-check me-2 text-success"
+                                                                                                  style="font-size: 1.8rem"></i>
+                                                                                          </span>
+                                                                                            مشتری با موفقیت انتخاب شد!
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                    <div class="alert bg-light-info mt-5 mb-0"
+                                                                                         id="customerModalLoading"
+                                                                                         style="display: none">
+                                                                                        <h6>
+                                                                                          <span>
+                                                                                               <i class="fas fa-spinner me-2 text-info"
+                                                                                                  style="font-size: 1.8rem"></i>
+                                                                                          </span>
+                                                                                            درحال جستجو
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                    <div class="alert bg-light-danger mt-5 mb-0"
+                                                                                         id="customerModalDanger"
+                                                                                         style="display: none">
+                                                                                        <h6>
+                                                                                          <span>
+                                                                                               <i class="fas fa-info me-2 text-danger"
+                                                                                                  style="font-size: 1.8rem"></i>
+                                                                                          </span>
+                                                                                            انتخاب مشتری با خطا مواجه
+                                                                                            شد!
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer"
+                                                                                 style="justify-content: flex-start">
+                                                                                <button type="button"
+                                                                                        class="btn btn-primary w-100"
+                                                                                        id="customerModalBtn">
+                                                                                    جستجو
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                        class="btn btn-success w-100"
+                                                                                        data-bs-dismiss="modal"
+                                                                                        id="customerModalDismiss"
+                                                                                        style="display: none"
+                                                                                >
+                                                                                    ذخیره
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-4 mb-5">
                                                     <div class="form-group">
                                                         {{ factor_form.address|as_crispy_field }}
@@ -83,7 +219,8 @@
                                             <div class="card-title">
                                                 <h3>جزئیات فاکتور:</h3>
                                                 <h6 class="ms-2">
-                                                    <a href="{% url 'core:calculator' %}" target="_blank">برای محاسبه وزن کلیک کنید</a>
+                                                    <a href="{% url 'core:calculator' %}" target="_blank">برای محاسبه
+                                                        وزن کلیک کنید</a>
                                                 </h6>
                                             </div>
                                         </div>
@@ -285,5 +422,63 @@
         jalali_date_picker.classList += ' form-control'
         const jalali_life_time_picker = document.getElementById('id_life_time')
         jalali_life_time_picker.classList += ' form-control'
+    </script>
+
+    <script src="{% static 'site_statics/js/script.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#customerModalBtn').click(function () {
+                // get inputs data
+                let phone = $('#phone').val()
+                let first_name = $('#first_name')
+                let last_name = $('#last_name')
+
+                // TODO: regex phone number
+
+                // ajax request
+                let payload = {
+                    phone: phone,
+                    first_name: first_name.val(),
+                    last_name: last_name.val()
+                }
+
+                $.ajax({
+                    url: "/shop/panel/{{ shop.unique_uuid }}/invoices/create/customer",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({payload}),
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRFToken": getCookie("csrftoken")
+                    },
+                    beforeSend: function () {
+                        $('#customerModalLoading').fadeIn()
+                    },
+                    success: (data) => {
+                        if (data['status'] === 'success') {
+                            $('#customerModalSuccess').fadeIn()
+                            $('#customerModalLoading').hide()
+
+                            $(this).hide()
+                            $('#customerModalDismiss').fadeIn('slow')
+
+                            $('#username').val(data['phone'])
+                            first_name.val(data['first_name'])
+                            last_name.val(data['last_name'])
+                        } else if (data['status'] === 'fail') {
+                            console.log(data)
+                        }
+                    },
+                    error: (data) => {
+                        console.log(data)
+                        $('#customerModalDanger').fadeIn()
+                        Swal.fire({
+                            icon: 'question',
+                            title: "مشکلی پیش آمده لطفا دوباره امتحان کنید."
+                        })
+                    }
+                })
+            })
+        })
     </script>
 {% endblock %}

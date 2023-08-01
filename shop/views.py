@@ -13,6 +13,7 @@ from django.views.generic.edit import FormMixin
 from django_filters.views import FilterView
 
 from cart.models import Transportation
+from account.models import User
 from core.forms import RatingForm
 from core.models import Rating
 from product.models import Product, PriceHistory
@@ -327,6 +328,10 @@ def create_shop_invoice_view(request, **kwargs):
 
     if all([invoice_form.is_valid(), formset.is_valid()]):
         invoice = invoice_form.save(commit=False)
+        username = request.POST.get('username')
+        if username:
+            user = User.objects.get(username=username)
+            invoice.user = user
         invoice.shop = shop
         invoice.save()
         for form in formset:
@@ -363,6 +368,10 @@ def update_shop_invoice_view(request, *args, **kwargs):
 
     if all([invoice_form.is_valid(), formset.is_valid()]):
         invoice = invoice_form.save(commit=False)
+        username = request.POST.get('username')
+        if username:
+            user = User.objects.get(username=username)
+            invoice.user = user
         invoice.shop = shop
         invoice.save()
 
@@ -389,3 +398,38 @@ def update_shop_invoice_view(request, *args, **kwargs):
         'shop': shop
     }
     return render(request, 'shop/panel/shop_invoice_create_update.html', context)
+
+
+def customer_for_invoice_ajax_view(request, **kwargs):
+    """
+    return customer detail.
+    """
+    is_ajax = request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+    if is_ajax:
+        if request.method == "POST":
+            data = json.load(request)
+            customer_data = data.get('payload')
+            try:
+                user = User.objects.get(username=customer_data.get('phone'))
+                return JsonResponse({
+                    'status': 'success',
+                    'phone': user.username,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name
+                })
+            except User.DoesNotExist:
+                user = User(
+                    username=customer_data.get('phone'),
+                    last_name=customer_data.get('first_name'),
+                    first_name=customer_data.get('last_name')
+                )
+                user.save()
+                return JsonResponse({
+                    'status': 'success',
+                    'phone': user.username,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name
+                })
+        return JsonResponse({'status': 'Invalid request'}, status=400)
+    return HttpResponseBadRequest('Invalid request')
