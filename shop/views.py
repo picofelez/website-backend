@@ -319,8 +319,9 @@ class ShopInvoiceDetailDetailView(ShopPanelAccessMixin, DetailView):
         return self.model.objects.filter(shop=self.shop)
 
 
+@login_required
 def create_shop_invoice_view(request, **kwargs):
-    shop = get_object_or_404(Shop, unique_uuid=kwargs.get('unique_uuid'))
+    shop = get_object_or_404(Shop, owner=request.user, unique_uuid=kwargs.get('unique_uuid'))
 
     invoice_form = ShopInvoiceForm(request.POST or None)
     invoice_detail_formset = formset_factory(ShopInvoiceDetailForm, extra=0)
@@ -355,8 +356,9 @@ def create_shop_invoice_view(request, **kwargs):
     return render(request, 'shop/panel/shop_invoice_create_update.html', context)
 
 
+@login_required
 def update_shop_invoice_view(request, *args, **kwargs):
-    shop = get_object_or_404(Shop, unique_uuid=kwargs.get('unique_uuid'))
+    shop = get_object_or_404(Shop, owner=request.user, unique_uuid=kwargs.get('unique_uuid'))
 
     invoice = get_object_or_404(ShopInvoice, pk=kwargs.get('pk'))
     invoice_form = ShopInvoiceForm(request.POST or None, instance=invoice)

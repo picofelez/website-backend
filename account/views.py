@@ -2,6 +2,7 @@ import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Q
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.core.cache import cache
 from django.contrib import messages
@@ -276,7 +277,7 @@ class UserShopInvoiceDetailView(LoginRequiredMixin, DetailView):
     template_name = 'account/user_shop_invoice_detail.html'
 
     def get_queryset(self):
-        return self.model.objects.filter(user=self.request.user)
+        return self.model.objects.filter(Q(user=self.request.user) | Q(shop__owner=self.request.user))
 
     def get_context_data(self, **kwargs):
         context = super(UserShopInvoiceDetailView, self).get_context_data(**kwargs)
