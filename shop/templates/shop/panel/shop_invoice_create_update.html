@@ -45,128 +45,133 @@
                                                             >
                                                         </div>
                                                         <div>
+                                                            <h6 id="customerName">
+                                                                مشتری: {{ factor.user.get_full_name }}
+                                                            </h6>
+                                                            <h6 class="mt-3" id="customerPhone">
+                                                                شماره:
+                                                                {{ factor.user.username }}
+                                                            </h6>
                                                             {% if factor.user %}
-                                                                <h6>
-                                                                    مشتری: {{ factor.user.get_full_name }}
-                                                                </h6>
-                                                                <h6 class="mt-3">
-                                                                    شماره:
-                                                                    {{ factor.user.username }}
-                                                                </h6>
                                                                 <input type="text" id="username" name="username"
                                                                        value="{{ factor.user.username }}" hidden>
+                                                                <button type="button" class="btn btn-primary"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#customerModal">
+                                                                    ویرایش مشتری
+                                                                </button>
                                                             {% else %}
-                                                                <!-- Button trigger modal -->
                                                                 <button type="button" class="btn btn-primary"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#customerModal">
                                                                     انتخاب مشتری
                                                                 </button>
+                                                            {% endif %}
 
-                                                                <!-- Modal -->
-                                                                <div class="modal fade" id="customerModal" tabindex="-1"
-                                                                     aria-labelledby="selectCustomerModal"
-                                                                     aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title"
-                                                                                    id="selectCustomerModal">انتخاب
-                                                                                    مشتری</h5>
-                                                                                <button type="button" class="btn-close"
-                                                                                        data-bs-dismiss="modal"
-                                                                                        aria-label="Close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                <div>
-                                                                                    <label for="phone">
-                                                                                        شماره موبایل
-                                                                                        <span class="text-danger">*</span>
-                                                                                    </label>
-                                                                                    <input type="tel"
-                                                                                           class="form-control"
-                                                                                           placeholder="شماره موبایل"
-                                                                                           id="phone"
-                                                                                    >
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="customerModal" tabindex="-1"
+                                                                 aria-labelledby="selectCustomerModal"
+                                                                 aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="selectCustomerModal">انتخاب
+                                                                                مشتری</h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div>
+                                                                                <label for="phone">
+                                                                                    شماره موبایل
+                                                                                    <span class="text-danger">*</span>
+                                                                                </label>
+                                                                                <input type="tel"
+                                                                                       class="form-control"
+                                                                                       placeholder="شماره موبایل"
+                                                                                       id="phone"
+                                                                                >
 
-                                                                                    <label for="first_name"
-                                                                                           class="mt-5">
-                                                                                        نام
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           placeholder="نام"
-                                                                                           id="first_name"
-                                                                                    >
+                                                                                <label for="first_name"
+                                                                                       class="mt-5">
+                                                                                    نام
+                                                                                </label>
+                                                                                <input type="text"
+                                                                                       class="form-control"
+                                                                                       placeholder="نام"
+                                                                                       id="first_name"
+                                                                                >
 
-                                                                                    <label for="last_name" class="mt-5">
-                                                                                        نام خانوادگی
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                           class="form-control"
-                                                                                           placeholder="نام خانوادگی"
-                                                                                           id="last_name"
-                                                                                    >
+                                                                                <label for="last_name" class="mt-5">
+                                                                                    نام خانوادگی
+                                                                                </label>
+                                                                                <input type="text"
+                                                                                       class="form-control"
+                                                                                       placeholder="نام خانوادگی"
+                                                                                       id="last_name"
+                                                                                >
+                                                                                {% if not factor.user %}
                                                                                     <input type="text" name="username"
-                                                                                           id="username" hidden>
+                                                                                       id="username" hidden>
+                                                                                {% endif %}
 
-                                                                                    <div class="alert bg-light-success mt-5 mb-0"
-                                                                                         id="customerModalSuccess"
-                                                                                         style="display: none">
-                                                                                        <h6>
+                                                                                <div class="alert bg-light-success mt-5 mb-0"
+                                                                                     id="customerModalSuccess"
+                                                                                     style="display: none">
+                                                                                    <h6>
                                                                                           <span>
                                                                                                <i class="fas fa-check me-2 text-success"
                                                                                                   style="font-size: 1.8rem"></i>
                                                                                           </span>
-                                                                                            مشتری با موفقیت انتخاب شد!
-                                                                                        </h6>
-                                                                                    </div>
-                                                                                    <div class="alert bg-light-info mt-5 mb-0"
-                                                                                         id="customerModalLoading"
-                                                                                         style="display: none">
-                                                                                        <h6>
+                                                                                        مشتری با موفقیت انتخاب شد!
+                                                                                    </h6>
+                                                                                </div>
+                                                                                <div class="alert bg-light-info mt-5 mb-0"
+                                                                                     id="customerModalLoading"
+                                                                                     style="display: none">
+                                                                                    <h6>
                                                                                           <span>
                                                                                                <i class="fas fa-spinner me-2 text-info"
                                                                                                   style="font-size: 1.8rem"></i>
                                                                                           </span>
-                                                                                            درحال جستجو
-                                                                                        </h6>
-                                                                                    </div>
-                                                                                    <div class="alert bg-light-danger mt-5 mb-0"
-                                                                                         id="customerModalDanger"
-                                                                                         style="display: none">
-                                                                                        <h6>
+                                                                                        درحال جستجو
+                                                                                    </h6>
+                                                                                </div>
+                                                                                <div class="alert bg-light-danger mt-5 mb-0"
+                                                                                     id="customerModalDanger"
+                                                                                     style="display: none">
+                                                                                    <h6>
                                                                                           <span>
                                                                                                <i class="fas fa-info me-2 text-danger"
                                                                                                   style="font-size: 1.8rem"></i>
                                                                                           </span>
-                                                                                            انتخاب مشتری با خطا مواجه
-                                                                                            شد!
-                                                                                        </h6>
-                                                                                    </div>
+                                                                                        انتخاب مشتری با خطا مواجه
+                                                                                        شد!
+                                                                                    </h6>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="modal-footer"
-                                                                                 style="justify-content: flex-start">
-                                                                                <button type="button"
-                                                                                        class="btn btn-primary w-100"
-                                                                                        id="customerModalBtn">
-                                                                                    جستجو
-                                                                                </button>
-                                                                                <button type="button"
-                                                                                        class="btn btn-success w-100"
-                                                                                        data-bs-dismiss="modal"
-                                                                                        id="customerModalDismiss"
-                                                                                        style="display: none"
-                                                                                >
-                                                                                    ذخیره
-                                                                                </button>
-                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer"
+                                                                             style="justify-content: flex-start">
+                                                                            <button type="button"
+                                                                                    class="btn btn-primary w-100"
+                                                                                    id="customerModalBtn">
+                                                                                جستجو
+                                                                            </button>
+                                                                            <button type="button"
+                                                                                    class="btn btn-success w-100"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    id="customerModalDismiss"
+                                                                                    style="display: none"
+                                                                            >
+                                                                                ذخیره
+                                                                            </button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                            {% endif %}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -459,12 +464,14 @@
                             $('#customerModalSuccess').fadeIn()
                             $('#customerModalLoading').hide()
 
-                            $(this).hide()
                             $('#customerModalDismiss').fadeIn('slow')
 
-                            $('#username').val(data['phone'])
+                            $('input#username').val(data['phone'])
                             first_name.val(data['first_name'])
                             last_name.val(data['last_name'])
+
+                            $('#customerName').text(`${data['first_name']} ${data['last_name']}`)
+                            $('#customerPhone').text(`${data['phone']}`)
                         } else if (data['status'] === 'fail') {
                             console.log(data)
                         }
