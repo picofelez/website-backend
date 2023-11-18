@@ -209,10 +209,10 @@
                                                         <div class="container">
                                                             <div class="row">
                                                                 <!-- Side Panel Product -->
-                                                                {% for product in latest_products %}
+                                                                {% for product in latest_multiple_products %}
                                                                     <div class="col-12 col-lg-12 px-0 mt-2">
                                                                         <a target="_blank"
-                                                                           href="{% url 'product:product-detail' product.id %}">
+                                                                           href="{% url 'product:multiple-product-detail' product.id %}">
                                                                             <div class="side-blog-product">
                                                                                 <div class="row pl-3">
                                                                                     <div class="col-4 pl-2">
@@ -228,20 +228,11 @@
                                                                                     <div class="col-8 px-0">
                                                                                         <h2>
                                                                                             {{ product.title }}
-                                                                                            - {{ product.shop.title }}
                                                                                         </h2>
                                                                                         <div class="row">
                                                                                             <div class="col-8 pl-0">
                                                                                                 <span class="side-blog-product-price">
-                                                                                                    {% if product.stock < 1 %}
-                                                                                                        ناموجود
-                                                                                                    {% else %}
-                                                                                                        {{ product.price|intcomma:False }}
-                                                                                                        تومان
-                                                                                                        (هر
-                                                                                                        {{ product.quantity }}
-                                                                                                        )
-                                                                                                    {% endif %}
+                                                                                                    {{ product.shops.count }} فروشنده
                                                                                                 </span>
                                                                                             </div>
                                                                                         </div>
