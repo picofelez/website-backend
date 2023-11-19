@@ -109,13 +109,7 @@
                                 <a href="{% url 'blog:blog-list' %}">مجله پیکوفلز</a>
                             </li>
                             <li {% if url_name == 'shop-list' %}class="main-nav-active-item"{% endif %}>
-                                <a href="{% url 'shop:shop-list' %}">فروشگاه ها</a>
-                            </li>
-                            <li {% if url_name == 'contact-us' %}class="main-nav-active-item"{% endif %}>
-                                <a href="{% url 'core:contact-us' %}">تماس با ما</a>
-                            </li>
-                            <li {% if url_name == 'about-us' %}class="main-nav-active-item"{% endif %}>
-                                <a href="{% url 'core:about-us' %}">درباره ما</a>
+                                <a href="{% url 'shop:shop-list' %}">فروشنده ها</a>
                             </li>
                         </ul>
                         <div class="main-nav-btn" id="main-nav-btn">
