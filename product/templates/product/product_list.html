@@ -55,26 +55,17 @@
                     <div class="page-content">
                         <div class="row">
                             <div class="col-12 col-lg-3 px-3 px-lg-0">
-                                <div class="accordion filters-containe">
+                                <div class="accordion" id="accordionExample">
                                     <div class="accordion-item">
-                                        <h2 class="accordion-header" id="categoriesCollapse">
-                                            <button
-                                                    class="accordion-button py-2 px-3"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#productCategoriesCollapse"
-                                                    aria-expanded="true"
-                                                    aria-controls="productCategoriesCollapse"
-                                            >
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                                    aria-controls="collapseOne">
                                                 دسته بندی محصولات
                                             </button>
                                         </h2>
-                                        <div
-                                                id="productCategoriesCollapse"
-                                                class="accordion-collapse"
-                                                aria-labelledby="productCategories"
-                                                data-bs-parent="#categoriesCollapse"
-                                        >
+                                        <div id="collapseOne" class="accordion-collapse collapse"
+                                             aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 <form method="get">
                                                     {% for category in filter.form.categories %}
@@ -93,38 +84,38 @@
                                 </div>
                             </div>
                             <div class="col-12 col-lg-9 px-0 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
-                                <div class="order-filters">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-12 col-sm-10 my-1">
-                          <span class="d-block d-sm-inline-block"
-                          >مرتب سازی بر اساس:</span
-                          >
-                                                <a
-                                                        href="{% url 'product:product-list' %}?sort_by=-time"
-                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == '-time' %}active{% endif %}">
-                                                    جدید ترین
-                                                </a>
-                                                <a
-                                                        href="{% url 'product:product-list' %}?sort_by=price"
-                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == 'price' %}active{% endif %}">
-                                                    ارزان ترین
-                                                </a>
-                                                <a
-                                                        href="{% url 'product:product-list' %}?sort_by=-price"
-                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == '-price' %}active{% endif %}">
-                                                    گران ترین
-                                                </a>
-                                                <a
-                                                        href="{% url 'product:product-list' %}?sort_by=-hits"
-                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == '-hits' %}active{% endif %}">
-                                                    پربازدید
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-3">
+{#                                <div class="order-filters">#}
+{#                                    <div class="container">#}
+{#                                        <div class="row">#}
+{#                                            <div class="col-12 col-sm-10 my-1">#}
+{#                          <span class="d-block d-sm-inline-block"#}
+{#                          >مرتب سازی بر اساس:</span#}
+{#                          >#}
+{#                                                <a#}
+{#                                                        href="{% url 'product:product-list' %}?sort_by=-time"#}
+{#                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == '-time' %}active{% endif %}">#}
+{#                                                    جدید ترین#}
+{#                                                </a>#}
+{#                                                <a#}
+{#                                                        href="{% url 'product:product-list' %}?sort_by=price"#}
+{#                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == 'price' %}active{% endif %}">#}
+{#                                                    ارزان ترین#}
+{#                                                </a>#}
+{#                                                <a#}
+{#                                                        href="{% url 'product:product-list' %}?sort_by=-price"#}
+{#                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == '-price' %}active{% endif %}">#}
+{#                                                    گران ترین#}
+{#                                                </a>#}
+{#                                                <a#}
+{#                                                        href="{% url 'product:product-list' %}?sort_by=-hits"#}
+{#                                                        class="order-filter d-block d-sm-inline-block {% if request.GET.sort_by == '-hits' %}active{% endif %}">#}
+{#                                                    پربازدید#}
+{#                                                </a>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+                                <div>
                                     <div class="container">
                                         <div
                                                 class="row "
