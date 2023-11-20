@@ -19,11 +19,7 @@
             <div class="store-details p-2">
                 <div class="store-rate mt-1">
                     <i class="fas fa-star text-purple"></i>
-                    <i class="fas fa-star text-purple"></i>
-                    <i class="fas fa-star text-purple"></i>
-                    <i class="fas fa-star text-purple"></i>
-                    <i class="far fa-star"></i>
-                    (4.5 امتیاز)
+                    {{ shop.score }} امتیاز
                 </div>
                 <a href="{% url 'shop:shop-detail' shop.slug %}">
                     <h2 class="store-name text-purple">
