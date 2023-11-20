@@ -22,7 +22,7 @@
                                             </li>
                                             <li class="breadcrumb-item active" aria-current="page">
                                                 {% if url_name == 'otp-login' %}
-                                                    ورود به حساب
+                                                    ورود به حساب کاربری
                                                 {% elif url_name == 'otp-register' %}
                                                     ثبت نام در پیکو فلز
                                                 {% endif %}
@@ -51,6 +51,7 @@
                                 <div class="col-12 col-md-6 mb-2">
                                     {% if url_name == 'otp-login' %}
                                         <h5 class="title font-vazir-bold-fd">ورود به حساب</h5>
+                                        <p>با عضویت در پیکوفلز کسب و کار خودرا آنلاین کنید.</p>
                                     {% elif url_name == 'otp-register' %}
                                         <h5 class="title font-vazir-bold-fd">ثبت نام</h5>
                                         <p>با عضویت در پیکوفلز از همه امکانات سایت بهره مند شوید.</p>
@@ -97,17 +98,17 @@
                                                     دریافت کد
                                                 </button>
                                             </div>
-                                            <div class="col-12 mb-2">
-                                                {% if url_name == 'otp-login' %}
-                                                    <a href="{% url 'account:otp-register' %}" class="text-primary">ثبت
-                                                        نام</a>
-                                                    |
-                                                    <a href="#" class="text-primary">ورود با رمز عبور</a>
-                                                {% elif url_name == 'otp-register' %}
-                                                    <a href="{% url 'account:otp-login' %}" class="text-primary">حسابی
-                                                        دارید ؟ وارد شوید</a>
-                                                {% endif %}
-                                            </div>
+{#                                            <div class="col-12 mb-2">#}
+{#                                                {% if url_name == 'otp-login' %}#}
+{#                                                    <a href="{% url 'account:otp-register' %}" class="text-primary">ثبت#}
+{#                                                        نام</a>#}
+{#                                                    |#}
+{#                                                    <a href="#" class="text-primary">ورود با رمز عبور</a>#}
+{#                                                {% elif url_name == 'otp-register' %}#}
+{#                                                    <a href="{% url 'account:otp-login' %}" class="text-primary">حسابی#}
+{#                                                        دارید ؟ وارد شوید</a>#}
+{#                                                {% endif %}#}
+{#                                            </div>#}
                                         </div>
                                     </form>
                                 </div>

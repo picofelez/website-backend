@@ -54,9 +54,7 @@
                                 {{ request.user.get_full_name }}
                             </a>
                         {% else %}
-                            <a href="{% url 'account:otp-login' %}" class="font-vazir-bold-fd">ورود</a>
-                            /
-                            <a href="{% url 'account:otp-register' %}" class="font-vazir-bold-fd">عضویت</a>
+                            <a href="{% url 'account:otp-login' %}" class="font-vazir-bold-fd">ورود به حساب</a>
                         {% endif %}
                     </div>
                     <div class="col-12 col-md-6 col-xl-3">
