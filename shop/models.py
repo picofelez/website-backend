@@ -88,7 +88,7 @@ class Contact(models.Model):
         unread = 'ur', 'خوانده نشده'  # unread
 
     full_name = models.CharField(max_length=100, verbose_name='نام و نام خانوادگی')
-    subject = models.CharField(max_length=100, verbose_name='موضوع')
+    subject = models.CharField(max_length=100, null=True, blank=True, verbose_name='موضوع')
     phone = models.CharField(max_length=12, verbose_name='شماره تلفن')  # phone number
     message = models.TextField(verbose_name='پیام')
     shop = models.ForeignKey(

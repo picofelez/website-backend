@@ -39,7 +39,7 @@
                                             <a href="{% url 'core:home' %}">خانه</a>
                                         </li>
                                         <li class="breadcrumb-item active" aria-current="page">
-                                            ارتباط با ما
+                                            تماس با ما
                                         </li>
                                     </ol>
                                 </nav>
@@ -55,9 +55,9 @@
                 <div class="col-12">
                     <div class="page-content">
                         <div class="row">
-                            <div class="col-12 col-md-5 mb-3">
-                                <div class="contact-page-info"></div>
-                            </div>
+{#                            <div class="col-12 col-md-5 mb-3">#}
+{#                                <div class="contact-page-info"></div>#}
+{#                            </div>#}
                             <div class="col-12 col-md-7 mb-3">
                                 <h5 class="title font-vazir-bold-fd">فرم ارتباط با ما</h5>
                                 <p class="mt-3">
@@ -91,12 +91,6 @@
                                             {{ form.phone|add_class:'form-control' }}
                                         </div>
                                         <div class="col-12 mb-3">
-                                            <label class="small font-vazir-bold-fd mb-2" for="{{ form.subject.id_for_label }}">
-                                                {{ form.subject.label }}*
-                                            </label>
-                                            {{ form.subject|add_class:'form-control' }}
-                                        </div>
-                                        <div class="col-12 mb-3">
                                             <label class="small font-vazir-bold-fd mb-2" for="{{ form.message.id_for_label }}">
                                                 {{ form.message.label }}*
                                             </label>
@@ -108,18 +102,17 @@
                                     </div>
                                 </form>
                             </div>
-                            <hr/>
-                            <div class="col-12 mt-4">
-                                <div class="row justify-content-center">
+                            <div class="col-5 mt-4">
+                                <div class="row justify-content-center align-items-cneter">
                                     <div
-                                            class="col-12 col-md-6 col-lg-4 mb-5 mb-md-0 contact-card"
+                                            class="col-12 mb-5 contact-card"
                                     >
                                         <span><i class="fas fa-phone"></i></span>
                                         <p class="mb-0">شماره تماس:</p>
                                         <span class="contact-card-info">09199060659</span>
                                     </div>
                                     <div
-                                            class="col-12 col-md-6 col-lg-4 mb-5 mb-md-0 contact-card"
+                                            class="col-12 mb-5 contact-card"
                                     >
                                         <span><i class="fas fa-map"></i></span>
                                         <p class="mb-0">آدرس:</p>
@@ -129,7 +122,7 @@
                                         >
                                     </div>
                                     <div
-                                            class="col-12 col-md-6 col-lg-4 mb-5 mb-md-0 contact-card"
+                                            class="col-12 mb-5 contact-card"
                                     >
                                         <span><i class="fas fa-inbox"></i></span>
                                         <p class="mb-0">ایمیل:</p>

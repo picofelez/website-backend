@@ -30,7 +30,7 @@ class CreateContactView(SuccessMessageMixin, CreateView):
     template_name = 'core/contact_us.html'
     form_class = ContactForm
     success_url = reverse_lazy('core:contact-us')
-    success_message = 'پیام شما با موفقیت ارسال شد.'
+    success_message = 'پیام شما با موفقیت ارسال شد. با شما تماس خواهیم گرفت!'
 
 
 class QuestionListView(ListView):
