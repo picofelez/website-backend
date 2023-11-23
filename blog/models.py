@@ -62,7 +62,10 @@ class Article(models.Model):
     get_thumbnail.short_description = "تصویر"
 
     def get_absolute_url(self):
-        return reverse('blog:blog-detail', args=[self.id])
+        return reverse('blog:blog-detail', args=[self.id, self.get_replaced_title()])
+
+    def get_replaced_title(self):
+        return self.title.replace(' ', '-')
 
     def published_jalali_dict(self):
         return jalali_converter_dict(self.publish_time)

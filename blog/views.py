@@ -48,4 +48,4 @@ class ArticleDetailView(FormMixin, DetailView):
             return self.form_invalid(form)
 
     def get_success_url(self):
-        return reverse_lazy('blog:blog-detail', args=[self.get_object().id])
+        return reverse_lazy('blog:blog-detail', args=[self.get_object().id, self.get_object().get_replaced_title])

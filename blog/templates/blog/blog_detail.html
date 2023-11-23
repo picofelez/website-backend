@@ -185,7 +185,7 @@
                                                             <div class="col-12 mb-3">
                                                                 <div class="alert alert-danger">
                                                                     برای نظر دادن ابتدا
-                                                                    <a href="{% url 'account:otp-login' %}?next={% url 'blog:blog-detail' object.pk %}"
+                                                                    <a href="{% url 'account:otp-login' %}?next={% url 'blog:blog-detail' object.pk object.get_replaced_title %}"
                                                                        class="text-primary">وارد حساب خود
                                                                         شوید.</a>
                                                                 </div>
@@ -265,7 +265,7 @@
                                                                         <div class="side-blog-post">
                                                                             <div class="row pl-3">
                                                                                 <div class="col-4 pl-2">
-                                                                                    <a href="{% url 'blog:blog-detail' article.id %}"
+                                                                                    <a href="{% url 'blog:blog-detail' article.id article.get_replaced_title %}"
                                                                                     >
                                                                                         <div
                                                                                                 class="image"
@@ -277,11 +277,10 @@
                                                                                     </a>
                                                                                 </div>
                                                                                 <div class="col-8 px-0">
-                                                                                    <a href="{% url 'blog:blog-detail' article.id %}"
+                                                                                    <a href="{% url 'blog:blog-detail' article.id article.get_replaced_title %}"
                                                                                     ><h2>
                                                                                         {{ article.title }}
-                                                                                    </h2></a
-                                                                                    >
+                                                                                    </h2></a>
                                                                                     <div class="row">
                                                                                         <div class="col-12 col-xl-7 pl-0">
                                               <span class="category"
