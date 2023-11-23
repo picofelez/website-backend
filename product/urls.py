@@ -9,5 +9,5 @@ app_name = 'product'
 urlpatterns = [
     path('', ProductListView.as_view(), name='product-list'),
     # path('<pk>', ProductDetailView.as_view(), name='product-detail'),
-    path('multiple/<pk>', MultipleProductDetailView.as_view(), name='multiple-product-detail')
+    path('serllers/<pk>/<title>', MultipleProductDetailView.as_view(), name='multiple-product-detail')
 ]

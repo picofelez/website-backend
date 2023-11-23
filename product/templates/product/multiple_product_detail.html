@@ -6,7 +6,8 @@
 {% block title %}{{ object }} | پیکوفلز{% endblock %}
 
 {% block meta_tags %}
-    <meta property="og:url" content="https://picofelez.ir/products/multiple/{{ object.pk }}">
+    <meta property="og:url"
+          content="https://picofelez.ir/products/serllers/{{ object.pk }}/{{ object.get_replaced_title }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="پیکوفلز | {{ object.title }}">
     <meta property="og:description" content="{{ object.description }}">
@@ -83,11 +84,11 @@
                                         />
                                         <p class="h4 font-vazir-bold-fd my-3">{{ product.title }}</p>
                                         <div>
-                                                {% if product.width %}
-                    <span class="badge border rounded text-black">
+                                            {% if product.width %}
+                                                <span class="badge border rounded text-black">
                                                    ضخامت {{ product.width }}
                                                 </span>
-                {% endif %}
+                                            {% endif %}
                                             <span class="badge border rounded text-black">
                                                    وزن تقریبی هر شاخه {{ product.weight }}
                                                 </span>
@@ -131,7 +132,8 @@
                                                     </p>
                                                 </div>
                                                 <div>
-                                                    <a href="{% url 'shop:shop-detail' shop.slug %}" class="btn btn-outline-success btn-sm">
+                                                    <a href="{% url 'shop:shop-detail' shop.slug %}"
+                                                       class="btn btn-outline-success btn-sm">
                                                         <i class="fas fa-shop"></i>
                                                         درباره فروشنده
                                                     </a>

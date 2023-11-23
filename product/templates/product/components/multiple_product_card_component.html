@@ -22,7 +22,8 @@
                                                    طول هر شاخه {{ product.length }}
                                                 </span>
             </div>
-            <a href="{% url 'product:multiple-product-detail' product.id %}" class="btn btn-purple btn-sm mt-4">
+            <a href="{% url 'product:multiple-product-detail' product.id product.get_replaced_title %}"
+               class="btn btn-purple btn-sm mt-4">
                 <i class="fas fa-eye"></i>
                 مشاهده و خرید
             </a>

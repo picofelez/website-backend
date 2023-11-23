@@ -97,9 +97,12 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         if self.product_type == 'solo':
-            return reverse('product:product-detail', args=[self.id])
+            return reverse('product:product-detail', args=[self.id, self.get_replaced_title()])
         elif self.product_type == 'multiple':
-            return reverse('product:multiple-product-detail', args=[self.id])
+            return reverse('product:multiple-product-detail', args=[self.id, self.get_replaced_title()])
+
+    def get_replaced_title(self):
+        return self.title.replace(' ', '-')
 
     def __str__(self):
         return f"{self.title} - {self.shop if self.shop else f'{self.shops.count()} فروشنده'}"
