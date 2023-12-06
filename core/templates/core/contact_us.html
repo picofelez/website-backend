@@ -5,22 +5,22 @@
 {% block title %}پیکوفلز | ارتباط با ما{% endblock %}
 
 {% block meta_tags %}
-        <meta property="og:url" content="https://picofelez.ir/contact-us/">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="پیکوفلز | ارتباط با ما">
-        <meta name="og:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
+    <meta property="og:url" content="https://picofelez.ir/contact-us/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پیکوفلز | ارتباط با ما">
+    <meta name="og:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
 
-        <!-- Twitter Meta Tags -->
-        <meta property="twitter:url" content="https://picofelez.ir/contact-us/">
-        <meta name="twitter:title" content="پیکوفلز | ارتباط با ما">
-        <meta name="twitter:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:url" content="https://picofelez.ir/contact-us/">
+    <meta name="twitter:title" content="پیکوفلز | ارتباط با ما">
+    <meta name="twitter:description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
 
-        <meta name="keywords"
-              content="بازار آنلاین آهن ، خرید آهن ، بازار آهن ، پیکوفلز ، قیمت آهن ، فروش آنلاین آهن ، مارکت پلیس آهن">
+    <meta name="keywords"
+          content="بازار آنلاین آهن ، خرید آهن ، بازار آهن ، پیکوفلز ، قیمت آهن ، فروش آنلاین آهن ، مارکت پلیس آهن">
 
-        <meta name="title" content="پیکوفلز | ارتباط با ما"/>
-        <meta name="description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
-    {% endblock %}
+    <meta name="title" content="پیکوفلز | ارتباط با ما"/>
+    <meta name="description" content="با پیکوفلز ، می توانید بازار خرید و فروش آنلاین آهن را تجربه کنید.">
+{% endblock %}
 
 {% block content %}
     <section class="inner-page" id="contact-page">
@@ -55,15 +55,38 @@
                 <div class="col-12">
                     <div class="page-content">
                         <div class="row">
-{#                            <div class="col-12 col-md-5 mb-3">#}
-{#                                <div class="contact-page-info"></div>#}
-{#                            </div>#}
-                            <div class="col-12 col-md-7 mb-3">
+                            {#                            <div class="col-12 col-md-5 mb-3">#}
+                            {#                                <div class="contact-page-info"></div>#}
+                            {#                            </div>#}
+                            <div class="col-12 col-md-4 mt-4">
+                                <div class="row">
+                                    <div
+                                            class="col-6 col-md-12 mb-5 contact-card"
+                                    >
+                                        <span><i class="fas fa-phone"></i></span>
+                                        <p class="mb-0">شماره تماس:</p>
+                                        <span class="contact-card-info">09199060659</span>
+                                    </div>
+                                    <div
+                                            class="col-6 col-md-12 mb-5 contact-card"
+                                    >
+                                        <span><i class="fas fa-map"></i></span>
+                                        <p class="mb-0">آدرس:</p>
+                                        <span class="contact-card-info">کرج، کمالشهر</span>
+                                    </div>
+                                    <div
+                                            class="col-6 col-md-12 mb-5 contact-card"
+                                    >
+                                        <span><i class="fas fa-inbox"></i></span>
+                                        <p class="mb-0">ایمیل:</p>
+                                        <span class="contact-card-info">picofelez@gmail.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-8 mb-3">
                                 <h5 class="title font-vazir-bold-fd">فرم ارتباط با ما</h5>
                                 <p class="mt-3">
-                                    نظرات، پیشنهادات و انتقادات سازنده خود را از طریق فرم زیر با
-                                    ما در میان بگذارید. ما در این بازار آنلاین همواره برای بهبود
-                                    خدمات خود در تلاش هستیم.
+                                    از اطلاعات تماس استفاده کنید یا با استفاده از فرم زیر با ما ارتباط بگیرید.
                                 </p>
                                 <hr class="my-4"/>
 
@@ -79,19 +102,22 @@
                                     {% csrf_token %}
                                     <div class="row">
                                         <div class="col-12 mb-3">
-                                            <label class="small font-vazir-bold-fd mb-2" for="{{ form.full_name.id_for_label }}">
+                                            <label class="small font-vazir-bold-fd mb-2"
+                                                   for="{{ form.full_name.id_for_label }}">
                                                 {{ form.full_name.label }}*
                                             </label>
                                             {{ form.full_name|add_class:'form-control' }}
                                         </div>
                                         <div class="col-12 col-md-12 mb-3">
-                                            <label class="small font-vazir-bold-fd mb-2" for="{{ form.phone.id_for_label }}">
+                                            <label class="small font-vazir-bold-fd mb-2"
+                                                   for="{{ form.phone.id_for_label }}">
                                                 {{ form.phone.label }}*
                                             </label>
                                             {{ form.phone|add_class:'form-control' }}
                                         </div>
                                         <div class="col-12 mb-3">
-                                            <label class="small font-vazir-bold-fd mb-2" for="{{ form.message.id_for_label }}">
+                                            <label class="small font-vazir-bold-fd mb-2"
+                                                   for="{{ form.message.id_for_label }}">
                                                 {{ form.message.label }}*
                                             </label>
                                             {{ form.message|add_class:'form-control'|attr:'rows:3' }}
@@ -101,34 +127,6 @@
                                         </div>
                                     </div>
                                 </form>
-                            </div>
-                            <div class="col-5 mt-4">
-                                <div class="row justify-content-center align-items-cneter">
-                                    <div
-                                            class="col-12 mb-5 contact-card"
-                                    >
-                                        <span><i class="fas fa-phone"></i></span>
-                                        <p class="mb-0">شماره تماس:</p>
-                                        <span class="contact-card-info">09199060659</span>
-                                    </div>
-                                    <div
-                                            class="col-12 mb-5 contact-card"
-                                    >
-                                        <span><i class="fas fa-map"></i></span>
-                                        <p class="mb-0">آدرس:</p>
-                                        <span class="contact-card-info"
-                                        >در شبکه های اجتماعی<br/>
-                        با شناسه picofelez.ir</span
-                                        >
-                                    </div>
-                                    <div
-                                            class="col-12 mb-5 contact-card"
-                                    >
-                                        <span><i class="fas fa-inbox"></i></span>
-                                        <p class="mb-0">ایمیل:</p>
-                                        <span class="contact-card-info">info@picofelez.ir</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

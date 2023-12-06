@@ -1,8 +1,10 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, ListView
+from django.utils import timezone
 
 from core.models import Question
+from metallurgy.models import WorkSample
 from shop.forms import ContactForm
 
 
@@ -13,6 +15,11 @@ class Home(TemplateView):
     """
     index view.
     """
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['portfolio'] = WorkSample.objects.filter(status='p', publish_time__lte=timezone.now())[:3]
+        return data
     template_name = 'core/home.html'
 
 

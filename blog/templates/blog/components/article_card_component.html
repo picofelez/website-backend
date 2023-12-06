@@ -14,17 +14,17 @@
             </div>
         </div>
         <div class="article-content">
-            <ul class="article-info my-4 list-unstyled">
-                <li class="ms-2">
-                    <i class="far fa-folder"></i>
-                    برچسب ها:
-                    {% for tag in article.tags.all %}
-                        <span class="badge bg-secondary">
-                            <a href="{% url 'blog:blog-list' %}?tags={{ tag.id }}" class="text-white">{{ tag }}</a>
-                        </span>
-                    {% endfor %}
-                </li>
-            </ul>
+{#            <ul class="article-info my-4 list-unstyled">#}
+{#                <li class="ms-2">#}
+{#                    <i class="far fa-folder"></i>#}
+{#                    برچسب ها:#}
+{#                    {% for tag in article.tags.all %}#}
+{#                        <span class="badge bg-secondary">#}
+{#                            <a href="{% url 'blog:blog-list' %}?tags={{ tag.id }}" class="text-white">{{ tag }}</a>#}
+{#                        </span>#}
+{#                    {% endfor %}#}
+{#                </li>#}
+{#            </ul>#}
             <p class="article-title h5 font-vazir-bold-fd mb-4">
                 <a href="{% url 'blog:blog-detail' article.pk article.get_replaced_title %}">{{ article.title }}</a>
             </p>
