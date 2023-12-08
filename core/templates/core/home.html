@@ -1,6 +1,6 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
-{% block title %}پیکوفلز | مرجع آنلاین آهن{% endblock %}
+{% block title %}پیکوفلز | گروه فلزکاری عبدی{% endblock %}
 
 {% block content %}
     <section class="intro-box">
@@ -13,74 +13,68 @@
                 </div>
             </div>
             <div class="text-center mb-5">
-                {% if request.user.is_anonymous or request.user.shops.count < 1 %}
-                    <a href="{% url 'shop:register-shop' %}">
-                        <div class="btn btn-outline-dark px-4 py-2">
-                            <i class="fab fa-shopify"></i>
-                            ایجاد شعبه اینترنتی
-                        </div>
-                    </a>
-                {% else %}
-                    <a href="{% url 'shop:shop-panel-main' request.user.shops.first.unique_uuid %}">
-                        <div class="btn btn-outline-dark px-4 py-2">
-                            ورود به فروشگاه
-                        </div>
-                    </a>
-                {% endif %}
-                <a href="{% url 'core:contact-us' %}" class="btn btn-outline-dark px-4 py-2">با ما ارتباط بگیرید</a>
+                <a href="{% url 'metallurgy:work-sample-list' %}" class="btn btn-outline-dark px-4 py-2">
+                    <i class="fas fa-newspaper"></i>
+                    نمونه کارها
+                </a>
+                <a href="{% url 'core:contact-us' %}" class="btn btn-outline-dark px-4 py-2">
+                    <i class="fas fa-phone"></i>
+                    ارتباط با ما
+                </a>
             </div>
             <div class="row icon-boxes mb-5">
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="fas fa-shop"></i></div>
                         <h4 class="icon-box-title">
-                            <a href="{% url 'shop:register-shop' %}">شعبه اینترنتی</a>
+                            <a href="{% url 'metallurgy:work-sample-list' %}">انتخاب محصول</a>
                         </h4>
                         <p class="description">
-                            با ثبت نام رایگان در پیکوفلز یک شعبه اینترنتی برای بنگاه آهن خود بسازید!
+                            از نمونه کارهای ما بازدید ، محصول خودرا انتخاب و با ما
+                            تماس بگیرید!
                         </p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                     <div class="icon-box">
-                        <div class="icon"><i class="fas fa-money-bill-trend-up"></i></div>
+                        <div class="icon"><i class="fas fa-gear"></i></div>
                         <h4 class="icon-box-title">
-                            <a href="{% url 'shop:shop-list' %}">
-                                افزایش فروش
+                            <a href="{% url 'core:contact-us' %}">
+                                بازدید فنی
                             </a>
                         </h4>
                         <p class="description">
-                            با پیکوفلز کسب و کار خود را رشد دهید و فروش بیشتری را تجربه کنید!
+                            پس از انتخاب محصول با حضور در محل پروژه بازدید فنی و الگو برداری دقیق صورت میگیرد.
                         </p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                     <div class="icon-box">
-                        <div class="icon"><i class="fas fa-file-invoice"></i></div>
+                        <div class="icon"><i class="fas fa-screwdriver-wrench"></i></div>
                         <h4 class="icon-box-title">
-                            <a href="{% url 'core:calculator' %}">
-                                سادگی
+                            <a href="{% url 'core:about-us' %}">
+                                ساخت و تولید
                             </a>
                         </h4>
                         <p class="description">
-                            کارهای حسابداری و فاکتور های خودرا بدون کمترین دردسر مدیریت کنید و برای مشتریان خود
-                            ارسال کنید!
+                            سفارش شما با تجهیزات به روز و حرفه ای و با رعایت اصول مهندسی طراحی و تولید می شود.
                         </p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                     <div class="icon-box">
-                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <div class="icon"><i class="fas fa-truck"></i></div>
                         <h4 class="icon-box-title">
-                            <a href="{% url 'product:product-list' %}">
-                                مدیریت مشتریان
+                            <a href="{% url 'blog:blog-list' %}">
+                                نصب و اجرا
                             </a>
                         </h4>
                         <p class="description">
-                            به سادگی با مشتریان خود ارتباط بگیرید و خرید و فروش های خود را مدیریت کنید!
+                            پس از اتمام ساخت، بارگیری به محل پروژه انجام و درصورت نیاز توسط تیم متخصص
+                            نصب میشود.
                         </p>
                     </div>
                 </div>
@@ -105,11 +99,11 @@
                             <div class="portfolio-header">
                                 <img src="{{ worksample.image.url }}" alt="{{ worksample.title }}" loading="lazy">
                             </div>
-                            <div class="portfolio-body">
+                            <div class="portfolio-body text-center">
                                 <h4 class="portfolio-title mb-0">{{ worksample.title }}</h4>
                                 <p class="portfolio-text mb-3">{{ worksample.description|truncatewords:8 }}</p>
                                 <a href="{% url 'metallurgy:work-sample-detail' worksample.pk worksample.get_name_replace %}"
-                                   class="btn btn-warning mb-3 rounded-0">مشاهده نمونه کار</a>
+                                   class="btn border rounded w-100">مشاهده نمونه کار</a>
                             </div>
                         </div>
                     </section>
@@ -133,10 +127,10 @@
                 <section class="col-md-3 col-12 mb-3">
                     <a href="{% url 'core:contact-us' %}" class="contact-info-card flex-center">
                             <span>
-                                <i class="fas fa-building"></i>
+                                <i class="fas fa-door-closed"></i>
                             </span>
                         <p>
-                            اسکلت ساختمان<br>
+                            درب، پنجره، حفاظ<br>
                             <small>مشاوره و همکاری</small>
                         </p>
                     </a>
@@ -147,7 +141,7 @@
                                 <i class="fas fa-industry"></i>
                             </span>
                         <p>
-                            تیرچه<br>
+                            فرفورژه<br>
                             <small>مشاوره و همکاری</small>
                         </p>
                     </a>
@@ -155,10 +149,10 @@
                 <section class="col-md-3 col-12 mb-3">
                     <a href="{% url 'core:contact-us' %}" class="contact-info-card flex-center">
                             <span>
-                                <i class="fas fa-door-closed"></i>
+                                <i class="fas fa-building"></i>
                             </span>
                         <p>
-                            درب و پنجره<br>
+                            شاسی کشی نما<br>
                             <small>مشاوره و همکاری</small>
                         </p>
                     </a>
@@ -169,7 +163,7 @@
                                 <i class="fas fa-tools"></i>
                             </span>
                         <p>
-                            نمای ساختمان<br>
+                            محصولات فلزی دیگر<br>
                             <small>مشاوره و همکاری</small>
                         </p>
                     </a>
@@ -180,11 +174,12 @@
 
     <section id="call-info" class="call-info">
         <section class="container">
-            <p class="h6">صنایع فولادی - ساختمانی</p>
+            <p class="h6">صنایع فلزی - ساختمانی</p>
             <p class="h4 my-4">گروه فلزکاری عبدی (پیکوفلز)</p>
             <p class="call-info-text">
-                گروه فلزکاری عبدی با بیش از نیم قرن تجربه در طراحی و ساخت انواع درب، پنجره، نرده، فرفورژه، شاسی کشی نما،
-                تیرچه و ... فعالیت میکند.
+                با بیش از 30 سال سابقه در طراحی و تولید انواع درب و پنجره و حفاظ آهنی،
+                تانکر، لانچر، شاسی دستگاه های صنعتی، شاسی کشی نما، فرفورژه، اسکلت فلزی سبک، تیرچه کرومیت، اسکلت تیرچه
+                های پاشنه بتنی، وال پست و ...
             </p>
         </section>
     </section>
