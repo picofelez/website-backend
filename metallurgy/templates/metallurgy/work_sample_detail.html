@@ -31,21 +31,55 @@
 {% block content %}
     {% with request.resolver_match.url_name as url_name %}
         <section class="inner-page" id="shop-page">
-            <section id="article-detail" class="article-detail my-5">
+            <section id="article-detail" class="article-detail">
                 <section class="container">
                     <section class="row mt-3 justify-content-center">
                         <section class="col-md-10 py-4 py-md-5 mb-2">
-                            <h5 class="title font-vazir-bold-fd">
+                            <h4 class="mb-3 font-vazir-bold-fd text-center">
                                 {{ object.title }}
-                            </h5>
-                            <div class="text-secondary fw-light my-3">
-                                <i class="fas fa-calendar"></i>
-                                تاریخ اجرا: {{ object.date }} /
-                                <i class="fas fa-location-dot"></i>
-                                مکان: {{ object.address }}
-                            </div>
+                            </h4>
                             <div class="row">
-                                <div class="col-md-12 mb-3">
+                                <div class="col-12 col-md-5 mb-3">
+                                    <div class="d-flex justify-content-start align-content-center bg-light rounded-end mb-3">
+                                        <div class="bg-warning pt-2 px-3 rounded-start">
+                                            <i class="fas fa-location-dot mt-1" style="font-size: 1.2rem"></i>
+                                        </div>
+                                        <div class="pt-2 ps-2">
+                                            <p style="font-size: 0.95rem">محل اجرا: {{ worksample.address }}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-start align-content-center bg-light rounded-end mb-3">
+                                        <div class="bg-warning pt-2 px-3 rounded-start">
+                                            <i class="fas fa-calendar mt-1" style="font-size: 1.1rem"></i>
+                                        </div>
+                                        <div class="pt-2 ps-2">
+                                            <p style="font-size: 0.95rem">تاریخ اجرا: {{ worksample.date }}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-start align-content-center bg-light rounded-end mb-3">
+                                        <div class="bg-warning pt-2 px-3 rounded-start">
+                                            <i class="fas fa-calendar mt-1" style="font-size: 1.1rem"></i>
+                                        </div>
+                                        <div class="pt-2 ps-2">
+                                            <p style="font-size: 0.95rem">کارفرما: عبدی</p>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="mb-3">
+                                        <p class="mb-1" style="font-size: 0.95rem">درصد پیشرفت: 100%</p>
+                                        <div class="progress">
+                                            <div class="progress-bar w-100 bg-warning" role="progressbar"
+                                                 aria-valuenow="75"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-7 mb-3">
                                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                                         <div class="carousel-indicators">
                                             <button type="button" data-bs-target="#carouselExampleIndicators"
@@ -62,14 +96,26 @@
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
                                                 <img src="{{ object.image.url }}" class="d-block w-100 worksample-img"
-                                                     alt="تصویر نمونه کار">
+                                                     alt="تصویر نمونه کار" style="height: 20rem">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <div class="alert alert-light">
+                                                        <h5 class="font-vazir-bold-fd">
+                                                            ورق بزنید</h5>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             {% for image in worksample.images.all %}
                                                 <div class="carousel-item">
                                                     <img src="{{ image.image.url }}"
                                                          class="d-block w-100 worksample-img"
-                                                         alt="تصویر نمونه کار">
+                                                         alt="تصویر نمونه کار" style="height: 20rem">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <div class="alert alert-light">
+                                                            <h5 class="font-vazir-bold-fd">
+                                                                تصویر {{ forloop.counter }}</h5>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             {% endfor %}
 
@@ -86,8 +132,15 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mt-3">
-                                    {{ object.description }}
+
+                                <div class="col-12 mb-3">
+                                    <h5 class="my-3 font-vazir-bold-fd text-center">
+                                        توضیحات پروژه
+                                    </h5>
+
+                                    <p class="font-vazir-bold-fd">
+                                        {{ worksample.description }}
+                                    </p>
                                 </div>
                             </div>
                         </section>
