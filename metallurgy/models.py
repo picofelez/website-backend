@@ -28,6 +28,7 @@ class WorkSample(models.Model):
     date = models.CharField(max_length=75, null=True, blank=True, verbose_name='تاریخ اجرا')
     customer = models.CharField(max_length=75, null=True, blank=True, verbose_name='کارفرما')
     keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
+    summary = models.CharField(max_length=255, null=True, blank=True, verbose_name='خلاصه')
     categories = models.ManyToManyField(
         Category, related_name='portfolios', verbose_name='دسته بندی ها'
     )
