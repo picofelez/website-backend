@@ -95,17 +95,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 products justify-content-center">
                 {% for worksample in portfolio %}
                     <section class="col-lg-4 col-md-6 col-12 mb-3">
-                        <div class="portfolio-card text-decoration-none">
-                            <div class="portfolio-header">
-                                <img src="{{ worksample.image.url }}" alt="{{ worksample.title }}" loading="lazy">
-                            </div>
-                            <div class="portfolio-body text-center">
-                                <h4 class="portfolio-title mb-0">{{ worksample.title }}</h4>
-                                <p class="portfolio-text mb-3">{{ worksample.description|truncatewords:8 }}</p>
-                                <a href="{% url 'metallurgy:work-sample-detail' worksample.pk worksample.get_name_replace %}"
-                                   class="btn border rounded w-100">مشاهده نمونه کار</a>
-                            </div>
-                        </div>
+                        {% include 'metallurgy/components/portfolio_card_component.html' %}
                     </section>
                 {% endfor %}
 
