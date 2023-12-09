@@ -60,6 +60,16 @@ def upload_article_image_path(instance, filename):
     return f"articles/thumbnail/{final_name}"
 
 
+def upload_portfolio_image_path(instance, filename):
+    """
+    set work sample image path & name.
+    """
+    name, ext = get_filename_ext(filename)
+    number_random = random.randint(2000, 1000000)
+    final_name = f"pcf-{number_random}-abdi{ext}"
+    return f"portfolio/thumbnail/{final_name}"
+
+
 def slug_generator(slug) -> str:
     return slug.replace(' ', '-')
 

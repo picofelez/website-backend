@@ -4,10 +4,14 @@ from django.utils import timezone
 
 from account.models import User
 
-# Create your models here.
 from cart.models import Order
-from extensions.utils import jalali_converter
+from extensions.utils import jalali_converter, upload_portfolio_image_path
 from django_jalali.db import models as jmodels
+
+from product.models import Category
+
+
+# Create your models here.
 
 
 class WorkSample(models.Model):
@@ -22,6 +26,11 @@ class WorkSample(models.Model):
     publish_time = models.DateTimeField(default=timezone.now, verbose_name='زمان انتشار')
     address = models.CharField(max_length=75, null=True, blank=True, verbose_name='مکان')
     date = models.CharField(max_length=75, null=True, blank=True, verbose_name='تاریخ اجرا')
+    customer = models.CharField(max_length=75, null=True, blank=True, verbose_name='کارفرما')
+    keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
+    categories = models.ManyToManyField(
+        Category, related_name='portfolios', verbose_name='دسته بندی ها'
+    )
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
 
     class Meta:
@@ -42,7 +51,8 @@ class WorkSampleImage(models.Model):
     work_sample = models.ForeignKey(
         WorkSample, on_delete=models.CASCADE, related_name='images', verbose_name='نمونه کار'
     )
-    image = models.ImageField(upload_to='portfolio/', verbose_name='تصویر')
+    image = models.ImageField(upload_to=upload_portfolio_image_path, null=True, blank=True, verbose_name='تصویر')
+    file = models.FileField(upload_to=upload_portfolio_image_path, null=True, blank=True, verbose_name='فایل-ویدئو')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
 
     class Meta:
