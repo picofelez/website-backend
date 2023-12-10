@@ -100,13 +100,12 @@
                 {% endfor %}
 
             </div>
-            <div class="d-flex justify-content-center">
-                <a href="{% url 'metallurgy:work-sample-list' %}" class="btn btn-outline-purple">همه نمونه کارها</a>
-            </div>
+{#            <div class="d-flex justify-content-center">#}
+{#                <a href="{% url 'metallurgy:work-sample-list' %}" class="btn btn-outline-purple">همه نمونه کارها</a>#}
+{#            </div>#}
         </section>
     </section>
 
-    <hr>
 
     <section id="contact-info" class="contact-info">
         <section class="container">
@@ -115,7 +114,7 @@
             </section>
             <section class="row mt-4 mx-2 mx-md-0">
                 <section class="col-md-3 col-12 mb-3">
-                    <a href="{% url 'core:contact-us' %}" class="contact-info-card flex-center">
+                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
                             <span>
                                 <i class="fas fa-door-closed"></i>
                             </span>
@@ -126,7 +125,7 @@
                     </a>
                 </section>
                 <section class="col-md-3 col-12 mb-3">
-                    <a href="{% url 'core:contact-us' %}" class="contact-info-card flex-center">
+                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
                             <span>
                                 <i class="fas fa-industry"></i>
                             </span>
@@ -137,7 +136,7 @@
                     </a>
                 </section>
                 <section class="col-md-3 col-12 mb-3">
-                    <a href="{% url 'core:contact-us' %}" class="contact-info-card flex-center">
+                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
                             <span>
                                 <i class="fas fa-building"></i>
                             </span>
@@ -148,7 +147,7 @@
                     </a>
                 </section>
                 <section class="col-md-3 col-12 mb-3">
-                    <a href="{% url 'core:contact-us' %}" class="contact-info-card flex-center">
+                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
                             <span>
                                 <i class="fas fa-tools"></i>
                             </span>
@@ -162,35 +161,45 @@
         </section>
     </section>
 
-    <section id="call-info" class="call-info">
-        <section class="container">
-            <p class="h6">صنایع فلزی - ساختمانی</p>
-            <p class="h4 my-4">گروه فلزکاری عبدی (پیکوفلز)</p>
-            <p class="call-info-text">
-                با بیش از 30 سال سابقه در طراحی و تولید انواع درب و پنجره و حفاظ آهنی،
-                تانکر، لانچر، شاسی دستگاه های صنعتی، شاسی کشی نما، فرفورژه، اسکلت فلزی سبک، تیرچه کرومیت، اسکلت تیرچه
-                های پاشنه بتنی، وال پست و ...
-            </p>
-        </section>
-    </section>
+{#    <hr>#}
 
-    <section class="my-5">
-        <section class="text-center contact-info-title">
-            <p class="h5 font-vazir-bold-fd">کارفرما هایی که به ما اعتماد کرده اند</p>
-        </section>
-        <div class="container">
-            <div class="slider">
-                <div class="slide-track">
-                    <div class="slide">
-                        <img src="{% static 'site_statics/img/logo/forSiteHeader.png' %}"
-                             alt=""/>
-                    </div>
+    <section id="call-info" class="call-info my-3">
+        <section class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-7 mb-3">
+                    <p class="h6 text-center">صنایع فلزی - ساختمانی</p>
+                    <p class="h4 my-4 text-center">گروه فلزکاری عبدی (پیکوفلز)</p>
+                    <p class="call-info-text text-center">
+                        با بیش از 30 سال سابقه در طراحی و تولید انواع درب و پنجره و حفاظ آهنی،
+                        تانکر، لانچر، شاسی دستگاه های صنعتی، شاسی کشی نما، فرفورژه، اسکلت فلزی سبک، تیرچه کرومیت، اسکلت
+                        تیرچه
+                        های پاشنه بتنی، وال پست و ...
+                    </p>
+                </div>
+                <div class="col-12 col-md-5">
+                    <img src="{% static 'site_statics/img/bg/14.jpg' %}" alt="شهر" class="rounded-3" width="100%" height="300">
                 </div>
             </div>
-        </div>
+        </section>
     </section>
 
-    <hr>
+{#    <section class="my-5">#}
+{#        <section class="text-center contact-info-title">#}
+{#            <p class="h5 font-vazir-bold-fd">کارفرما هایی که به ما اعتماد کرده اند</p>#}
+{#        </section>#}
+{#        <div class="container">#}
+{#            <div class="slider">#}
+{#                <div class="slide-track">#}
+{#                    <div class="slide">#}
+{#                        <img src="{% static 'site_statics/img/logo/forSiteHeader.png' %}"#}
+{#                             alt=""/>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+
+{#    <hr>#}
 
     <section class="home-article my-5">
         <section class="container">

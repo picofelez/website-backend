@@ -41,8 +41,8 @@
                             <div class="row">
                                 <div class="col-12 col-md-5 mb-3">
                                     <div class="d-flex justify-content-start align-content-center bg-light rounded-end mb-3">
-                                        <div class="bg-warning pt-2 px-3 rounded-start">
-                                            <i class="fas fa-location-dot mt-1" style="font-size: 1.2rem"></i>
+                                        <div class="bg-purple pt-2 px-3 rounded-start">
+                                            <i class="fas fa-location-dot mt-1 text-center text-light" style="font-size: 1.2rem"></i>
                                         </div>
                                         <div class="pt-2 ps-2">
                                             <p style="font-size: 0.95rem">محل اجرا: {{ worksample.address }}</p>
@@ -50,8 +50,8 @@
                                     </div>
 
                                     <div class="d-flex justify-content-start align-content-center bg-light rounded-end mb-3">
-                                        <div class="bg-warning pt-2 px-3 rounded-start">
-                                            <i class="fas fa-calendar mt-1" style="font-size: 1.1rem"></i>
+                                        <div class="bg-purple pt-2 px-3 rounded-start">
+                                            <i class="fas fa-calendar mt-1 text-light" style="font-size: 1.1rem"></i>
                                         </div>
                                         <div class="pt-2 ps-2">
                                             <p style="font-size: 0.95rem">تاریخ اجرا: {{ worksample.date }}</p>
@@ -60,25 +60,14 @@
 
                                     {% if worksample.customer %}
                                         <div class="d-flex justify-content-start align-content-center bg-light rounded-end mb-3">
-                                            <div class="bg-warning pt-2 px-3 rounded-start">
-                                                <i class="fas fa-calendar mt-1" style="font-size: 1.1rem"></i>
+                                            <div class="bg-purple pt-2 px-3 rounded-start">
+                                                <i class="fas fa-calendar mt-1 text-light" style="font-size: 1.1rem"></i>
                                             </div>
                                             <div class="pt-2 ps-2">
                                                 <p style="font-size: 0.95rem">کارفرما: {{ worksample.customer }}</p>
                                             </div>
                                         </div>
                                     {% endif %}
-
-                                    <hr>
-
-                                    <div class="mb-3">
-                                        <p class="mb-1" style="font-size: 0.95rem">درصد پیشرفت: 100%</p>
-                                        <div class="progress">
-                                            <div class="progress-bar w-100 bg-warning" role="progressbar"
-                                                 aria-valuenow="75"
-                                                 aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="col-12 col-md-7 mb-3">
