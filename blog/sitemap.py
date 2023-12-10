@@ -3,8 +3,8 @@ from .models import Article
 
 
 class ArticleSitemap(Sitemap):
-    changefreq = "weekly"
-    priority = 0.5
+    changefreq = "daily"
+    priority = 0.7
 
     def items(self):
         return Article.published.all()

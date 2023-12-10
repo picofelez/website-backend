@@ -23,12 +23,10 @@ from blog.sitemap import ArticleSitemap
 from core.sitemap import StaticViewSitemap
 from metallurgy.sitemap import WorkSampleSitemap
 from product.sitemap import ProductSitemap
-from shop.sitemap import ShopSitemap
 
 sitemaps = {
     "statics": StaticViewSitemap,
     "products": ProductSitemap,
-    "shops": ShopSitemap,
     "portfolio": WorkSampleSitemap,
     "articles": ArticleSitemap
 }

@@ -12,7 +12,8 @@ class StaticViewSitemap(Sitemap):
             "core:about-us",
             "core:contact-us",
             "metallurgy:landing",
-            "core:calculator"
+            "core:calculator",
+            "metallurgy:work-sample-list"
         ]
 
     def location(self, item):

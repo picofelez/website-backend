@@ -3,8 +3,8 @@ from .models import Product
 
 
 class ProductSitemap(Sitemap):
-    changefreq = "daily"
-    priority = 0.9
+    changefreq = "weekly"
+    priority = 0.6
 
     def items(self):
         return Product.objects.filter(product_type='multiple', is_active=True)
