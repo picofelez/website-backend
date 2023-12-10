@@ -3,22 +3,22 @@
 {% block title %}پیکوفلز | درباره ما{% endblock %}
 
 {% block meta_tags %}
-        <meta property="og:url" content="https://picofelez.ir/about-us/">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="پیکوفلز | ارتباط با ما">
-        <meta name="og:description" content="گروه فلزکاری عبدی - پیکوفلز، تولید کننده انواع محصولات فلزی">
+    <meta property="og:url" content="https://picofelez.ir/about-us/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پیکوفلز | ارتباط با ما">
+    <meta name="og:description" content="گروه فلزکاری عبدی - پیکوفلز، تولید کننده انواع محصولات فلزی">
 
-        <!-- Twitter Meta Tags -->
-        <meta property="twitter:url" content="https://picofelez.ir/about-us/">
-        <meta name="twitter:title" content="پیکوفلز | ارتباط با ما">
-        <meta name="twitter:description" content="گروه فلزکاری عبدی - پیکوفلز، تولید کننده انواع محصولات فلزی">
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:url" content="https://picofelez.ir/about-us/">
+    <meta name="twitter:title" content="پیکوفلز | ارتباط با ما">
+    <meta name="twitter:description" content="گروه فلزکاری عبدی - پیکوفلز، تولید کننده انواع محصولات فلزی">
 
-        <meta name="keywords"
-              content="فلزکاری عبدی،پیکوفلز،گروه فلزکاری،آهن،درب و پنجره آهنی،فرفورژه،جوشکاری،آهنگری،شاسی کشی نمای ساختمان">
+    <meta name="keywords"
+          content="فلزکاری عبدی،پیکوفلز،گروه فلزکاری،آهن،درب و پنجره آهنی،فرفورژه،جوشکاری،آهنگری،شاسی کشی نمای ساختمان">
 
-        <meta name="title" content="پیکوفلز | ارتباط با ما"/>
-        <meta name="description" content="گروه فلزکاری عبدی - پیکوفلز، تولید کننده انواع محصولات فلزی">
-    {% endblock %}
+    <meta name="title" content="پیکوفلز | ارتباط با ما"/>
+    <meta name="description" content="گروه فلزکاری عبدی - پیکوفلز، تولید کننده انواع محصولات فلزی">
+{% endblock %}
 
 {% block content %}
     <section class="inner-page" id="about-page">
@@ -58,7 +58,7 @@
                                     به پیکوفلز خوش آمدید!
                                 </h3>
                                 <p>
-                                    پلتفرم تخصصی آهن ، شبکه یکپارچه گروه فلزکاری برادران عبدی - پیکوفلز.
+                                    پلتفرم تخصصی گروه فلزکاری عبدی
                                 </p>
                                 <hr/>
                                 <section
@@ -67,14 +67,13 @@
                                 >
                                     <div class="row">
                                         <div class="col-12 mb-4">
-                                            <h6 class="title font-vazir-bold-fd">چگونه از بخش ارتباط با مشتریان گروه
-                                                فلزکاری عبدی استفاده کنیم؟</h6>
+                                            <h6 class="title font-vazir-bold-fd">درباره گروه فلزکاری عبدی</h6>
                                         </div>
                                         <p>
-                                            برای ارتباط با گروه فلزکاری عبدی
-                                            <a class="text-primary" href="{% url 'metallurgy:landing' %}">اینجا کلیک
-                                                کنید</a>
-                                            .
+                                            گروه فلزکاری عبدی - پیکوفلز،
+                                            با بیش از 30 سال سابقه در طراحی و تولید انواع درب و پنجره و حفاظ آهنی،
+                                            تانکر، لانچر، شاسی دستگاه های صنعتی، شاسی کشی نما، فرفورژه، اسکلت فلزی سبک،
+                                            تیرچه کرومیت، اسکلت تیرچه های پاشنه بتنی، وال پست و ...
                                         </p>
                                     </div>
                                 </section>
@@ -86,13 +85,15 @@
                                 >
                                     <div class="row">
                                         <div class="col-12 mb-4">
-                                            <h6 class="title font-vazir-bold-fd">چطور فروشگاه خود را ایجاد کنیم؟</h6>
+                                            <h6 class="title font-vazir-bold-fd">پنل ارتباط با مشتریان</h6>
                                         </div>
                                         <p>
-                                            درصورتی که میخواهید فروشگاه آهن خود را ایجاد کنید روی
-                                            <a href="{% url 'shop:register-shop' %}" class="text-primary">این لینک کلیک
-                                                کنید</a>
-                                            و طبق مراحل پیش بروید.
+                                            در
+                                            <a class="link-primary" href="{% url 'metallurgy:customer-project-list' %}">پنل
+                                                ارتباط با
+                                                مشتریان</a>
+                                            مشتریان ما به صورت آنلاین و در هرکجا میتوانند فرایند کامل پروژه خود را
+                                            مشاهده و پیگیری کنند.
                                         </p>
                                     </div>
                                 </section>
@@ -104,77 +105,17 @@
                                 >
                                     <div class="row">
                                         <div class="col-12 mb-4">
-                                            <h6 class="title font-vazir-bold-fd">برای خرید چه مراحلی را دنبال کنیم؟</h6>
+                                            <h6 class="title font-vazir-bold-fd">همکاری با ما</h6>
+
+                                            <p>برای همکاری با ما، با شماره <a href="tel:09199060659"
+                                                                              class="link-primary">09199060659</a>
+                                                تماس بگیرید و یا از صفحه
+                                                <a href="{% url 'core:contact-us' %}" class="link-primary">ارتباط با
+                                                    ما</a>
+                                                استفاده کنید.
+                                            </p>
                                         </div>
-                                        <div class="col-12 col-sm-6 col-lg-3 mb-2">
-                                            <div
-                                                    class="purchas-step-item d-flex justify-content-between align-items-center"
-                                            >
-                                                <div class="purchas-step-icon">
-                                                    <i class="fas fa-globe"></i>
-                                                </div>
-                                                <div class="purchas-step-content">
-                                                    <p class="fw-semibold p-0 m-0 mb-1">انتخاب محصول</p>
-                                                    <p class="text-gray">
-                                                        <a href="{% url 'product:product-list' %}" class="text-primary">محصولات</a> و <a
-                                                            href="{% url 'shop:shop-list' %}" class="text-primary">فروشگاه ها</a>
-                                                        را مقایسه کنید و طبق نیازتان آنهارا به سبد
-                                                        خرید خود اضافه کنید.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-6 col-lg-3 mb-2">
-                                            <div
-                                                    class="purchas-step-item d-flex justify-content-between align-items-center"
-                                            >
-                                                <div class="purchas-step-icon">
-                                                    <i class="fas fa-cart-shopping"></i>
-                                                </div>
-                                                <div class="purchas-step-content">
-                                                    <p class="fw-semibold p-0 m-0 mb-1">تکمیل سبد خرید</p>
-                                                    <p class="text-gray">
-                                                        پس از افزودن محصولات مورد نیاز خود به سبد خرید روی "ادامه ثبت
-                                                        سفارش" در سبد خرید کلیک
-                                                        کنید.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-6 col-lg-3 mb-2">
-                                            <div
-                                                    class="purchas-step-item d-flex justify-content-between align-items-center"
-                                            >
-                                                <div class="purchas-step-icon">
-                                                    <i class="fas fa-shop"></i>
-                                                </div>
-                                                <div class="purchas-step-content">
-                                                    <p class="fw-semibold p-0 m-0 mb-1">انتخاب آدرس</p>
-                                                    <p class="text-gray">
-                                                        بعد از تکمیل سبد خرید و ادامه سفارش آدرس خود را ایجاد و یا
-                                                        انتخاب کنید و برای تائید
-                                                        ارسال کنید.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-6 col-lg-3 mb-2">
-                                            <div
-                                                    class="purchas-step-item d-flex justify-content-between align-items-center"
-                                            >
-                                                <div class="purchas-step-icon">
-                                                    <i class="fas fa-truck"></i>
-                                                </div>
-                                                <div class="purchas-step-content">
-                                                    <p class="fw-semibold p-0 m-0 mb-1">مرحله آخر</p>
-                                                    <p class="text-gray">
-                                                        سفارش شما به دست فروشنده ها میرسد و بعد از تعیین هزینه باربری از
-                                                        طریق پیامک به شما
-                                                        اطلاع داده خواهد شد.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </section>
                             </div>
