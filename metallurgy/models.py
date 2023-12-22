@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -20,7 +21,8 @@ class WorkSample(models.Model):
         published = 'p', 'منتشر شده'
 
     title = models.CharField(max_length=255, verbose_name='عنوان')
-    description = models.TextField(verbose_name='توضیحات')
+    # description = models.TextField(verbose_name='توضیحات')
+    description = RichTextField(verbose_name='توضیحات')
     image = models.ImageField(upload_to='portfolio/', verbose_name='تصویر')
     status = models.CharField(max_length=10, choices=StatusChoices.choices, verbose_name='وضعیت')
     publish_time = models.DateTimeField(default=timezone.now, verbose_name='زمان انتشار')
@@ -42,7 +44,7 @@ class WorkSample(models.Model):
         return f"{self.title.replace(' ', '-')}"
 
     def get_absolute_url(self):
-        return reverse('metallurgy:work-sample-detail', args=[self.id, self.get_name_replace()])
+        return reverse('core:work-sample-detail', args=[self.id, self.get_name_replace()])
 
     def __str__(self):
         return f"{self.title}"
