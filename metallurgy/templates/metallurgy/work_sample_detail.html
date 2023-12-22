@@ -7,7 +7,7 @@
 {% block meta_tags %}
     <!-- Facebook Meta Tags -->
     <meta property="og:url"
-          content="https://picofelez.ir/metallurgy/portfolio/{{ object.pk }}/{{ object.get_name_replace }}">
+          content="https://picofelez.ir/portfolios/{{ object.pk }}/{{ object.get_name_replace }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="پیکوفلز | {{ object.title }}">
     <meta property="og:description"
@@ -16,7 +16,7 @@
     <!-- Twitter Meta Tags -->
     <meta property="twitter:domain" content="picofelez.ir">
     <meta property="twitter:url"
-          content="https://picofelez.ir/metallurgy/portfolio/{{ object.pk }}/{{ object.get_name_replace }}">
+          content="https://picofelez.ir/portfolios/{{ object.pk }}/{{ object.get_name_replace }}">
     <meta name="twitter:title" content="پیکوفلز | فلزکاری برادران عبدی">
     <meta name="twitter:description"
           content="{{ object.summary }}">
@@ -31,18 +31,48 @@
 {% block content %}
     {% with request.resolver_match.url_name as url_name %}
         <section class="inner-page" id="shop-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>گروه فلزکاری عبدی</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:home' %}">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:work-sample-list' %}">نمونه کارها</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                               {{ worksample.title }}
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
             <section id="article-detail" class="article-detail">
                 <section class="container">
                     <section class="row mt-3 justify-content-center">
                         <section class="col-md-10 py-4 py-md-5 mb-2">
-                            <h4 class="mb-3 font-vazir-bold-fd text-center">
+                            <h1 class="mb-3 font-vazir-bold-fd text-center h4">
                                 {{ object.title }}
-                            </h4>
+                            </h1>
                             <div class="row">
                                 <div class="col-12 col-md-5 mb-3">
                                     <div class="d-flex justify-content-start align-content-center bg-light rounded-end mb-3">
                                         <div class="bg-purple pt-2 px-3 rounded-start">
-                                            <i class="fas fa-location-dot mt-1 text-center text-light" style="font-size: 1.2rem"></i>
+                                            <i class="fas fa-location-dot mt-1 text-center text-light"
+                                               style="font-size: 1.2rem"></i>
                                         </div>
                                         <div class="pt-2 ps-2">
                                             <p style="font-size: 0.95rem">محل اجرا: {{ worksample.address }}</p>
@@ -61,13 +91,24 @@
                                     {% if worksample.customer %}
                                         <div class="d-flex justify-content-start align-content-center bg-light rounded-end mb-3">
                                             <div class="bg-purple pt-2 px-3 rounded-start">
-                                                <i class="fas fa-calendar mt-1 text-light" style="font-size: 1.1rem"></i>
+                                                <i class="fas fa-calendar mt-1 text-light"
+                                                   style="font-size: 1.1rem"></i>
                                             </div>
                                             <div class="pt-2 ps-2">
                                                 <p style="font-size: 0.95rem">کارفرما: {{ worksample.customer }}</p>
                                             </div>
                                         </div>
                                     {% endif %}
+
+                                    <a href="tel:09199060659"
+                                       class="btn btn-purple d-md-none rounded-0 w-100 position-fixed fixed-bottom">
+                                        همین حالا تماس بگیرید
+                                    </a>
+
+                                    <a href="{% url 'core:contact-us' %}"
+                                       class="btn btn-purple d-none d-md-block rounded-0 w-100 position-fixed fixed-bottom">
+                                        همین حالا تماس بگیرید
+                                    </a>
                                 </div>
 
                                 <div class="col-12 col-md-7 mb-3">
@@ -129,20 +170,20 @@
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <h5 class="my-3 font-vazir-bold-fd text-center">
+                                    <h2 class="my-3 font-vazir-bold-fd text-center h5">
                                         توضیحات پروژه
-                                    </h5>
+                                    </h2>
 
                                     <p>
-                                        {{ worksample.description }}
+                                        {{ worksample.description|safe }}
                                     </p>
                                 </div>
                                 {% for file in worksample.images.all %}
                                     {% if file.file %}
                                         <div class="col-12 mb-3 d-flex flex-column justify-content-center align-items-center">
-                                            <h5 class="my-3 font-vazir-bold-fd text-center">
+                                            <h3 class="my-3 font-vazir-bold-fd text-center h5">
                                                 ویدئو
-                                            </h5>
+                                            </h3>
 
                                             <video class="img-fluid" controls>
                                                 <source src="{{ file.file.url }}" type="video/mp4">

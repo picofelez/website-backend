@@ -14,8 +14,8 @@
     <!-- Twitter Meta Tags -->
     <meta property="twitter:domain" content="picofelez.ir">
     <meta property="twitter:url"
-          content="https://picofelez.ir/metallurgy/portfolio/{{ object.pk }}/{{ object.get_name_replace }}">
-    <meta name="twitter:title" content="پیکوفلز | گروه فلزکاری عبدی">
+          content="https://picofelez.ir/portfolios/">
+    <meta name="twitter:title" content="پیکوفلز | نمونه کارها - گروه فلزکاری عبدی">
 
     <meta name="keywords"
           content="فلزکاری عبدی،پیکوفلز،گروه فلزکاری،آهن،درب و پنجره آهنی،فرفورژه،جوشکاری،آهنگری،شاسی کشی نمای ساختمان">
@@ -27,6 +27,32 @@
 {% block content %}
     {% with request.resolver_match.url_name as url_name %}
         <section class="inner-page" id="portfolio-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>گروه فلزکاری عبدی</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:home' %}">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                نمونه کارها
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
             <section class="container">
                 <div class="row">
                     <div class="col-12">
@@ -38,7 +64,7 @@
                                     </h4>
                                 </div>
                                 <div class="col-12 col-md-5 my-4">
-                                    <form action="{% url 'metallurgy:work-sample-list' %}" method="get">
+                                    <form action="{% url 'core:work-sample-list' %}" method="get">
                                         <label for="search">جستجوی نمونه کار:</label>
                                         <div class="d-flex justify-content-around align-items-center mt-2">
                                             <input type="text" name="search" value="{{ request.GET.search }}"
