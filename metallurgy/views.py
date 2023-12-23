@@ -1,3 +1,5 @@
+import urllib
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.utils import timezone
@@ -34,7 +36,7 @@ class WorkSampleCategoryListView(ListView):
     paginate_by = 15
 
     def get_queryset(self):
-        print(self.kwargs.get("category"))
+        # print(urllib.parse.unquote("%D8%AF%D8%B1%D8%A8-%D9%86%D9%81%D8%B1-%D8%B1%D9%88"))
         return WorkSample.objects.filter(
             status='p', publish_time__lte=timezone.now(), categories__slug=self.kwargs.get("slug")
         )
