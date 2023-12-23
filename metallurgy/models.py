@@ -39,6 +39,7 @@ class WorkSample(models.Model):
     class Meta:
         verbose_name = 'نمونه کار'
         verbose_name_plural = '1. نمونه کار ها'
+        ordering = ('-publish_time',)
 
     def get_name_replace(self):
         return f"{self.title.replace(' ', '-')}"
