@@ -23,7 +23,7 @@ class Category(models.Model):
     )
     name = models.CharField(max_length=100, verbose_name='نام دسته')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
-    slug = models.CharField(
+    slug = models.SlugField(
         max_length=255, null=True, blank=True, verbose_name="اسلاگ"
     )
 
