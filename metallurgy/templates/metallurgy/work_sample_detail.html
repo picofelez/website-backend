@@ -49,7 +49,7 @@
                                                 <a href="{% url 'core:work-sample-list' %}">نمونه کارها</a>
                                             </li>
                                             <li class="breadcrumb-item active" aria-current="page">
-                                               {{ worksample.title }}
+                                                {{ worksample.title }}
                                             </li>
                                         </ol>
                                     </nav>
@@ -131,12 +131,6 @@
                                             <div class="carousel-item active">
                                                 <img src="{{ object.image.url }}" class="d-block w-100 worksample-img"
                                                      alt="تصویر نمونه کار" style="height: 20rem">
-                                                <div class="carousel-caption d-none d-md-block">
-                                                    <div class="alert alert-light">
-                                                        <h5 class="font-vazir-bold-fd">
-                                                            ورق بزنید</h5>
-                                                    </div>
-                                                </div>
                                             </div>
 
                                             {% for image in worksample.images.all %}
@@ -145,12 +139,6 @@
                                                         <img src="{{ image.image.url }}"
                                                              class="d-block w-100 worksample-img"
                                                              alt="تصویر نمونه کار" style="height: 20rem">
-                                                        <div class="carousel-caption d-none d-md-block">
-                                                            <div class="alert alert-light">
-                                                                <h5 class="font-vazir-bold-fd">
-                                                                    تصویر {{ forloop.counter }}</h5>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 {% endif %}
                                             {% endfor %}
@@ -174,9 +162,7 @@
                                         توضیحات پروژه
                                     </h2>
 
-                                    <p>
-                                        {{ worksample.description|safe }}
-                                    </p>
+                                    {{ worksample.description|safe }}
                                 </div>
                                 {% for file in worksample.images.all %}
                                     {% if file.file %}

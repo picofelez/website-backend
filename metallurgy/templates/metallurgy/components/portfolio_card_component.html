@@ -4,7 +4,7 @@
     </div>
     <div class="portfolio-body text-center">
         <p class="portfolio-title mb-0 h4">{{ worksample.title }}</p>
-        <p class="portfolio-text mb-3">{{ worksample.description|truncatewords:8 }}</p>
+        <p class="portfolio-text mb-3 font-size-95">{{ worksample.summary|truncatewords:8 }}</p>
         <a href="{% url 'core:work-sample-detail' worksample.pk worksample.get_name_replace %}"
            class="btn border rounded w-100">مشاهده {{ worksample.title }}</a>
     </div>
