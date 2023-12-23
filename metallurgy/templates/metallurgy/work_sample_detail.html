@@ -101,12 +101,12 @@
                                     {% endif %}
 
                                     <a href="tel:09199060659"
-                                       class="btn btn-purple d-md-none rounded-0 w-100 position-fixed fixed-bottom">
+                                       class="btn btn-purple d-md-none rounded-0 py-2 w-100 position-fixed fixed-bottom">
                                         همین حالا تماس بگیرید
                                     </a>
 
                                     <a href="{% url 'core:contact-us' %}"
-                                       class="btn btn-purple d-none d-md-block rounded-0 w-100 position-fixed fixed-bottom">
+                                       class="btn btn-purple d-none d-md-block py-2 rounded-0 w-100 position-fixed fixed-bottom">
                                         همین حالا تماس بگیرید
                                     </a>
                                 </div>
@@ -178,6 +178,16 @@
                                         </div>
                                     {% endif %}
                                 {% endfor %}
+
+                                <div class="col-12 mb-3">
+                                    <p class="font-size-95">
+                                        <span>برچسب ها:</span>
+                                        {% for category in worksample.categories.all %}
+                                            <a href="{% url 'core:work-sample-category-list' category.slug %}"
+                                               class="text-secondary">{{ category.name }}</a> ،
+                                        {% endfor %}
+                                    </p>
+                                </div>
 
                             </div>
                         </section>

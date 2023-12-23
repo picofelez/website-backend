@@ -28,6 +28,17 @@ class WorkSampleListView(FilterView):
     filterset_class = WorkSampleFilter
 
 
+class WorkSampleCategoryListView(ListView):
+    model = WorkSample
+    template_name = 'metallurgy/work_sample_list.html'
+    paginate_by = 15
+
+    def get_queryset(self):
+        print(self.kwargs.get("category"))
+        return WorkSample.objects.filter(
+            status='p', publish_time__lte=timezone.now(), categories__slug=self.kwargs.get("slug")
+        )
+
 class WorkSampleDetailView(DetailView):
     model = WorkSample
     template_name = 'metallurgy/work_sample_detail.html'

@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
@@ -20,6 +22,9 @@ class Category(models.Model):
     )
     name = models.CharField(max_length=100, verbose_name='نام دسته')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    slug = models.CharField(
+        max_length=255, default=random.randint(1000, 1000000), unique=True, verbose_name="اسلاگ"
+    )
 
     class Meta:
         verbose_name = 'دسته بندی'
