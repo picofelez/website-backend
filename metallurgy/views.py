@@ -38,8 +38,9 @@ class WorkSampleCategoryListView(ListView):
     def get_queryset(self):
         # print(urllib.parse.unquote("%D8%AF%D8%B1%D8%A8-%D9%86%D9%81%D8%B1-%D8%B1%D9%88"))
         return WorkSample.objects.filter(
-            status='p', publish_time__lte=timezone.now(), categories__slug=self.kwargs.get("slug")
+            status='p', publish_time__lte=timezone.now(), categories=self.kwargs.get("pk")
         )
+
 
 class WorkSampleDetailView(DetailView):
     model = WorkSample

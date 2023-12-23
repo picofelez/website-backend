@@ -183,7 +183,7 @@
                                     <p class="font-size-95">
                                         <span>برچسب ها:</span>
                                         {% for category in worksample.categories.all %}
-                                            <a href="{% url 'core:work-sample-category-list' category.slug %}"
+                                            <a href="{% url 'core:work-sample-category-list' category.slug category.pk %}"
                                                class="text-secondary">{{ category.name }}</a> ،
                                         {% endfor %}
                                     </p>
