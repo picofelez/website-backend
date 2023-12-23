@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 from django.utils.html import format_html
+from django.utils.text import slugify
 
 from extensions.utils import upload_product_image_path, generate_product_id, jalali_converter
 from product.managers import PublishedProductsManager
@@ -29,6 +30,10 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'دسته بندی'
         verbose_name_plural = '2. دسته بندی ها'
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name, allow_unicode=True)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
