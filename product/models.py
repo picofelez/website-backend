@@ -23,7 +23,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='نام دسته')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
     slug = models.CharField(
-        max_length=255, default=random.randint(1000, 1000000), verbose_name="اسلاگ"
+        max_length=255, null=True, blank=True, verbose_name="اسلاگ"
     )
 
     class Meta:
