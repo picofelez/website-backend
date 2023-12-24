@@ -6,7 +6,7 @@ from .models import WorkSample
 
 class WorkSampleSitemap(Sitemap):
     changefreq = "daily"
-    priority = 0.9
+    priority = 1
 
     def items(self):
         return WorkSample.objects.filter(status='p', publish_time__lte=timezone.now())
