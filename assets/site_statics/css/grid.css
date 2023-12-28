@@ -624,8 +624,8 @@ section.inner-page .content img {
 }
 
 section.inner-page .content p {
-    font-family: "vazir-bold-fd";
-    font-size: 0.9rem;
+    text-align: justify;
+    font-size: 0.95rem;
 }
 
 section.inner-page#article-page #keywords {
