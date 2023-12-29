@@ -978,6 +978,14 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
     .worksample-img {
         height: 18rem;
     }
+
+    #portfolios-list {
+        order: 2;
+    }
+
+    #sub-cats-portfolios {
+        order: 3;
+    }
 }
 
 @media (max-width: 576px) {

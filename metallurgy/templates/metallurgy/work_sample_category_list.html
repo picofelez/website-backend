@@ -1,0 +1,91 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}پیکوفلز | نمونه کارها{% endblock %}
+
+{% block meta_tags %}
+
+    <meta property="og:url"
+          content="https://picofelez.ir/portfolio/">
+    <meta property="twitter:url"
+          content="https://picofelez.ir/portfolios/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="پیکوفلز | دسته بندی محصولات">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:domain" content="picofelez.ir">
+    <meta name="twitter:title" content="پیکوفلز | دسته بندی محصولات">
+
+    <meta name="keywords"
+          content="فلزکاری عبدی،جوشکاری عبدی،آهنگری عبدی،پیکوفلز،گروه فلزکاری،آهن،درب و پنجره آهنی،فرفورژه،جوشکاری،آهنگری،شاسی کشی نمای ساختمان">
+
+    <meta name="name" content="پیکوفلز | دسته بندی محصولات">
+    <meta name="description" content="گروه فلزکاری عبدی با بیش از 30 سال سابقه در صنایع فلزی ایران">
+{% endblock %}
+
+{% block content %}
+    {% with request.resolver_match.url_name as url_name %}
+        <section class="inner-page" id="portfolio-page">
+            <!-- breadcrumb start -->
+            <section class="page-title-box container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 px-0">
+                                    <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
+                                    <p>گروه فلزکاری عبدی</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'core:home' %}">خانه</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                دسته بندی ها
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- breadcrumb end -->
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="row">
+                                        {% for sub_cat in object_list %}
+                                            <div class="col-12 col-md-3 mb-2">
+                                                <div class="rounded-card box-shadow d-flex justify-content-between align-items-center">
+                                                    <p class="font-size-95 mb-0">
+                                                        <a href="{% url 'core:work-sample-category-list' sub_cat.slug sub_cat.pk %}"
+                                                           class="text-primary">
+                                                            {{ sub_cat.name }}
+                                                        </a>
+                                                    </p>
+                                                    <p class="font-size-85 mb-0">
+                                                            <span>
+                                                                <i class="fa fa-list text-success"></i>
+                                                                {{ sub_cat.sub_cats.count }} زیر دسته
+                                                            </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    {% endwith %}
+{% endblock %}

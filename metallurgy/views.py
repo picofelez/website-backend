@@ -1,7 +1,7 @@
 import urllib
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.views.generic import DetailView, ListView
 from django_filters.views import FilterView
@@ -9,6 +9,7 @@ from django_filters.views import FilterView
 from metallurgy.filters import WorkSampleFilter
 from metallurgy.mixins import CustomerProjectAccessMixin, CustomerInvoiceAccessMixin
 from metallurgy.models import WorkSample, Project, Invoice
+from product.models import Category
 
 
 # Create your views here.
@@ -33,13 +34,22 @@ class WorkSampleListView(FilterView):
 class WorkSampleCategoryListView(ListView):
     model = WorkSample
     template_name = 'metallurgy/work_sample_list.html'
-    paginate_by = 15
+    paginate_by = 12
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkSampleCategoryListView, self).get_context_data(**kwargs)
+        context['category'] = get_object_or_404(Category, pk=self.kwargs.get("pk"))
+        return context
 
     def get_queryset(self):
-        # print(urllib.parse.unquote("%D8%AF%D8%B1%D8%A8-%D9%86%D9%81%D8%B1-%D8%B1%D9%88"))
         return WorkSample.objects.filter(
             status='p', publish_time__lte=timezone.now(), categories=self.kwargs.get("pk")
         )
+
+
+class CategoriesListView(ListView):
+    queryset = Category.objects.filter(parent__created__isnull=True)
+    template_name = 'metallurgy/work_sample_category_list.html'
 
 
 class WorkSampleDetailView(DetailView):
