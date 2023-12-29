@@ -22,13 +22,14 @@ from django.conf.urls.static import static
 from blog.sitemap import ArticleSitemap
 from core.sitemap import StaticViewSitemap
 from metallurgy.sitemap import WorkSampleSitemap
-from product.sitemap import ProductSitemap
+from product.sitemap import ProductSitemap, CategorySitemap
 
 sitemaps = {
     "statics": StaticViewSitemap,
     "products": ProductSitemap,
     "portfolio": WorkSampleSitemap,
-    "articles": ArticleSitemap
+    "articles": ArticleSitemap,
+    "categories": CategorySitemap
 }
 
 urlpatterns = [

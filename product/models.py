@@ -35,6 +35,9 @@ class Category(models.Model):
         self.slug = slugify(self.name, allow_unicode=True)
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse("core:work-sample-category-list", args=[self.slug, self.pk])
+
     def __str__(self):
         return self.name
 

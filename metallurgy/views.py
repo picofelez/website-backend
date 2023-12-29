@@ -48,7 +48,7 @@ class WorkSampleCategoryListView(ListView):
 
 
 class CategoriesListView(ListView):
-    queryset = Category.objects.filter(parent__created__isnull=True)
+    queryset = Category.objects.filter(parent__isnull=True)
     template_name = 'metallurgy/work_sample_category_list.html'
 
 
