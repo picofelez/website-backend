@@ -21,6 +21,9 @@
             <li {% if url_name == 'calculator' %}class="main-nav-active-item"{% endif %}>
                 <a href="{% url 'core:calculator' %}">وزن آهن آلات</a>
             </li>
+            <li {% if url_name == 'work-sample-categories' %}class="main-nav-active-item"{% endif %}>
+                <a href="{% url 'core:work-sample-categories' %}">دسته بندی محصولات</a>
+            </li>
         </ul>
     </div>
 
