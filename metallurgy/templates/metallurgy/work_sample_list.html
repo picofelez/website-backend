@@ -2,7 +2,14 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block title %}پیکوفلز | نمونه کارها{% endblock %}
+{% block title %}
+    پیکوفلز |
+    {% if category %}
+        {{ category.name }}
+    {% else %}
+        نمونه کارها
+    {% endif %}
+{% endblock %}
 
 {% block meta_tags %}
     <!-- Facebook Meta Tags -->
@@ -10,19 +17,21 @@
         <meta property="og:url"
               content="https://picofelez.ir/portfolio/category-{{ category.slug }}/{{ category.pk }}">
         <meta property="twitter:url"
-          content="https://picofelez.ir/portfolios/category-{{ category.slug }}/{{ category.pk }}">
-        {% else %}
+              content="https://picofelez.ir/portfolios/category-{{ category.slug }}/{{ category.pk }}">
+    {% else %}
         <meta property="og:url"
               content="https://picofelez.ir/portfolio/">
         <meta property="twitter:url"
               content="https://picofelez.ir/portfolios/">
     {% endif %}
     <meta property="og:type" content="website">
-    <meta property="og:title" content="پیکوفلز | نمونه کارها - گروه فلزکاری عبدی">
+    <meta property="og:title"
+          content="پیکوفلز | {% if category %}{{ category.name }}{% else %}نمونه کارها - گروه فلزکاری عبدی{% endif %}">
 
     <!-- Twitter Meta Tags -->
     <meta property="twitter:domain" content="picofelez.ir">
-    <meta name="twitter:title" content="پیکوفلز | نمونه کارها - گروه فلزکاری عبدی">
+    <meta name="twitter:title"
+          content="پیکوفلز | {% if category %}{{ category.name }}{% else %}نمونه کارها - گروه فلزکاری عبدی{% endif %}">
 
     <meta name="keywords"
           content="فلزکاری عبدی،پیکوفلز،گروه فلزکاری،آهن،درب و پنجره آهنی،فرفورژه،جوشکاری،آهنگری،شاسی کشی نمای ساختمان">
