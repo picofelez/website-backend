@@ -1,6 +1,8 @@
 <div class="portfolio-card text-decoration-none rounded">
     <div class="portfolio-header">
-        <img src="{{ worksample.image.url }}" alt="{{ worksample.title }}" loading="lazy">
+        <a href="{% url 'core:work-sample-detail' worksample.pk worksample.get_name_replace %}">
+            <img src="{{ worksample.image.url }}" alt="{{ worksample.title }}" loading="lazy">
+        </a>
     </div>
     <div class="portfolio-body text-center">
         <p class="portfolio-title mb-0 h5">{{ worksample.title }}</p>
