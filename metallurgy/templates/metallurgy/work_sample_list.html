@@ -83,6 +83,15 @@
                     <div class="col-12">
                         <div class="page-content">
                             <div class="row">
+                                <a href="tel:09199060659"
+                                   class="btn btn-purple d-md-none rounded-0 py-2 w-100 position-fixed fixed-bottom">
+                                    ثبت سفارش
+                                </a>
+
+                                <a href="{% url 'core:contact-us' %}"
+                                   class="btn btn-purple d-none d-md-block py-2 rounded-0 w-100 position-fixed fixed-bottom">
+                                    ثبت سفارش
+                                </a>
                                 {% if category and not category.parent %}
                                     <div class="col-12 mb-4" id="sub-cats-portfolios">
                                         <div class="row">
