@@ -984,6 +984,10 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
     }
 
     #sub-cats-portfolios {
+        order: 4;
+    }
+
+    #portfolios-pagination {
         order: 3;
     }
 }
