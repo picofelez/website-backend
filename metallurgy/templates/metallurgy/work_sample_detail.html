@@ -181,11 +181,11 @@
                                 {% endfor %}
 
                                 <div class="col-12 mb-3">
-                                    <p class="font-size-95">
+                                    <p class="keywords">
                                         <span>برچسب ها:</span>
                                         {% for category in worksample.categories.all %}
                                             <a href="{% url 'core:work-sample-category-list' category.slug category.pk %}"
-                                               class="text-secondary">{{ category.name }}</a> ،
+                                               class="keyword">{{ category.name }}</a>
                                         {% endfor %}
                                     </p>
                                 </div>

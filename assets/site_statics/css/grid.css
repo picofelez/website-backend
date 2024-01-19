@@ -634,7 +634,13 @@ section.inner-page#article-page #keywords {
     padding-top: 2px;
 }
 
-section.inner-page#article-page #keywords .keyword {
+.keywords {
+    font-size: 0.8rem;
+    color: #282828;
+    padding-top: 2px;
+}
+
+.keyword {
     background-color: rgba(209, 209, 209, 0.3);
     border-radius: 3px;
     color: #696969;
