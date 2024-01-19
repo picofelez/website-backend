@@ -15,7 +15,7 @@ def latest_multiple_products_context_processor(request):
 
 
 def latest_articles_context_processor(request):
-    articles = Article.published.all().select_related(None)[:4]
+    articles = Article.published.all().select_related(None)[:3]
     return {'latest_articles': articles}
 
 

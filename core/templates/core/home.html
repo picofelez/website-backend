@@ -15,11 +15,11 @@
             <div class="text-center mb-5">
                 <a href="{% url 'core:work-sample-list' %}" class="btn btn-outline-dark px-4 py-2">
                     <i class="fas fa-newspaper"></i>
-                    نمونه کارها
+                    پروژه ها
                 </a>
                 <a href="{% url 'core:contact-us' %}" class="btn btn-outline-dark px-4 py-2">
                     <i class="fas fa-phone"></i>
-                    ارتباط با ما
+                    همکاری با ما
                 </a>
             </div>
             <div class="row icon-boxes mb-5">
@@ -30,7 +30,7 @@
                             <a href="{% url 'core:work-sample-list' %}">انتخاب محصول</a>
                         </h4>
                         <p class="description">
-                            از نمونه کارهای ما بازدید ، محصول خودرا انتخاب و با ما
+                            از پروژه های ما بازدید کنید ، محصول خودرا انتخاب و با ما
                             تماس بگیرید!
                         </p>
                     </div>
@@ -45,7 +45,7 @@
                             </a>
                         </h4>
                         <p class="description">
-                            پس از انتخاب محصول با حضور در محل پروژه بازدید فنی و الگو برداری دقیق صورت میگیرد.
+                            پس از انتخاب محصول با حضور در محل پروژه بازدید فنی و الگو برداری دقیق صورت میگیرد!
                         </p>
                     </div>
                 </div>
@@ -58,8 +58,7 @@
                                 ساخت و تولید
                             </a>
                         </h4>
-                        <p class="description">
-                            سفارش شما با تجهیزات به روز و حرفه ای و با رعایت اصول مهندسی طراحی و تولید می شود.
+                        <p class="description">سفارش شما با تجهیزات به روز و حرفه ای و با رعایت اصول مهندسی طراحی و تولید می شود!
                         </p>
                     </div>
                 </div>
@@ -74,11 +73,32 @@
                         </h4>
                         <p class="description">
                             پس از اتمام ساخت، بارگیری به محل پروژه انجام و درصورت نیاز توسط تیم متخصص
-                            نصب میشود.
+                            نصب میشود!
                         </p>
                     </div>
                 </div>
 
+            </div>
+        </section>
+    </section>
+
+    <section id="call-info" class="call-info my-4">
+        <section class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-7 mb-3">
+                    <h3 class="h6 text-center">صنایع فلزی - ساختمانی</h3>
+                    <h2 class="h4 my-4 text-center">گروه فلزکاری عبدی (پیکوفلز)</h2>
+                    <p class="call-info-text text-center">
+                        با بیش از 50 سال سابقه در طراحی و تولید انواع درب و پنجره و حفاظ آهنی،
+                        تانکر، لانچر، شاسی دستگاه های صنعتی، شاسی کشی نما، فرفورژه، اسکلت فلزی سبک، تیرچه کرومیت، اسکلت
+                        تیرچه
+                        های پاشنه بتنی، وال پست و ...
+                    </p>
+                </div>
+                <div class="col-12 col-md-5">
+                    <img src="{% static 'site_statics/img/bg/14.jpg' %}" alt="شهر" class="rounded-3" width="100%"
+                         height="300">
+                </div>
             </div>
         </section>
     </section>
@@ -88,7 +108,7 @@
             <!-- title -->
             <div class="row">
                 <div class="col-12 mb-2">
-                    <h1 class="h4 font-vazir-bold-fd text-center mb-4">نمونه کارها</h1>
+                    <h4 class="font-vazir-bold-fd text-center mb-4">پروژه ها</h4>
                 </div>
             </div>
             <!-- products -->
@@ -101,9 +121,8 @@
 
             </div>
             <div class="d-flex justify-content-center">
-                <a href="{% url 'core:work-sample-list' %}" class="btn btn-outline-secondary w-100">
-                    مشاهده همه نمونه
-                    کارها</a>
+                <a href="{% url 'core:work-sample-list' %}" class="btn btn-purple mt-2">
+                    مشاهده همه پروژه ها</a>
             </div>
         </section>
     </section>
@@ -112,9 +131,20 @@
     <section id="contact-info" class="contact-info">
         <section class="container">
             <section class="text-center">
-                <p class="h4 font-vazir-bold-fd">همکاری با ما</p>
+                <h4 class="font-vazir-bold-fd">همکاری با ما</h4>
             </section>
             <section class="row mt-4 mx-2 mx-md-0">
+                <section class="col-md-3 col-12 mb-3">
+                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
+                            <span>
+                                <i class="fas fa-building"></i>
+                            </span>
+                        <p>
+                            جوشکاری نمای ساختمان<br>
+                            <small>مشاوره و همکاری</small>
+                        </p>
+                    </a>
+                </section>
                 <section class="col-md-3 col-12 mb-3">
                     <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
                             <span>
@@ -132,18 +162,7 @@
                                 <i class="fas fa-industry"></i>
                             </span>
                         <p>
-                            فرفورژه<br>
-                            <small>مشاوره و همکاری</small>
-                        </p>
-                    </a>
-                </section>
-                <section class="col-md-3 col-12 mb-3">
-                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
-                            <span>
-                                <i class="fas fa-building"></i>
-                            </span>
-                        <p>
-                            شاسی کشی نما<br>
+                            فرفورژه و دکوراسیون<br>
                             <small>مشاوره و همکاری</small>
                         </p>
                     </a>
@@ -163,28 +182,6 @@
         </section>
     </section>
 
-    {#    <hr>#}
-
-    <section id="call-info" class="call-info my-3">
-        <section class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-7 mb-3">
-                    <p class="h6 text-center">صنایع فلزی - ساختمانی</p>
-                    <p class="h4 my-4 text-center">گروه فلزکاری عبدی (پیکوفلز)</p>
-                    <p class="call-info-text text-center">
-                        با بیش از 30 سال سابقه در طراحی و تولید انواع درب و پنجره و حفاظ آهنی،
-                        تانکر، لانچر، شاسی دستگاه های صنعتی، شاسی کشی نما، فرفورژه، اسکلت فلزی سبک، تیرچه کرومیت، اسکلت
-                        تیرچه
-                        های پاشنه بتنی، وال پست و ...
-                    </p>
-                </div>
-                <div class="col-12 col-md-5">
-                    <img src="{% static 'site_statics/img/bg/14.jpg' %}" alt="شهر" class="rounded-3" width="100%"
-                         height="300">
-                </div>
-            </div>
-        </section>
-    </section>
 
     {#    <section class="my-5">#}
     {#        <section class="text-center contact-info-title">#}
@@ -209,13 +206,18 @@
             <!-- title -->
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h3 class="text-center h4 font-vazir-bold-fd mb-4">نوشته های اخیر</h3>
+                    <h5 class="text-center h4 font-vazir-bold-fd mb-4">نوشته های اخیر</h5>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 products justify-content-center">
                 {% for article in latest_articles %}
                     {% include 'blog/components/article_card_component.html' %}
                 {% endfor %}
+            </div>
+
+        <div class="d-flex justify-content-center">
+                <a href="{% url 'blog:blog-list' %}" class="btn btn-outline-purple mt-2">
+                    مجله پیکوفلز</a>
             </div>
         </section>
     </section>
