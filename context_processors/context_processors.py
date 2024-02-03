@@ -1,5 +1,7 @@
+from django.utils import timezone
 from blog.models import Article
 from cart.cart import Cart
+from metallurgy.models import WorkSample
 from product.models import Product
 from shop.models import Shop
 
@@ -27,3 +29,8 @@ def latest_shops_context_processor(request):
 def cart_list_context_processor(request):
     cart = Cart(request)
     return {'cart': Cart(request)}
+
+
+def latest_portfolios_context_processor(request):
+    portfolios = WorkSample.objects.filter(status='p', publish_time__lte=timezone.now()).select_related(None)[:3]
+    return {'latest_portfolios': portfolios}

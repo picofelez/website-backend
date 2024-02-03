@@ -93,11 +93,11 @@
                                                             </div>
                                                         </div>
                                                         <hr/>
-{#                                                        <div class="row py-0 px-3" id="post-details">#}
-{#                                                            <div class="col-4">#}
-{#                                                                <span>244 بازدید | 3 نظر</span>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
+                                                        {#                                                        <div class="row py-0 px-3" id="post-details">#}
+                                                        {#                                                            <div class="col-4">#}
+                                                        {#                                                                <span>244 بازدید | 3 نظر</span>#}
+                                                        {#                                                            </div>#}
+                                                        {#                                                        </div>#}
                                                         <div class="row">
                                                             <div class="col-12 pt-2 text-justify" id="post-html">
                                                                 <div class="text-center pt-2 pb-3">
@@ -203,16 +203,16 @@
                                                         <div class="row pt-2">
                                                             <div class="col">
                                                                 <h6 class="title font-vazir-bold-fd">آخرین
-                                                                    محصولات</h6>
+                                                                    پروژه ها</h6>
                                                             </div>
                                                         </div>
                                                         <div class="container">
                                                             <div class="row">
                                                                 <!-- Side Panel Product -->
-                                                                {% for product in latest_multiple_products %}
+                                                                {% for product in latest_portfolios %}
                                                                     <div class="col-12 col-lg-12 mt-2">
                                                                         <a target="_blank"
-                                                                           href="{% url 'product:multiple-product-detail' product.id product.get_replaced_title %}">
+                                                                           href="{% url 'core:work-sample-detail' product.pk product.get_name_replace %}">
                                                                             <div class="side-blog-product">
                                                                                 <div class="row pl-3">
                                                                                     <div class="col-4 pl-2">
@@ -232,7 +232,7 @@
                                                                                         <div class="row">
                                                                                             <div class="col-8 pl-0">
                                                                                                 <span class="side-blog-product-price">
-                                                                                                    {{ product.shops.count }} فروشنده
+                                                                                                    {{ product.summary|truncatewords:4 }}
                                                                                                 </span>
                                                                                             </div>
                                                                                         </div>
@@ -259,7 +259,6 @@
                                                         </div>
                                                         <div class="container">
                                                             <div class="row">
-
                                                                 {% for article in latest_articles %}
                                                                     <div class="col-12 col-lg-12 mt-2">
                                                                         <div class="side-blog-post">
@@ -297,9 +296,9 @@
                                                                                         >
                                               <span class="date"
                                               >
-                                                  {{ object.published_jalali_dict.day }}
-                                                                {{ object.published_jalali_dict.month }}
-                                                                {{ object.published_jalali_dict.year }}
+                                                  {{ article.published_jalali_dict.day }}
+                                                                {{ article.published_jalali_dict.month }}
+                                                                {{ article.published_jalali_dict.year }}
                                               </span
                                               >
                                                                                         </div>
