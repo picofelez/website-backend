@@ -209,37 +209,38 @@
                                                         <div class="container">
                                                             <div class="row">
                                                                 <!-- Side Panel Product -->
-                                                                {% for product in latest_portfolios %}
-                                                                    <div class="col-12 col-lg-12 mt-2">
-                                                                        <a target="_blank"
-                                                                           href="{% url 'core:work-sample-detail' product.pk product.get_name_replace %}">
-                                                                            <div class="side-blog-product">
-                                                                                <div class="row pl-3">
-                                                                                    <div class="col-4 pl-2">
+                                                                {% for article in latest_portfolios %}
+                                                                     <div class="col-12 col-lg-12 mt-2">
+                                                                        <div class="side-blog-post">
+                                                                            <div class="row pl-3">
+                                                                                <div class="col-4 pl-2">
+                                                                                    <a href="{% url 'core:work-sample-detail' article.id article.get_name_replace %}"
+                                                                                    >
                                                                                         <div
                                                                                                 class="image"
                                                                                                 style="
-                                                                                                        background-image: url(
-                                                                                                        {% if product.image %}{{ product.image.url }}{% else %}{% static 'site_statics/img/bg/no-image.png' %}
-                                                                                                        {% endif %} );
+                                                                                                        background-image: url({{ article.image.url }});
                                                                                                         "
-                                                                                        ></div>
-                                                                                    </div>
-                                                                                    <div class="col-8 px-0">
-                                                                                        <h2>
-                                                                                            {{ product.title }}
-                                                                                        </h2>
-                                                                                        <div class="row">
-                                                                                            <div class="col-8 pl-0">
-                                                                                                <span class="side-blog-product-price">
-                                                                                                    {{ product.summary|truncatewords:4 }}
-                                                                                                </span>
-                                                                                            </div>
+                                                                                        ></div
+                                                                                        >
+                                                                                    </a>
+                                                                                </div>
+                                                                                <div class="col-8 px-0">
+                                                                                    <a href="{% url 'core:work-sample-detail' article.id article.get_name_replace %}"
+                                                                                    ><h2>
+                                                                                        {{ article.title }}
+                                                                                    </h2></a>
+                                                                                    <div class="row">
+                                                                                        <div class="col-12 col-xl-7 pl-0"><span class="category"> {{ article.summary|truncatewords:4 }}</span>
+                                                                                        </div>
+                                                                                        <div
+                                                                                                class="col-12 col-xl-5 pr-0 text-start text-xl-end d-none d-xl-block"
+                                                                                        >
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </a>
+                                                                        </div>
                                                                     </div>
                                                                 {% endfor %}
 
