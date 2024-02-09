@@ -1,5 +1,6 @@
 import random
 
+from ckeditor.fields import RichTextField
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
@@ -23,6 +24,7 @@ class Category(models.Model):
     )
     name = models.CharField(max_length=100, verbose_name='نام دسته')
     created = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    description = RichTextField(null=True, blank=True, verbose_name='توضیحات')
     slug = models.SlugField(
         max_length=255, null=True, blank=True, verbose_name="اسلاگ"
     )

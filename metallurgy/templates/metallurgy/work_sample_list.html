@@ -92,39 +92,15 @@
                                    class="btn btn-purple d-none d-md-block py-2 rounded-0 w-100 position-fixed fixed-bottom">
                                     ثبت سفارش
                                 </a>
-                                {% if category and not category.parent %}
-                                    <div class="col-12 mb-4" id="sub-cats-portfolios">
-                                        <div class="row">
-                                            {% for sub_cat in category.sub_cats.all %}
-                                                <div class="col-12 col-md-3 mb-2">
-                                                    <div class="rounded-card box-shadow d-flex justify-content-between align-items-center">
-                                                        <p class="font-size-95 mb-0">
-                                                            <a href="{% url 'core:work-sample-category-list' sub_cat.slug sub_cat.pk %}"
-                                                               class="text-primary">
-                                                                {{ sub_cat.name }}
-                                                            </a>
-                                                        </p>
-                                                        <p class="font-size-85 mb-0">
-                                                            <span>
-                                                                <i class="fa fa-list text-success"></i>
-                                                                {{ sub_cat.portfolios.count }} محصول
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            {% endfor %}
 
-                                        </div>
-                                    </div>
-                                {% endif %}
                                 <div class="col-12 mb-3">
-                                    <h4 class="title font-vazir-bold-fd">
+                                    <h1 class="title h4 font-vazir-bold-fd">
                                         {% if category %}
                                             {{ category.name }}
                                         {% else %}
                                             نمونه کارها
                                         {% endif %}
-                                    </h4>
+                                    </h1>
                                 </div>
                                 {% if not category %}
                                     <div class="col-12 col-md-5 my-4">
@@ -151,6 +127,43 @@
                                 <div class="col-12 my-2" id="portfolios-pagination">
                                     {% include 'core/components/paginate_component.html' %}
                                 </div>
+
+                                {% if category.description %}
+                                    <div class="col-12 my-3">
+                                        {{ category.description|safe }}
+                                    </div>
+                                {% endif %}
+
+                                {% if category and not category.parent %}
+                                    <div class="col-12 my-3">
+                                        <h3 class="title h6 font-vazir-bold-fd">
+                                            دسته بندی های مرتبط
+                                        </h3>
+                                    </div>
+                                    <div class="col-12 mb-4">
+                                        <div class="row">
+                                            {% for sub_cat in category.sub_cats.all %}
+                                                <div class="col-12 col-md-3 mb-2">
+                                                    <div class="rounded-card box-shadow d-flex justify-content-between align-items-center">
+                                                        <p class="font-size-95 mb-0">
+                                                            <a href="{% url 'core:work-sample-category-list' sub_cat.slug sub_cat.pk %}"
+                                                               class="text-primary">
+                                                                {{ sub_cat.name }}
+                                                            </a>
+                                                        </p>
+                                                        <p class="font-size-85 mb-0">
+                                                            <span>
+                                                                <i class="fa fa-list text-success"></i>
+                                                                {{ sub_cat.portfolios.count }} محصول
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                {% endif %}
 
                             </div>
                         </div>
