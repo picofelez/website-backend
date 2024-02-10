@@ -28,6 +28,8 @@ class Category(models.Model):
     slug = models.SlugField(
         max_length=255, null=True, blank=True, verbose_name="اسلاگ"
     )
+    meta_keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
+    meta_description = models.CharField(max_length=255, null=True, blank=True, verbose_name='توضیحات')
 
     class Meta:
         verbose_name = 'دسته بندی'
