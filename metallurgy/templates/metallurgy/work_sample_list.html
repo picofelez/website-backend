@@ -5,7 +5,11 @@
 {% block title %}
     پیکوفلز |
     {% if category %}
-        {{ category.name }}
+        {% if category.meta_title %}
+            {{ category.meta_title }}
+        {% else %}
+            {{ category.name }}
+        {% endif %}
     {% else %}
         نمونه کارها
     {% endif %}
@@ -33,10 +37,12 @@
     <meta name="twitter:title"
           content="پیکوفلز | {% if category %}{{ category.name }}{% else %}نمونه کارها - گروه فلزکاری عبدی{% endif %}">
 
-    <meta name="keywords" content="{% if category.meta_keywords %}{{ category.meta_keywords }}{% else %}فلزکاری عبدی،پیکوفلز،گروه فلزکاری،آهن،درب و پنجره آهنی،فرفورژه،جوشکاری،آهنگری،شاسی کشی نمای ساختمان{% endif %}">
+    <meta name="keywords" content="
+            {% if category.meta_keywords %}{{ category.meta_keywords }}{% else %}فلزکاری عبدی،پیکوفلز،گروه فلزکاری،آهن،درب و پنجره آهنی،فرفورژه،جوشکاری،آهنگری،شاسی کشی نمای ساختمان{% endif %}">
 
     <meta name="name" content="پیکوفلز | نمونه کارها - گروه فلزکاری عبدی">
-    <meta name="description" content="{% if category.meta_description %}{{ category.meta_description }}{% else %}خدمات جوشکاری و فلزکاری{% endif %}">
+    <meta name="description" content="
+            {% if category.meta_description %}{{ category.meta_description }}{% else %}خدمات جوشکاری و فلزکاری{% endif %}">
 {% endblock %}
 
 {% block content %}

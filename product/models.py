@@ -30,6 +30,7 @@ class Category(models.Model):
     )
     meta_keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
     meta_description = models.CharField(max_length=255, null=True, blank=True, verbose_name='توضیحات')
+    meta_title = models.CharField(max_length=255, null=True, blank=True, verbose_name='عنوان متا')
 
     class Meta:
         verbose_name = 'دسته بندی'
