@@ -8,6 +8,9 @@
         <p class="portfolio-title mb-0 h5">{{ worksample.title }}</p>
         <p class="portfolio-text mb-3 font-size-95">{{ worksample.summary|truncatewords:8 }}</p>
         <a href="{% url 'core:work-sample-detail' worksample.pk worksample.get_name_replace %}"
-           class="btn border rounded w-100 font-size-85">مشاهده {{ worksample.title }}</a>
+           class="btn border rounded w-100 font-size-85">
+            <i class="fas fa-eye"></i>
+            مشاهده پروژه
+        </a>
     </div>
 </div>
