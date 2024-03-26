@@ -1,6 +1,7 @@
 import random
 
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
@@ -69,7 +70,7 @@ class Product(models.Model):
         User, on_delete=models.PROTECT, null=True, blank=True, related_name='user_products', verbose_name='سازنده'
     )
     title = models.CharField(max_length=100, verbose_name='عنوان')
-    description = models.TextField(verbose_name='توضیحات')
+    description = RichTextUploadingField(null=True, blank=True, verbose_name='توضیحات')
     keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
     price = models.BigIntegerField(verbose_name='قیمت', null=True, blank=True, )
     stock = models.IntegerField(verbose_name='موجودی در انبار', null=True, blank=True, )
@@ -78,6 +79,7 @@ class Product(models.Model):
     length = models.CharField(max_length=100, verbose_name='طول', null=True, blank=True)
     width = models.CharField(max_length=100, verbose_name='ضخامت', null=True, blank=True)
     image = models.ImageField(upload_to=upload_product_image_path, null=True, blank=True, verbose_name='تصویر محصول')
+    image_url = models.URLField(null=True, blank=True, verbose_name='آدرس تصویر')
     is_active = models.BooleanField(default=True, verbose_name='فعال/غیرفعال')
     is_confirmed = models.BooleanField(default=True, verbose_name='تائید شده/نشده')
     categories = models.ManyToManyField(
@@ -88,7 +90,7 @@ class Product(models.Model):
         max_length=20, choices=ProductTypeChoices.choices, default=ProductTypeChoices.solo_seller, verbose_name='نوع'
     )
     shops = models.ManyToManyField(
-        Shop, related_name='multiple_products', verbose_name='فروشنده ها'
+        Shop, related_name='multiple_products', blank=True, verbose_name='فروشنده ها'
     )
     created = models.DateTimeField(auto_now_add=True, null=True, verbose_name='تاریخ ایجاد')
     updated = models.DateTimeField(auto_now=True, null=True, verbose_name='تاریخ ویرایش')

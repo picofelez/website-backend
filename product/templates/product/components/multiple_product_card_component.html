@@ -1,32 +1,66 @@
 <div class="col-12 col-md-4 mb-4">
-    <div class="rounded-card box-shadow">
-        <div class="text-center">
-            <img
-                    src="{{ product.image.url }}"
-                    alt="{{ product.title }}"
-                    class="multiple-product-detail-img"
-            />
-            <p class="h5 font-vazir-bold-fd my-3">
-                {{ product.title }}
-            </p>
-            <div>
-                {% if product.width %}
-                    <span class="badge border rounded text-black">
-                                                   ضخامت {{ product.width }}
-                                                </span>
-                {% endif %}
+    {#    <div class="rounded-card box-shadow">#}
+    {#        <div class="text-center">#}
+    {#            <img#}
+    {#                    src="{% if product.image %}{{ product.image.url }}{% else %}{{ product.image_url }}{% endif %}"#}
+    {#                    alt="{{ product.title }}"#}
+    {#                    class="multiple-product-detail-img"#}
+    {#            />#}
+    {#            <p class="h5 font-vazir-bold-fd my-3">#}
+    {#                {{ product.title }}#}
+    {#            </p>#}
+    {#            <div>#}
+    {#                {% if product.width %}#}
+    {#                    <span class="badge border rounded text-black">#}
+    {#                                                   ضخامت {{ product.width }}#}
+    {#                                                </span>#}
+    {#                {% endif %}#}
+    {#                {% if product.weight %}#}
+    {#                	<span class="badge border rounded text-black">#}
+    {#                                                   وزن تقریبی {{ product.weight }}#}
+    {#                                                </span>#}
+    {#                {% endif %}#}
+    {#                {% if product.length %}#}
+    {#                	<span class="badge border rounded text-black">#}
+    {#                                                   طول {{ product.length }}#}
+    {#                                                </span>#}
+    {#                {% endif %}#}
+    {#            </div>#}
+    {#            <a href="{% url 'product:multiple-product-detail' product.id product.get_replaced_title %}"#}
+    {#               class="btn btn-purple btn-sm mt-4">#}
+    {#                <i class="fas fa-eye"></i>#}
+    {#                مشاهده و خرید#}
+    {#            </a>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    <div class="product-card">
+        <div class="product-image">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{{ product.image_url }}{% endif %}"
+                 alt="Product Image">
+        </div>
+        <div class="product-info">
+            <h3 class="product-title mb-2">{{ product.title }}</h3>
+            {% if product.width %}
                 <span class="badge border rounded text-black">
-                                                   وزن تقریبی هر شاخه {{ product.weight }}
-                                                </span>
+                                                       ضخامت {{ product.width }}
+                                                    </span>
+            {% endif %}
+            {% if product.weight %}
                 <span class="badge border rounded text-black">
-                                                   طول هر شاخه {{ product.length }}
-                                                </span>
+                                                       وزن تقریبی {{ product.weight }}
+                                                    </span>
+            {% endif %}
+            {% if product.length %}
+                <span class="badge border rounded text-black">
+                                                       طول {{ product.length }}
+                                                    </span>
+            {% endif %}
+            <div class="mt-2">
+                <a href="{% url 'product:multiple-product-detail' product.id product.get_replaced_title %}"
+                   class="product-button mt-2">مشاهده و
+                    سفارش</a>
             </div>
-            <a href="{% url 'product:multiple-product-detail' product.id product.get_replaced_title %}"
-               class="btn btn-purple btn-sm mt-4">
-                <i class="fas fa-eye"></i>
-                مشاهده و خرید
-            </a>
         </div>
     </div>
 </div>

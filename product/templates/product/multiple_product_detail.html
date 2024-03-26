@@ -72,29 +72,33 @@
                             {% endif %}
 
                             <div class="col-12 col-lg-4 mb-3">
-                                <p class="h5 title font-vazir-bold-fd mb-4">
-                                    درباره محصول
-                                </p>
+                                <h1 class="h5 title font-vazir-bold-fd mb-4">
+                                   {{ product.title }}
+                                </h1>
                                 <div class="rounded-card box-shadow">
                                     <div class="text-center">
                                         <img
-                                                src="{{ product.image.url }}"
+                                                src="{% if product.image %}{{ product.image.url }}{% else %}{{ product.image_url }}{% endif %}"
                                                 alt="{{ product.title }}"
                                                 class="multiple-product-detail-img"
                                         />
-                                        <p class="h4 font-vazir-bold-fd my-3">{{ product.title }}</p>
+                                        <hr>
                                         <div>
                                             {% if product.width %}
                                                 <span class="badge border rounded text-black">
                                                    ضخامت {{ product.width }}
                                                 </span>
                                             {% endif %}
-                                            <span class="badge border rounded text-black">
-                                                   وزن تقریبی هر شاخه {{ product.weight }}
+                                            {% if product.weight %}
+                                                <span class="badge border rounded text-black">
+                                                   وزن تقریبی {{ product.weight }}
                                                 </span>
-                                            <span class="badge border rounded text-black">
-                                                   طول هر شاخه {{ product.length }}
+                                            {% endif %}
+                                            {% if product.length %}
+                                                <span class="badge border rounded text-black">
+                                                   طول {{ product.length }}
                                                 </span>
+                                            {% endif %}
                                         </div>
                                         <a href="tel:09199060659" class="btn btn-purple mt-3">
                                             <i class="fas fa-phone"></i>
@@ -108,43 +112,58 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 col-md-8 mb-3 mt-4 mt-md-0">
-                                <div class="row">
-                                    <div class="col-12 mb-3">
-                                        <p class="h5 title font-vazir-bold-fd">فروشنده ها</p>
-                                    </div>
-
-
-                                    {% for shop in product.shops.all %}
+                            {% if product.description %}
+                                <div class="col-12 col-md-8 mb-3 mt-4 mt-md-0">
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <p class="h5 title font-vazir-bold-fd">درباره محصول</p>
+                                        </div>
                                         <div class="col-12 mb-4">
-                                            <div class="rounded-card box-shadow">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <p class="font-vazir-bold-fd w-50">
-                                                        {{ shop.title }}
-                                                    </p>
-                                                    <p class="w-25">
-                                                        <span class="font-vazir-bold-fd">امتیاز: </span>
-                                                        {{ shop.score }}
-                                                    </p>
-                                                    <p class="w-25 text-end">
-                                                        <span class="font-vazir-bold-fd">شهر: </span>
-                                                        {{ shop.location }}
-                                                    </p>
-                                                </div>
-                                                <div>
-                                                    <a href="{% url 'shop:shop-detail' shop.slug %}"
-                                                       class="btn btn-outline-success btn-sm">
-                                                        <i class="fas fa-shop"></i>
-                                                        درباره فروشنده
-                                                    </a>
+                                            {{ product.description|safe }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            {% if product.shops.all %}
+                                <div class="col-12 col-md-8 mb-3 mt-4 mt-md-0">
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <p class="h5 title font-vazir-bold-fd">فروشنده ها</p>
+                                        </div>
+
+
+                                        {% for shop in product.shops.all %}
+                                            <div class="col-12 mb-4">
+                                                <div class="rounded-card box-shadow">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <p class="font-vazir-bold-fd w-50">
+                                                            {{ shop.title }}
+                                                        </p>
+                                                        <p class="w-25">
+                                                            <span class="font-vazir-bold-fd">امتیاز: </span>
+                                                            {{ shop.score }}
+                                                        </p>
+                                                        <p class="w-25 text-end">
+                                                            <span class="font-vazir-bold-fd">شهر: </span>
+                                                            {{ shop.location }}
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <a href="{% url 'shop:shop-detail' shop.slug %}"
+                                                           class="btn btn-outline-success btn-sm">
+                                                            <i class="fas fa-shop"></i>
+                                                            درباره فروشنده
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    {% endfor %}
+                                        {% endfor %}
 
 
+                                    </div>
                                 </div>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

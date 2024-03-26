@@ -23,7 +23,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description', 'categories', 'id')
     filter_horizontal = ('shops',)
     fieldsets = (
-        ('عنوان', {'fields': ('id', 'title', 'description', 'image')}),
+        ('عنوان', {'fields': ('id', 'title', 'description', 'image', 'image_url')}),
         ('مالک', {'fields': ('shop', 'maker', 'product_type', 'shops')}),
         ('قیمت گذاری', {'fields': ('price', 'quantity', 'stock', 'purchase_limit')}),
         ('اطلاعات', {'fields': ('weight', 'length', 'width', 'keywords')}),
