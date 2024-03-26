@@ -41,6 +41,7 @@
         </div>
         <div class="product-info">
             <h3 class="product-title mb-2">{{ product.title }}</h3>
+            <p class="product-description">{{ product.summary|truncatewords:4 }}</p>
             {% if product.width %}
                 <span class="badge border rounded text-black">
                                                        ضخامت {{ product.width }}

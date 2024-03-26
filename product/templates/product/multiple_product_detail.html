@@ -7,21 +7,21 @@
 
 {% block meta_tags %}
     <meta property="og:url"
-          content="https://picofelez.ir/products/serllers/{{ object.pk }}/{{ object.get_replaced_title }}">
+          content="https://picofelez.ir/products/{{ object.pk }}/{{ object.get_replaced_title }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="پیکوفلز | {{ object.title }}">
-    <meta property="og:description" content="{{ object.description }}">
+    <meta property="og:description" content="{{ object.summary }}">
 
     <!-- Twitter Meta Tags -->
     <meta property="twitter:domain" content="picofelez.ir">
-    <meta property="twitter:url" content="https://picofelez.ir/products/{{ object.pk }}">
+    <meta property="twitter:url" content="https://picofelez.ir/products/{{ object.pk }}/{{ object.get_replaced_title }}">
     <meta name="twitter:title" content="پیکوفلز | {{ object.title }}">
-    <meta name="twitter:description" content="{{ object.description }}">
+    <meta name="twitter:description" content="{{ object.summary }}">
 
     <meta name="keywords" content="{{ object.keywords }}">
 
     <meta name="title" content="پیکوفلز | {{ object.title }}">
-    <meta name="description" content="{{ object.description }}">
+    <meta name="description" content="{{ object.summary }}">
 {% endblock %}
 
 {% block content %}
@@ -44,7 +44,7 @@
                                             <a href="{% url 'product:product-list' %}">محصولات</a>
                                         </li>
                                         <li class="breadcrumb-item active" aria-current="page">
-                                            {{ product.title }} - {{ product.shops.count }} فروشنده
+                                            {{ product.title }}
                                         </li>
                                     </ol>
                                 </nav>

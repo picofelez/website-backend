@@ -71,6 +71,7 @@ class Product(models.Model):
     )
     title = models.CharField(max_length=100, verbose_name='عنوان')
     description = RichTextUploadingField(null=True, blank=True, verbose_name='توضیحات')
+    summary = models.CharField(max_length=255, null=True, blank=True, verbose_name='خلاصه')
     keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
     price = models.BigIntegerField(verbose_name='قیمت', null=True, blank=True, )
     stock = models.IntegerField(verbose_name='موجودی در انبار', null=True, blank=True, )
