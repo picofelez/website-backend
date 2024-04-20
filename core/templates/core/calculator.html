@@ -1,23 +1,25 @@
 {% extends 'core/base/_base.html' %}
 {% load static %}
-{% block title %}پیکوفلز | محاسبه وزن آهن{% endblock %}
+{% block title %}پیکوفلز | محاسبه آنلاین وزن و قیمت آهن{% endblock %}
 
 {% block meta_tags %}
     <meta property="og:url" content="https://picofelez.ir/calculator/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="پیکوفلز | محاسبه وزن آهن">
+    <meta property="og:title" content="پیکوفلز | محاسبه آنلاین وزن و قیمت آهن">
     <meta name="og:description" content="جدول و راهنمای محاسبه وزن آهن آلات">
 
     <!-- Twitter Meta Tags -->
     <meta property="twitter:url" content="https://picofelez.ir/calculator/">
-    <meta name="twitter:title" content="پیکوفلز | محاسبه وزن آهن">
-    <meta name="twitter:description" content="جدول و راهنمای محاسبه وزن آهن آلات">
+    <meta name="twitter:title" content="پیکوفلز | محاسبه آنلاین وزن  و قیمت آهن">
+    <meta name="twitter:description"
+          content="محاسبه وزن ورق، پروفیل و میلگرد به همراه محاسبه قیمت و جدول وزن تمامی کارخانه ها!">
 
     <meta name="keywords"
-          content="وزن آهن آلات،قیمت آهن،محاسبه وزن آهن،وزن مقاطع فولادی،جدول وزن آهن،ماشین حساب وزن آهن">
+          content="وزن آهن آلات،قیمت آهن،محاسبه وزن آهن،وزن مقاطع فولادی،جدول وزن آهن،ماشین حساب وزن آهن، محاسبه آنلاین وزن آهن">
 
-    <meta name="title" content="پیکوفلز | محاسبه وزن آهن"/>
-    <meta name="description" content="جدول و راهنمای محاسبه وزن آهن آلات">
+    <meta name="title" content="پیکوفلز | محاسبه آنلاین وزن و قیمت آهن"/>
+    <meta name="description"
+          content="محاسبه وزن ورق، پروفیل و میلگرد به همراه محاسبه قیمت و جدول وزن تمامی کارخانه ها!">
 {% endblock %}
 
 {% block content %}
@@ -60,15 +62,17 @@
                                 <div class="my-4">
                                     <label for="" class="font-vazir-bold-fd">نوع محاسبه را انتخاب کنید</label>
                                     <select id="formula_mode" class="form-control p-3">
-                                        <option value="profile" selected>پروفیل</option>
-                                        <option value="foil">ورق</option>
+                                        <option value="foil" selected>ورق</option>
+                                        <option value="profile">پروفیل</option>
                                         <option value="rebar">میلگرد</option>
                                     </select>
                                 </div>
-                                <form class="rounded-card box-shadow" id="profile_calculator" style="font-size: 0.9rem">
+                                {# profile calculator #}
+                                <form class="rounded-card box-shadow" id="profile_calculator"
+                                      style="display: none; font-size: 0.9rem">
                                     <div class="row mt-2">
                                         <div class="col-12">
-                                            <p class="h6 font-vazir-bold-fd mt-2 mb-4">محاسبه وزن پروفیل : </p>
+                                            <h3 class="h5 font-vazir-bold-fd mt-2 mb-4">محاسبه آنلاین وزن پروفیل</h3>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 mb-3">
                                             <label class="font-vazir-bold-fd font-size-85"
@@ -81,8 +85,7 @@
                                                 <option value="50">25 * 25</option>
                                                 <option value="40">30 * 10</option>
                                                 <option value="50">30 * 20</option>
-                                                <option value="70">35 * 35</option>
-                                                <option value="70">35 * 35</option>
+                                                <option value="70">40 * 35</option>
                                                 <option value="60">40 * 20</option>
                                                 <option value="70">40 * 30</option>
                                                 <option value="80">40 * 40</option>
@@ -153,11 +156,12 @@
                                         </div>
                                     </div>
                                 </form>
+                                {# rebar calculator #}
                                 <form class="rounded-card box-shadow" style="display: none; font-size: 0.9rem;"
                                       id="rebar_calculator">
                                     <div class="row mt-2">
                                         <div class="col-12">
-                                            <p class="h6 font-vazir-bold-fd mt-2 mb-4">محاسبه وزن میلگرد : </p>
+                                            <h3 class="h5 font-vazir-bold-fd mt-2 mb-4">محاسبه آنلاین وزن میلگرد</h3>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 mb-3">
                                             <label class="font-vazir-bold-fd font-size-85"
@@ -211,11 +215,12 @@
                                         </div>
                                     </div>
                                 </form>
-                                <form class="rounded-card box-shadow" style="display: none;font-size: 0.9rem;"
+                                {# foil calculator #}
+                                <form class="rounded-card box-shadow" style="font-size: 0.9rem;"
                                       id="foil_calculator">
                                     <div class="row mt-2">
                                         <div class="col-12">
-                                            <p class="h6 font-vazir-bold-fd mt-2 mb-4">محاسبه وزن ورق : </p>
+                                            <h3 class="h5 font-vazir-bold-fd mt-2 mb-4">محاسبه آنلاین وزن ورق</h3>
                                         </div>
                                         <div class="col-12 col-sm-6 col-md-4 mb-3">
                                             <label class="font-vazir-bold-fd font-size-85" for="foil_length">طول
@@ -244,34 +249,414 @@
                                                 <option value="3" selected>3 mm</option>
                                                 <option value="4">4 mm</option>
                                                 <option value="5">5 mm</option>
+                                                <option value="8">8 mm</option>
+                                                <option value="10">10 mm</option>
+                                                <option value="12">12 mm</option>
+                                                <option value="14">14 mm</option>
+                                                <option value="15">15 mm</option>
+                                                <option value="20">20 mm</option>
+                                                <option value="25">25 mm</option>
                                             </select>
                                         </div>
-                                        <div class="col-12 mb-3">
+                                        <div class="col-6 mb-3">
                                             <label class="font-vazir-bold-fd font-size-85"
                                                    for="foil_count">تعداد</label>
                                             <input type="number" class="form-control" id="foil_count"
                                                    name="profile_count" value="1">
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label class="font-vazir-bold-fd font-size-85"
+                                                   for="foil_count">قیمت</label>
+                                            <input type="number" class="form-control" id="foil_price"
+                                                   name="profile_price" value="1">
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <label class="font-vazir-bold-fd font-size-85" for="foil_weight">وزن</label>
                                             <input type="text" class="form-control font-vazir-bold-fd p-3"
                                                    disabled id="foil_weight"
                                                    name="foil_weight" value="0 کیلوگرم">
-                                            <p class="font-vazir-bold-fd mt-2 font-size-85">
-                                                <i class="fas fa-info-circle"></i>
-                                                وزن به دست آمده تقریبی می باشد.
-                                            </p>
-                                            <p class="font-vazir-bold-fd mt-2 font-size-85">
-                                                <a href="{% url 'product:product-list' %}?search=ورق"
-                                                   class=" text-primary"
-                                                >
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                    مشاهده محصولات ورق در سایت
-                                                </a>
-                                            </p>
                                         </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="font-vazir-bold-fd font-size-85"
+                                                   for="foil_total_price">قیمت</label>
+                                            <input type="text" class="form-control font-vazir-bold-fd p-3"
+                                                   disabled id="foil_total_price"
+                                                   name="foil_total_price" value="0 تومان">
+                                        </div>
+                                        <p class="font-vazir-bold-fd mt-2 font-size-85">
+                                            <i class="fas fa-info-circle"></i>
+                                            وزن و قیمت به دست آمده تقریبی می باشد.
+                                        </p>
+                                        <p class="font-vazir-bold-fd mt-2 font-size-85">
+                                            <a href="https://picofelez.ir/products/pcf-4308458/ورق-سیاه"
+                                               class=" text-primary"
+                                            >
+                                                <i class="fas fa-shopping-cart"></i>
+                                                خرید هوشمندانه ورق سیاه
+                                            </a>
+                                        </p>
                                     </div>
                                 </form>
+                            </div>
+
+                            <div class="col-12 my-3" id="foil_description">
+                                <div class="rounded-card box-shadow">
+                                    <h2 class="font-vazir-bold-fd title my-3 h5">
+                                        جدول وزن ورق تمامی کارخانه ها
+                                    </h2>
+
+                                    <div class="table-responsive">
+                                        <h3 class="font-vazir-bold-fd h5 mt-5 mb-4">جدول وزن ورق سیاه فولاد مبارکه
+                                            اصفهان</h3>
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">طول(متر)</th>
+                                                <th scope="col">عرض(متر)</th>
+                                                <th scope="col">ضخامت(mm)</th>
+                                                <th scope="col">وزن هر شیت ورق سیاه(کیلوگرم)</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>2</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>32</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>2.5</td>
+                                                <td>1.2</td>
+                                                <td>2</td>
+                                                <td>50</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>3</td>
+                                                <td>212</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>4</td>
+                                                <td>283</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">5</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>5</td>
+                                                <td>353</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">6</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>6</td>
+                                                <td>424</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">7</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>8</td>
+                                                <td>657</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">8</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>10</td>
+                                                <td>707</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">9</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>12</td>
+                                                <td>848</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row">10</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>15</td>
+                                                <td>1060</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <h3 class="font-vazir-bold-fd h5 mt-5 mb-4">جدول وزن ورق سیاه فولاد کاویان</h3>
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">طول(متر)</th>
+                                                <th scope="col">عرض(متر)</th>
+                                                <th scope="col">ضخامت(میلی متر)</th>
+                                                <th scope="col">وزن هر شیت(کیلوگرم)</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>8</td>
+                                                <td>471</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>10</td>
+                                                <td>589</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>12</td>
+                                                <td>707</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>15</td>
+                                                <td>884</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">5</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>20</td>
+                                                <td>1178</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">6</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>25</td>
+                                                <td>1472</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">7</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>30</td>
+                                                <td>1767</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">8</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>20</td>
+                                                <td>1413</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">9</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>25</td>
+                                                <td>1767</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">10</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>30</td>
+                                                <td>2120</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">11</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>35</td>
+                                                <td>2473</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">12</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>40</td>
+                                                <td>2826</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">13</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>45</td>
+                                                <td>3180</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">14</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>50</td>
+                                                <td>3533</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">15</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>55</td>
+                                                <td>3886</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">16</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>60</td>
+                                                <td>4239</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <h3 class="font-vazir-bold-fd h5 mt-5 mb-4">جدول وزن ورق سیاه فولاد اکسین
+                                            اهواز</h3>
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">طول(متر)</th>
+                                                <th scope="col">عرض(متر)</th>
+                                                <th scope="col">ضخامت(میلی متر)</th>
+                                                <th scope="col">وزن هر شیت(کیلوگرم)</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>8</td>
+                                                <td>471</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>10</td>
+                                                <td>589</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>12</td>
+                                                <td>707</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>15</td>
+                                                <td>884</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">5</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>20</td>
+                                                <td>1178</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">6</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>25</td>
+                                                <td>1472</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">7</th>
+                                                <td>6</td>
+                                                <td>1.2</td>
+                                                <td>30</td>
+                                                <td>1767</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">8</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>20</td>
+                                                <td>1413</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">9</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>25</td>
+                                                <td>1767</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">10</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>30</td>
+                                                <td>2120</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">11</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>35</td>
+                                                <td>2473</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">12</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>40</td>
+                                                <td>2826</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">13</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>45</td>
+                                                <td>3180</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">14</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>50</td>
+                                                <td>3533</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">15</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>55</td>
+                                                <td>3886</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">16</th>
+                                                <td>6</td>
+                                                <td>1.5</td>
+                                                <td>60</td>
+                                                <td>4239</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-12 my-3">
@@ -279,6 +664,15 @@
                                     <h2 class="font-vazir-bold-fd title my-3 h5">
                                         چرایی و چگونگی محاسبه وزن آهن
                                     </h2>
+                                    <p class="text-align-justify">
+                                        در صنعت آهن و فولاد، داشتن دانش دقیق در مورد وزن مقاطع فولادی و محاسبه هزینه‌ها
+                                        از
+                                        اهمیت بالایی برخوردار است. ابزار "محاسبه آنلاین وزن و قیمت آهن" به شما کمک
+                                        می‌کند تا با استفاده از جداول
+                                        وزن استاندارد و فرمول‌های محاسباتی، وزن دقیق ورق‌ها، پروفیل‌ها و میلگردها را
+                                        محاسبه کنید. همچنین، روش‌هایی برای محاسبه قیمت بر اساس وزن و مقایسه قیمت‌های
+                                        کارخانه‌های مختلف ارائه می‌دهیم تا شما بتوانید بهترین تصمیمات خرید را بگیرید.
+                                    </p>
 
                                     <h3 class="font-vazir-bold-fd h6 mt-4 h4">
                                         چرا باید از جدول وزن آهن آلات استفاده کنیم ؟
@@ -297,10 +691,10 @@
                                         کرد.
                                     </p>
 
-{#                                    <div class="d-flex justify-content-center align-items-center">#}
-{#                                        <img src="http://127.0.0.1:8000/media/articles/thumbnail/733526-2023-04-20_190358.6595560000.png"#}
-{#                                         alt="" class="img-fluid rounded-3">#}
-{#                                    </div>#}
+                                    {#                                    <div class="d-flex justify-content-center align-items-center">#}
+                                    {#                                        <img src="http://127.0.0.1:8000/media/articles/thumbnail/733526-2023-04-20_190358.6595560000.png"#}
+                                    {#                                         alt="" class="img-fluid rounded-3">#}
+                                    {#                                    </div>#}
 
                                     <h4 class="font-vazir-bold-fd h6 mt-4">
                                         چگونه وزن آهن را به صورت آنلاین محاسبه کنیم ؟
@@ -372,5 +766,5 @@
 {% endblock %}
 
 {% block meta_js_codes %}
-    <script src="{% static 'site_statics/js/ironCalculator.js' %}?v=2"></script>
+    <script src="{% static 'site_statics/js/ironCalculator.js' %}?v=3"></script>
 {% endblock %}

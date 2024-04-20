@@ -37,6 +37,7 @@ $(document).ready(function () {
         $('#foil_count').val()
     )
     $('#foil_weight').val(`${foil_init} کیلوگرم`)
+    $('#foil_total_price').val(`${(foil_init * $('#foil_price').val()).toLocaleString()} تومان`)
 
     // formula mode
     $('#formula_mode').change(function () {
@@ -45,14 +46,17 @@ $(document).ready(function () {
             $('#profile_calculator').hide(400)
             $('#rebar_calculator').hide(400)
             $('#foil_calculator').show(400)
+            $('#foil_description').show(400)
         } else if (val === 'rebar') {
             $('#profile_calculator').hide(400)
             $('#rebar_calculator').show(400)
             $('#foil_calculator').hide(400)
+            $('#foil_description').hide(400)
         } else if (val === 'profile') {
             $('#profile_calculator').show(400)
             $('#rebar_calculator').hide(400)
             $('#foil_calculator').hide(400)
+            $('#foil_description').hide(400)
         }
     })
 
@@ -134,6 +138,7 @@ $(document).ready(function () {
             $('#foil_count').val()
         )
         $('#foil_weight').val(`${num} کیلوگرم`)
+        $('#foil_total_price').val(`${(num * $('#foil_price').val()).toLocaleString()} تومان`)
     })
 
     $('#foil_width').change(function () {
@@ -144,6 +149,7 @@ $(document).ready(function () {
             $('#foil_count').val()
         )
         $('#foil_weight').val(`${num} کیلوگرم`)
+        $('#foil_total_price').val(`${(num * $('#foil_price').val()).toLocaleString()} تومان`)
     })
 
     $('#foil_thickness').change(function () {
@@ -154,6 +160,7 @@ $(document).ready(function () {
             $('#foil_count').val()
         )
         $('#foil_weight').val(`${num} کیلوگرم`)
+        $('#foil_total_price').val(`${(num * $('#foil_price').val()).toLocaleString()} تومان`)
     })
 
     $('#foil_count').change(function () {
@@ -164,5 +171,17 @@ $(document).ready(function () {
             $('#foil_count').val()
         )
         $('#foil_weight').val(`${num} کیلوگرم`)
+        $('#foil_total_price').val(`${(num * $('#foil_price').val()).toLocaleString()} تومان`)
+    })
+
+    $('#foil_price').change(function () {
+        let num = foil_calculator_formula(
+            $('#foil_length').val(),
+            $('#foil_width').val(),
+            $('#foil_thickness').val(),
+            $('#foil_count').val()
+        )
+        $('#foil_weight').val(`${num} کیلوگرم`)
+        $('#foil_total_price').val(`${(num * $('#foil_price').val()).toLocaleString()} تومان`)
     })
 })
