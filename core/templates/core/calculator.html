@@ -25,6 +25,15 @@
 {% block content %}
     <section class="inner-page" id="calculator-page">
         <!-- breadcrumb start -->
+        <a href="tel:09199060659"
+           class="btn btn-purple d-md-none rounded-0 py-2 w-100 position-fixed fixed-bottom">
+            دریافت مشاوره خرید آهن
+        </a>
+
+        <a href="{% url 'core:contact-us' %}"
+           class="btn btn-purple d-none d-md-block py-2 rounded-0 w-100 position-fixed fixed-bottom">
+            دریافت مشاوره خرید آهن
+        </a>
         <section class="page-title-box container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -59,6 +68,12 @@
                                 <h1 class="font-vazir-bold-fd title mb-3 h4">
                                     محاسبه وزن آهن
                                 </h1>
+                                {#                                <div class="alert alert-primary text-center">#}
+                                {#                                    <p class="font-vazir-bold-fd mb-0 h6">#}
+                                {#                                        ماشین حساب وزن و قیمت آهن ابزاری نوآورانه از گروه پیکوفلز، طراحی شده برای سهولت#}
+                                {#                                        در نحوه محاسبه وزن و قیمت آهن!#}
+                                {#                                    </p>#}
+                                {#                                </div>#}
                                 <div class="my-4">
                                     <label for="" class="font-vazir-bold-fd">نوع محاسبه را انتخاب کنید</label>
                                     <select id="formula_mode" class="form-control p-3">
@@ -266,7 +281,7 @@
                                         </div>
                                         <div class="col-6 mb-3">
                                             <label class="font-vazir-bold-fd font-size-85"
-                                                   for="foil_count">قیمت</label>
+                                                   for="foil_count">قیمت هر کیلو</label>
                                             <input type="number" class="form-control" id="foil_price"
                                                    name="profile_price" value="1">
                                         </div>
@@ -278,7 +293,7 @@
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <label class="font-vazir-bold-fd font-size-85"
-                                                   for="foil_total_price">قیمت</label>
+                                                   for="foil_total_price">جمع کل</label>
                                             <input type="text" class="form-control font-vazir-bold-fd p-3"
                                                    disabled id="foil_total_price"
                                                    name="foil_total_price" value="0 تومان">
@@ -674,86 +689,185 @@
                                         کارخانه‌های مختلف ارائه می‌دهیم تا شما بتوانید بهترین تصمیمات خرید را بگیرید.
                                     </p>
 
-                                    <h3 class="font-vazir-bold-fd h6 mt-4 h4">
-                                        چرا باید از جدول وزن آهن آلات استفاده کنیم ؟
-                                    </h3>
-                                    <p class="text-align-justify">
-                                        محاسبه دقیق وزن آهن برای افزایش کارایی و اطمینان از برخی خواص آن مانند استحکام ،
-                                        مقاومت در برابر خوردگی ، محاسبه قیمت آهن ، ضایعات و ... امری بسیار مهم و مورد
-                                        نیاز است . تولید کنندگان و مصرف کنندگان مقاطع فولادی با محاسبه دقیق وزن آهن
-                                        میتوانند بهره وری بیشتری در ساخت داشته باشند و کیفیت کلی محصولات را بهبود دهند و
-                                        ضایعات کمتری نیز دور بریزند . <br>این محصول صنعتی در صنایع مختلفی مانند ساختمان
-                                        سازی
-                                        ، خودرو سازی ، لوازم ابزارآلات و ماشین آلات ، میلیه های بتنی و صنایع دیگر کاربرد
-                                        دارد و محاسبه وزن یکی از حیاطی ترین نیاز آنها قبل از خرید است. از اهمیت جدول وزن
-                                        آهن میتوان به سرعت بخشیدن به عملیات تخمین میزان وزن مقطع فولادی ، افزایش کارایی
-                                        در ساخت ، کاهش میزان خطا در محاسبه و سریع تر محاسبه کردن صورتحساب های فروش اشاره
-                                        کرد.
-                                    </p>
+                                    <div class="accordion" id="accordionFlushExample">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingOne">
+                                                <button class="accordion-button collapsed font-vazir-bold-fd"
+                                                        type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                        aria-expanded="false" aria-controls="flush-collapseOne">
+                                                    چرا باید از جدول وزن آهن آلات استفاده کنیم؟
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                                 aria-labelledby="flush-headingOne"
+                                                 data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    محاسبه دقیق وزن آهن برای افزایش کارایی و اطمینان از برخی خواص آن
+                                                    مانند استحکام ،
+                                                    مقاومت در برابر خوردگی ، محاسبه قیمت آهن ، ضایعات و ... امری بسیار
+                                                    مهم و مورد
+                                                    نیاز است . تولید کنندگان و مصرف کنندگان مقاطع فولادی با محاسبه دقیق
+                                                    وزن آهن
+                                                    میتوانند بهره وری بیشتری در ساخت داشته باشند و کیفیت کلی محصولات را
+                                                    بهبود دهند و
+                                                    ضایعات کمتری نیز دور بریزند . <br>این محصول صنعتی در صنایع مختلفی
+                                                    مانند ساختمان
+                                                    سازی
+                                                    ، خودرو سازی ، لوازم ابزارآلات و ماشین آلات ، میلیه های بتنی و صنایع
+                                                    دیگر کاربرد
+                                                    دارد و محاسبه وزن یکی از حیاطی ترین نیاز آنها قبل از خرید است. از
+                                                    اهمیت جدول وزن
+                                                    آهن میتوان به سرعت بخشیدن به عملیات تخمین میزان وزن مقطع فولادی ،
+                                                    افزایش کارایی
+                                                    در ساخت ، کاهش میزان خطا در محاسبه و سریع تر محاسبه کردن صورتحساب
+                                                    های فروش اشاره
+                                                    کرد.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingTwo">
+                                                <button class="accordion-button collapsed font-vazir-bold-fd"
+                                                        type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                        aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                    چگونه وزن آهن را به صورت آنلاین محاسبه کنیم؟
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                                 aria-labelledby="flush-headingTwo"
+                                                 data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    محاسبه دقیق وزن آهن برای افزایش کارایی و اطمینان از برخی خواص آن
+                                                    مانند استحکام، مقاومت در برابر خوردگی، محاسبه <b>قیمت آهن</b>،
+                                                    <b>بهترین
+                                                        قیمت خرید وررق</b> و ... امری بسیار مهم و مورد نیاز است. با رشد
+                                                    و
+                                                    توسعه دنیای اینترنت، با استفاده از ابزار های کاربردی آنلاین می توان
+                                                    کار ها سریع تر و بهتر از قبل پیش برد. همانطور که میدانید هر یک از
+                                                    مقاطع فولادی دارای جدول وزن به خصوصی است که برای به دست آوردن
+                                                    اطلاعات آن مقطع با مشخصات فیزیکی مورد نیاز میتوان از آن استفاده کرد
+                                                    ؛ استفاده از جداول وزن چالش هایی را به همراه دارد برای مثال درصد
+                                                    خطای بالا و زمان محاسبه زیادی نیاز دارد. از این رو برای راحتی کار
+                                                    فروشندگان ، خریداران و تمامی فعالین این حوزه مانند مهندسان سازه ،
+                                                    جوشکار ها و صنایع تولیدی، ابزاری برای محاسبه وزن آهن طراحی کردیم تا
+                                                    با استفاده از آن بتوانید هرچه بهتر و با دقت و سرعت بیشتر کار خودرا
+                                                    پیش ببرید.
+                                                    <br>
+                                                    ابزار های محاسباتی آنلاین، با دقت و سهولت بی‌نظیر، به شما امکان
+                                                    می‌دهند تا وزن
+                                                    و هزینه‌های مرتبط با مقاطع فولادی را محاسبه کنید. با ماشین حساب
+                                                    پیکوفلز، تصمیمات خرید خود را بر اساس
+                                                    اطلاعات دقیق و به‌روز انجام دهید و در زمان و هزینه‌های خود صرفه‌جویی
+                                                    کنید.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingThree">
+                                                <button class="accordion-button collapsed font-vazir-bold-fd"
+                                                        type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                                        aria-expanded="false" aria-controls="flush-collapseThree">
+                                                    چگونه از ماشین حساب محاسبه وزن آهن استفاده کنیم؟
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                                 aria-labelledby="flush-headingThree"
+                                                 data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <li>
+                                                            به صفحه <a href="{% url 'core:calculator' %}"
+                                                                       class="link-primary text-decoration-underline">محاسبه
+                                                            وزن آهن</a> بروید
+                                                        </li>
+                                                        <li>
+                                                            در قسمت "نوع محاسبه" محصولی که نیاز به محاسبه آن را دارید را
+                                                            انتخاب کنید.
+                                                        </li>
+                                                        <li>
+                                                            قیمت و مقادیر فیزیکی مورد نیاز مانند ابعاد ، ضخامت ، متراژ ،
+                                                            طول
+                                                            شاخه ، قطر و مقدار
+                                                            های دیگر را وارد کنید.
+                                                        </li>
+                                                        <li>
+                                                            وزن و قیمت تخمینی محصول شما در قسمت "وزن" و "جمع کل" نمایش
+                                                            داده می شود.
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingFour">
+                                                <button class="accordion-button collapsed font-vazir-bold-fd"
+                                                        type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseFour"
+                                                        aria-expanded="false" aria-controls="flush-collapseFour">
+                                                    چه عواملی بر وزن آهن تاثیر گذارند؟
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                                 aria-labelledby="flush-headingFour"
+                                                 data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    ضخامت، طول، عرض، و چگالی عوامل اصلی تاثیر گذار روی وزن مقاطع فولادی
+                                                    هستند. برای به دست آوردن وزن هر یک از مقاطع فولادی کافی است تا این
+                                                    اعداد و ارقام را داشته باشیم و در فرمول مربوطه قرار دهیم تا وزن
+                                                    نهایی ما به
+                                                    دست آید.
+                                                    <br>
+                                                    علاوه بر این موارد، وزن ورق آهن تحت تاثیر عوامل دیگری مانند خالصی یا
+                                                    ناخالصی، نوع ورق مصرفی، دمای تولید و وجود عناصر و آلیاژ های دیگر
+                                                    قرار دارد و این موارد می توانند روی وزن نهایی این محصول تاثیر گذار
+                                                    باشند.
 
-                                    {#                                    <div class="d-flex justify-content-center align-items-center">#}
-                                    {#                                        <img src="http://127.0.0.1:8000/media/articles/thumbnail/733526-2023-04-20_190358.6595560000.png"#}
-                                    {#                                         alt="" class="img-fluid rounded-3">#}
-                                    {#                                    </div>#}
+                                                    روش های مختلفی در محاسبه وزن آهن آلات استفاده می شوند که از مهم ترین
+                                                    آنها
+                                                    می توان به
+                                                    <b>محاسبه آنلاین وزن آهن</b>
+                                                    ،
+                                                    <b> جدول وزن آهن آلات</b>
+                                                    ،
+                                                    <b>جدول اشتال ورق</b>
+                                                    و
+                                                    <b>فرمول محاسبه وزن آهن آلات</b>
+                                                    اشاره کرد.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="flush-headingFive">
+                                                <button class="accordion-button collapsed font-vazir-bold-fd"
+                                                        type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseFive"
+                                                        aria-expanded="false" aria-controls="flush-collapseFive">
+                                                    روش سریع محاسبه وزن آهن
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseFive" class="accordion-collapse collapse"
+                                                 aria-labelledby="flush-headingFive"
+                                                 data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                    سریع ترین روش به دست آوردن وزن آهن آلات، استفاده از جداول وزن مخحصوص
+                                                    آنها است. در جداول وزن، وزن محصول در کنار مقادیر فیزیکی مانند طول،
+                                                    عرض، ضخامت و سایز ارائه شده است و دیگر نیازی نیست که حجم مقطع فولادی
+                                                    را در چگالی آهن ضرب کنیم. جداول وزن آهن برای هر یک از مقاطع فولادی و
+                                                    کارخانه های مختلف
+                                                    متفاوت است. به طور کلی استفاده از جدول وزن باعث می شود تا سریع تر
+                                                    وزن مورد نظر محصول خود را تخمین بزنیم و میزان خطا در محاسبات را تا
+                                                    حد خوبی کاهش دهیم.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                    <h4 class="font-vazir-bold-fd h6 mt-4">
-                                        چگونه وزن آهن را به صورت آنلاین محاسبه کنیم ؟
-                                    </h4>
-                                    <p class="text-align-justify">
-                                        با رشد و توسعه دنیای اینترنت و افزایش ابزار های کابردی آنلاین ، با استفاده از
-                                        آنها میتوان کار ها را سریع تر از قبل پیش برد . برای موفقیت در کسب و کار خود ،
-                                        شما نیاز به استفاده از ابزار هایی دارید تا فرایند های مختلف کسب و کار مانند
-                                        محاسبه وزن و قیمت را راحت تر کند .محاسبه آنلاین وزن آهن و دسترسی به جداول وزن ،
-                                        یکی از ابزار های آنلاینی است که شما میتوانید برای پیشرفت سریع در کار خود از آن
-                                        استفاده کنید .
-                                        <br>
-                                        همانطور که میدانید هر یک از مقاطع فولادی دارای جدول وزن به خصوصی است که برای به
-                                        دست آوردن اطلاعات آن مقطع با مشخصات فیزیکی مورد نیاز میتوان از آن استفاده کرد ؛
-                                        استفاده از جداول چالش هایی را به همراه دارد برای مثال درصد خطای بالا و زمان
-                                        زیادی نیاز دارد. از این رو برای راحتی کار فروشندگان ، خریداران و تمامی فعالین
-                                        این حوزه مانند مهندسان سازه ، جوشکار ها ، صنایع تولیدی و ... ابزاری برای محاسبه
-                                        آنلاین وزن آهن طراحی کردیم تا با استفاده از آن بتوانید هرچه بهتر و با دقت و سرعت
-                                        بیشتر کار خودرا پیش ببرید.
-                                    </p>
-
-                                    <h4 class="font-vazir-bold-fd h6 mt-4">
-                                        چگونه از ماشین حساب محاسبه وزن آهن استفاده کنیم ؟
-                                    </h4>
-                                    <ul>
-                                        <li>
-                                            به صفحه <a href="{% url 'core:calculator' %}"
-                                                       class="link-primary text-decoration-underline">محاسبه
-                                            وزن آهن</a> بروید
-                                        </li>
-                                        <li>
-                                            در قسمت "نوع محاسبه" محصولی که نیاز به محاسبه آن را دارید را انتخاب کنید
-                                        </li>
-                                        <li>
-                                            مقادیر فیزیکی مورد نیاز مانند ابعاد ، ضخامت ، متراژ ، طول شاخه ، قطر و مقدار
-                                            های دیگر را وارد کنید
-                                        </li>
-                                        <li>
-                                            وزن تخمینی مقطع شما در قسمت "وزن" نمایش داده میشود
-                                        </li>
-                                    </ul>
-
-                                    <h4 class="font-vazir-bold-fd h6 mt-4">
-                                        چه عواملی بر وزن آهن تاثیر گذارند ؟
-                                    </h4>
-                                    <p class="text-align-justify">
-                                        به طور کلی عوامل تاثیر گذار بر وزن آهن عبارت اند از : 1- ضخامت مقطع فولادی 2-
-                                        طول 3- عرض 4- چگالی . وزن آهن تحت تاثیر عوامل مختلف قرار دارد. برای مثال خالصی
-                                        یا ناخالصی آهن میتواند بر کاهش یا افزایش وزن آن تاثیر بگذارد.
-                                        <br>
-                                        علاوه بر خلوص آهن
-                                        ، دمای تولید آهن نیز بر وزن آن تاثیر میگذارد ، زیرا آهن داغ تر انرژی حرارتی
-                                        بیشتری دارد و به دلیل افزایش حرکت مولکولی ، وزن آن بیشتر میشود . همانطور که در
-                                        بالا به آن اشاره شد 4 عامل اصلی شکل ، چگالی ، ابعاد و اندازه مهم ترین پارامتر
-                                        های تاثیرگذار بر روی وزن مقطع فولادی میباشد .
-                                        <br>
-                                        علاوه بر نکات گفته شده وجود عناصر
-                                        یا آلیاژ های دیگر میتواند بر وزن آن تاثیر بگذارد ، زیرا کم و زیاد کردن برخی مواد
-                                        در ترکیب آهن میتواند چگالی آهن را کاهش دهد.
+                                    <p class="text-center font-vazir-bold-fd mt-3 alert alert-primary">
+                                        آماده‌اید تا خریدهای فولادی خود را به سطح بعدی ببرید؟ همین
+                                        حالا تماس بگیرید و تجربه‌ای متفاوت از خرید آهن را کسب کنید!
                                     </p>
                                 </div>
                             </div>
