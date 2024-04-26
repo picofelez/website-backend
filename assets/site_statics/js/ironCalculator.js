@@ -47,16 +47,19 @@ $(document).ready(function () {
             $('#rebar_calculator').hide(400)
             $('#foil_calculator').show(400)
             $('#foil_description').show(400)
+            $('#profile_description').hide(400)
         } else if (val === 'rebar') {
             $('#profile_calculator').hide(400)
             $('#rebar_calculator').show(400)
             $('#foil_calculator').hide(400)
             $('#foil_description').hide(400)
+            $('#profile_description').hide(400)
         } else if (val === 'profile') {
             $('#profile_calculator').show(400)
             $('#rebar_calculator').hide(400)
             $('#foil_calculator').hide(400)
             $('#foil_description').hide(400)
+            $('#profile_description').show(400)
         }
     })
 
