@@ -39,6 +39,7 @@ class Article(models.Model):
     title = models.CharField(max_length=155, verbose_name='عنوان')
     summary = models.CharField(max_length=255, verbose_name='خلاصه')
     description = RichTextUploadingField(verbose_name='توضیحات')
+    keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
     image = models.ImageField(upload_to=upload_article_image_path, verbose_name='تصویر اصلی')
     tags = models.ManyToManyField(
         Tag, related_name='articles', verbose_name='برچسب ها'
