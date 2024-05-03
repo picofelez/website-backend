@@ -20,7 +20,7 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('title', 'summary', 'description')
     list_editable = ('status',)
     fieldsets = (
-        ('اطلاعات مقاله', {'fields': ('title', 'summary', 'description')}),
+        ('اطلاعات مقاله', {'fields': ('title', 'summary', 'keywords', 'description')}),
         ('تصویر و نویسنده', {'fields': ('image',)}),
         ('وضعیت مشاهده', {'fields': ('publish_time', 'status')}),
     )
