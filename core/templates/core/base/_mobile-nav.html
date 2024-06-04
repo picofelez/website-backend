@@ -9,6 +9,9 @@
             <li {% if url_name == 'home' %}class="main-nav-active-item"{% endif %}>
                 <a href="{% url 'core:home' %}">خانه</a>
             </li>
+            <li {% if url_name == 'work-sample-categories' %}class="main-nav-active-item"{% endif %}>
+                <a href="{% url 'core:work-sample-categories' %}">خدمات پیکوفلز</a>
+            </li>
             <li {% if url_name == 'work-sample-list' %}class="main-nav-active-item"{% endif %}>
                 <a href="{% url 'core:work-sample-list' %}">نمونه کار ها</a>
             </li>
@@ -20,9 +23,6 @@
             </li>
             <li {% if url_name == 'calculator' %}class="main-nav-active-item"{% endif %}>
                 <a href="{% url 'core:calculator' %}">وزن آهن آلات</a>
-            </li>
-            <li {% if url_name == 'work-sample-categories' %}class="main-nav-active-item"{% endif %}>
-                <a href="{% url 'core:work-sample-categories' %}">دسته بندی محصولات</a>
             </li>
         </ul>
     </div>

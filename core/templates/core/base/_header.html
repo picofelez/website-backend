@@ -17,7 +17,7 @@
                     >
               <span>
                 <i class="fa fa-phone"></i>
-               مشاوره و همکاری: 09124675462
+               مشاوره و همکاری: 09199060659
               </span>
                     </div>
                 </div>
@@ -88,10 +88,10 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="main-nav-items">
-                            <li>
+                            <li {% if url_name == 'work-sample-categories' %}class="main-nav-active-item"{% endif %}>
                                 <a href="{% url 'core:work-sample-categories' %}">
                                     <i class="fas fa-bars"></i>
-                                    دسته بندی محصولات
+                                   خدمات پیکوفلز
                                 </a>
                             </li>
                             <li {% if url_name == 'home' %}class="main-nav-active-item"{% endif %}>
