@@ -992,6 +992,58 @@ section.inner-page#article-page .blog-side-panel .side-blog-post .date {
     font-weight: 500;
 }
 
+/* services */
+.services {
+    padding: 2rem 0;
+}
+
+.services-card {
+    height: 18rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    color: #000;
+}
+
+.services-card img {
+    width: 100%;
+    height: 100%;
+}
+
+.services-card-overlay {
+    position: absolute;
+    top: 1rem;
+    left: 1.15rem;
+    width: 90%;
+    height: 90%;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    padding: 1.3rem 1.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.services-card:hover .services-card-overlay {
+    left: -100%;
+}
+
+.services-card-overlay div i {
+    color: #000;
+    font-size: 3.5rem;
+}
+
+.services-card-overlay .title a {
+    color: #000;
+}
+
+.services-card-overlay .title::after {
+    background-color: var(--primary-color);
+    width: 3rem;
+}
+
+.services-card-overlay .services-text {
+    color: #000;
+}
+
 /* worksample */
 .worksample-img {
     height: 23rem;

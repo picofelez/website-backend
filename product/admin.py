@@ -10,7 +10,8 @@ class CategoryInline(admin.TabularInline):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent')
+    list_display = ('name', 'parent', 'pinned')
+    list_editable = ('pinned',)
 
 
 @admin.register(Product)

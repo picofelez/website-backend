@@ -11,14 +11,14 @@
                         <span class="text-purple">پیکو</span>فلز
                     </h1>
                     <p class="mb-0 font-vazir-bold-f">
-                        تولید کننده انواع محصولات فلزی و سرویس های جوشکاری منحصر به فرد!
+                        ارائه دهنده انواع خدمات و محصولات فلزی منحصر به فرد!
                     </p>
                 </div>
             </div>
             <div class="text-center mb-5">
-                <a href="{% url 'core:work-sample-list' %}" class="btn btn-outline-dark px-4 py-2">
+                <a href="{% url 'core:work-sample-categories' %}" class="btn btn-outline-dark px-4 py-2">
                     <i class="fas fa-newspaper"></i>
-                    پروژه ها
+                    خدمات ما
                 </a>
                 <a href="{% url 'core:contact-us' %}" class="btn btn-outline-dark px-4 py-2">
                     <i class="fas fa-phone"></i>
@@ -94,13 +94,15 @@
                     {#                    <h2 class="h4 my-4 text-center">گروه فلزکاری عبدی (پیکوفلز)</h2>#}
                     <h2 class="h5 my-4 text-center font-vazir-bold-fd">شصت سال سابقه در صنعت فلزکاری!</h2>
                     <p class="call-info-text text-center">
-                        <b>گروه فلزکاری عبدی</b> مفتخر به 60 سال سابقه در ارائه انواع محصولات و خدمات فلزی و آهنگری همچون
+                        <b>گروه فلزکاری عبدی</b> مفتخر به 60 سال سابقه در ارائه انواع محصولات و خدمات فلزی و آهنگری
+                        همچون
                         طراحی، تولید و اجرای انواع اسکلت فلزی، فلاشینگ، لانچر، شاسی دستگاه های صنعتی، شاسی کشی نما،
                         فرفورژه، انواع درب و پنجره آهنی، تانکر، تیرچه کرومیت، اسکلت تیرچه های پاشنه بتنی، وال پست و ...
                         می باشد.
                     </p>
                     <p class="call-info-text text-center">
-                        کارگاه مرکزی گروه صنعتی <b>پیکوفلز</b> در استان البرز مستقر شده است و به سراسر ایران همچون تهران،
+                        کارگاه مرکزی گروه صنعتی <b>پیکوفلز</b> در استان البرز مستقر شده است و به سراسر ایران همچون
+                        تهران،
                         زنجان، گیلان، مازندران و ... خدمات و محصولات فلزی خود را ارائه می دهد. با گسترش تکنولوژی و رشد
                         ابزارآلات صنعتی، مجموعه ما همواره تلاش کرده است تا با بهره گیری از علم و دانش مهندسی روز، توسعه
                         منابع انسانی و قرار گیری در مسیر رشد و توسعه کسب و کار، بهترین خدمات و محصولات را برای مشتریان
@@ -115,6 +117,37 @@
         </section>
     </section>
 
+    <section id="services" class="services">
+        <section class="container">
+            <h3 class="font-vazir-bold-fd h4 text-center mb-4">
+                سرویس های ما
+            </h3>
+            <section class="row">
+                {% for category in pinned_categories %}
+                    <section class="col-md-4 col-12 mb-3">
+                        <div class="services-card">
+                            <img src="{{ category.image_url }}" alt="services">
+                            <div class="services-card-overlay">
+                                <div class="mb-4">
+                                    <i class="{{ category.icon }}"></i>
+                                </div>
+                                <p class="title h5 mb-4 font-vazir-bold-fd">
+                                    <a href="{% url 'core:work-sample-category-list' category.slug category.pk %}">
+                                        {{ category.name }}
+                                    </a>
+                                </p>
+                                <p class="services-text mb-4">
+                                    {{ category.summary|safe }}
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                {% endfor %}
+
+            </section>
+        </section>
+    </section>
+
     <section class="home-product my-5">
         <section class="container">
             <!-- title -->
@@ -125,7 +158,7 @@
             </div>
             <!-- products -->
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 products justify-content-center">
-                {% for worksample in portfolio %}
+                {% for worksample in latest_portfolios %}
                     <section class="col-lg-4 col-md-6 col-12 mb-3">
                         {% include 'metallurgy/components/portfolio_card_component.html' %}
                     </section>
