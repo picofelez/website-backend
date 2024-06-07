@@ -32,6 +32,12 @@ class Category(models.Model):
     meta_keywords = models.CharField(max_length=255, null=True, blank=True, verbose_name='کلمات کلیدی')
     meta_description = models.CharField(max_length=255, null=True, blank=True, verbose_name='توضیحات')
     meta_title = models.CharField(max_length=255, null=True, blank=True, verbose_name='عنوان متا')
+    pinned = models.BooleanField(default=False, verbose_name="پین شده")
+    image = models.ImageField(upload_to=upload_product_image_path, null=True, blank=True, verbose_name='تصویر')
+    image_url = models.URLField(null=True, blank=True, verbose_name='آدرس تصویر')
+    summary = RichTextUploadingField(null=True, blank=True, verbose_name='توضیحات')
+    icon = models.CharField(max_length=50, null=True, blank=True, verbose_name='آیکون')
+
 
     class Meta:
         verbose_name = 'دسته بندی'

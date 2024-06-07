@@ -94,6 +94,7 @@ TEMPLATES = [
                 'context_processors.context_processors.latest_shops_context_processor',
                 'context_processors.context_processors.cart_list_context_processor',
                 'context_processors.context_processors.latest_portfolios_context_processor',
+                'context_processors.context_processors.pinned_categories_context'
             ],
         },
     },
