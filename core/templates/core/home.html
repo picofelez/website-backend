@@ -116,7 +116,7 @@
             </div>
         </section>
     </section>
-
+    <hr>
     <section id="services" class="services">
         <section class="container">
             <h3 class="font-vazir-bold-fd h4 text-center mb-4">
@@ -147,7 +147,7 @@
             </section>
         </section>
     </section>
-
+    <hr>
     <section class="home-product my-5">
         <section class="container">
             <!-- title -->
@@ -171,7 +171,7 @@
             </div>
         </section>
     </section>
-
+    <hr>
 
     <section id="contact-info" class="contact-info">
         <section class="container">
@@ -226,25 +226,45 @@
             </section>
         </section>
     </section>
+    <hr>
+    <section id="products" class="products">
 
+        <div class="container">
+            <div class="row">
+                <h3 class="font-vazir-bold-fd h4 text-center mb-4">
+                    محصولات
+                </h3>
+                {% for product in latest_multiple_products %}
+                    {% include 'product/components/multiple_product_card_component.html' %}
+                {% empty %}
+                    <div class="col-12">
+                        <div class="alert alert-secondary">محصولی یافت نشد.</div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            {% include 'core/components/paginate_component.html' %}
+        </div>
+    </section>
+
+    <hr>
 
     {#    <section class="my-5">#}
     {#        <section class="text-center contact-info-title">#}
     {#            <p class="h5 font-vazir-bold-fd">کارفرما هایی که به ما اعتماد کرده اند</p>#}
     {#        </section>#}
     {#        <div class="container">#}
-    {#            <div class="slider">#}
-    {#                <div class="slide-track">#}
-    {#                    <div class="slide">#}
-    {#                        <img src="{% static 'site_statics/img/logo/forSiteHeader.png' %}"#}
-    {#                             alt=""/>#}
+    {#                <div class="slider">#}
+    {#                    <div class="slide-track">#}
+    {#                        <div class="slide">#}
+    {#                            <img src="https://www.rasha-paper.com/wp-content/uploads/2017/09/rasha-persian-logo.png.webp"#}
+    {#                                 alt="راشا کاسپین"/>#}
+    {#                        </div>#}
     {#                    </div>#}
     {#                </div>#}
-    {#            </div>#}
     {#        </div>#}
     {#    </section>#}
-
-    {#    <hr>#}
+    {##}
 
     <section class="home-article my-5">
         <section class="container">
