@@ -2,8 +2,7 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block title %} پیکوفلز | {% if object.meta_title %}{{ object.meta_title }}{% else %}{{ object.title }}
-{% endif %}{% endblock %}
+{% block title %} پیکوفلز | {{ object.title }}{% endblock %}
 
 {% block meta_tags %}
     <!-- Facebook Meta Tags -->

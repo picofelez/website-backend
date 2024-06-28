@@ -21,6 +21,7 @@ class WorkSample(models.Model):
         published = 'p', 'منتشر شده'
 
     title = models.CharField(max_length=255, null=True, blank=True, verbose_name='عنوان')
+    # url title:
     meta_title = models.CharField(max_length=255, null=True, blank=True, verbose_name='عنوان متا')
     # description = models.TextField(verbose_name='توضیحات')
     description = RichTextField(verbose_name='توضیحات')
