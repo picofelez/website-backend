@@ -20,7 +20,8 @@ class WorkSample(models.Model):
         draft = 'd', 'چک نویس'
         published = 'p', 'منتشر شده'
 
-    title = models.CharField(max_length=255, verbose_name='عنوان')
+    title = models.CharField(max_length=255, null=True, blank=True, verbose_name='عنوان')
+    meta_title = models.CharField(max_length=255, null=True, blank=True, verbose_name='عنوان متا')
     # description = models.TextField(verbose_name='توضیحات')
     description = RichTextField(verbose_name='توضیحات')
     image = models.ImageField(upload_to='portfolio/', verbose_name='تصویر')
