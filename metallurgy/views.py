@@ -56,6 +56,9 @@ class WorkSampleDetailView(DetailView):
     model = WorkSample
     template_name = 'metallurgy/work_sample_detail.html'
 
+    def get_queryset(self):
+        return self.model.objects.filter(status='p', publish_time__lte=timezone.now())
+
 
 class CustomerProjectsListView(LoginRequiredMixin, ListView):
     model = Project
