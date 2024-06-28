@@ -43,6 +43,8 @@ class WorkSample(models.Model):
         ordering = ('-publish_time',)
 
     def get_name_replace(self):
+        if self.meta_title:
+            return self.meta_title
         return f"{self.title.replace(' ', '-')}"
 
     def get_absolute_url(self):
