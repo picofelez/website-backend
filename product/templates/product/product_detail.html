@@ -5,6 +5,14 @@
 
 {% block title %}{{ object }} | پیکوفلز{% endblock %}
 
+{% block analytics_script %}{% endblock %}
+{% block header_content %}
+    {% include 'core/base/_plat_mvp_header.html' %}
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}
+
 {% block meta_tags %}
     <meta property="og:url" content="https://picofelez.ir/products/{{ object.pk }}">
     <meta property="og:type" content="website">
@@ -32,12 +40,12 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 px-0">
-                                <h3 class="font-vazir-bold-fd">پیکوفلز</h3>
-                                <p>گروه فلزکاری عبدی</p>
+                                <h3 class="font-vazir-bold-fd">پیکو ابزار</h3>
+                                <p>مرجع تخصصی ابزار</p>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
-                                            <a href="{% url 'core:home' %}">خانه</a>
+                                            <a href="{% url 'core:platform-mvp' %}">خانه</a>
                                         </li>
                                         <li class="breadcrumb-item">
                                             <a href="{% url 'product:product-list' %}">محصولات</a>

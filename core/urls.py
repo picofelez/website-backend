@@ -10,7 +10,7 @@ from .views import (
     Home,
     AboutUsView,
     CreateContactView,
-    QuestionListView,
+    PlatformMvpView,
     IronCalculatorTemplateView
 )
 
@@ -21,6 +21,8 @@ urlpatterns = [
     path('contact-us/', CreateContactView.as_view(), name='contact-us'),
     # path('faq/', QuestionListView.as_view(), name='faq'),
     path('calculator/', IronCalculatorTemplateView.as_view(), name='calculator'),
+    path('vehicles/', PlatformMvpView.as_view(), name='platform-mvp'),
+
     path('portfolios/', WorkSampleListView.as_view(), name='work-sample-list'),
     path('portfolios/categories/', CategoriesListView.as_view(), name='work-sample-categories'),
     path(r'portfolios/category-<slug>/<int:pk>', WorkSampleCategoryListView.as_view(),

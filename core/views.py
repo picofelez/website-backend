@@ -20,6 +20,7 @@ class Home(TemplateView):
         data = super().get_context_data(**kwargs)
         data['portfolio'] = WorkSample.objects.filter(status='p', publish_time__lte=timezone.now())[:3]
         return data
+
     template_name = 'core/home.html'
 
 
@@ -50,3 +51,7 @@ class QuestionListView(ListView):
 
 class IronCalculatorTemplateView(TemplateView):
     template_name = 'core/calculator.html'
+
+
+class PlatformMvpView(TemplateView):
+    template_name = 'core/plat_mvp.html'

@@ -1,0 +1,122 @@
+{% load static %}
+
+{% with request.resolver_match.url_name as url_name %}
+    <header class="main-header">
+        <section class="top-main-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 d-none d-md-block">
+                        <ul>
+                            <li><a href="{% url 'core:home' %}">صفحه اصلی</a></li>
+                            <li><a href="{% url 'core:about-us' %}">درباره ما</a></li>
+                            <li><a href="{% url 'core:contact-us' %}">تماس با ما</a></li>
+                        </ul>
+                    </div>
+                    <div
+                            class="col-12 col-md-4 text-center text-md-end top-main-header-support"
+                    >
+              <span>
+                <i class="fa fa-phone"></i>
+               مشاوره خرید: 09199060659
+              </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="middle-main-header">
+            <div class="container pt-1">
+                <div class="row py-3 align-content-center">
+                    <div
+                            class="col-12 col-md-6 col-xl-2 text-center pb-2 middle-main-header-logo"
+                    >
+                        <a href="{% url 'core:home' %}">
+                            <img src="{% static 'site_statics/img/logo/forSiteHeader.png' %}?v=2" alt="پیکوفلز"/>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 col-xl-5 middle-main-header-search">
+                        <div id="search-bar">
+                            <form action="{% url 'product:product-list' %}">
+                                <i class="fas fa-search"></i>
+                                <input name="search" type="text" placeholder="جستجو بین محصولات..."/>
+                            </form>
+                        </div>
+                    </div>
+{#                    <div class="col-12 col-md-6 col-xl-2 my-3 my-md-0 text-center">#}
+{#                        {% if request.user.is_authenticated %}#}
+{#                            <a href="{% url 'account:user-profile' %}">#}
+{#                                <img#}
+{#                                        src="{% static 'site_statics/img/profile/default.jpg' %}"#}
+{#                                        alt="تصویر پروفایل"#}
+{#                                        width="30"#}
+{#                                        height="30"#}
+{#                                        class="rounded-circle"#}
+{#                                >#}
+{#                                {{ request.user.get_full_name }}#}
+{#                            </a>#}
+{#                        {% else %}#}
+{#                            <a href="{% url 'account:otp-login' %}" class="font-vazir-bold-fd">ورود به حساب</a>#}
+{#                        {% endif %}#}
+{#                    </div>#}
+{#                    <div class="col-12 col-md-6 col-xl-3">#}
+{#                        <div class="row">#}
+{#                            <div#}
+{#                                    class="col-12 mb-1 mb-md-0"#}
+{#                            >#}
+{#                                {% if request.user.is_anonymous or request.user.shops.count < 1 %}#}
+{#                                    <a href="{% url 'core:contact-us' %}">#}
+{#                                        <div class="btn btn-outline-purple w-100">#}
+{#                                            <i class="fa fa-shop"></i>#}
+{#                                           همکاری با ما#}
+{#                                        </div>#}
+{#                                    </a>#}
+{#                                {% else %}#}
+{#                                    <a href="{% url 'shop:shop-panel-main' request.user.shops.first.unique_uuid %}">#}
+{#                                        <div class="btn btn-purple w-100">#}
+{#                                            <i class="fa fa-shopping-bag"></i>#}
+{#                                            ورود به فروشگاه#}
+{#                                        </div>#}
+{#                                    </a>#}
+{#                                {% endif %}#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+        </section>
+{#        <nav class="bottom-main-header main-nav">#}
+{#            <div class="container">#}
+{#                <div class="row">#}
+{#                    <div class="col-12">#}
+{#                        <ul class="main-nav-items">#}
+{#                            <li {% if url_name == 'work-sample-categories' %}class="main-nav-active-item"{% endif %}>#}
+{#                                <a href="{% url 'core:work-sample-categories' %}">#}
+{#                                    <i class="fas fa-bars"></i>#}
+{#                                   خدمات پیکوفلز#}
+{#                                </a>#}
+{#                            </li>#}
+{#                            <li {% if url_name == 'home' %}class="main-nav-active-item"{% endif %}>#}
+{#                                <a href="{% url 'core:home' %}">خانه</a>#}
+{#                            </li>#}
+{#                            <li {% if url_name == 'work-sample-list' %}class="main-nav-active-item"{% endif %}>#}
+{#                                <a href="{% url 'core:work-sample-list' %}">نمونه کار ها</a>#}
+{#                            </li>#}
+{#                            <li {% if url_name == 'blog-list' %}class="main-nav-active-item"{% endif %}>#}
+{#                                <a href="{% url 'blog:blog-list' %}">مجله پیکوفلز</a>#}
+{#                            </li>#}
+{#                            <li {% if url_name == 'product-list' %}class="main-nav-active-item"{% endif %}>#}
+{#                                <a href="{% url 'product:product-list' %}">محصولات</a>#}
+{#                            </li>#}
+{#                            <li {% if url_name == 'calculator' %}class="main-nav-active-item"{% endif %}>#}
+{#                                <a href="{% url 'core:calculator' %}">وزن آهن آلات</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                        <div class="main-nav-btn" id="main-nav-btn">#}
+{#                            <i class="fas fa-bars"></i>#}
+{#                            منو#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </nav>#}
+    </header>
+{% endwith %}

@@ -1,0 +1,160 @@
+{% extends 'core/base/_base.html' %}
+{% load static %}
+
+{% block analytics_script %}{% endblock %}
+
+{% block meta_tags %}{% endblock %}
+
+{% block title %}پیکوابزار | مرجع آنلاین ابزار{% endblock %}
+
+{% block header_content %}
+    {% include 'core/base/_plat_mvp_header.html' %}
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}
+
+
+{% block content %}
+    <section class="intro-box">
+        <section class="container position-relative py-5">
+            <div class="row justify-content-center mb-4 mt-4">
+                <div class="col-xl-7 col-lg-9 text-center">
+                    <h1 class="font-vazir-bold-fd mb-3">
+                        مرجع آنلاین
+                        <span class="text-purple">ابزار</span>
+                    </h1>
+                    <p class="mb-0 font-vazir-bold-f">
+                        قیمت های لحظه ای ابزار هارو ببین و در لحظه خرید کن!
+                    </p>
+                </div>
+            </div>
+            <div class="text-center mb-5">
+                <a href="{% url 'core:work-sample-categories' %}" class="btn btn-outline-dark px-4 py-2">
+                    <i class="fas fa-newspaper"></i>
+                    لیست قیمت ابزار
+                </a>
+                <a href="{% url 'core:contact-us' %}" class="btn btn-outline-dark px-4 py-2">
+                    <i class="fas fa-phone"></i>
+                    لیست محصولات
+                </a>
+                <br>
+                <a href="{% url 'core:contact-us' %}" class="btn btn-outline-dark mt-2 px-4 py-2">
+                    <i class="fas fa-store"></i>
+                    فروشنده شوید
+                </a>
+            </div>
+            <div class="row icon-boxes mb-5">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="fas fa-shop"></i></div>
+                        <h4 class="icon-box-title">
+                            <a href="{% url 'core:work-sample-list' %}">انتخاب محصول</a>
+                        </h4>
+                        <p class="description">
+                            از پروژه های ما بازدید کنید ، محصول خودرا انتخاب و با ما
+                            تماس بگیرید!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="fas fa-gear"></i></div>
+                        <h4 class="icon-box-title">
+                            <a href="{% url 'core:contact-us' %}">
+                                بازدید فنی
+                            </a>
+                        </h4>
+                        <p class="description">
+                            پس از انتخاب محصول با حضور در محل پروژه بازدید فنی و الگو برداری دقیق صورت میگیرد!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="fas fa-screwdriver-wrench"></i></div>
+                        <h4 class="icon-box-title">
+                            <a href="{% url 'core:about-us' %}">
+                                ساخت و تولید
+                            </a>
+                        </h4>
+                        <p class="description">سفارش شما با تجهیزات به روز و حرفه ای و با رعایت اصول مهندسی، طراحی و
+                            تولید می شود!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="fas fa-truck"></i></div>
+                        <h4 class="icon-box-title">
+                            <a href="{% url 'blog:blog-list' %}">
+                                نصب و اجرا
+                            </a>
+                        </h4>
+                        <p class="description">
+                            پس از اتمام ساخت، بارگیری به محل پروژه انجام و درصورت نیاز توسط تیم متخصص
+                            نصب میشود!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </section>
+    <section id="contact-info" class="contact-info">
+        <section class="container">
+            {#            <section class="text-center">#}
+            {#                <h4 class="font-vazir-bold-fd">همکاری با ما</h4>#}
+            {#            </section>#}
+            <section class="row mt-4 mx-2 mx-md-0">
+                <section class="col-md-3 col-6 mb-3">
+                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
+                            <span>
+                                <i class="fas fa-building"></i>
+                            </span>
+                        <p>
+                            ابزار برقی<br>
+                            <small>استعلام قیمت</small>
+                        </p>
+                    </a>
+                </section>
+                <section class="col-md-3 col-6 mb-3">
+                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
+                            <span>
+                                <i class="fas fa-door-closed"></i>
+                            </span>
+                        <p>
+                            ابزار دستی<br>
+                            <small>استعلام قیمت</small>
+                        </p>
+                    </a>
+                </section>
+                <section class="col-md-3 col-6 mb-3">
+                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
+                            <span>
+                                <i class="fas fa-industry"></i>
+                            </span>
+                        <p>
+                            یراق آلات<br>
+                            <small>استعلام قیمت</small>
+                        </p>
+                    </a>
+                </section>
+                <section class="col-md-3 col-6 mb-3">
+                    <a href="{% url 'core:contact-us' %}" class="contact-info-card rounded flex-center">
+                            <span>
+                                <i class="fas fa-tools"></i>
+                            </span>
+                        <p>
+                            ابزار کارگاهی<br>
+                            <small>استعلام قیمت</small>
+                        </p>
+                    </a>
+                </section>
+            </section>
+        </section>
+    </section>
+{% endblock %}

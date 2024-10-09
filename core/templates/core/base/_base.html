@@ -2,35 +2,37 @@
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TX8GF3N1Z1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    {% block analytics_script %}
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TX8GF3N1Z1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+            function gtag() {
+                dataLayer.push(arguments);
+            }
 
-        gtag('js', new Date());
+            gtag('js', new Date());
 
-        gtag('config', 'G-TX8GF3N1Z1');
-    </script>
+            gtag('config', 'G-TX8GF3N1Z1');
+        </script>
 
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NDDPCGJ');</script>
-    <!-- End Google Tag Manager -->
+        <!-- Google Tag Manager -->
+        <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NDDPCGJ');</script>
+        <!-- End Google Tag Manager -->
+    {% endblock %}
 
 
     <meta charset="UTF-8"/>
@@ -74,9 +76,11 @@
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-{% include 'core/base/_header.html' %}
+{% block header_content %}
+    {% include 'core/base/_header.html' %}
 
-{% include 'core/base/_mobile-nav.html' %}
+    {% include 'core/base/_mobile-nav.html' %}
+{% endblock %}
 
 {% if request.user.is_authenticated and not request.user.get_full_name %}
     <div class="alert alert-success rounded-0">
@@ -90,7 +94,9 @@
 
 {% endblock %}
 
-{% include 'core/base/_footer.html' %}
+{% block footer_content %}
+    {% include 'core/base/_footer.html' %}
+{% endblock %}
 
 
 {% include 'core/base/_footer_refrences.html' %}
